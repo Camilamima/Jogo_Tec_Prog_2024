@@ -7,12 +7,14 @@ private:
 	//int id
 	//statics int cont++;
 	Gerenciado_Grafico* gGrafico;
-	Texture textura;
+	Textura sprite;
 public:
-	Ente(Texture tx);
+	Ente();
 	~Ente();
 	virtual void executar() = 0;
 	void setGerenciador(Gerenciado_Grafico* g);
+	void setTextura(Texture textura);
+	void getTextura();
 	void desenhaFigura();
 
 };

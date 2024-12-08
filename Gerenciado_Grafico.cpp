@@ -2,14 +2,14 @@
 #include <ctime>
 #include <algorithm>
 
-#define SPEED_X 350
+#define SPEED_X 500//21 pixel com 0,6 m
 #define ALTURA_INICIAL 775
-#define GRAVIDADE  20
-#define FORCA_PULO  50
+#define GRAVIDADE  7
+#define FORCA_PULO  600
 #define ALTURA_MAX_PUL 200
 
 Gerenciado_Grafico::Gerenciado_Grafico(){
-
+	wPress = 0;
 	velocidadeY = 0.f;
 	noChao = 1;
 	relogio.restart();
@@ -54,10 +54,15 @@ void Gerenciado_Grafico::processaEvento(){//provavelmente vai pra classe persona
 	}
 
 	if (Keyboard::isKeyPressed(sf::Keyboard::W)){
-		if (noChao) {
-			velocidadeY = -FORCA_PULO;
-			noChao = 0;
-		}
+			if (noChao) {
+				velocidadeY = -FORCA_PULO*atualizaDelta();
+				noChao = 0;
+				wPress = 1;
+			}
+			atualizaFisica(0);
+	}
+	else {
+		wPress = 0;
 		atualizaFisica(0);
 	}
 }
@@ -86,14 +91,22 @@ void Gerenciado_Grafico::atualizaFisica(float aux) {//provavermente vai pra clas
 	if (!noChao) 
 	{
 
-		velocidadeY += static_cast<float>(GRAVIDADE) * atualizaDelta();
+		velocidadeY += static_cast<float>(GRAVIDADE)*atualizaDelta();
 		if ((quadrado.getPosition().y + velocidadeY) > ALTURA_INICIAL) {
 			velocidadeY = ALTURA_INICIAL - quadrado.getPosition().y;
 		}
-		else if ((quadrado.getPosition().y + velocidadeY) <= ALTURA_MAX_PUL) {
-			velocidadeY = 0;
+
+		if (!wPress && velocidadeY<0){
+
+			if (velocidadeY < 0) {
+				velocidadeY = 0;
+			}
+
+			wPress = 1;
+
+			atualizaFisica(aux);
 		}
-		
+
 		quadrado.move(aux, velocidadeY);
 
 		if(quadrado.getPosition().y>=ALTURA_INICIAL){

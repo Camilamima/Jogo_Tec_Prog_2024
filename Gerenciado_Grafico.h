@@ -13,10 +13,10 @@ private:
 	Clock relogio;
 	bool noChao; //provavelmente sera inserida posteriormente em classes jogador
 	float velocidadeY;//provavelmente sera inserida posteriormente na classe jogador
+	bool wPress;
 	
 public:
-	Gerenciado_Grafico(
-	);
+	Gerenciado_Grafico();
 	~Gerenciado_Grafico();
 	void geraJogador(float y2, float x2);
 	void movePersonagem();
@@ -25,5 +25,6 @@ public:
 	void renderiza();         
 	float atualizaDelta();
 	void atualizaFisica(float aux);
+
 };
 

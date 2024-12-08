@@ -13,7 +13,6 @@ void Jogo::executar(){
 
     while (gerent.estaAberta()) { 
         gerent.processaEvento();
-        gerent.atualizaFisica(0);
         gerent.renderiza();        
     }
 	
