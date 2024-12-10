@@ -1,15 +1,18 @@
 #include "Ente.h"
 
 
-Ente::Ente(){
-	gGrafico = NULL;
+Ente::Ente(int x, const char* png):
+	id(x)
+{
+	sprite.loadFromFile(png);
+	pgenGrafico = NULL;
 }
 
 Ente::~Ente() {
-	gGrafico = NULL;
-
+	pgenGrafico = NULL;
 }
 
 void Ente::setGerenciador(Gerenciado_Grafico* g) {
-	gGrafico = g;
+	pgenGrafico = g;
 }
+

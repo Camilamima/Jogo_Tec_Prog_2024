@@ -2,18 +2,20 @@
 
 using namespace sf;
 
-Jogo::Jogo() {
+Jogo::Jogo():
+jogador1(-1,-1),
+gerent()
+{
+    jogador1.setGerenciador(&gerent);
 }
 
 Jogo::~Jogo(){
 }
 
 void Jogo::executar(){
-    gerent.geraJogador(875,775);
-
+        
     while (gerent.estaAberta()) { 
-        gerent.processaEvento();
-        gerent.renderiza();        
+        jogador1.executar();
     }
 	
 }

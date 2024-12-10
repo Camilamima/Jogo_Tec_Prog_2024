@@ -5,26 +5,13 @@
 #include <ctime>
 using namespace sf;
 class Gerenciado_Grafico
-{
-private:
-	RectangleShape quadrado;
+{	
+public: 
 	RenderWindow window;
-	Texture textura;
-	Clock relogio;
-	bool noChao; //provavelmente sera inserida posteriormente em classes jogador
-	float velocidadeY;//provavelmente sera inserida posteriormente na classe jogador
-	bool wPress;
-	
-public:
 	Gerenciado_Grafico();
 	~Gerenciado_Grafico();
-	void geraJogador(float y2, float x2);
-	void movePersonagem();
-	bool estaAberta();
-	void processaEvento();      
-	void renderiza();         
-	float atualizaDelta();
-	void atualizaFisica(float aux);
+	bool estaAberta();      
+	void renderiza(const RectangleShape& retangulo);
 
 };
 

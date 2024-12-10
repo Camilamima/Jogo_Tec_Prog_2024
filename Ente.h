@@ -2,20 +2,17 @@
 #include "Gerenciado_Grafico.h"
 class Ente
 {
-private:
-	//ser colocado depois, quando for criado lista
-	//int id
+protected:
+	int id;
+	Gerenciado_Grafico* pgenGrafico;
 	//statics int cont++;
-	Gerenciado_Grafico* gGrafico;
-	Textura sprite;
+	Texture sprite;
 public:
-	Ente();
-	~Ente();
+	Ente(int x, const char* png);
+	virtual ~Ente();
 	virtual void executar() = 0;
 	void setGerenciador(Gerenciado_Grafico* g);
-	void setTextura(Texture textura);
-	void getTextura();
-	void desenhaFigura();
-
 };
+
+
 

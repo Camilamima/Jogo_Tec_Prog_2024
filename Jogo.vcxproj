@@ -137,13 +137,21 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Ente.cpp" />
+    <ClCompile Include="Entidade.cpp" />
     <ClCompile Include="Gerenciado_Grafico.cpp" />
+    <ClCompile Include="Jogador.cpp" />
     <ClCompile Include="Jogo.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Personagem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ente.h" />
+    <ClInclude Include="Entidade.h" />
     <ClInclude Include="Gerenciado_Grafico.h" />
+    <ClInclude Include="Jogador.h" />
     <ClInclude Include="Jogo.h" />
+    <ClInclude Include="Personagem.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="pngegg.png" />
