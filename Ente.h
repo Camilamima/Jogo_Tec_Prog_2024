@@ -4,8 +4,7 @@ class Ente
 {
 protected:
 	int id;
-	Gerenciado_Grafico* pgenGrafico;
-	//statics int cont++;
+	Gerenciado_Grafico* pGGrafico;
 	Texture sprite;
 public:
 	Ente(int x, const char* png);

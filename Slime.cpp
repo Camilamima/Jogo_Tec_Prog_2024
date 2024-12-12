@@ -1,20 +1,22 @@
-#include "Jogador.h"
+#include "Slime.h"
 
-Jogador::Jogador(int id, int vids, float vlX, float vlY, const char* png) :
-	Personagem(id, png, vids, vlX, vlY)
+Slime::Slime(int id, const char* png) :
+	Personagem(id, png)
 {
+	setVelocidae(500, 0);
+	setCoordenadas(875, 775);
 	pontos = 0;
 	noChao = 1;
 	wPress = 0;
 	relogio.restart();
 	impulso = 600;
-	setCorpo(875, 775);
+	setCorpo(150, 150);
 }
 
-Jogador::~Jogador() {
+Slime::~Slime() {
 }
 
-void Jogador::mover(float aux){
+void Slime::mover(float aux) {
 	if (!noChao)
 	{
 
@@ -36,24 +38,24 @@ void Jogador::mover(float aux){
 
 		corpo.move(aux, velocidadeY);
 
-		if (corpo.getPosition().y >= 775){
+		if (corpo.getPosition().y >= 775) {
 			noChao = 1;
 			velocidadeY = 0;
 
 		}
 	}
-		else {
-			corpo.move(aux, 0);
-		}
+	else {
+		corpo.move(aux, 0);
+	}
 
 
 }
 
-void Jogador::processaEvento() {
+void Slime::processaEvento() {
 	Event event;
-	while (pgenGrafico->window.pollEvent(event)) {
+	while (pGGrafico->window.pollEvent(event)) {
 		if (event.type == Event::Closed) {
-			pgenGrafico->window.close();
+			pGGrafico->window.close();
 		}
 	}
 
@@ -78,7 +80,7 @@ void Jogador::processaEvento() {
 	}
 }
 
-float Jogador::atualizaDelta(){
+float Slime::atualizaDelta() {
 
 	float deltaTimeAtual = relogio.restart().asSeconds();
 	float minimoDeltaTime = 0.0667f;
@@ -90,8 +92,7 @@ float Jogador::atualizaDelta(){
 	return deltaTimeAtual;
 }
 
-void Jogador::executar() {
-	pgenGrafico->renderiza(corpo);
+void Slime::executar() {
+	pGGrafico->renderiza(corpo);
 	processaEvento();
 }
-

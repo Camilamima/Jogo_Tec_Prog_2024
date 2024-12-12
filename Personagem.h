@@ -7,8 +7,9 @@ protected:
 	float velocidadeX;
 	static const float gravidade;
 public:
-	Personagem(int id,const char* png,int vid, float vlX, float vlY);
+	Personagem(int id,const char* png);
 	~Personagem();
 	virtual void executar() = 0;
 	void setVidas(int vid);
+	void setVelocidae(float vX, float vY);
 };

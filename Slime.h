@@ -2,7 +2,7 @@
 #include "Personagem.h"
 #include <ctime>
 #include <algorithm>
-class Jogador : public Personagem
+class Slime : public Personagem
 {
 private:
 	int pontos;
@@ -11,12 +11,11 @@ private:
 	float impulso;
 	Clock relogio;
 public:
-	Jogador(int id, int vids, float vlX=500, float vlY=0, const char* png="pngegg.png");
-	~Jogador();
+	Slime(int id, const char* png = "pngegg.png");
+	~Slime();
 	void mover(float aux);
-	void executar() override;
+	void executar();
 	void processaEvento();
 	float atualizaDelta();
 
 };
-

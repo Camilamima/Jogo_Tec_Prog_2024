@@ -3,10 +3,10 @@
 using namespace sf;
 
 Jogo::Jogo():
-jogador1(-1,-1),
+Slime1(-1),
 gerent()
 {
-    jogador1.setGerenciador(&gerent);
+    Slime1.setGerenciador(&gerent);
 }
 
 Jogo::~Jogo(){
@@ -15,7 +15,7 @@ Jogo::~Jogo(){
 void Jogo::executar(){
         
     while (gerent.estaAberta()) { 
-        jogador1.executar();
+        Slime1.executar();
     }
 	
 }

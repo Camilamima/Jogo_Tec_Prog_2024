@@ -3,13 +3,13 @@
 class Entidade : public Ente
 {
 protected:
-	int x;
-	int y;
+	float x;
+	float y;
 	RectangleShape corpo;
 public:
 	Entidade(int id,const char* png);
 	virtual ~Entidade();
-	void setCoordenadas(int x1,int y1);
+	void setCoordenadas(float x1,float y1);
 	void setCorpo(float altura, float largura);
 	virtual void executar() = 0;
 };
