@@ -12,4 +12,6 @@ public:
 	virtual void executar() = 0;
 	void setVidas(int vid);
 	void setVelocidae(float vX, float vY);
+	float getVelocidadeX();
+	float getVelocidadeY();
 };

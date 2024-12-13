@@ -2,6 +2,9 @@
 #include "Personagem.h"
 #include <ctime>
 #include <algorithm>
+
+#define VX 500
+
 class Slime : public Personagem
 {
 private:
