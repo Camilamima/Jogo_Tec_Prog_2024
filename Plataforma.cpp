@@ -2,7 +2,7 @@
 
 Plataforma::Plataforma(int id, const char* png) :
 	Obstaculo(id, png),
-	atrapalha(false),
+	atrapalha(true),
 	atrito(0.93f)
 {
 	setCoordenadas(2, 860);

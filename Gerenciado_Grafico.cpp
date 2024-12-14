@@ -22,10 +22,15 @@ void Gerenciado_Grafico::renderiza(const RectangleShape& retangulo){
 	window.draw(retangulo);
 	window.display();
 }
+
 void Gerenciado_Grafico::desenha(const RectangleShape& retangulo) {
 	window.draw(retangulo);
+}
+
+void Gerenciado_Grafico::mostrar() {
 	window.display();
 }
+
 void Gerenciado_Grafico::clear() {
 	window.clear();
 }

@@ -93,6 +93,6 @@ float Slime::atualizaDelta() {
 }
 
 void Slime::executar() {
-	pGGrafico->renderiza(corpo);
 	processaEvento();
+	pGGrafico->desenha(corpo);
 }

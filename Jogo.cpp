@@ -1,4 +1,5 @@
 #include "Jogo.h"
+#include <SFML/Graphics.hpp>
 
 using namespace sf;
 
@@ -15,6 +16,8 @@ Jogo::~Jogo(){
 }
 
 void Jogo::executar(){
+
+	
         
     while (gerent.estaAberta()) { 
         sf::Event event;
@@ -28,10 +31,14 @@ void Jogo::executar(){
 				}
 			}
 		}
+		gerent.clear();
 
-		Slime1.executar();
-		plat.obstacular(&Slime1);
 		plat.executar();
+		Slime1.executar();
+		//plat.obstacular(&Slime1);
+
+		gerent.mostrar();
+		
     }
 	
 }

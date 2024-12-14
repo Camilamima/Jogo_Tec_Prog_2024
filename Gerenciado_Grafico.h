@@ -14,5 +14,6 @@ public:
 	void renderiza(const RectangleShape& retangulo);
 	void clear();
 	void desenha(const RectangleShape& retangulo);
+	void mostrar();
 };
 
