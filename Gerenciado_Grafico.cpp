@@ -16,13 +16,6 @@ bool Gerenciado_Grafico::estaAberta() {
 	return window.isOpen();
 }
 
-
-void Gerenciado_Grafico::renderiza(const RectangleShape& retangulo){
-	window.clear();  
-	window.draw(retangulo);
-	window.display();
-}
-
 void Gerenciado_Grafico::desenha(const RectangleShape& retangulo) {
 	window.draw(retangulo);
 }
@@ -33,4 +26,8 @@ void Gerenciado_Grafico::mostrar() {
 
 void Gerenciado_Grafico::clear() {
 	window.clear();
+}
+
+void Gerenciado_Grafico::fechar() {
+	window.close();
 }

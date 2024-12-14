@@ -11,9 +11,9 @@ public:
 	Gerenciado_Grafico();
 	~Gerenciado_Grafico();
 	bool estaAberta();      
-	void renderiza(const RectangleShape& retangulo);
 	void clear();
 	void desenha(const RectangleShape& retangulo);
 	void mostrar();
+	void fechar();
 };
 

@@ -29,6 +29,8 @@ float Personagem::getVelocidadeX() {
 float Personagem::getVelocidadeY() {
 	return velocidadeY;
 }
-
+void Personagem::operator--() {
+	vidas--;
+}
 
 const float Personagem::gravidade = 9.8;

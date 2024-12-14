@@ -6,10 +6,12 @@ using namespace sf;
 Jogo::Jogo():
 Slime1(-1),
 plat(-1),
+esp(-1),
 gerent()
 {
     Slime1.setGerenciador(&gerent);
 	plat.setGerenciador(&gerent);
+	esp.setGerenciador(&gerent);
 }
 
 Jogo::~Jogo(){
@@ -33,9 +35,15 @@ void Jogo::executar(){
 		}
 		gerent.clear();
 
+		//esp.setCoordenadas(1500, 780);
+		
+		plat.setpJogador(&Slime1);
+		esp.setpJogador(&Slime1);
+
 		plat.executar();
 		Slime1.executar();
-		//plat.obstacular(&Slime1);
+		esp.executar();
+		
 
 		gerent.mostrar();
 		

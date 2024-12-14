@@ -1,14 +1,14 @@
 #pragma once
-#include "Obstaculo.h"
-#include "Slime.h"
 
-class Plataforma : public Obstaculo {
+#include "Obstaculo.h"
+
+class Espinho : public Obstaculo {
 private:
 	float atrito;
 	Slime* pJogador;
 public:
-	Plataforma(int id, const char* png = "plataforma.png");
-	~Plataforma();
+	Espinho(int id, const char* png = "espinho.png");
+	~Espinho();
 	void setpJogador(Slime* jogador) { pJogador = jogador; }
 	Slime* getpJogador() { return pJogador; }
 	void executar();
