@@ -26,17 +26,10 @@ void Obstaculo::obstacular(Slime* jogador, float atrito)
 			if (atrapalha)
 			{
 				float velX = jogador->getVelocidadeX();
-					float velY = jogador->getVelocidadeY();
+				float velY = jogador->getVelocidadeY();
 
-					jogador->setVelocidae((velX * atrito), velY);
+				jogador->setVelocidae((velX * atrito), velY);
 
-
-				if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-				{
-					float velY = jogador->getVelocidadeY();
-
-					jogador->setVelocidae(VX, velY);
-				}
 			}
 			if (danoso)
 			{
