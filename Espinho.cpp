@@ -6,7 +6,7 @@ Espinho::Espinho(int id, const char* png) :
 	pJogador(nullptr)
 {
 	danoso = true;
-	setCoordenadas(1500, 780);
+	setCoordenadas(1500, 775);
 	setCorpo(80.0, 80.0);
 }
 

@@ -6,6 +6,7 @@ class Obstaculo : public Entidade
 {	
 protected:
 	bool danoso;
+	bool atrapalha;
 
 public:
 	Obstaculo(int id, const char* png);

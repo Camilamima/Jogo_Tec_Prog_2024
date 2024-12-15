@@ -7,11 +7,14 @@ Jogo::Jogo():
 Slime1(-1),
 plat(-1),
 esp(-1),
+obst_facil(-1),
 gerent()
 {
     Slime1.setGerenciador(&gerent);
 	plat.setGerenciador(&gerent);
 	esp.setGerenciador(&gerent);
+	obst_facil.setGerenciador(&gerent);
+
 }
 
 Jogo::~Jogo(){
@@ -39,10 +42,12 @@ void Jogo::executar(){
 		
 		plat.setpJogador(&Slime1);
 		esp.setpJogador(&Slime1);
+		obst_facil.setpJogador(&Slime1);
 
 		plat.executar();
 		Slime1.executar();
 		esp.executar();
+		obst_facil.executar();
 		
 
 		gerent.mostrar();

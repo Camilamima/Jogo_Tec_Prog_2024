@@ -5,6 +5,7 @@ Plataforma::Plataforma(int id, const char* png) :
 	atrito(0.99998f),
 	pJogador(nullptr)
 {
+	atrapalha = false;
 	setCoordenadas(0, 860);
 	setCorpo(1800.0, 40.0);
 }
