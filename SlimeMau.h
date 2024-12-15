@@ -2,8 +2,8 @@
 #include "Obstaculo.h"
 
 class SlimeMau : public Obstaculo {
-	float atrito;
-	Slime* pJogador;
+private:
+	//futuramente ver se precisa de algo
 public:
 	SlimeMau(int id, const char* png = "slimemau.png");
 	~SlimeMau();

@@ -7,6 +7,8 @@ class Obstaculo : public Entidade
 protected:
 	bool danoso;
 	bool atrapalha;
+	float atrito;
+	Slime* pJogador;
 
 public:
 	Obstaculo(int id, const char* png);

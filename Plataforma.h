@@ -4,8 +4,7 @@
 
 class Plataforma : public Obstaculo {
 private:
-	float atrito;
-	Slime* pJogador;
+	//futuramente ver se precisa de algo
 public:
 	Plataforma(int id, const char* png = "plataforma.png");
 	~Plataforma();

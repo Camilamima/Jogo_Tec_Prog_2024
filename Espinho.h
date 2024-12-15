@@ -4,8 +4,7 @@
 
 class Espinho : public Obstaculo {
 private:
-	float atrito;
-	Slime* pJogador;
+	//futuramente ver se precisa de algo
 public:
 	Espinho(int id, const char* png = "espinho.png");
 	~Espinho();

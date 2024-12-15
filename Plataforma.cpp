@@ -1,10 +1,10 @@
 #include "Plataforma.h"
 
 Plataforma::Plataforma(int id, const char* png) :
-	Obstaculo(id, png),
-	atrito(0.99998f),
-	pJogador(nullptr)
+Obstaculo(id, png)
 {
+	pJogador = nullptr;
+	atrito = 1.0f;
 	atrapalha = false;
 	setCoordenadas(0, 860);
 	setCorpo(1800.0, 40.0);
