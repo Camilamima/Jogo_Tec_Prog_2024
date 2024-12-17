@@ -80,17 +80,7 @@ void Slime::processaEvento() {
 	}
 }
 
-float Slime::atualizaDelta() {
 
-	float deltaTimeAtual = relogio.restart().asSeconds();
-	float minimoDeltaTime = 0.0667f;
-	float maximoDeltaTime = 0.0167f;
-
-	deltaTimeAtual = std::max(deltaTimeAtual, minimoDeltaTime);  // Limita para não ser menor que 15 FPS
-	deltaTimeAtual = std::min(deltaTimeAtual, maximoDeltaTime);  // Limita para não ser maior que 60 FPS
-
-	return deltaTimeAtual;
-}
 
 void Slime::executar() {
 	processaEvento();
