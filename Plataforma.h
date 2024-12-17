@@ -4,7 +4,9 @@
 
 class Plataforma : public Obstaculo {
 private:
-	//futuramente ver se precisa de algo
+	//talvez mude
+	float altura;
+	float largura;
 public:
 	Plataforma(int id, const char* png = "plataforma.png");
 	~Plataforma();

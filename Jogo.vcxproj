@@ -147,11 +147,13 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClCompile Include="Entidade.cpp" />
     <ClCompile Include="Espinho.cpp" />
     <ClCompile Include="Gerenciado_Grafico.cpp" />
+    <ClCompile Include="Inimigo.cpp" />
     <ClCompile Include="Jogo.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Obstaculo.cpp" />
     <ClCompile Include="Personagem.cpp" />
     <ClCompile Include="Plataforma.cpp" />
+    <ClCompile Include="Rato.cpp" />
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="SlimeMau.cpp" />
   </ItemGroup>
@@ -160,10 +162,12 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClInclude Include="Entidade.h" />
     <ClInclude Include="Espinho.h" />
     <ClInclude Include="Gerenciado_Grafico.h" />
+    <ClInclude Include="Inimigo.h" />
     <ClInclude Include="Jogo.h" />
     <ClInclude Include="Obstaculo.h" />
     <ClInclude Include="Personagem.h" />
     <ClInclude Include="Plataforma.h" />
+    <ClInclude Include="Rato.h" />
     <ClInclude Include="Slime.h" />
     <ClInclude Include="SlimeMau.h" />
   </ItemGroup>
