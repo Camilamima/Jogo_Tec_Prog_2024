@@ -11,6 +11,7 @@ public:
 	virtual ~Entidade();
 	void setCoordenadas(float x1,float y1);
 	void setCorpo(float altura, float largura);
+	RectangleShape getCorpo() { return corpo; }
 	virtual void executar() = 0;
 };
 

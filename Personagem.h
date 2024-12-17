@@ -11,5 +11,9 @@ public:
 	~Personagem();
 	virtual void executar() = 0;
 	void setVidas(int vid);
+	int getVidas() { return vidas; }
+	void operator--();
 	void setVelocidae(float vX, float vY);
+	float getVelocidadeX();
+	float getVelocidadeY();
 };

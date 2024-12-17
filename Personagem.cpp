@@ -22,5 +22,15 @@ void Personagem::setVelocidae(float vX, float vY) {
 	velocidadeY = vY;
 }
 
+float Personagem::getVelocidadeX() {
+	return velocidadeX;
+}
 
-const float Personagem::gravidade = 7;
+float Personagem::getVelocidadeY() {
+	return velocidadeY;
+}
+void Personagem::operator--() {
+	vidas--;
+}
+
+const float Personagem::gravidade = 9.8;

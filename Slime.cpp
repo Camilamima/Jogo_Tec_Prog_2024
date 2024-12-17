@@ -3,7 +3,7 @@
 Slime::Slime(int id, const char* png) :
 	Personagem(id, png)
 {
-	setVelocidae(500, 0);
+	setVelocidae(VX, 0);
 	setCoordenadas(875, 775);
 	pontos = 0;
 	noChao = 1;
@@ -52,12 +52,12 @@ void Slime::mover(float aux) {
 }
 
 void Slime::processaEvento() {
-	Event event;
+	/*Event event;
 	while (pGGrafico->window.pollEvent(event)) {
 		if (event.type == Event::Closed) {
 			pGGrafico->window.close();
 		}
-	}
+	}*/
 
 	if (Keyboard::isKeyPressed(Keyboard::D)) {
 		mover(atualizaDelta() * velocidadeX);
@@ -93,6 +93,6 @@ float Slime::atualizaDelta() {
 }
 
 void Slime::executar() {
-	pGGrafico->renderiza(corpo);
 	processaEvento();
+	pGGrafico->desenha(corpo);
 }
