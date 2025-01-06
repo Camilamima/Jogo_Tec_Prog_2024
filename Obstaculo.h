@@ -14,7 +14,7 @@ public:
 	Obstaculo(int id, const char* png);
 	~Obstaculo();
 	virtual void executar() = 0;
-	void obstacular(Slime* jogador, float atrito);
+	void obstacular(Slime* jogador);
 
 };
 	

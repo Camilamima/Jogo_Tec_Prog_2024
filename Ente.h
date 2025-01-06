@@ -9,8 +9,10 @@ protected:
 public:
 	Ente(int x, const char* png);
 	virtual ~Ente();
-	virtual void executar() = 0;
 	void setGerenciador(Gerenciado_Grafico* g);
+	void setId(int ide) { id = ide; }
+	int getId() { return id; }
+	virtual void executar() = 0;
 };
 
 

@@ -14,6 +14,6 @@ Plataforma::~Plataforma() {
 
 void Plataforma::executar() {
 	pGGrafico->desenha(corpo);
-	obstacular(getpJogador(), atrito);
+	obstacular(getpJogador());
 }
 

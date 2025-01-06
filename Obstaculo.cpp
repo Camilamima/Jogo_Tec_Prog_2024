@@ -14,7 +14,7 @@ pJogador(nullptr)
 Obstaculo::~Obstaculo()
 {
 }
-void Obstaculo::obstacular(Slime* jogador, float atrito)
+void Obstaculo::obstacular(Slime* jogador)
 {
 	RectangleShape teste;
 	Vector2f pos;

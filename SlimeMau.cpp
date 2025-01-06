@@ -15,5 +15,5 @@ SlimeMau::~SlimeMau() {
 
 void SlimeMau::executar() {
 	pGGrafico->desenha(corpo);
-	obstacular(pJogador, atrito);
+	obstacular(pJogador);
 }
