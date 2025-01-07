@@ -8,7 +8,9 @@ public:
 	SlimeMau(int id, const char* png = "slimemau.png");
 	~SlimeMau();
 	void setpJogador(Slime* jogador) { pJogador = jogador; }
-	Slime* getpJogador() { return pJogador; }
+	void setpJogador2(Slime2* jogador2) { pJogador2 = jogador2; }
+	Slime* getpJogador1() { return pJogador; }
+	Slime2* getpJogador2() { return pJogador2; }
 	void executar();
-	void obstacular(Slime* jogador);
+	void obstacular(Slime* jogador, Slime2* jogador2);
 };

@@ -155,6 +155,8 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClCompile Include="Plataforma.cpp" />
     <ClCompile Include="Rato.cpp" />
     <ClCompile Include="Slime.cpp" />
+    <ClCompile Include="Slime2.cpp" />
+    <ClCompile Include="Slime2.h" />
     <ClCompile Include="SlimeMau.cpp" />
   </ItemGroup>
   <ItemGroup>

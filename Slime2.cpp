@@ -1,6 +1,6 @@
-#include "Slime.h"
+#include "Slime2.h"
 
-Slime::Slime(int id, const char* png) :
+Slime2::Slime2(int id, const char* png) :
 	Personagem(id, png)
 {
 	setVelocidae(VX, 0);
@@ -13,10 +13,10 @@ Slime::Slime(int id, const char* png) :
 	setCorpo(150, 150);
 }
 
-Slime::~Slime() {
+Slime2::~Slime2() {
 }
 
-void Slime::mover(float aux) {
+void Slime2::mover(float aux) {
 	if (!noChao)
 	{
 
@@ -51,22 +51,16 @@ void Slime::mover(float aux) {
 
 }
 
-void Slime::processaEvento() {
-	/*Event event;
-	while (pGGrafico->window.pollEvent(event)) {
-		if (event.type == Event::Closed) {
-			pGGrafico->window.close();
-		}
-	}*/
+void Slime2::processaEvento() {
 
-	if (Keyboard::isKeyPressed(Keyboard::D)) {
+	if (Keyboard::isKeyPressed(Keyboard::Right)) {
 		mover(atualizaDelta() * velocidadeX);
 	}
-	else if (Keyboard::isKeyPressed(Keyboard::A)) {
+	else if (Keyboard::isKeyPressed(Keyboard::Left)) {
 		mover(atualizaDelta() * -velocidadeX);
 	}
 
-	if (Keyboard::isKeyPressed(sf::Keyboard::W)) {
+	if (Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 		if (noChao) {
 			velocidadeY = -impulso * atualizaDelta();
 			noChao = 0;
@@ -80,7 +74,7 @@ void Slime::processaEvento() {
 	}
 }
 
-void Slime::executar(){
+void Slime2::executar() {
 	processaEvento();
 	pGGrafico->desenha(corpo);
 }

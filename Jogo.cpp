@@ -1,10 +1,12 @@
 #include "Jogo.h"
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 using namespace sf;
 
 Jogo::Jogo():
-Slime1(-1),
+Slime1(10),
+Slime2(10),
 ratinho(-1),
 plat(-1),
 esp(-1),
@@ -13,6 +15,7 @@ gerent()
 {	
 	ratinho.setGerenciador(&gerent);
     Slime1.setGerenciador(&gerent);
+	Slime2.setGerenciador(&gerent);
 	plat.setGerenciador(&gerent);
 	esp.setGerenciador(&gerent);
 	obst_facil.setGerenciador(&gerent);
@@ -24,7 +27,18 @@ Jogo::~Jogo(){
 
 void Jogo::executar(){
 
+	int num_jogadores=0;
+
+	std::cout << "1 para 1 jogador 2 para 2 jogadores!" << std::endl;
 	
+	std::cin >> num_jogadores;
+
+	if (num_jogadores == 1)
+		std::cout << "Selecionado 1 jogador!" << std::endl;
+	else
+		std::cout << "Selecionado 2 jogadores!" << std::endl;
+
+
         
     while (gerent.estaAberta()) { 
         sf::Event event;
@@ -38,22 +52,46 @@ void Jogo::executar(){
 				}
 			}
 		}
-		gerent.clear();
 
-		//esp.setCoordenadas(1500, 780);
-		
-		plat.setpJogador(&Slime1);
-		esp.setpJogador(&Slime1);
-		obst_facil.setpJogador(&Slime1);
+		if (num_jogadores == 1) {
+			gerent.clear();
 
-		ratinho.executar();
-		plat.executar();
-		Slime1.executar();
-		esp.executar();
-		obst_facil.executar();
-		
+			plat.setpJogador(&Slime1);
+			plat.setpJogador2(nullptr);
+			esp.setpJogador(&Slime1);
+			esp.setpJogador2(nullptr);
+			obst_facil.setpJogador(&Slime1);
+			obst_facil.setpJogador2(nullptr);
 
-		gerent.mostrar();
+			ratinho.executar();
+			plat.executar();
+			Slime1.executar();
+			esp.executar();
+			obst_facil.executar();
+
+			gerent.mostrar();
+		}
+		else if (num_jogadores == 2) {
+			gerent.clear();
+
+
+			plat.setpJogador(&Slime1);
+			plat.setpJogador2(&Slime2);
+			esp.setpJogador(&Slime1);
+			esp.setpJogador2(&Slime2);
+			obst_facil.setpJogador(&Slime1);
+			obst_facil.setpJogador2(&Slime2);
+
+			ratinho.executar();
+			plat.executar();
+			Slime1.executar();
+			Slime2.executar();
+			esp.executar();
+			obst_facil.executar();
+
+
+			gerent.mostrar();
+		}
 		
     }
 	
