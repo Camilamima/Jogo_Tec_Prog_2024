@@ -4,8 +4,10 @@
 
 class Plataforma : public Obstaculo {
 private:
-	int x;
-	int y;
+
+	float x;
+  float y;
+  
 public:
 	Plataforma(int id, const char* png = "plataforma.png");
 	~Plataforma();

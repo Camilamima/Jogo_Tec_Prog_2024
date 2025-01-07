@@ -5,11 +5,13 @@ using namespace sf;
 
 Jogo::Jogo():
 Slime1(-1),
+ratinho(-1),
 plat(-1),
 esp(-1),
 obst_facil(-1),
 gerent()
-{
+{	
+	ratinho.setGerenciador(&gerent);
     Slime1.setGerenciador(&gerent);
 	plat.setGerenciador(&gerent);
 	esp.setGerenciador(&gerent);
@@ -44,6 +46,7 @@ void Jogo::executar(){
 		esp.setpJogador(&Slime1);
 		obst_facil.setpJogador(&Slime1);
 
+		ratinho.executar();
 		plat.executar();
 		Slime1.executar();
 		esp.executar();

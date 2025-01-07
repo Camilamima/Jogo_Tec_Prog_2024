@@ -1,4 +1,6 @@
 #include "Entidade.h"
+#include <ctime>
+#pragma once
 
 class Personagem : public Entidade {
 protected:
@@ -6,9 +8,11 @@ protected:
 	float velocidadeY;
 	float velocidadeX;
 	static const float gravidade;
+	Clock relogio;
 public:
 	Personagem(int id,const char* png);
 	~Personagem();
+	virtual void mover(float aux) = 0;
 	virtual void executar() = 0;
 	void setVidas(int vid);
 	int getVidas() { return vidas; }
@@ -17,4 +21,5 @@ public:
 	void setVelocidae(float vX, float vY);
 	float getVelocidadeX();
 	float getVelocidadeY();
+	float atualizaDelta();
 };

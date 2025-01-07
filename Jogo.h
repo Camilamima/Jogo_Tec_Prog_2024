@@ -4,6 +4,7 @@
 #include "Plataforma.h"
 #include "Espinho.h"
 #include "SlimeMau.h"
+#include "Rato.h"
 
 class Jogo
 {
@@ -13,6 +14,8 @@ private:
 	Plataforma plat;
 	Espinho esp;
 	SlimeMau obst_facil;
+	Rato ratinho;
+	
 public:
 	Jogo();
 	~Jogo();
