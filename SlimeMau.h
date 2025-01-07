@@ -3,11 +3,12 @@
 
 class SlimeMau : public Obstaculo {
 private:
-	//futuramente ver se precisa de algo
+	float atrasador;
 public:
 	SlimeMau(int id, const char* png = "slimemau.png");
 	~SlimeMau();
 	void setpJogador(Slime* jogador) { pJogador = jogador; }
 	Slime* getpJogador() { return pJogador; }
 	void executar();
+	void obstacular(Slime* jogador);
 };
