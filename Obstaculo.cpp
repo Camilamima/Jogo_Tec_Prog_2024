@@ -9,6 +9,7 @@ pJogador(nullptr)
 {
 	danoso = false;
 	atrapalha = false;
+	impede = false;
 }
 
 Obstaculo::~Obstaculo()
