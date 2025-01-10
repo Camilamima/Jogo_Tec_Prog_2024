@@ -15,13 +15,13 @@ namespace Entidades {
 		public:
 			Plataforma(int id, const char* png = "plataforma.png");
 			~Plataforma();
-			void setpJogador(Slime* jogador) { pJogador = jogador; }
-			void setpJogador2(Slime2* jogador2) { pJogador2 = jogador2; }
-			Slime* getpJogador1() { return pJogador; }
-			Slime2* getpJogador2() { return pJogador2; }
+			void setpJogador(Personagens::Slime* jogador) { pJogador = jogador; }
+			void setpJogador2(Personagens::Slime2* jogador2) { pJogador2 = jogador2; }
+			Personagens::Slime* getpJogador1() { return pJogador; }
+			Personagens::Slime2* getpJogador2() { return pJogador2; }
 
 			void executar();
-			void obstacular(Slime* jogador, Slime2* jogador2);
+			void obstacular(Personagens::Slime* jogador, Personagens::Slime2* jogador2);
 		};
 
 	}//namespace Obstaculos

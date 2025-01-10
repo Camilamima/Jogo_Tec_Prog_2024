@@ -2,7 +2,7 @@
 
 #define CAMIHO 300
 
-Entidades::Rato::Rato(int id, const char* png) :
+Entidades::Personagens::Rato::Rato(int id, const char* png) :
 	Inimigo(id, png)
 {
 	setVelocidae(150, 0);
@@ -12,9 +12,9 @@ Entidades::Rato::Rato(int id, const char* png) :
 	distancia_percorrida = 0;
 }
 
-Entidades::Rato::~Rato() {  }
+Entidades::Personagens::Rato::~Rato() {  }
 
-void Entidades::Rato::calculaDis() {
+void Entidades::Personagens::Rato::calculaDis() {
 	if (velocidadeX > 0) {
 		distancia_percorrida += velocidadeX * atualizaDelta();
 	}
@@ -23,7 +23,7 @@ void Entidades::Rato::calculaDis() {
 	}
 }
 
-void Entidades::Rato::executar() {
+void Entidades::Personagens::Rato::executar() {
 
 	if (distancia_percorrida >= CAMIHO) {
 

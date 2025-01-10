@@ -11,12 +11,12 @@ class Fase1
 {
 private:
 	Gerenciado_Grafico gerent;
-	Entidades::Slime Slime1;
-	Entidades::Slime2 Slime2;
+	Entidades::Personagens::Slime Slime1;
+	Entidades::Personagens::Slime2 Slime2;
 	Entidades::Obstaculos::Plataforma plat;
 	Entidades::Obstaculos::Espinho esp;
 	Entidades::Obstaculos::SlimeMau obst_facil;
-	Entidades::Rato ratinho;
+	Entidades::Personagens::Rato ratinho;
 
 public:
 	Fase1();

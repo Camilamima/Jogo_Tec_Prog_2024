@@ -18,7 +18,7 @@ Entidades::Obstaculos::Plataforma::~Plataforma() {
 
 	}
 
-	void Entidades::Obstaculos::Plataforma::obstacular(Slime* jogador, Slime2* jogador2) {
+	void Entidades::Obstaculos::Plataforma::obstacular(Personagens::Slime* jogador, Personagens::Slime2* jogador2) {
 
 		RectangleShape teste1;
 		teste1 = jogador->getCorpo();

@@ -1,7 +1,7 @@
 #include "Personagem.h"
 #pragma once
 
-Entidades::Personagem::Personagem(int id, const char* png) :
+Entidades::Personagens::Personagem::Personagem(int id, const char* png) :
 	Entidade(id, png)
 {
 	velocidadeX = 0;
@@ -9,31 +9,31 @@ Entidades::Personagem::Personagem(int id, const char* png) :
 	vidas = -1;
 }
 
-Entidades::Personagem::~Personagem() {
+Entidades::Personagens::Personagem::~Personagem() {
 	vidas = -1;
 }
 
-void Entidades::Personagem::setVidas(int vid) {
+void Entidades::Personagens::Personagem::setVidas(int vid) {
 	vidas = vid;
 }
 
-void Entidades::Personagem::setVelocidae(float vX, float vY) {
+void Entidades::Personagens::Personagem::setVelocidae(float vX, float vY) {
 	velocidadeX = vX;
 	velocidadeY = vY;
 }
 
-float Entidades::Personagem::getVelocidadeX() {
+float Entidades::Personagens::Personagem::getVelocidadeX() {
 	return velocidadeX;
 }
 
-float Entidades::Personagem::getVelocidadeY() {
+float Entidades::Personagens::Personagem::getVelocidadeY() {
 	return velocidadeY;
 }
-void Entidades::Personagem::operator--() {
+void Entidades::Personagens::Personagem::operator--() {
 	vidas--;
 }
 
-float Entidades::Personagem::atualizaDelta() {
+float Entidades::Personagens::Personagem::atualizaDelta() {
 
 	float deltaTimeAtual = relogio.restart().asSeconds();
 	float minimoDeltaTime = 0.0667f;
@@ -46,4 +46,4 @@ float Entidades::Personagem::atualizaDelta() {
 }
 
 
-const float Entidades::Personagem::gravidade = 9.8;
+const float Entidades::Personagens::Personagem::gravidade = 9.8;

@@ -28,7 +28,7 @@ Entidades::Obstaculos::Espinho::~Espinho() {
 		obstacular(pJogador, pJogador2);
 	}
 
-	void Entidades::Obstaculos::Espinho::obstacular(Slime* jogador, Slime2* jogador2) {
+	void Entidades::Obstaculos::Espinho::obstacular(Personagens::Slime* jogador, Personagens::Slime2* jogador2) {
 
 		RectangleShape teste;
 		teste = jogador->getCorpo();

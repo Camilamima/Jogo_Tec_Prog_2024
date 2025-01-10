@@ -1,6 +1,6 @@
 #include "Slime.h"
 
-Entidades::Slime::Slime(int id, const char* png) :
+Entidades::Personagens::Slime::Slime(int id, const char* png) :
 	Personagem(id, png)
 {
 	setVelocidae(VX, 0);
@@ -13,10 +13,10 @@ Entidades::Slime::Slime(int id, const char* png) :
 	setCorpo(150, 150);
 }
 
-Entidades::Slime::~Slime() {
+Entidades::Personagens::Slime::~Slime() {
 }
 
-void Entidades::Slime::mover(float aux) {
+void Entidades::Personagens::Slime::mover(float aux) {
 	if (!noChao)
 	{
 
@@ -51,7 +51,7 @@ void Entidades::Slime::mover(float aux) {
 
 }
 
-void Entidades::Slime::processaEvento() {
+void Entidades::Personagens::Slime::processaEvento() {
 	/*Event event;
 	while (pGGrafico->window.pollEvent(event)) {
 		if (event.type == Event::Closed) {
@@ -80,7 +80,7 @@ void Entidades::Slime::processaEvento() {
 	}
 }
 
-void Entidades::Slime::executar(){
+void Entidades::Personagens::Slime::executar(){
 	processaEvento();
 	pGGrafico->desenha(corpo);
 }

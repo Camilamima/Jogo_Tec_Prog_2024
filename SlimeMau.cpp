@@ -17,7 +17,7 @@ Entidades::Obstaculos::SlimeMau::~SlimeMau() {
 		obstacular(pJogador, pJogador2);
 	}
 
-	void Entidades::Obstaculos::SlimeMau::obstacular(Slime* jogador, Slime2* jogador2) {
+	void Entidades::Obstaculos::SlimeMau::obstacular(Personagens::Slime* jogador, Personagens::Slime2* jogador2) {
 
 		RectangleShape teste1;
 		teste1 = jogador->getCorpo();

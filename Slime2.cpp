@@ -1,6 +1,6 @@
 #include "Slime2.h"
 
-Entidades::Slime2::Slime2(int id, const char* png) :
+Entidades::Personagens::Slime2::Slime2(int id, const char* png) :
 	Personagem(id, png)
 {
 	setVelocidae(VX, 0);
@@ -13,10 +13,10 @@ Entidades::Slime2::Slime2(int id, const char* png) :
 	setCorpo(150, 150);
 }
 
-Entidades::Slime2::~Slime2() {
+Entidades::Personagens::Slime2::~Slime2() {
 }
 
-void Entidades::Slime2::mover(float aux) {
+void Entidades::Personagens::Slime2::mover(float aux) {
 	if (!noChao)
 	{
 
@@ -51,7 +51,7 @@ void Entidades::Slime2::mover(float aux) {
 
 }
 
-void Entidades::Slime2::processaEvento() {
+void Entidades::Personagens::Slime2::processaEvento() {
 
 	if (Keyboard::isKeyPressed(Keyboard::Right)) {
 		mover(atualizaDelta() * velocidadeX);
@@ -74,7 +74,7 @@ void Entidades::Slime2::processaEvento() {
 	}
 }
 
-void Entidades::Slime2::executar() {
+void Entidades::Personagens::Slime2::executar() {
 	processaEvento();
 	pGGrafico->desenha(corpo);
 }

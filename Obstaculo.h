@@ -5,7 +5,12 @@
 
 namespace Entidades {
 
+	using namespace Personagens;
+
 	namespace Obstaculos {
+
+		using namespace Personagens;
+
 		class Obstaculo : public Entidade
 		{
 		protected:
