@@ -8,6 +8,8 @@ atrito(1.0f),
 pJogador(nullptr)
 {
 	danoso = false;
+	atrapalha = false;
+	impede = false;
 }
 
 Obstaculo::~Obstaculo()

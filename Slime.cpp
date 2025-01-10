@@ -1,28 +1,36 @@
 #include "Slime.h"
+#include <iostream>
+
+using namespace std;
 
 Slime::Slime(int id, const char* png) :
 	Personagem(id, png)
 {
+	chao = 800;
 	setVelocidae(VX, 0);
-	setCoordenadas(875, 775);
+	setCoordenadas(875, 800);
 	pontos = 0;
 	noChao = 1;
+	moviX = 1;
+	moviY = 1;
 	wPress = 0;
 	relogio.restart();
 	impulso = 600;
-	setCorpo(150, 150);
+	setCorpo(100, 100);
 }
 
 Slime::~Slime() {
 }
 
 void Slime::mover(float aux) {
+
+
 	if (!noChao)
 	{
 
 		velocidadeY += static_cast<float>(gravidade) * atualizaDelta();
-		if ((corpo.getPosition().y + velocidadeY) > 775) {
-			velocidadeY = 775 - corpo.getPosition().y;
+		if ((corpo.getPosition().y + velocidadeY) >= chao) {
+			velocidadeY = chao - corpo.getPosition().y;
 		}
 
 		if (!wPress && velocidadeY < 0) {
@@ -38,10 +46,9 @@ void Slime::mover(float aux) {
 
 		corpo.move(aux, velocidadeY);
 
-		if (corpo.getPosition().y >= 775) {
+		if (corpo.getPosition().y >= chao) {
 			noChao = 1;
 			velocidadeY = 0;
-
 		}
 	}
 	else {
@@ -52,21 +59,20 @@ void Slime::mover(float aux) {
 }
 
 void Slime::processaEvento() {
-	/*Event event;
-	while (pGGrafico->window.pollEvent(event)) {
-		if (event.type == Event::Closed) {
-			pGGrafico->window.close();
-		}
-	}*/
 
 	if (Keyboard::isKeyPressed(Keyboard::D)) {
-		mover(atualizaDelta() * velocidadeX);
+		if (moviX == 1) {
+			mover(atualizaDelta() * velocidadeX);
+		}
 	}
 	else if (Keyboard::isKeyPressed(Keyboard::A)) {
-		mover(atualizaDelta() * -velocidadeX);
+		if (moviY == 1) {
+			mover(atualizaDelta() * -velocidadeX);
+		}
 	}
 
 	if (Keyboard::isKeyPressed(sf::Keyboard::W)) {
+
 		if (noChao) {
 			velocidadeY = -impulso * atualizaDelta();
 			noChao = 0;
@@ -82,7 +88,18 @@ void Slime::processaEvento() {
 
 
 
-void Slime::executar() {
+void Slime::executar(){
+	if (corpo.getPosition().y >= chao) {
+		noChao = 1;
+		velocidadeY = 0;
+	}
 	processaEvento();
 	pGGrafico->desenha(corpo);
+	cout << chao << endl;
+	cout << corpo.getPosition().y << endl;
+	cout << noChao << endl;
+
 }
+
+
+
