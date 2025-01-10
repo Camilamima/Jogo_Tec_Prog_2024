@@ -8,6 +8,7 @@ protected:
 	bool danoso;
 	bool atrapalha;
 	bool impede;
+
 	float atrito;
 	Slime* pJogador;
 
@@ -19,6 +20,6 @@ public:
 	bool getImpede() { return impede; }
 	bool getAtrapalha() { return atrapalha; }
 	bool getDanoso() { return danoso; }
-
+	virtual void obstacular(Slime* jogador) = 0;
 };
 	
