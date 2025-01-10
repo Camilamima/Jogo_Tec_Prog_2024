@@ -2,15 +2,15 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-Obstaculo::Obstaculo(int id,const char* png) : 
-Entidade(id, png), 
-atrito(1.0f),
-pJogador(nullptr),
-pJogador2(nullptr)
+Entidades::Obstaculos::Obstaculo::Obstaculo(int id, const char* png) :
+	Entidade(id, png),
+	atrito(1.0f),
+	pJogador(nullptr),
+	pJogador2(nullptr)
 {
 	danoso = false;
 }
 
-Obstaculo::~Obstaculo()
+Entidades::Obstaculos::Obstaculo::~Obstaculo()
 {
 }

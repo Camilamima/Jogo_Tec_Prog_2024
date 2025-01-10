@@ -1,7 +1,7 @@
 #include "Personagem.h"
 #pragma once
 
-Personagem::Personagem(int id, const char* png) :
+Entidades::Personagem::Personagem(int id, const char* png) :
 	Entidade(id, png)
 {
 	velocidadeX = 0;
@@ -9,31 +9,31 @@ Personagem::Personagem(int id, const char* png) :
 	vidas = -1;
 }
 
-Personagem::~Personagem() {
+Entidades::Personagem::~Personagem() {
 	vidas = -1;
 }
 
-void Personagem::setVidas(int vid) {
+void Entidades::Personagem::setVidas(int vid) {
 	vidas = vid;
 }
 
-void Personagem::setVelocidae(float vX, float vY) {
+void Entidades::Personagem::setVelocidae(float vX, float vY) {
 	velocidadeX = vX;
 	velocidadeY = vY;
 }
 
-float Personagem::getVelocidadeX() {
+float Entidades::Personagem::getVelocidadeX() {
 	return velocidadeX;
 }
 
-float Personagem::getVelocidadeY() {
+float Entidades::Personagem::getVelocidadeY() {
 	return velocidadeY;
 }
-void Personagem::operator--() {
+void Entidades::Personagem::operator--() {
 	vidas--;
 }
 
-float Personagem::atualizaDelta() {
+float Entidades::Personagem::atualizaDelta() {
 
 	float deltaTimeAtual = relogio.restart().asSeconds();
 	float minimoDeltaTime = 0.0667f;
@@ -46,4 +46,4 @@ float Personagem::atualizaDelta() {
 }
 
 
-const float Personagem::gravidade = 9.8;
+const float Entidades::Personagem::gravidade = 9.8;
