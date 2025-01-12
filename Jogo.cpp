@@ -32,6 +32,9 @@ gerentC()
 	//gerentC.includeObstaculo(&plat);
 	gerentC.includeObstaculo(&plat2);
 	gerentC.includeObstaculo(&plat3);
+	gerentC.includeObstaculo(&obst_facil);
+	gerentC.includeObstaculo(&esp);
+
 
 }
 

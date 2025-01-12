@@ -174,7 +174,9 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClInclude Include="SlimeMau.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="espinho.png" />
     <Image Include="pngegg.png" />
+    <Image Include="slimemau.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

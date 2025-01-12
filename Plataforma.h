@@ -5,8 +5,10 @@
 class Plataforma : public Obstaculo {
 private:
 
+	float altura;
+	float largura;
 	float x;
-  float y;
+	float y;
   
 public:
 	Plataforma(int id, const char* png = "");//plataforma.png

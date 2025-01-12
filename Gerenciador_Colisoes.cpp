@@ -1,6 +1,11 @@
 #include "Gerenciador_Colisoes.h"
 #include "Obstaculo.h"
 #include "Slime.h"
+#include "SlimeMau.h"
+#include "Espinho.h"
+
+#include <iostream>
+
 using namespace Gerenciadores;
 
 Gerenciador_Colisoes::Gerenciador_Colisoes():
@@ -10,7 +15,6 @@ Gerenciador_Colisoes::Gerenciador_Colisoes():
 }
 
 Gerenciador_Colisoes::~Gerenciador_Colisoes() {
-    
 }
 
 
@@ -27,7 +31,8 @@ void Gerenciador_Colisoes::includeObstaculo(Obstaculo* obs) {
 	LObs.push_back(obs);
 }
 
-bool Gerenciador_Colisoes::veriColisao(Entidade* ent,Slime* sl) {
+/* Verifica se houve colisão em x e em y */
+bool Gerenciador_Colisoes::veriColisao(Entidade* ent,Slime* sl) { 
 	vertical = 0;
 	horizontal = 0;
 	RectangleShape jogador;
@@ -61,32 +66,50 @@ bool Gerenciador_Colisoes::veriColisao(Entidade* ent,Slime* sl) {
 
 }
 
-void Gerenciador_Colisoes:: verificaObs() {
+/* Trata a colisão */
+void Gerenciador_Colisoes::verificaObs() {
 
 	RectangleShape aux;
+	float pos;
 
 	for (Obstaculo* obstaculo : LObs) {
+
 		aux = obstaculo->getCorpo();
-		if (obstaculo) {
-			if (veriColisao(obstaculo, jog1)) {
-				if (obstaculo->getImpede()){
-					jog1->setChao(aux.getPosition().y);
+		
+
+		if (obstaculo) { //se for um obstaculo
+
+			if (veriColisao(obstaculo, jog1)) {//se houve colisão
+
+				if (obstaculo->getImpede()) { //se houve colisão com um obstaculo que impede a passagem
+					pos = aux.getPosition().y - jog1->getCorpo().getSize().y;
+					jog1->setChao(pos);
 					break;
+				}
+
+				else if (obstaculo->getAtrapalha() == true) { //se houve colisão com um obstaculo que não impede a passagem
+					obstaculo->obstacular(jog1);
+				}
+				else if (obstaculo->getDanoso() == true) { //se houve colisão com um obstaculo que dá dano
+					obstaculo->obstacular(jog1);
 				}
 
 			}
 			else {
-				jog1->setChao(800);
-				jog1->setNoChao(0);
+				if (obstaculo->getAtrapalha() == true) { //se houve colisao com o obst que diminiu a velocidade, restaura
+					obstaculo->restaura(jog1);
+				}
+				if (obstaculo->getImpede()== true) {
+					jog1->setChao(800);
+					jog1->setNoChao(0);
+					jog1->setVelocidae(VX, jog1->getVelocidadeY());
+				}
 			}
-
 		}
 	}
 }
 
+
 void Gerenciador_Colisoes::executar(){
 	verificaObs();
 }
-
-
-

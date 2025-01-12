@@ -3,9 +3,13 @@
 class Obstaculo;
 class Slime;
 class Entidade;
+class SlimeMau;
+class Plataforma;
+class Espinho;
 using namespace std;
 
 namespace Gerenciadores {
+
 	class Gerenciador_Colisoes
 	{
 	private:
@@ -24,4 +28,5 @@ namespace Gerenciadores {
 		void verificaObs();
 		void executar();
 	};
+
 }

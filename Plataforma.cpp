@@ -21,14 +21,13 @@ void Plataforma::geraPlataforma(float alt, float lar,float x, float y){
 }
 void Plataforma::executar() {
 	pGGrafico->desenha(corpo);
-	obstacular(getpJogador());
 }
 
 void Plataforma::obstacular(Slime* jogador) {
 
 	RectangleShape teste;
 	Vector2f pos;
-	pos.x = corpo.getPosition().x + corpo.getSize().x;
+	/*pos.x = corpo.getPosition().x + corpo.getSize().x;
 	pos.y = corpo.getPosition().y + corpo.getSize().y;
 	teste = jogador->getCorpo();
 
@@ -46,6 +45,6 @@ void Plataforma::obstacular(Slime* jogador) {
 	{
 		float velY = jogador->getVelocidadeY();
 		jogador->setVelocidae(VX, velY);
-	}
+	}*/
 }
 
