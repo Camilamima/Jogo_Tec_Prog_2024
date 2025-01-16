@@ -6,7 +6,7 @@ using namespace std;
 Jogo::Jogo():
 Slime1(-1),
 ratinho(-1),
-//plat(-1),
+plat(-1),
 plat2(-1),
 plat3(-1),
 esp(-1),
@@ -16,22 +16,23 @@ gerentC()
 {	
 	ratinho.setGerenciador(&gerent);
     Slime1.setGerenciador(&gerent);
-	//plat.setGerenciador(&gerent);
+	plat.setGerenciador(&gerent);
 	esp.setGerenciador(&gerent);
 	obst_facil.setGerenciador(&gerent);
 	plat2.setGerenciador(&gerent);
 	plat3.setGerenciador(&gerent);
 
 	//mudar de local
-	//plat.geraPlataforma(40, 1800, 0, 860);
-	plat2.geraPlataforma(40, 1200, 0, 700);
-	plat3.geraPlataforma(40, 500, 600, 300);
+	plat.geraPlataforma(100, 100, 400, 600);
+	plat2.geraPlataforma(200, 300, 300, 700);
+	plat3.geraPlataforma(40, 500, 600, 500);
 
-	//provisórioss
+	//provisório
 	gerentC.setJogadores(&Slime1, nullptr);
-	//gerentC.includeObstaculo(&plat);
+	gerentC.includeObstaculo(&plat);
 	gerentC.includeObstaculo(&plat2);
 	gerentC.includeObstaculo(&plat3);
+	gerentC.includeInimigo(&ratinho);
 
 }
 
@@ -42,7 +43,7 @@ void Jogo::executar(){
 
 	
 	plat2.setpJogador(&Slime1);
-	//plat.setpJogador(&Slime1);
+	plat.setpJogador(&Slime1);
 	esp.setpJogador(&Slime1);
 	obst_facil.setpJogador(&Slime1);
 	plat3.setpJogador(&Slime1);
@@ -65,7 +66,7 @@ void Jogo::executar(){
 
 		gerentC.executar();
 		ratinho.executar();
-		//plat.executar();
+		plat.executar();
 		plat2.executar();
 		plat3.executar();
 		Slime1.executar();

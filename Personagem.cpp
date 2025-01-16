@@ -6,7 +6,7 @@ Personagem::Personagem(int id, const char* png) :
 {
 	velocidadeX = 0;
 	velocidadeY = 0;
-	vidas = -1;
+	vidas = 5;
 }
 
 Personagem::~Personagem() {
