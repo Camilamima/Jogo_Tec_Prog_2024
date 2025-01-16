@@ -1,5 +1,7 @@
 #include "Rato.h"
+#include "iostream"
 
+using namespace std;
 #define CAMIHO 300
 
 Rato::Rato(int id, const char* png) :
@@ -24,13 +26,15 @@ void Rato::calculaDis() {
 }
 
 void Rato::executar() {
+	if (verificaVida()) {
+		if (distancia_percorrida >= CAMIHO) {
 
-	if (distancia_percorrida >= CAMIHO) {
-
-		velocidadeX = -velocidadeX;
-		distancia_percorrida = 0;
+			velocidadeX = -velocidadeX;
+			distancia_percorrida = 0;
+		}
+		calculaDis();
+		mover(velocidadeX);
+		pGGrafico->desenha(corpo);
 	}
-	calculaDis();
-	mover(velocidadeX);
-	pGGrafico->desenha(corpo);
+
 }

@@ -13,7 +13,7 @@ private:
 	Gerenciadores::Gerenciador_Colisoes gerentC;
 	Gerenciado_Grafico gerent;
 	Slime Slime1;
-	//Plataforma plat;
+	Plataforma plat;
 	Plataforma plat2;
 	Plataforma plat3;
 	Espinho esp;

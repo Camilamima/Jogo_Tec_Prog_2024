@@ -1,4 +1,4 @@
-#include "Plataforma.h"
+#include "Plataforma.h"  
 
 Plataforma::Plataforma(int id, const char* png) :
 Obstaculo(id, png), x(0), y(860)
