@@ -87,10 +87,10 @@ void Gerenciador_Colisoes::verificaObs() {
 					break;
 				}
 
-				else if (obstaculo->getAtrapalha() == true) { //se houve colisão com um obstaculo que não impede a passagem
+				if (obstaculo->getAtrapalha() == true) { //se houve colisão com um obstaculo que não impede a passagem
 					obstaculo->obstacular(jog1);
 				}
-				else if (obstaculo->getDanoso() == true) { //se houve colisão com um obstaculo que dá dano
+				if (obstaculo->getDanoso() == true) { //se houve colisão com um obstaculo que dá dano
 					obstaculo->obstacular(jog1);
 				}
 
