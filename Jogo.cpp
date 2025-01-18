@@ -58,7 +58,5 @@ void Jogo::executar(){
 		listaEntidades.Percorrer(&gerentC);//executar de td
 
 		gerent.mostrar();
-		
     }
-	
 }

@@ -34,6 +34,7 @@ void Gerenciador_Colisoes::includeEntidade(Entidade* ent) {
 	if (ent->getId() == 3) {
 		LObst.push_back(static_cast<Obstaculo*>(ent));
 		static_cast<Obstaculo*>(ent)->setpJogador(jog1);
+
 	}
 	else if (ent->getId() == 4) {
 		LIni.push_back(static_cast<Inimigo*>(ent));
@@ -109,18 +110,24 @@ int Gerenciador_Colisoes::veriColisao(Entidade* ent,Slime* sl) {
 void Gerenciador_Colisoes::verificaIni() {
 
 	RectangleShape aux;
+
 	for (Inimigo* inimigo : LIni) {
+
 		if (!inimigo->verificaVida()) {
 			continue;
 		}
+
 		aux = inimigo->getCorpo();
+
 		if (veriColisao(inimigo, jog1) == 1) {
 			jog1->setAtacando(1);
 			jog1->pular(300);
 			--(*inimigo);
 			cout << "vidas do ratinho: " << inimigo->getVidas() << endl;
 		}
+
 		else if (veriColisao(inimigo, jog1) == 2) {
+
 			if (!jog1->getAtacado()) {
 				--(*jog1);
 				jog1->pular(300);
@@ -190,14 +197,12 @@ void Gerenciador_Colisoes::verificaObs() {
 				break;
 			}
 		}
-		
 
 		if (veriColisao(obstaculo, jog1) == 0) { //se nao tem colisao...
 
 			if (obstaculo->getAtrapalha() == true) {
 				obstaculo->restaura(jog1);
 			}
-
 		}
 
 	}

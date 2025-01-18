@@ -14,7 +14,9 @@ namespace Listas {
 
 	//destrutora --- RESOLVER AQ
 	ListaEntidade::~ListaEntidade() {
+
 		Entidade* aux;
+
 		for (Lista<Entidade*>::iterator it = listaEntidades->begin(); it != listaEntidades->end(); it++)
 		{
 			aux = *it;
