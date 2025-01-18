@@ -9,8 +9,8 @@ Obstaculo(id, png)
 	pJogador = nullptr;
 	atrito = 1.0f;
 	danoso = true;
-	setCoordenadas(1500, 820);
-	setCorpo(80.0, 80.0);
+	setCoordenadas(1500, 800);
+	setCorpo(100.0, 100.0);
 	timer = 0;
 
 	time_t tempo;//usei isso da prova de POO s73 1 sem23 do prof Simão

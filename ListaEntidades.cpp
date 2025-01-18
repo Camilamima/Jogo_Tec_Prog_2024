@@ -15,12 +15,11 @@ namespace Listas {
 	//destrutora --- RESOLVER AQ
 	ListaEntidade::~ListaEntidade() {
 
-		Entidade* aux;
+		int i;
 
-		for (Lista<Entidade*>::iterator it = listaEntidades->begin(); it != listaEntidades->end(); it++)
+		for (i=0; i<listaEntidades->tamanho(); i++)
 		{
-			aux = *it;
-			delete aux;
+			listaEntidades->removerElemento(0);
 		}
 		delete listaEntidades;
 	}

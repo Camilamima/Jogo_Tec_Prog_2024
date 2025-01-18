@@ -5,8 +5,8 @@ SlimeMau::SlimeMau(int id, const char* png) :
 	Obstaculo(id, png)
 {	
 	pJogador = nullptr;
-	setCoordenadas(1200, 820);
-	setCorpo(80.0, 80.00);
+	setCoordenadas(1200, 800);
+	setCorpo(100.0, 100.00);
 	atrapalha = true;
 	atrito = 0.5f;
 	atrasador = VX * atrito;
