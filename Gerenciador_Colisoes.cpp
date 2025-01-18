@@ -30,12 +30,14 @@ void Gerenciador_Colisoes::setJogadores(Slime* j1, Slime* j2) {
 	jog2 = j2;
 }
 
-void Gerenciador_Colisoes::includeObstaculo(Obstaculo* obst) {
-	LObst.push_back(obst);
-}
-
-void Gerenciador_Colisoes::includeInimigo(Inimigo* ini) {
-	LIni.push_back(ini);
+void Gerenciador_Colisoes::includeEntidade(Entidade* ent) {
+	if (ent->getId() == 3) {
+		LObst.push_back(static_cast<Obstaculo*>(ent));
+		static_cast<Obstaculo*>(ent)->setpJogador(jog1);
+	}
+	else if (ent->getId() == 4) {
+		LIni.push_back(static_cast<Inimigo*>(ent));
+	}
 }
 
 int Gerenciador_Colisoes::veriColisao(Entidade* ent,Slime* sl) {

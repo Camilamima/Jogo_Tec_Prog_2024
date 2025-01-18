@@ -12,7 +12,7 @@ Gerenciado_Grafico::~Gerenciado_Grafico() {
 }
 
 
-bool Gerenciado_Grafico::estaAberta() {
+const bool Gerenciado_Grafico::estaAberta() {
 	return window.isOpen();
 }
 

@@ -4,37 +4,35 @@
 using namespace sf;
 using namespace std;
 Jogo::Jogo():
-Slime1(-1),
-ratinho(-1),
-plat(-1),
-plat2(-1),
-plat3(-1),
-esp(-1),
-obst_facil(-1),
+Slime1(1),
+listaEntidades(),
+ratinho(4),
+plat(3),
+plat2(3),
+plat3(3),
+esp(3),
+obst_facil(3),
 gerent(),
 gerentC()
 {	
-	ratinho.setGerenciador(&gerent);
-    Slime1.setGerenciador(&gerent);
-	plat.setGerenciador(&gerent);
-	esp.setGerenciador(&gerent);
-	obst_facil.setGerenciador(&gerent);
-	plat2.setGerenciador(&gerent);
-	plat3.setGerenciador(&gerent);
+
+	gerentC.setJogadores(&Slime1, nullptr);
+	
+	//incluindo na lista ent e na de colisoes
+	listaEntidades.Incluir(&Slime1, &gerentC);
+	listaEntidades.Incluir(&ratinho, &gerentC);
+	listaEntidades.Incluir(&plat, &gerentC);
+	listaEntidades.Incluir(&plat2, &gerentC);
+	listaEntidades.Incluir(&plat3, &gerentC);
+	listaEntidades.Incluir(&esp, &gerentC);
+	listaEntidades.Incluir(&obst_facil, &gerentC);
+
+	listaEntidades.setGG(&gerent); //setando gg
 
 	//mudar de local
 	plat.geraPlataforma(100, 100, 400, 600);
 	plat2.geraPlataforma(200, 300, 300, 700);
 	plat3.geraPlataforma(40, 500, 600, 500);
-
-	//provisório
-	gerentC.setJogadores(&Slime1, nullptr);
-	gerentC.includeObstaculo(&plat);
-	gerentC.includeObstaculo(&plat2);
-	gerentC.includeObstaculo(&plat3);
-	gerentC.includeObstaculo(&esp);
-	gerentC.includeObstaculo(&obst_facil);
-	gerentC.includeInimigo(&ratinho);
 
 }
 
@@ -42,15 +40,6 @@ Jogo::~Jogo(){
 }
 
 void Jogo::executar(){
-
-	
-	plat2.setpJogador(&Slime1);
-	plat.setpJogador(&Slime1);
-	esp.setpJogador(&Slime1);
-	obst_facil.setpJogador(&Slime1);
-	plat3.setpJogador(&Slime1);
-
-
 
     while (gerent.estaAberta()) { 
         sf::Event event;
@@ -66,15 +55,7 @@ void Jogo::executar(){
 		}
 		gerent.clear();
 
-		gerentC.executar();
-		ratinho.executar();
-		plat.executar();
-		plat2.executar();
-		plat3.executar();
-		Slime1.executar();
-		esp.executar();
-		obst_facil.executar();
-		
+		listaEntidades.Percorrer(&gerentC);//executar de td
 
 		gerent.mostrar();
 		
