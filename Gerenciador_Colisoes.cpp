@@ -2,7 +2,12 @@
 #include "Plataforma.h"
 #include "Slime.h"
 #include "Inimigo.h"
-#include "iostream"
+#include "Obstaculo.h"
+#include "SlimeMau.h"
+#include "Espinho.h"
+#include <list>
+#include <iostream>
+
 using namespace Gerenciadores;
 using namespace std;
 
@@ -16,7 +21,8 @@ Gerenciador_Colisoes::~Gerenciador_Colisoes() {
 
 
 void Gerenciador_Colisoes::trocaFase(){
-	LPlat.clear();
+	LObst.clear();
+	LIni.clear();
 }
 
 void Gerenciador_Colisoes::setJogadores(Slime* j1, Slime* j2) {
@@ -24,8 +30,8 @@ void Gerenciador_Colisoes::setJogadores(Slime* j1, Slime* j2) {
 	jog2 = j2;
 }
 
-void Gerenciador_Colisoes::includeObstaculo(Plataforma* plat) {
-	LPlat.push_back(plat);
+void Gerenciador_Colisoes::includeObstaculo(Obstaculo* obst) {
+	LObst.push_back(obst);
 }
 
 void Gerenciador_Colisoes::includeInimigo(Inimigo* ini) {
@@ -82,6 +88,16 @@ int Gerenciador_Colisoes::veriColisao(Entidade* ent,Slime* sl) {
 		}
 	}
 
+	if ((x >= outro.getPosition().x && x <= (outro.getPosition().x + outro.getSize().x)) ||
+		(x2 >= outro.getPosition().x && x2 <= (outro.getPosition().x + outro.getSize().x)))//especifico p slime mau e espinho
+	{
+		if ((y >= outro.getPosition().y && y <= (outro.getPosition().y + outro.getSize().y)) ||
+			(y2 >= outro.getPosition().y && y2 <= (outro.getPosition().y + outro.getSize().y))) {
+			return 5;
+		}
+	}
+
+
 	return 0;
 
 	
@@ -124,56 +140,82 @@ void Gerenciador_Colisoes::verificaIni() {
 }
 
 
-void Gerenciador_Colisoes:: verificaObs(){
+void Gerenciador_Colisoes::verificaObs() {
 
 	RectangleShape aux;
-	bool emCima=0;
-	bool ladoD=0;
-	bool ladoE=0;
+	bool emCima = 0;
+	bool ladoD = 0;
+	bool ladoE = 0;
 
-	for (Obstaculo* obstaculo : LPlat) {
+	for (Obstaculo* obstaculo : LObst) {
+
 		aux = obstaculo->getCorpo();
-			if (veriColisao(obstaculo, jog1)==1){
-				if (obstaculo->getImpede()){
-					jog1->setChao(aux.getPosition().y-100);
-					emCima = 1;
-				}
 
+		if (veriColisao(obstaculo, jog1) == 5) {
+
+			if (obstaculo->getAtrapalha() == true) {//se areia mov...
+				obstaculo->obstacular(jog1);
 			}
+
+			if (obstaculo->getDanoso() == true) {//se espinho
+				obstaculo->obstacular(jog1);
+			}
+
+		}
+
+		if (obstaculo->getImpede() == true) {
+
+			if (veriColisao(obstaculo, jog1) == 1) {
+				jog1->setChao(aux.getPosition().y - 100);
+				emCima = 1;
+			}
+
 			if (veriColisao(obstaculo, jog1) == 2) {
 
 				jog1->setMoviD(0);
 				ladoD = 1;
-
 			}
+
 			if (veriColisao(obstaculo, jog1) == 3) {
 
 				jog1->setMoviE(0);
 				ladoE = 1;
 			}
+
 			if (veriColisao(obstaculo, jog1) == 4) {
 				jog1->setVelocidadeY(0);
 				jog1->pular(-100);
 				break;
 			}
+		}
+		
+
+		if (veriColisao(obstaculo, jog1) == 0) { //se nao tem colisao...
+
+			if (obstaculo->getAtrapalha() == true) {
+				obstaculo->restaura(jog1);
+			}
+
+		}
 
 	}
+
 	if (!emCima) {
 		jog1->setChao(800);
 		jog1->setNoChao(0);
 	}
-	if (!ladoD) {
 
+	if (!ladoD) {
 		jog1->setMoviD(1);
 	}
-	if(!ladoE){
+
+	if (!ladoE) {
 		jog1->setMoviE(1);
 	}
 
 	emCima = 0;
 	ladoD = 0;
 	ladoE = 0;
-
 }
 
 void Gerenciador_Colisoes::executar(){

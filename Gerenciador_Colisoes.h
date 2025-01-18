@@ -1,5 +1,7 @@
 #pragma once
 #include <list>
+
+class Obstaculo;
 class Plataforma;
 class Slime;
 class Inimigo;
@@ -10,7 +12,7 @@ namespace Gerenciadores {
 	class Gerenciador_Colisoes
 	{
 	private:
-		list<Plataforma*> LPlat;
+		list<Obstaculo*> LObst;
 		list<Inimigo*> LIni;
 		Slime *jog1;
 		Slime *jog2;
@@ -19,7 +21,7 @@ namespace Gerenciadores {
 		~Gerenciador_Colisoes();
 		void trocaFase();
 		void setJogadores(Slime* j1, Slime* j2);
-		void includeObstaculo(Plataforma* plat);
+		void includeObstaculo(Obstaculo* obst);
 		void includeInimigo(Inimigo* ini);
 		int veriColisao(Entidade* ent,Slime* sl);
 		void verificaObs();

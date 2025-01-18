@@ -19,6 +19,7 @@ Slime::Slime(int id, const char* png) :
 	relogio.restart();
 	impulso = -1;
 	setCorpo(100, 100);
+	id = 1;
 }
 
 Slime::~Slime() {

@@ -15,3 +15,10 @@ pJogador(nullptr)
 Obstaculo::~Obstaculo()
 {
 }
+
+void Obstaculo::restaura(Slime* jogador) {
+	float velY = jogador->getVelocidadeY();
+
+	jogador->setVelocidae(VX, velY);
+
+}
