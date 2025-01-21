@@ -19,7 +19,7 @@ Slime::Slime(int id, const char* png) :
 	relogio.restart();
 	impulso = -1;
 	setCorpo(100, 100);
-	id = 1;
+
 }
 
 Slime::~Slime() {
@@ -74,6 +74,7 @@ void Slime::pular(float imp) {
 
 
 void Slime::processaEvento() {
+
 	if (atacado) {
 		
 		if (!ladoAtacado) {
@@ -84,6 +85,7 @@ void Slime::processaEvento() {
 				mover(0);
 			}
 		}
+
 		else if (ladoAtacado){
 
 			if (moviD == 1){
@@ -94,12 +96,14 @@ void Slime::processaEvento() {
 			}
 		}
 	}
-	else {
+	else{
+
 		if (Keyboard::isKeyPressed(Keyboard::D)) {
 			if (moviD == 1) {
 				mover(atualizaDelta() * velocidadeX);
 			}
 		}
+
 		else if (Keyboard::isKeyPressed(Keyboard::A)) {
 			if (moviE == 1) {
 				mover(atualizaDelta() * -velocidadeX);
@@ -122,15 +126,75 @@ void Slime::processaEvento() {
 	}
 }
 
+void Slime::processaEvento2() {
+	if (atacado) {
+
+		if (!ladoAtacado) {
+			if (moviE == 1) {
+				mover(atualizaDelta() * -300);
+			}
+			else {
+				mover(0);
+			}
+		}
+
+		else if (ladoAtacado) {
+
+			if (moviD == 1) {
+				mover(atualizaDelta() * +300);
+			}
+			else {
+				mover(0);
+			}
+		}
+	}
+	
+	else {
+		if (Keyboard::isKeyPressed(Keyboard::Right)) {
+			if (moviD == 1) {
+				mover(atualizaDelta() * velocidadeX);
+			}
+		}
+		else if (Keyboard::isKeyPressed(Keyboard::Left)) {
+			if (moviE == 1) {
+				mover(atualizaDelta() * -velocidadeX);
+			}
+		}
+
+		if (Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+
+			if (noChao) {
+				pular(600);
+				wPress = 1;
+			}
+			mover(0);
+		}
+		else {
+			wPress = 0;
+			mover(0);
+
+		}
+	}
+}
+
 
 
 void Slime::executar(){
+
 	if (corpo.getPosition().y >= chao && !atacado) {
 		noChao = 1;
 		velocidadeY = 0;
 		atacando = 0;
 	}
-	processaEvento();
+
+	if (getId() == 1) {
+		processaEvento();
+	}
+		
+	if (getId() == 2) {
+		processaEvento2();
+	}
+
 	pGGrafico->desenha(corpo);
 	
 }

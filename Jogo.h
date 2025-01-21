@@ -14,6 +14,7 @@ private:
 	Gerenciadores::Gerenciador_Colisoes gerentC;
 	Gerenciado_Grafico gerent;
 	Slime Slime1;
+	Slime Slime2;
 	Plataforma plat;
 	Plataforma plat2;
 	Plataforma plat3;

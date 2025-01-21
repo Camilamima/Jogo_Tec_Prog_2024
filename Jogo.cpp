@@ -5,6 +5,7 @@ using namespace sf;
 using namespace std;
 Jogo::Jogo():
 Slime1(1),
+Slime2(2),
 listaEntidades(),
 ratinho(4),
 plat(3),
@@ -15,11 +16,25 @@ obst_facil(3),
 gerent(),
 gerentC()
 {	
+	int num_jogadores;
 
-	gerentC.setJogadores(&Slime1, nullptr);
-	
+	cout << "Para 1 jogador tecle 1" << endl;
+	cout << "Para 2 jogadores tecle 2" << endl;
+	cin >> num_jogadores;
+
+	if (num_jogadores == 1) {
+		cout << " Selecionado 1 jogador! " << endl;
+		gerentC.setJogadores(&Slime1, nullptr);
+		listaEntidades.Incluir(&Slime1, &gerentC);
+	}
+	if (num_jogadores == 2) {
+		cout << " Selecionado 2 jogadores! " << endl;
+		gerentC.setJogadores(&Slime1, &Slime2);
+		listaEntidades.Incluir(&Slime1, &gerentC);
+		listaEntidades.Incluir(&Slime2, &gerentC);
+	}
+
 	//incluindo na lista ent e na de colisoes
-	listaEntidades.Incluir(&Slime1, &gerentC);
 	listaEntidades.Incluir(&ratinho, &gerentC);
 	listaEntidades.Incluir(&plat, &gerentC);
 	listaEntidades.Incluir(&plat2, &gerentC);
