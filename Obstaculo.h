@@ -16,10 +16,11 @@ public:
 	Obstaculo(int id, const char* png);
 	~Obstaculo();
 	virtual void executar() = 0;
-	void obstacular(Slime* jogador, float atrito) {}
-	bool getImpede() { return impede; }
-	bool getAtrapalha() { return atrapalha; }
-	bool getDanoso() { return danoso; }
+	void obstacular(Slime* jogador, float atrito) {};
+	void setpJogador(Slime* jogador) { pJogador = jogador; }
+	bool  getImpede() const{ return impede; }
+	bool getAtrapalha() const { return atrapalha; }
+	bool getDanoso() const { return danoso; }
 	virtual void obstacular(Slime* jogador) = 0;
 	void restaura(Slime* jogador);
 };

@@ -1,18 +1,19 @@
 #pragma once
 #include "Lista.h"
-#include "Entidades/Entidade.h"
-//#include "Gerenciador_Colisoes.h
+#include "Entidade.h"
+#include "Gerenciador_Colisoes.h"
 
 namespace Listas {
 
 	class ListaEntidade {
 	private:
-		Lista <Entidades::Entidade*>* listaEntidades;
+		Lista <Entidade*>* listaEntidades;
 	public:
 		ListaEntidade();
 		~ListaEntidade();
-		void Percorrer(/*Gerenciadores::Gerenciador_Colisoes* gc */);
-		void Incluir(Entidades::Entidade* entidade);
+		void Percorrer(Gerenciadores::Gerenciador_Colisoes* gc);
+		void Incluir(Entidade* entidade, Gerenciadores::Gerenciador_Colisoes* gc);
+		void setGG(Gerenciado_Grafico *gg);
 	};
 
 }

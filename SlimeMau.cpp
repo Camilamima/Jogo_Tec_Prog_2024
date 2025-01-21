@@ -5,8 +5,8 @@ SlimeMau::SlimeMau(int id, const char* png) :
 	Obstaculo(id, png)
 {	
 	pJogador = nullptr;
-	setCoordenadas(1200, 820);
-	setCorpo(80.0, 80.00);
+	setCoordenadas(1200, 800);
+	setCorpo(100.0, 100.00);
 	atrapalha = true;
 	atrito = 0.5f;
 	atrasador = VX * atrito;
@@ -22,6 +22,5 @@ void SlimeMau::executar() {
 void SlimeMau::obstacular(Slime* jogador) {
 	
 	float velY = jogador->getVelocidadeY();
-	std::cout << "Velocidade X: " << jogador->getVelocidadeX() << std::endl;
 	jogador->setVelocidae(atrasador, velY*atrito);
 }

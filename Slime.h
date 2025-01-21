@@ -32,4 +32,5 @@ public:
 	void setAtacado(float x, float y) { atacado = x; ladoAtacado = y; };
 	bool getAtacado() { return atacado; }
 	void processaEvento();
+	void processaEvento2();
 };
