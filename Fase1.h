@@ -4,6 +4,7 @@
 #include "Plataforma.h"
 #include "Espinho.h"
 #include "SlimeMau.h"
+#include "Acelerador.h"
 #include "Rato.h"
 #include "Gerenciador_Colisoes.h"
 #include "ListaEntidades.h"
@@ -20,6 +21,7 @@ private:
 	Plataforma plat3;
 	Espinho esp;
 	SlimeMau obst_facil;
+	Acelerador booster;
 	Rato ratinho;
 	Listas::ListaEntidade listaEntidades;
 

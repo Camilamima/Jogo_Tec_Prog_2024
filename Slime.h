@@ -30,7 +30,7 @@ public:
 	void setChao(float a) { chao = a; }
 	void setAtacando(float a) { atacando = a; }
 	void setAtacado(float x, float y) { atacado = x; ladoAtacado = y; };
-	bool getAtacado() { return atacado; }
+	bool getAtacado() const{ return atacado; }
 	void processaEvento();
 	void processaEvento2();
 };

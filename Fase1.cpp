@@ -13,6 +13,7 @@ Fase1::Fase1() :
 	plat2(3),
 	plat3(3),
 	esp(3),
+	booster(3),
 	obst_facil(3),
 	gerent(),
 	gerentC()
@@ -44,6 +45,7 @@ Fase1::Fase1() :
 	listaEntidades.Incluir(&plat3, &gerentC);
 	listaEntidades.Incluir(&esp, &gerentC);
 	listaEntidades.Incluir(&obst_facil, &gerentC);
+	listaEntidades.Incluir(&booster, &gerentC);
 
 	/*==== setando o gerenciador grafico ====*/
 	listaEntidades.setGG(&gerent);

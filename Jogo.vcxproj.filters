@@ -63,6 +63,9 @@
     <ClCompile Include="Fase1.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
+    <ClCompile Include="Acelerador.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gerenciado_Grafico.h">
@@ -113,12 +116,21 @@
     <ClInclude Include="Fase1.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
+    <ClInclude Include="Acelerador.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="pngegg.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
     <Image Include="ratinho.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Boost.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="espinho.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
   </ItemGroup>

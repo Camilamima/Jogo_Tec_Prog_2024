@@ -5,6 +5,7 @@
 #include "Obstaculo.h"
 #include "SlimeMau.h"
 #include "Espinho.h"
+#include "Acelerador.h"
 #include <list>
 #include <iostream>
 
@@ -190,6 +191,7 @@ void Gerenciador_Colisoes::verificaIni() {
 void Gerenciador_Colisoes::verificaObs() {
 
 	RectangleShape aux;
+	int tempo;
 	bool emCima = 0;
 	bool ladoD = 0;
 	bool ladoE = 0;
@@ -205,6 +207,10 @@ void Gerenciador_Colisoes::verificaObs() {
 			}
 
 			if (obstaculo->getDanoso() == true) {//se espinho
+				obstaculo->obstacular(jog1);
+			}
+
+			if (obstaculo->getAcelera() == true) {
 				obstaculo->obstacular(jog1);
 			}
 
@@ -240,6 +246,13 @@ void Gerenciador_Colisoes::verificaObs() {
 
 			if (obstaculo->getAtrapalha() == true) {
 				obstaculo->restaura(jog1);
+			}
+			if (obstaculo->getAcelera() == true) {
+				tempo = static_cast<Acelerador*>(obstaculo)->getTimer();
+
+				if (tempo % 200 == 0) {
+					obstaculo->restaura(jog1);
+				}
 			}
 		}
 
@@ -278,6 +291,9 @@ void Gerenciador_Colisoes::verificaObs() {
 					obstaculo->obstacular(jog2);
 				}
 
+				if (obstaculo->getAcelera() == true) {
+					obstaculo->obstacular(jog2);
+				}
 			}
 
 			if (obstaculo->getImpede() == true) {
@@ -311,6 +327,14 @@ void Gerenciador_Colisoes::verificaObs() {
 				if (obstaculo->getAtrapalha() == true) {
 					obstaculo->restaura(jog2);
 				}
+				if (obstaculo->getAcelera() == true) {
+					tempo = static_cast<Acelerador*>(obstaculo)->getTimer();
+					
+					if (tempo % 200 == 0) {
+						obstaculo->restaura(jog2);
+					}
+				}
+				
 			}
 
 		}
