@@ -146,6 +146,7 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClCompile Include="Ente.cpp" />
     <ClCompile Include="Entidade.cpp" />
     <ClCompile Include="Espinho.cpp" />
+    <ClCompile Include="Fase1.cpp" />
     <ClCompile Include="Gerenciador_Colisoes.cpp" />
     <ClCompile Include="Gerenciado_Grafico.cpp" />
     <ClCompile Include="Inimigo.cpp" />
@@ -163,6 +164,7 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClInclude Include="Ente.h" />
     <ClInclude Include="Entidade.h" />
     <ClInclude Include="Espinho.h" />
+    <ClInclude Include="Fase1.h" />
     <ClInclude Include="Gerenciador_Colisoes.h" />
     <ClInclude Include="Gerenciado_Grafico.h" />
     <ClInclude Include="Inimigo.h" />
