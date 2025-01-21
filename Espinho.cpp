@@ -18,6 +18,13 @@ Obstaculo(id, png)
 	srand((unsigned)time(&tempo));//isso tbm
 	num_espinhos = (int)(rand() % 10);//isso tbm
 
+	if (num_espinhos <= 0) {
+		num_espinhos = 1;
+	}
+
+	if(num_espinhos >= 6){
+		num_espinhos = 5;
+	}
 
 }
 

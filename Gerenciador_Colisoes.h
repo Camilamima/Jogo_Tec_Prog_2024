@@ -21,7 +21,9 @@ namespace Gerenciadores {
 		~Gerenciador_Colisoes();
 		void trocaFase();
 		void setJogadores(Slime* j1, Slime* j2);
+		Slime* getJogador2() { return jog2; }
 		void includeEntidade(Entidade* ent);
+		void removeEntidade(Entidade* ent);
 		int veriColisao(Entidade* ent,Slime* sl);
 		void verificaObs();
 		void verificaIni();

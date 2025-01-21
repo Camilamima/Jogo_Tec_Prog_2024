@@ -37,6 +37,12 @@ Fase1::Fase1() :
 		listaEntidades.Incluir(&Slime1, &gerentC);
 		listaEntidades.Incluir(&Slime2, &gerentC);
 	}
+	if (num_jogadores != 1 && num_jogadores != 2) {
+		cout << "Numero invalido de jogadores!" << endl;
+		cout << "Selecionado 1 jogador!" << endl;
+		gerentC.setJogadores(&Slime1, nullptr);
+		listaEntidades.Incluir(&Slime1, &gerentC);
+	}
 
 	/*==== incluindo na lista ent e na de colisoes ====*/
 	listaEntidades.Incluir(&ratinho, &gerentC);
@@ -61,6 +67,11 @@ Fase1::~Fase1() {
 }
 
 void Fase1::executar() {
+	int qnt_jogadores = 1;
+	bool apareceu1 = false;
+	bool apareceu2 = false;
+	if (gerentC.getJogador2() != nullptr)
+		qnt_jogadores = 2;
 
 	while (gerent.estaAberta()) {
 		sf::Event event;
@@ -77,7 +88,28 @@ void Fase1::executar() {
 		gerent.clear();
 
 		listaEntidades.Percorrer(&gerentC);//executar de td
-
+		
+		if (Slime1.getVidas() <= 0 && apareceu1 == false) {
+			cout << "Jogador 1 morreu!" << endl;
+			listaEntidades.MatarEntidade(&Slime1, &gerentC);
+			qnt_jogadores --;
+			apareceu1 = true;
+		}
+		if (gerentC.getJogador2() != nullptr && apareceu2 == false) {
+			if (Slime2.getVidas() <= 0) {
+				cout << "Jogador 2 morreu!" << endl;
+				listaEntidades.MatarEntidade(&Slime2, &gerentC);
+				qnt_jogadores--;
+				apareceu2 = true;
+			}
+		}
+		
+		if (qnt_jogadores == 0) {
+			if (Slime1.getVidas() <= 0) {
+				cout << "Fim de jogo!" << endl;
+				break;
+			}
+		}
 		gerent.mostrar();
 	}
 }
