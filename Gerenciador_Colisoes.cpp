@@ -5,11 +5,12 @@
 #include "Obstaculo.h"
 #include "SlimeMau.h"
 #include "Espinho.h"
+#include "Cachorro.h"
 #include <list>
 #include <iostream>
 
+using namespace Personagens;
 using namespace Gerenciadores;
-using namespace std;
 
 Gerenciador_Colisoes::Gerenciador_Colisoes():
 	jog1(nullptr), jog2(nullptr) {
@@ -41,7 +42,7 @@ void Gerenciador_Colisoes::includeEntidade(Entidade* ent) {
 	}
 }
 
-int Gerenciador_Colisoes::veriColisao(Entidade* ent,Slime* sl) {
+int Gerenciador_Colisoes::veriColisao(Entidade* ent,Entidade* sl) {
 
 	RectangleShape jogador;
 	RectangleShape outro;
@@ -109,21 +110,33 @@ int Gerenciador_Colisoes::veriColisao(Entidade* ent,Slime* sl) {
 
 void Gerenciador_Colisoes::verificaIni() {
 
-	RectangleShape aux;
-
+	RectangleShape aux1, aux2,aux3;
+	aux2 = jog1->getCorpo();
+	
 	for (Inimigo* inimigo : LIni) {
+		aux1 = inimigo->getCorpo();
 
 		if (!inimigo->verificaVida()) {
 			continue;
 		}
 
-		aux = inimigo->getCorpo();
+		if (inimigo->getMaldade() == 2) {
+
+			Cachorro* cachorro = static_cast<Cachorro*>(inimigo);
+
+			if (cachorro->deveSeguir(jog1)) {
+				cachorro->setSeguindo(1);
+				cachorro->seguir(aux2.getPosition().x + (aux2.getSize().x / 2));
+			}
+			else {
+				cachorro->setSeguindo(0);
+			}
+		}
 
 		if (veriColisao(inimigo, jog1) == 1) {
 			jog1->setAtacando(1);
 			jog1->pular(300);
 			--(*inimigo);
-			cout << "vidas do ratinho: " << inimigo->getVidas() << endl;
 		}
 
 		else if (veriColisao(inimigo, jog1) == 2) {
@@ -132,7 +145,6 @@ void Gerenciador_Colisoes::verificaIni() {
 				--(*jog1);
 				jog1->pular(300);
 				jog1->setAtacado(1, 0);
-				cout << "vidas slime: " << jog1->getVidas() << endl;
 			}
 		}
 		else if (veriColisao(inimigo, jog1) == 3) {
@@ -140,7 +152,6 @@ void Gerenciador_Colisoes::verificaIni() {
 				--(*jog1);
 				jog1->pular(300);
 				jog1->setAtacado(1, 1);
-				cout << "vidas slime: " << jog1->getVidas() << endl;
 			}
 
 		}
@@ -148,13 +159,28 @@ void Gerenciador_Colisoes::verificaIni() {
 
 	if (jog2 != nullptr) {
 
+		aux3 = jog2->getCorpo();
+
 		for (Inimigo* inimigo : LIni) {
 
 			if (!inimigo->verificaVida()) {
 				continue;
 			}
+			aux1 = inimigo->getCorpo();
 
-			aux = inimigo->getCorpo();
+			if (inimigo->getMaldade() == 2) {
+
+				Cachorro* cachorro = static_cast<Cachorro*>(inimigo);
+
+				if (cachorro->deveSeguir(jog2)) {
+					cachorro->setSeguindo(1);
+					cachorro->seguir(aux3.getPosition().x + (aux3.getSize().x / 2));
+				}
+				else {
+					cachorro->setSeguindo(0);
+				}
+			}
+
 
 			if (veriColisao(inimigo, jog2) == 1) {
 				jog2->setAtacando(1);
@@ -217,13 +243,13 @@ void Gerenciador_Colisoes::verificaObs() {
 				emCima = 1;
 			}
 
-			if (veriColisao(obstaculo, jog1) == 2) {
+			if (veriColisao(obstaculo, jog1) == 2 || veriColisao(jog1, obstaculo) == 2) {
 
 				jog1->setMoviD(0);
 				ladoD = 1;
 			}
 
-			if (veriColisao(obstaculo, jog1) == 3) {
+			if (veriColisao(obstaculo, jog1) == 3 || veriColisao(jog1, obstaculo) == 3) {
 
 				jog1->setMoviE(0);
 				ladoE = 1;
@@ -248,6 +274,7 @@ void Gerenciador_Colisoes::verificaObs() {
 	if (!emCima) {
 		jog1->setChao(800);
 		jog1->setNoChao(0);
+
 	}
 
 	if (!ladoD) {
@@ -287,13 +314,13 @@ void Gerenciador_Colisoes::verificaObs() {
 					emCima = 1;
 				}
 
-				if (veriColisao(obstaculo, jog2) == 2) {
+				if (veriColisao(obstaculo, jog2) == 2 || veriColisao(jog2, obstaculo) == 2) {
 
 					jog2->setMoviD(0);
 					ladoD = 1;
 				}
 
-				if (veriColisao(obstaculo, jog2) == 3) {
+				if (veriColisao(obstaculo, jog2) == 3 || veriColisao(jog2, obstaculo) == 3) {
 
 					jog2->setMoviE(0);
 					ladoE = 1;
@@ -334,7 +361,71 @@ void Gerenciador_Colisoes::verificaObs() {
 	}
 }
 
+void Gerenciador_Colisoes::verificaObsIni() {
+
+	RectangleShape aux,aux2;
+	bool emCima = 0;
+	bool ladoD = 0;
+	bool ladoE = 0;
+	
+	for (Inimigo* inimigo : LIni) {
+
+		if (!inimigo->verificaVida()) {
+			continue;
+		}
+		aux2 = inimigo->getCorpo();
+
+		for (Obstaculo* obstaculo : LObst){
+
+			if (!obstaculo->getImpede()) {
+				continue;
+			}
+
+			aux = obstaculo->getCorpo();
+
+
+
+			if (veriColisao(obstaculo, inimigo) == 1) {
+					inimigo->setChao(aux.getPosition().y - 100);
+					emCima = 1;
+			}
+
+			if (veriColisao(obstaculo, inimigo) == 2 || veriColisao(inimigo, obstaculo) == 2) {
+
+					inimigo->setMoviD(0);
+					ladoD = 1;
+			}
+
+			if (veriColisao(obstaculo, inimigo) == 3 || veriColisao(inimigo, obstaculo) == 3) {
+
+					inimigo->setMoviE(0);
+					ladoE = 1;
+			}
+
+		}
+
+		if (!emCima) {
+			inimigo->setChao(800);
+			inimigo->setNoChao(0);
+
+		}
+
+		if (!ladoD) {
+			inimigo->setMoviD(1);
+		}
+
+		if (!ladoE) {
+			inimigo->setMoviE(1);
+		}
+
+		emCima = 0;
+		ladoD = 0;
+		ladoE = 0;
+	}
+}
+
 void Gerenciador_Colisoes::executar(){
+	verificaObsIni();
 	verificaIni();
 	verificaObs();
 }

@@ -15,8 +15,8 @@ void Entidade::setCoordenadas(float x1, float y1) {
 	y = y1;
 }
 
-void Entidade::setCorpo(float altura, float largura) {
-	corpo.setSize(Vector2f(altura, largura));
+void Entidade::setCorpo(float largura, float altura) {
+	corpo.setSize(Vector2f(largura, altura));
 	corpo.setTexture(&sprite);
 	corpo.setPosition(x, y);
 }

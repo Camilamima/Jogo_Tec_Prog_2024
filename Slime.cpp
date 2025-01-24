@@ -8,13 +8,9 @@ Slime::Slime(int id, const char* png) :
 	ladoAtacado = 0;
 	atacado = 0;
 	atacando = 0;
-	chao = 800;
 	setVelocidae(VX, 0);
 	setCoordenadas(875, 800);
 	pontos = 0;
-	noChao = 1;
-	moviD = 1;
-	moviE = 1;
 	wPress = 0;
 	relogio.restart();
 	impulso = -1;
@@ -185,6 +181,10 @@ void Slime::executar(){
 		noChao = 1;
 		velocidadeY = 0;
 		atacando = 0;
+	}
+
+	if (!noChao) {
+		mover(0);
 	}
 
 	if (getId() == 1) {
