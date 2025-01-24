@@ -8,10 +8,11 @@ Rato::Rato(int id, const char* png) :
 	Inimigo(id, png)
 {
 	setVelocidae(150, 0);
-	setCoordenadas(700, 775);
+	setCoordenadas(450, 775);
 	relogio.restart();
 	setCorpo(150, 150);
 	distancia_percorrida = 0;
+	setMaldade(1);
 }
 
 Rato::~Rato() {  }
@@ -33,7 +34,16 @@ void Rato::executar() {
 			distancia_percorrida = 0;
 		}
 		calculaDis();
-		mover(velocidadeX);
+		if (!noChao) {
+			mover(0);
+		}
+		if (velocidadeX > 0 && moviD) {
+			mover(velocidadeX * atualizaDelta());
+		}
+		else if (velocidadeX < 0 && moviE) {
+			mover(velocidadeX * atualizaDelta());
+		}
+
 		pGGrafico->desenha(corpo);
 	}
 

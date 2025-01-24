@@ -8,11 +8,12 @@ Slime1(1),
 Slime2(2),
 listaEntidades(),
 ratinho(4),
+doguinho(4),
 plat(3),
 plat2(3),
 plat3(3),
-esp(3),
-obst_facil(3),
+//esp(3),
+//obst_facil(3),
 gerent(),
 gerentC()
 {	
@@ -20,8 +21,8 @@ gerentC()
 
 	cout << "Para 1 jogador tecle 1" << endl;
 	cout << "Para 2 jogadores tecle 2" << endl;
-	cin >> num_jogadores;
-
+	//cin >> num_jogadores;
+	num_jogadores = 1;
 	if (num_jogadores == 1) {
 		cout << " Selecionado 1 jogador! " << endl;
 		gerentC.setJogadores(&Slime1, nullptr);
@@ -39,15 +40,16 @@ gerentC()
 	listaEntidades.Incluir(&plat, &gerentC);
 	listaEntidades.Incluir(&plat2, &gerentC);
 	listaEntidades.Incluir(&plat3, &gerentC);
-	listaEntidades.Incluir(&esp, &gerentC);
-	listaEntidades.Incluir(&obst_facil, &gerentC);
+	//listaEntidades.Incluir(&esp, &gerentC);
+	//listaEntidades.Incluir(&obst_facil, &gerentC);
+	listaEntidades.Incluir(&doguinho, &gerentC);
 
 	listaEntidades.setGG(&gerent); //setando gg
 
 	//mudar de local
-	plat.geraPlataforma(100, 100, 400, 600);
-	plat2.geraPlataforma(200, 300, 300, 700);
-	plat3.geraPlataforma(40, 500, 600, 500);
+	plat.geraPlataforma(100, 100, 400, 100);
+	plat2.geraPlataforma(100, 100, 300, 800);
+	plat3.geraPlataforma(40, 500, 600, 600);
 
 }
 

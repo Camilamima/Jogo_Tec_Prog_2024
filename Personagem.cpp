@@ -4,6 +4,11 @@
 Personagem::Personagem(int id, const char* png) :
 	Entidade(id, png)
 {
+	moviD = 1;
+	moviE = 1;
+	vivo = 0;
+	noChao = 0;
+	chao = 800;
 	velocidadeX = 0;
 	velocidadeY = 0;
 	vidas = 5;

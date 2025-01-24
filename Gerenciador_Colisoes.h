@@ -22,9 +22,10 @@ namespace Gerenciadores {
 		void trocaFase();
 		void setJogadores(Slime* j1, Slime* j2);
 		void includeEntidade(Entidade* ent);
-		int veriColisao(Entidade* ent,Slime* sl);
+		int veriColisao(Entidade* ent,Entidade* sl);
 		void verificaObs();
 		void verificaIni();
+		void verificaObsIni();
 		void executar();
 	};
 }
