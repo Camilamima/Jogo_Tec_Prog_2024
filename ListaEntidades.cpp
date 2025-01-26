@@ -12,7 +12,7 @@ namespace Listas {
 	{
 	}
 
-	//destrutora --- RESOLVER AQ
+	//destrutora
 	ListaEntidade::~ListaEntidade() {
 
 		int i;
@@ -50,4 +50,9 @@ namespace Listas {
 		}
 	}
 
+	void ListaEntidade::MatarEntidade(Entidade* ent, Gerenciadores::Gerenciador_Colisoes* gc) {
+
+		listaEntidades->removerElemento(ent);
+		gc->removeEntidade(ent);
+	}
 }

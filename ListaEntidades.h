@@ -14,6 +14,7 @@ namespace Listas {
 		void Percorrer(Gerenciadores::Gerenciador_Colisoes* gc);
 		void Incluir(Entidade* entidade, Gerenciadores::Gerenciador_Colisoes* gc);
 		void setGG(Gerenciado_Grafico *gg);
+		void MatarEntidade(Entidade* ent, Gerenciadores::Gerenciador_Colisoes* gc);
 	};
 
 }

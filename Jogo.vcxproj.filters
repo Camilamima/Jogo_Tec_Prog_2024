@@ -60,6 +60,10 @@
     <ClCompile Include="ListaEntidades.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
+    <ClCompile Include="Fase1.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Acelerador.cpp">
     <ClCompile Include="Cachorro.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
@@ -110,6 +114,10 @@
     <ClInclude Include="ListaEntidades.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
+    <ClInclude Include="Fase1.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Acelerador.h">
     <ClInclude Include="Cachorro.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
@@ -119,6 +127,12 @@
       <Filter>Arquivos de Recurso</Filter>
     </Image>
     <Image Include="ratinho.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="Boost.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="espinho.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
   </ItemGroup>
