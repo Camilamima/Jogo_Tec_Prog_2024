@@ -16,8 +16,9 @@ namespace Listas {
 	ListaEntidade::~ListaEntidade() {
 
 		int i;
+		int z = listaEntidades->tamanho();
 
-		for (i=0; i<listaEntidades->tamanho(); i++)
+		for (i=0; i<z; i++)
 		{
 			listaEntidades->removerElemento(0);
 		}

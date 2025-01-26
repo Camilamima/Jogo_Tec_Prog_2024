@@ -24,9 +24,10 @@ namespace Gerenciadores {
 		Slime* getJogador2() { return jog2; }
 		void includeEntidade(Entidade* ent);
 		void removeEntidade(Entidade* ent);
-		int veriColisao(Entidade* ent,Slime* sl);
+		int veriColisao(Entidade* ent,Entidade* sl);
 		void verificaObs();
 		void verificaIni();
+		void verificaObsIni();
 		void executar();
 	};
 }

@@ -12,7 +12,22 @@ Inimigo::~Inimigo() {
 
 void Inimigo::mover(float aux) {
 	
-		corpo.move(aux*atualizaDelta(), 0);
+	if (!noChao)
+	{
+
+		velocidadeY += static_cast<float>(gravidade) * atualizaDelta();
+		if ((corpo.getPosition().y + velocidadeY) >= chao) {
+			velocidadeY = chao - corpo.getPosition().y;
+		}
+		corpo.move(aux, velocidadeY);
+		if (corpo.getPosition().y >= chao) {
+			noChao = 1;
+			velocidadeY = 0;
+		}
+	}
+	else {
+		corpo.move(aux, 0);
+	}
 
 }
 
