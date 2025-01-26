@@ -7,12 +7,16 @@ class Personagem : public Entidade {
 protected:
 	int vidas;
 	bool vivo;
+	float chao;
+	bool noChao;
+	bool moviD;
+	bool moviE;
 	float velocidadeY;
 	float velocidadeX;
 	static const float gravidade;
 	Clock relogio;
 public:
-	Personagem(int id,const char* png);
+	Personagem(int id, const char* png);
 	~Personagem();
 	bool verificaVida() { if (vidas > 0) { return 1; } return 0; }
 	virtual void mover(float aux) = 0;
@@ -22,8 +26,12 @@ public:
 	void operator--();
 	void operator*=(int dano) { vidas -= dano; }
 	void setVelocidae(float vX, float vY);
-	void setVelocidadeY(float y) { velocidadeY = y;}
+	void setVelocidadeY(float y) { velocidadeY = y; }
+	void setMoviD(bool a) { moviD = a; }
+	void setMoviE(bool a) { moviE = a; }
 	float getVelocidadeX();
 	float getVelocidadeY();
 	float atualizaDelta();
+	void setChao(float a) { chao = a; }
+	void setNoChao(float Xao) { noChao = Xao; }
 };
