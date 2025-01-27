@@ -1,6 +1,8 @@
 #include "Obstaculo.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
+using namespace Personagens;
+using namespace Obstaculos;
 
 Obstaculo::Obstaculo(int id,const char* png) : 
 Entidade(id, png), 
@@ -10,6 +12,7 @@ pJogador(nullptr)
 	danoso = false;
 	atrapalha = false;
 	impede = false;
+	acelera = true;
 }
 
 Obstaculo::~Obstaculo()
@@ -19,6 +22,7 @@ Obstaculo::~Obstaculo()
 void Obstaculo::restaura(Slime* jogador) {
 	float velY = jogador->getVelocidadeY();
 
-	jogador->setVelocidae(VX, velY);
 
+	jogador->setVelocidae(VX, velY);
+	
 }

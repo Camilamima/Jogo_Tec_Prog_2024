@@ -1,4 +1,6 @@
 #include "Plataforma.h"  
+using namespace Personagens;
+using namespace Obstaculos;
 
 Plataforma::Plataforma(int id, const char* png) :
 Obstaculo(id, png), x(0), y(860)
@@ -23,7 +25,4 @@ void Plataforma::executar() {
 	pGGrafico->desenha(corpo);
 }
 
-void Plataforma::obstacular(Slime* jogador) {
-
-}
 

@@ -143,44 +143,51 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Cachorro.cpp" />
+    <ClCompile Include="Obstaculos\Acelerador.cpp" />
+    <ClCompile Include="Personagens\Cachorro.cpp" />
     <ClCompile Include="Ente.cpp" />
     <ClCompile Include="Entidade.cpp" />
-    <ClCompile Include="Espinho.cpp" />
-    <ClCompile Include="Gerenciador_Colisoes.cpp" />
-    <ClCompile Include="Gerenciado_Grafico.cpp" />
-    <ClCompile Include="Inimigo.cpp" />
+    <ClCompile Include="Obstaculos\Espinho.cpp" />
+    <ClCompile Include="Fases\Fase1.cpp" />
+    <ClCompile Include="Gerenciadores\Gerenciador_Colisoes.cpp" />
+    <ClCompile Include="Gerenciadores\Gerenciado_Grafico.cpp" />
+    <ClCompile Include="Personagens\Inimigo.cpp" />
     <ClCompile Include="Jogo.cpp" />
-    <ClCompile Include="ListaEntidades.cpp" />
+    <ClCompile Include="Listas\ListaEntidades.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Obstaculo.cpp" />
-    <ClCompile Include="Personagem.cpp" />
-    <ClCompile Include="Plataforma.cpp" />
-    <ClCompile Include="Rato.cpp" />
-    <ClCompile Include="Slime.cpp" />
-    <ClCompile Include="SlimeMau.cpp" />
+    <ClCompile Include="Obstaculos\Obstaculo.cpp" />
+    <ClCompile Include="Personagens\Personagem.cpp" />
+    <ClCompile Include="Obstaculos\Plataforma.cpp" />
+    <ClCompile Include="Personagens\Rato.cpp" />
+    <ClCompile Include="Personagens\Slime.cpp" />
+    <ClCompile Include="Obstaculos\SlimeMau.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Cachorro.h" />
+    <ClInclude Include="Obstaculos\Acelerador.h" />
+    <ClInclude Include="Personagens\Cachorro.h" />
     <ClInclude Include="Ente.h" />
     <ClInclude Include="Entidade.h" />
-    <ClInclude Include="Espinho.h" />
-    <ClInclude Include="Gerenciador_Colisoes.h" />
-    <ClInclude Include="Gerenciado_Grafico.h" />
-    <ClInclude Include="Inimigo.h" />
+    <ClInclude Include="Obstaculos\Espinho.h" />
+    <ClInclude Include="Fases\Fase1.h" />
+    <ClInclude Include="Gerenciadores\Gerenciador_Colisoes.h" />
+    <ClInclude Include="Gerenciadores\Gerenciado_Grafico.h" />
+    <ClInclude Include="Personagens\Inimigo.h" />
     <ClInclude Include="Jogo.h" />
-    <ClInclude Include="Lista.h" />
-    <ClInclude Include="ListaEntidades.h" />
-    <ClInclude Include="Obstaculo.h" />
-    <ClInclude Include="Personagem.h" />
-    <ClInclude Include="Plataforma.h" />
-    <ClInclude Include="Rato.h" />
-    <ClInclude Include="Slime.h" />
-    <ClInclude Include="SlimeMau.h" />
+    <ClInclude Include="Listas\Lista.h" />
+    <ClInclude Include="Listas\ListaEntidades.h" />
+    <ClInclude Include="Obstaculos\Obstaculo.h" />
+    <ClInclude Include="Personagens\Personagem.h" />
+    <ClInclude Include="Obstaculos\Plataforma.h" />
+    <ClInclude Include="Personagens\Rato.h" />
+    <ClInclude Include="Personagens\Slime.h" />
+    <ClInclude Include="Obstaculos\SlimeMau.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="pngegg.png" />
-    <Image Include="ratinho.png" />
+    <Image Include="assets\plataforma.png" />
+    <Image Include="assets\plataformateste.png" />
+    <Image Include="assets\pngegg.png" />
+    <Image Include="assets\ratinho.png" />
+    <Image Include="assets\slimemau.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

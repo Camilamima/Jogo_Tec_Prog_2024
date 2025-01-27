@@ -1,8 +1,8 @@
 #pragma once
 #include "Inimigo.h"
 #include <ctime>
-
-class Slime;
+#include "Personagem.h"
+#include "Slime.h"
 
 namespace Personagens {
     class Cachorro : public Inimigo

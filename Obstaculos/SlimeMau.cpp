@@ -1,5 +1,7 @@
 #include "SlimeMau.h"
 #include <iostream>
+using namespace Obstaculos;
+using namespace Personagens;
 
 SlimeMau::SlimeMau(int id, const char* png) :
 	Obstaculo(id, png)
@@ -20,7 +22,7 @@ void SlimeMau::executar() {
 }
 
 void SlimeMau::obstacular(Slime* jogador) {
-	
+
 	float velY = jogador->getVelocidadeY();
-	jogador->setVelocidae(atrasador, velY*atrito);
+	jogador->setVelocidae(atrasador, 0.96*velY);
 }

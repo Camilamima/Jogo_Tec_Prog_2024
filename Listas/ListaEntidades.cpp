@@ -1,7 +1,7 @@
 #include "ListaEntidades.h"
-#include "Slime.h"
+#include "../Personagens/Slime.h"
 
-
+using namespace Personagens;
 namespace Listas {
 	
 	class Obstaculo;
@@ -12,7 +12,7 @@ namespace Listas {
 	{
 	}
 
-	//destrutora --- RESOLVER AQ
+	//destrutora
 	ListaEntidade::~ListaEntidade() {
 
 		int i;
@@ -42,7 +42,7 @@ namespace Listas {
 		gc->includeEntidade(entidade);
 	}
 
-	void ListaEntidade::setGG(Gerenciado_Grafico *gg) {
+	void ListaEntidade::setGG(Gerenciadores::Gerenciado_Grafico *gg) {
 		
 		for (Lista<Entidade*>::iterator it = listaEntidades->begin(); it != listaEntidades->end(); it++)
 		{
@@ -50,4 +50,9 @@ namespace Listas {
 		}
 	}
 
+	void ListaEntidade::MatarEntidade(Entidade* ent, Gerenciadores::Gerenciador_Colisoes* gc) {
+
+		listaEntidades->removerElemento(ent);
+		gc->removeEntidade(ent);
+	}
 }

@@ -12,7 +12,7 @@ Ente::~Ente() {
 	pGGrafico = NULL;
 }
 
-void Ente::setGerenciador(Gerenciado_Grafico* g) {
+void Ente::setGerenciador(Gerenciadores::Gerenciado_Grafico* g) {
 	pGGrafico = g;
 }
 
