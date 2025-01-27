@@ -18,7 +18,7 @@
     <ClCompile Include="Jogo.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Gerenciado_Grafico.cpp">
+    <ClCompile Include="Gerenciadores\Gerenciado_Grafico.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -30,46 +30,48 @@
     <ClCompile Include="Ente.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Personagem.cpp">
+    <ClCompile Include="Personagens\Personagem.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Slime.cpp">
+    <ClCompile Include="Personagens\Slime.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Obstaculo.cpp">
+    <ClCompile Include="Obstaculos\Obstaculo.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Plataforma.cpp">
+    <ClCompile Include="Obstaculos\Plataforma.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Espinho.cpp">
+    <ClCompile Include="Obstaculos\Espinho.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="SlimeMau.cpp">
+    <ClCompile Include="Obstaculos\SlimeMau.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Inimigo.cpp">
+    <ClCompile Include="Personagens\Inimigo.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Rato.cpp">
+    <ClCompile Include="Personagens\Rato.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Gerenciador_Colisoes.cpp">
+    <ClCompile Include="Gerenciadores\Gerenciador_Colisoes.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="ListaEntidades.cpp">
+    <ClCompile Include="Listas\ListaEntidades.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Fase1.cpp">
+    <ClCompile Include="Fases\Fase1.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="Acelerador.cpp">
-    <ClCompile Include="Cachorro.cpp">
+    <ClCompile Include="Obstaculos\Acelerador.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Personagens\Cachorro.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Gerenciado_Grafico.h">
+    <ClInclude Include="Gerenciadores\Gerenciado_Grafico.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
     <ClInclude Include="Jogo.h">
@@ -81,58 +83,63 @@
     <ClInclude Include="Ente.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Personagem.h">
+    <ClInclude Include="Personagens\Personagem.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Slime.h">
+    <ClInclude Include="Personagens\Slime.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Obstaculo.h">
+    <ClInclude Include="Obstaculos\Obstaculo.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Plataforma.h">
+    <ClInclude Include="Obstaculos\Plataforma.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="SlimeMau.h">
+    <ClInclude Include="Obstaculos\SlimeMau.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Espinho.h">
+    <ClInclude Include="Obstaculos\Espinho.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Inimigo.h">
+    <ClInclude Include="Personagens\Inimigo.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Rato.h">
+    <ClInclude Include="Personagens\Rato.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Gerenciador_Colisoes.h">
+    <ClInclude Include="Gerenciadores\Gerenciador_Colisoes.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Lista.h">
+    <ClInclude Include="Listas\Lista.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="ListaEntidades.h">
+    <ClInclude Include="Listas\ListaEntidades.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Fase1.h">
+    <ClInclude Include="Fases\Fase1.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
-    <ClInclude Include="Acelerador.h">
-    <ClInclude Include="Cachorro.h">
+    <ClInclude Include="Obstaculos\Acelerador.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Personagens\Cachorro.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="pngegg.png">
+    <Image Include="assets\pngegg.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
-    <Image Include="ratinho.png">
+    <Image Include="assets\ratinho.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
-    <Image Include="Boost.png">
+    <Image Include="assets\slimemau.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
-    <Image Include="espinho.png">
+    <Image Include="assets\plataformateste.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\plataforma.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
   </ItemGroup>
