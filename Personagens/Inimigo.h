@@ -11,7 +11,7 @@ namespace Personagens {
 		virtual void executar() = 0;
 		void mover(float aux);
 		void setMaldade(int maldade);
-		int getMaldade() { return nivel_maldade; }
+		int getMaldade() const{ return nivel_maldade; }
 	};
 }
 

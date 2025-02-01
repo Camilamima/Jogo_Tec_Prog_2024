@@ -69,6 +69,12 @@
     <ClCompile Include="Personagens\Cachorro.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
+    <ClCompile Include="Projetil.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
+    <ClCompile Include="Personagens\Chefao.cpp">
+      <Filter>Arquivos de Origem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gerenciadores\Gerenciado_Grafico.h">
@@ -125,6 +131,12 @@
     <ClInclude Include="Personagens\Cachorro.h">
       <Filter>Arquivos de Cabeçalho</Filter>
     </ClInclude>
+    <ClInclude Include="Projetil.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
+    <ClInclude Include="Personagens\Chefao.h">
+      <Filter>Arquivos de Cabeçalho</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\pngegg.png">
@@ -140,6 +152,12 @@
       <Filter>Arquivos de Recurso</Filter>
     </Image>
     <Image Include="assets\plataforma.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\Walking_KG_1 - Copia.png">
+      <Filter>Arquivos de Recurso</Filter>
+    </Image>
+    <Image Include="assets\Walking_KG_1.png">
       <Filter>Arquivos de Recurso</Filter>
     </Image>
   </ItemGroup>

@@ -8,6 +8,8 @@
 #include "../Personagens/Rato.h"
 #include "../Gerenciadores/Gerenciador_Colisoes.h"
 #include "../Listas/ListaEntidades.h"
+#include "../Projetil.h"
+#include "../Personagens/Chefao.h"
 
 namespace Fases {
 	class Fase1 {
@@ -22,8 +24,18 @@ namespace Fases {
 		Personagens::Slime Slime2;
 		Obstaculos::Plataforma chao;
 		Obstaculos::Plataforma ladoE;
-
-
+		Personagens::Chefao teste2;
+		Projetil p1;
+		Projetil p2;
+		Projetil p3; 
+		Projetil p4;
+		Projetil p5;
+		Projetil p6;
+		Projetil p7;
+		Projetil p8;
+		Projetil p9;
+		Projetil p10;
+		static const int numero_projeteis;
 
 		/*Plataforma plat2;
 		Plataforma plat3;
@@ -40,5 +52,6 @@ namespace Fases {
 		void executar();
 		void geraChao();
 		void geraEspinho();
+		void criaProjeteis();
 	};
 }

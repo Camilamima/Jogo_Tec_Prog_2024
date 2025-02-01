@@ -1,6 +1,7 @@
 #include "Gerenciador_Colisoes.h"
 #include "../Obstaculos/Acelerador.h"
 #include "../Personagens/Cachorro.h"
+#include "../Personagens/Chefao.h"
 #include <list>
 #include <iostream>
 
@@ -18,6 +19,7 @@ namespace Gerenciadores {
 	void Gerenciador_Colisoes::trocaFase() {
 		LObst.clear();
 		LIni.clear();
+		LProjetil.clear();
 	}
 
 	void Gerenciador_Colisoes::setJogadores(Personagens::Slime* j1, Personagens::Slime* j2) {
@@ -26,14 +28,18 @@ namespace Gerenciadores {
 	}
 
 	void Gerenciador_Colisoes::includeEntidade(Entidade* ent) {
-		if (ent->getId() == 3) {
+		if (ent->getId() == 3) {//obstaculo
 			LObst.push_back(static_cast<Obstaculos::Obstaculo*>(ent));
 			static_cast<Obstaculos::Obstaculo*>(ent)->setpJogador(jog1);
 
 		}
-		else if (ent->getId() == 4) {
+		else if (ent->getId() == 4 || ent->getId() == 6) {//inimigo
 			LIni.push_back(static_cast<Personagens::Inimigo*>(ent));
 		}
+		else if (ent->getId() == 5) {//projetil
+			LProjetil.push_back(static_cast<Projetil*>(ent));
+		}
+		
 	}
 
 	int Gerenciador_Colisoes::veriColisao(Entidade* ent, Entidade* sl) {
@@ -105,49 +111,57 @@ namespace Gerenciadores {
 	void Gerenciador_Colisoes::verificaIni() {
 
 		RectangleShape aux1, aux2, aux3;
-		aux2 = jog1->getCorpo();
 
-		for (Personagens::Inimigo* inimigo : LIni) {
-			aux1 = inimigo->getCorpo();
+		if (jog1 != nullptr) {
+			aux2 = jog1->getCorpo();
+			for (Personagens::Inimigo* inimigo : LIni) {
+				aux1 = inimigo->getCorpo();
 
-			if (!inimigo->verificaVida()) {
-				continue;
-			}
-
-			if (inimigo->getMaldade() == 2) {
-
-				Personagens::Cachorro* cachorro = static_cast<Personagens::Cachorro*>(inimigo);
-
-				if (cachorro->deveSeguir(jog1)) {
-					cachorro->setSeguindo(1);
-					cachorro->seguir(aux2.getPosition().x + (aux2.getSize().x / 2));
+				if (!inimigo->verificaVida()) {
+					continue;
 				}
-				else {
-					cachorro->setSeguindo(0);
+
+				if (inimigo->getMaldade() == 2) {
+
+					Personagens::Cachorro* cachorro = static_cast<Personagens::Cachorro*>(inimigo);
+
+					if (cachorro->deveSeguir(jog1)) {
+						cachorro->setSeguindo(1);
+						cachorro->seguir(aux2.getPosition().x + (aux2.getSize().x / 2));
+					}
+					else {
+						cachorro->setSeguindo(0);
+					}
 				}
-			}
 
-			if (veriColisao(inimigo, jog1) == 1) {
-				jog1->setAtacando(1);
-				jog1->pular(300);
-				--(*inimigo);
-			}
+				if (inimigo->getMaldade() == 3) {
+					Personagens::Chefao* chefao = static_cast<Personagens::Chefao*>(inimigo);
+					chefao->teletransportar();
+				}
 
-			else if (veriColisao(inimigo, jog1) == 2) {
-
-				if (!jog1->getAtacado()) {
-					--(*jog1);
+				if (veriColisao(inimigo, jog1) == 1) {
+					jog1->setAtacando(1);
 					jog1->pular(300);
-					jog1->setAtacado(1, 0);
-				}
-			}
-			else if (veriColisao(inimigo, jog1) == 3) {
-				if (!jog1->getAtacado()) {
-					--(*jog1);
-					jog1->pular(300);
-					jog1->setAtacado(1, 1);
+					--(*inimigo);
+					cout << "Vida inimigo atacado" << inimigo->getVidas() << endl;
 				}
 
+				else if (veriColisao(inimigo, jog1) == 2) {
+
+					if (!jog1->getAtacado()) {
+						--(*jog1);
+						jog1->pular(300);
+						jog1->setAtacado(1, 0);
+					}
+				}
+				else if (veriColisao(inimigo, jog1) == 3) {
+					if (!jog1->getAtacado()) {
+						--(*jog1);
+						jog1->pular(300);
+						jog1->setAtacado(1, 1);
+					}
+
+				}
 			}
 		}
 
@@ -206,6 +220,59 @@ namespace Gerenciadores {
 
 	}
 
+	void Gerenciador_Colisoes::veriProjetil() {
+		RectangleShape aux_jog1, aux_jog2, aux_proj;
+		
+		if (jog1 != nullptr) {
+
+			aux_jog1 = jog1->getCorpo();
+
+			for (Projetil* projetil : LProjetil) {
+				aux_proj = projetil->getCorpo();
+
+				if(projetil->getApareceu()==true){
+					if (projetil->segueQuem(jog1)) {//se segue o jogador 1
+						projetil->setSeguindo(true);
+						projetil->setSeguiu(true);
+						projetil->seguir(aux_jog1.getPosition().x + (aux_jog1.getSize().x / 2), aux_jog1.getPosition().y + (aux_jog1.getSize().y / 2));
+					}
+					if(projetil->segueQuem(jog1)==false) {//se nao segue o jogador 1
+						projetil->setSeguindo(false);//nao segue
+						projetil->mover();
+					}
+				}
+
+				if (veriColisao(projetil, jog1)==5) {
+					projetil->danifica(jog1);
+				}
+			}
+		}
+
+		if (jog2 != nullptr) {
+
+			aux_jog2 = jog2->getCorpo();
+
+			for (Projetil* projetil : LProjetil) {
+				aux_proj = projetil->getCorpo();
+
+				if (projetil->getApareceu() == true) {
+					if (projetil->segueQuem(jog2)) {//se segue o jogador 1
+						projetil->setSeguindo(true);
+						projetil->setSeguiu(true);
+						projetil->seguir(aux_jog2.getPosition().x + (aux_jog2.getSize().x / 2), aux_jog2.getPosition().y + (aux_jog2.getSize().y / 2));
+					}
+					if (projetil->segueQuem(jog2) == false) {//se nao segue o jogador 1
+						projetil->setSeguindo(false);//nao segue
+						projetil->mover();
+					}
+				}
+
+				if (veriColisao(projetil, jog2) == 5) {
+					projetil->danifica(jog2);
+				}
+			}
+		}
+	}
 
 	void Gerenciador_Colisoes::verificaObs() {
 
@@ -384,13 +451,13 @@ namespace Gerenciadores {
 
 
 	void Gerenciador_Colisoes::removeEntidade(Entidade* ent) {
-		if (ent->getId() == 4) {
+		if (ent->getId() == 4 || ent->getId() == 6) {//se for inimigo ou chefao
 			LIni.remove(static_cast<Personagens::Inimigo*>(ent));
 		}
-		else if (ent->getId() == 1) {
+		else if (ent->getId() == 1) {//se for jogador 1
 			setJogadores(nullptr, jog2);
 		}
-		else if (ent->getId() == 2) {
+		else if (ent->getId() == 2) {//se for jogador 2
 			setJogadores(jog1, nullptr);
 		}
 	}
@@ -462,6 +529,8 @@ namespace Gerenciadores {
 		verificaObsIni();
 		verificaIni();
 		verificaObs();
+		veriProjetil();
+
 	}
 }
 

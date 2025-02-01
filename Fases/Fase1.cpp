@@ -23,7 +23,18 @@ namespace Fases {
 		ladoE(3),
 		tamanho_fase(7200),
 		tamanho_zona(1800),
-		zona_atual(0)
+		zona_atual(0),
+		teste2(6),//chefao
+		p1(5),
+		p2(5),
+		p3(5),
+		p4(5),
+		p5(5),
+		p6(5),
+		p7(5),
+		p8(5),
+		p9(5),
+		p10(5)
 	{
 		geraChao();
 		geraEspinho();
@@ -57,6 +68,18 @@ namespace Fases {
 		/*==== incluindo na lista ent e na de colisoes ====*/
 		listaEntidades.Incluir(&chao, &gerentC);
 		listaEntidades.Incluir(&ladoE, &gerentC);
+		listaEntidades.Incluir(&teste2, &gerentC);
+		listaEntidades.Incluir(&p1, &gerentC);
+		listaEntidades.Incluir(&p2, &gerentC);
+		listaEntidades.Incluir(&p3, &gerentC);
+		listaEntidades.Incluir(&p4, &gerentC);
+		listaEntidades.Incluir(&p5, &gerentC);
+		listaEntidades.Incluir(&p6, &gerentC);
+		listaEntidades.Incluir(&p7, &gerentC);
+		listaEntidades.Incluir(&p8, &gerentC);
+		listaEntidades.Incluir(&p9, &gerentC);
+		listaEntidades.Incluir(&p10, &gerentC);
+		
 		/*listaEntidades.Incluir(&ratinho, &gerentC);
 		listaEntidades.Incluir(&plat, &gerentC);
 		listaEntidades.Incluir(&plat2, &gerentC);
@@ -81,9 +104,16 @@ namespace Fases {
 	}
 
 	void Fase1::executar() {
+
 		int qnt_jogadores = 1;
 		bool apareceu1 = false;
 		bool apareceu2 = false;
+		int cont1 = 0;
+		int cont2 = 0;
+		bool morreu = false;
+		int pos_morto = 0;
+
+
 		if (gerentC.getJogador2() != nullptr)
 			qnt_jogadores = 2;
 
@@ -99,20 +129,34 @@ namespace Fases {
 					}
 				}
 			}
+
 			gerent.arrumaCamera(checaZona());
 
 			gerent.clear();
+
 			listaEntidades.Percorrer(&gerentC);//executar de td
+			pos_morto = listaEntidades.VerificMortos();
+
+			if (pos_morto != -1) {
+				listaEntidades.matarEntidadePos(pos_morto,&gerentC);
+			}
 
 			if (Slime1.getVidas() <= 0 && apareceu1 == false) {
-				cout << "Jogador 1 morreu!" << endl;
-				listaEntidades.MatarEntidade(&Slime1, &gerentC);
-				qnt_jogadores--;
-				apareceu1 = true;
+				Slime1.setMorrendo(true);
+				if (Slime1.getCont() % 8 == 0) {
+					morreu = Slime1.animacaoMorte(cont1, 10);
+					cont1++;
+					if (morreu == true) {
+						cout << "Jogador 1 morreu!" << endl;
+						listaEntidades.MatarEntidade(&Slime1, &gerentC);
+						qnt_jogadores--;
+						apareceu1 = true;
+					}
+				}
 			}
 			if (gerentC.getJogador2() != nullptr && apareceu2 == false) {
 				if (Slime2.getVidas() <= 0) {
-					cout << "Jogador 2 morreu!" << endl;
+					cout << "Jogador 2 morreu!" << endl;{}
 					listaEntidades.MatarEntidade(&Slime2, &gerentC);
 					qnt_jogadores--;
 					apareceu2 = true;
@@ -128,6 +172,7 @@ namespace Fases {
 			gerent.mostrar();
 		}
 	}
+
 	float Fase1::checaZona() {
 
 		if (gerentC.getJogador2() == nullptr) {
@@ -217,4 +262,8 @@ namespace Fases {
 			}
 		}
 	}
+
+	const int Fase1::numero_projeteis = 20;
+
 }
+
