@@ -16,6 +16,7 @@ public:
 	void setCoordenadas(float x1,float y1);
 	void setCorpo(float largura, float altura);
 	void setSoCorpo(float largura, float altura);
+	float getX()const { return x; }
 	RectangleShape getCorpo() { return corpo; }
 	virtual void executar() = 0;
 

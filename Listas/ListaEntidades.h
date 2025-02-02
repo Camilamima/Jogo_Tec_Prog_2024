@@ -9,6 +9,7 @@ namespace Listas {
 	private:
 		Lista <Entidade*>* listaEntidades;
 		int pos_chefao;
+		bool zona_chefao;//zona onde está o chefao
 	public:
 		ListaEntidade();
 		~ListaEntidade();

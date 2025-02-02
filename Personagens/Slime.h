@@ -31,11 +31,11 @@ namespace Personagens {
         void setAtacando(float a) { atacando = a; }
         void setAtacado(float x, float y) { atacado = x; ladoAtacado = y; }
         bool getAtacado() const { return atacado; }
-        int getCont() { return cont; }
+        int getCont()const { return cont; }
 		void setMorrendo(bool a) { morrendo = a; }
         void processaEvento();
         void processaEvento2();
-        void animacaoJog1(int num, int limite);
+        void animacaoJog(int num, int limite);
         bool animacaoMorte(int cont, int limite);
     };
 

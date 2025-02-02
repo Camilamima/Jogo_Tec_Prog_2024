@@ -11,18 +11,21 @@ namespace Personagens {
 		//Listas::Lista<Projetil*>* ListProj;//transformar em um set
 		std::set<Projetil*> ListProj;
 		int danoProjetil;
-		int qnt_projetil;
+		//int qnt_projetil;
 		bool turno;
 		Clock relogio1;
 		Clock relogio2;
 		Clock relogioProjetil;
+		int cont;
+		int val;
 		
 	public:
-		Chefao(int id, const char* png = "");
+		Chefao(int id, const char* png = "assets/chefao/Agis.png");
 		~Chefao();
 		void executar();
 		void teletransportar();
 		void criaProjeteis(Projetil* proj);
 		void apagaProjetil();
+		void animacao(int limite);
 	};
 }

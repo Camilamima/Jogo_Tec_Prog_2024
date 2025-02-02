@@ -111,6 +111,7 @@ namespace Fases {
 		int cont1 = 0;
 		int cont2 = 0;
 		bool morreu = false;
+		bool morreu2 = false;
 		int pos_morto = 0;
 
 
@@ -154,20 +155,26 @@ namespace Fases {
 					}
 				}
 			}
-			if (gerentC.getJogador2() != nullptr && apareceu2 == false) {
-				if (Slime2.getVidas() <= 0) {
-					cout << "Jogador 2 morreu!" << endl;{}
-					listaEntidades.MatarEntidade(&Slime2, &gerentC);
-					qnt_jogadores--;
-					apareceu2 = true;
+
+			if (gerentC.getJogador2() != nullptr) {
+				if (Slime2.getVidas() <= 0 && apareceu2 == false) {
+					Slime2.setMorrendo(true);
+					if (Slime2.getCont() % 8 == 0) {
+						morreu2 = Slime2.animacaoMorte(cont2, 10);
+						cont2++;
+						if (morreu2 == true) {
+							cout << "Jogador 2 morreu!" << endl;
+							listaEntidades.MatarEntidade(&Slime2, &gerentC);
+							qnt_jogadores--;
+							apareceu2 = true;
+						}
+					}
 				}
 			}
 
 			if (qnt_jogadores == 0) {
-				if (Slime1.getVidas() <= 0) {
 					cout << "Fim de jogo!" << endl;
 					break;
-				}
 			}
 			gerent.mostrar();
 		}

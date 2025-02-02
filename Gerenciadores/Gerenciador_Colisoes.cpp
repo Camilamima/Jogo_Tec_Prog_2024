@@ -229,6 +229,9 @@ namespace Gerenciadores {
 
 			for (Projetil* projetil : LProjetil) {
 				aux_proj = projetil->getCorpo();
+				if (projetil->getNoChao() == true) {
+					continue;
+				}
 
 				if(projetil->getApareceu()==true){
 					if (projetil->segueQuem(jog1)) {//se segue o jogador 1
@@ -240,11 +243,12 @@ namespace Gerenciadores {
 						projetil->setSeguindo(false);//nao segue
 						projetil->mover();
 					}
+
+					if (veriColisao(projetil, jog1) == 2 || veriColisao(projetil, jog1) == 4) {
+						projetil->danifica(jog1);
+					}
 				}
 
-				if (veriColisao(projetil, jog1)==5) {
-					projetil->danifica(jog1);
-				}
 			}
 		}
 
@@ -254,7 +258,9 @@ namespace Gerenciadores {
 
 			for (Projetil* projetil : LProjetil) {
 				aux_proj = projetil->getCorpo();
-
+				if (projetil->getNoChao() == true) {
+					continue;
+				}
 				if (projetil->getApareceu() == true) {
 					if (projetil->segueQuem(jog2)) {//se segue o jogador 1
 						projetil->setSeguindo(true);
@@ -265,10 +271,10 @@ namespace Gerenciadores {
 						projetil->setSeguindo(false);//nao segue
 						projetil->mover();
 					}
-				}
 
-				if (veriColisao(projetil, jog2) == 5) {
-					projetil->danifica(jog2);
+					if (veriColisao(projetil, jog2) == 2 || veriColisao(projetil, jog2) == 4) {
+						projetil->danifica(jog2);
+					}
 				}
 			}
 		}
@@ -525,12 +531,58 @@ namespace Gerenciadores {
 		}
 	}
 
+	void Gerenciador_Colisoes::verificaObsProjetil() {
+
+		RectangleShape aux, aux2;
+		bool emCima = 0;
+		bool ladoD = 0;
+		bool ladoE = 0;
+			
+		for (Projetil* projetil : LProjetil) {
+
+			if (projetil->getApareceu()==false) {
+				continue;
+			}
+			aux2 = projetil->getCorpo();
+
+			for (Obstaculos::Obstaculo* obstaculo : LObst) {
+
+				if (obstaculo->getImpede() == false) {//se nao eh plataforma
+					continue;
+				}
+
+				aux = obstaculo->getCorpo();
+
+
+				if (veriColisao(obstaculo, projetil) == 1) {//se tocou no chao
+					projetil->setChao(aux.getPosition().y - (projetil->getCorpo().getSize().y));
+					emCima = 1;
+					projetil->setNoChao(true);
+				}
+
+				/*if (veriColisao(obstaculo, projetil) == 2 || veriColisao(obstaculo, projetil) == 3) {
+
+					projetil->setNoChao(true);//desaparece
+				*/
+
+			}
+
+			if (!emCima) {
+				projetil->setChao(800);
+				projetil->setNoChao(false);
+
+			}
+
+			emCima = 0;
+		}
+	}
+
 	void Gerenciador_Colisoes::executar() {
 		verificaObsIni();
 		verificaIni();
 		verificaObs();
 		veriProjetil();
-
+		verificaObsProjetil();
 	}
 }
 
