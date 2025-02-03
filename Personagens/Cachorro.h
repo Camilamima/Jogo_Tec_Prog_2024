@@ -13,6 +13,8 @@ namespace Personagens {
         Clock turnos;
         bool seguindo;
         bool atacando;
+        int cont;
+        int val;
         bool ladoAtaque;
     public:
         Cachorro(int id, const char* png = "");
@@ -22,5 +24,6 @@ namespace Personagens {
         void seguir(float x);
         void atacar(int d);
         void setSeguindo(bool i) { seguindo = i; }
+        void animacao(int num, int limite);
     };
 }

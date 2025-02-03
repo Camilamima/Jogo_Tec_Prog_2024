@@ -153,6 +153,8 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClCompile Include="Fases\Fase.cpp" />
     <ClCompile Include="Gerenciadores\Gerenciador_Colisoes.cpp" />
     <ClCompile Include="Gerenciadores\Gerenciado_Grafico.cpp" />
+    <ClCompile Include="Personagens\Chefao.cpp" />
+    <ClCompile Include="Personagens\Efeitos.cpp" />
     <ClCompile Include="Personagens\Inimigo.cpp" />
     <ClCompile Include="Jogo.cpp" />
     <ClCompile Include="Listas\ListaEntidades.cpp" />
@@ -160,6 +162,7 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClCompile Include="Obstaculos\Obstaculo.cpp" />
     <ClCompile Include="Personagens\Personagem.cpp" />
     <ClCompile Include="Obstaculos\Plataforma.cpp" />
+    <ClCompile Include="Projetil.cpp" />
     <ClCompile Include="Personagens\Rato.cpp" />
     <ClCompile Include="Personagens\Slime.cpp" />
     <ClCompile Include="Obstaculos\SlimeMau.cpp" />
@@ -175,6 +178,8 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClInclude Include="Fases\Fase.h" />
     <ClInclude Include="Gerenciadores\Gerenciador_Colisoes.h" />
     <ClInclude Include="Gerenciadores\Gerenciado_Grafico.h" />
+    <ClInclude Include="Personagens\Chefao.h" />
+    <ClInclude Include="Personagens\Efeitos.h" />
     <ClInclude Include="Personagens\Inimigo.h" />
     <ClInclude Include="Jogo.h" />
     <ClInclude Include="Listas\Lista.h" />
@@ -182,6 +187,7 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClInclude Include="Obstaculos\Obstaculo.h" />
     <ClInclude Include="Personagens\Personagem.h" />
     <ClInclude Include="Obstaculos\Plataforma.h" />
+    <ClInclude Include="Projetil.h" />
     <ClInclude Include="Personagens\Rato.h" />
     <ClInclude Include="Personagens\Slime.h" />
     <ClInclude Include="Obstaculos\SlimeMau.h" />
@@ -193,6 +199,8 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <Image Include="assets\pngegg.png" />
     <Image Include="assets\ratinho.png" />
     <Image Include="assets\slimemau.png" />
+    <Image Include="assets\Walking_KG_1 - Copia.png" />
+    <Image Include="assets\Walking_KG_1.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets\ARIAL.TTF" />

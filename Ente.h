@@ -11,7 +11,7 @@ public:
 	virtual ~Ente();
 	void setGerenciador(Gerenciadores::Gerenciado_Grafico* g);
 	void setId(int ide) { id = ide; }
-	int getId() { return id; }
+	int getId() const {	return id; }
 	virtual void executar() = 0;
 };
 

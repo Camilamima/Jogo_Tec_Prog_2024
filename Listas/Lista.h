@@ -151,6 +151,19 @@ namespace Listas {
             return tam;
         }
 
+        //retorna uma posicao de um dado elemento
+        int posicao(TL info) {
+            Elemento<TL>* atual = pPrimeiro;
+            int pos = 0;
+            while (atual != nullptr) {
+                if (info == atual->pinfo) {
+                    return pos;
+                }
+                pos++;
+                atual = atual->pProx;
+            }
+        }
+
         // retorna elemento em uma posição informada
         TL& operator[](int pos) {
             Elemento<TL>* atual = pPrimeiro;

@@ -7,6 +7,7 @@ namespace Fases {
 		obsFacil(-1)
     {
     }
+  
     Fase1::~Fase1(){}
 
     void Fase1::inicializa(){
@@ -15,6 +16,7 @@ namespace Fases {
         geraChao();
         geraEspinho();
         geraInimigos();
+
 
 		/*==== setando numero de jogadores ====*/
 		int num_jogadores;
@@ -46,13 +48,15 @@ namespace Fases {
 		listaEntidades.Incluir(&chao, &gerentC);
 		listaEntidades.Incluir(&ladoE, &gerentC);
 
+
 		/*==== setando o gerenciador grafico ====*/
 		listaEntidades.setGG(gerent);
 
 		/*==== gerando plataforma fixas ====*/
 		ladoE.geraPlataforma(900, 40, 0, 0);
 		chao.geraPlataforma(40, (float)tamanho_fase, 0, 900);
-    }
+
+	
 
 	void Fase1::geraChao() {
 		int numeros[36] = { 0 };
@@ -127,6 +131,6 @@ namespace Fases {
 			}
 
 		}
+    const int Fase1::numero_projeteis = 20;
 	}
 
-}

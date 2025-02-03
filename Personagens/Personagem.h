@@ -16,16 +16,15 @@ namespace Personagens {
         float velocidadeY;
         float velocidadeX;
         static const float gravidade;
-        Clock relogio;
 
     public:
         Personagem(int id, const char* png);
         ~Personagem();
-        bool verificaVida() { return vidas > 0; }
+        bool verificaVida() const{ return vidas > 0; }
         virtual void mover(float aux) = 0;
         virtual void executar() = 0;
         void setVidas(int vid);
-        int getVidas() { return vidas; }
+        int getVidas() const{ return vidas; }
         void operator--();
         void operator*=(int dano) { vidas -= dano; }
         void setVelocidae(float vX, float vY);
