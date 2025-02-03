@@ -25,6 +25,7 @@ namespace Personagens {
         void setAtacando(float a) { atacando = a; }
         void setAtacado(float x, float y) { atacado = x; ladoAtacado = y; }
         bool getAtacado() const { return atacado; }
+        bool const getnoChao() const { return noChao; }
         void processaEvento();
         void processaEvento2();
     };

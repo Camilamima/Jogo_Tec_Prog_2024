@@ -60,11 +60,11 @@ namespace Gerenciadores {
 			(x2 >= outro.getPosition().x && x2 <= (outro.getPosition().x + outro.getSize().x)))
 		{
 			//chão
-			if (y2 >= yy - 9.8 && y2 <= yy + 9.8) {
+			if (y2 >= yy - 15 && y2 <= yy + 15) {
 				return 1;
 			}
 			//teto
-			if (y >= yy2 - 9.8 && y <= yy2 + 9.8) {
+			if (y >= yy2 - 15 && y <= yy2 + 15) {
 				return 4;
 			}
 
@@ -128,9 +128,13 @@ namespace Gerenciadores {
 			}
 
 			if (veriColisao(inimigo, jog1) == 1) {
-				jog1->setAtacando(1);
-				jog1->pular(300);
-				--(*inimigo);
+				if(!jog1->getnoChao()){
+					jog1->setAtacando(1);
+					jog1->pular(300);
+					--(*inimigo);
+				}
+				cout << "no chao?: " << jog1->getnoChao() << endl;
+				cout << "cachorro: " << inimigo->getVidas() << endl;
 			}
 
 			else if (veriColisao(inimigo, jog1) == 2) {

@@ -13,6 +13,7 @@ namespace Personagens {
         Clock turnos;
         bool seguindo;
         bool atacando;
+        bool ladoAtaque;
     public:
         Cachorro(int id, const char* png = "");
         ~Cachorro();

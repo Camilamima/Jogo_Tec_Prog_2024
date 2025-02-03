@@ -1,20 +1,19 @@
-#include "Fase1.h"
+#include "Fase2.h"
 
 namespace Fases {
 
-    Fase1::Fase1():
-		num_dificil(-1),
-		obsFacil(-1)
-    {
-    }
-    Fase1::~Fase1(){}
+	Fase2::Fase2() :
+		num_obs2(-1)
+	{
+	}
+	Fase2::~Fase2() {}
 
-    void Fase1::inicializa(){
-		obsFacil = -1;
-        geraPlataformaFase();
-        geraChao();
-        geraEspinho();
-        geraInimigos();
+	void Fase2::inicializa() {
+		num_obs2 = -1;
+		geraPlataformaFase();
+		geraChao();
+		geraEspinho();
+		geraInimigos();
 
 		/*==== setando numero de jogadores ====*/
 		int num_jogadores;
@@ -52,15 +51,15 @@ namespace Fases {
 		/*==== gerando plataforma fixas ====*/
 		ladoE.geraPlataforma(900, 40, 0, 0);
 		chao.geraPlataforma(40, (float)tamanho_fase, 0, 900);
-    }
+	}
 
-	void Fase1::geraChao() {
+	void Fase2::geraChao() {
 		int numeros[36] = { 0 };
 		time_t tempo;
 		srand((unsigned)time(&tempo));
-		obsFacil = (int)((rand() % 13) + 5);
+		num_obs2 = (int)((rand() % 13) + 5);
 
-		for (int k = obsFacil; k > 0; k--) {
+		for (int k = num_obs2; k > 0; k--) {
 			int posicao = (rand() % 33) + 1;
 			while (numeros[posicao] != 0 ||
 				checaLocaliza((float)posicao * 400, 2)) {
@@ -77,9 +76,9 @@ namespace Fases {
 				listaEntidades.Incluir(p, &gerentC);
 			}
 			else {
-				Obstaculos::SlimeMau* M = new Obstaculos::SlimeMau(3);
+				Obstaculos::Acelerador* M = new Obstaculos::Acelerador(3);
 				M->setCoordenadas((float)i * 400, 800);
-				M->setCorpo(400, 100);
+				M->setCorpo(400, 130);
 				listaEntidades.Incluir(M, &gerentC);
 				for (int k = 0; k <= 4; k++) {
 					localizacao_obs.push_back((k * 100) + i * 400);
@@ -88,12 +87,12 @@ namespace Fases {
 		}
 	}
 
-	void Fase1::geraInimigos() {
+	void Fase2::geraInimigos() {
 		int numeros[144] = { 0 };
 		time_t tempo;
 		srand((unsigned)time(&tempo));
 		num_facil = (int)((rand() % 3) + 5);
-		num_dificil = (int)((rand() % 3) + 3);
+		//num_dificil = (int)((rand() % 3) + 3);
 		int posicao = 0;
 
 		for (int k = num_facil; k > 0; k--) {
@@ -104,13 +103,7 @@ namespace Fases {
 			numeros[posicao] = 1;
 		}
 
-		for (int k = num_dificil; k > 0; k--) {
-			posicao = (rand() % 142) + 1;
-			while (((numeros[posicao] != 0 || posicao % 1800 == 0) || posicao < 6) || numeros[posicao] == 1) {
-				posicao = (rand() % 142) + 1;
-			}
-			numeros[posicao] = 2;
-		}
+		
 
 		for (int i = 0; i < 144; i++) {
 			if (numeros[i] == 1) {
@@ -118,12 +111,6 @@ namespace Fases {
 				r->setCoordenadas((float)i * 100, 0);
 				r->setCorpo(100, 100);
 				listaEntidades.Incluir(r, &gerentC);
-			}
-			if (numeros[i] == 2) {
-				Personagens::Cachorro* c = new Personagens::Cachorro(4);
-				c->setCoordenadas((float)i * 100, 0);
-				c->setCorpo(100, 100);
-				listaEntidades.Incluir(c, &gerentC);
 			}
 
 		}

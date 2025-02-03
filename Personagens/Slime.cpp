@@ -18,7 +18,7 @@ namespace Personagens {
 		relogio.restart();
 		impulso = -1;
 		setCorpo(100, 100);
-		vidas = 25;
+		vidas = 200;
 	}
 
 	Slime::~Slime() {

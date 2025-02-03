@@ -24,6 +24,8 @@ namespace Listas {
 		}
 		delete listaEntidades;
 	}
+	
+	
 
 	//percorre a lista de entidades
 	void ListaEntidade::Percorrer(Gerenciadores::Gerenciador_Colisoes* gc ) {
