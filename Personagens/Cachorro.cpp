@@ -17,6 +17,8 @@ namespace Personagens {
         relogio.restart();
         setCorpo(100, 100);
         setMaldade(2);
+        cont = 0;
+        val = 0;
     }
 
     Cachorro::~Cachorro() {
@@ -68,6 +70,10 @@ namespace Personagens {
                 //esquerda
                 else if (xC - x > 0) {
                     if (moviE) {
+                        if (cont % 5 == 0) {
+                            animacao(1, 5);//1 eh esquerda e 
+                            val++;
+                        }
                         mover(atualizaDelta() * -velocidadeX);
                     }
                 }
@@ -75,6 +81,10 @@ namespace Personagens {
                 else {
                     if (moviD) {
                         mover(atualizaDelta() * velocidadeX);
+                        if (cont % 5 == 0) {
+                            animacao(2, 4);//1 eh esquerda e 
+                            val++;
+                        }
                     }
                 }
             }
@@ -106,9 +116,32 @@ namespace Personagens {
             pGGrafico->desenha(corpo);
         }
     }
+    
+    void Cachorro::animacao(int num, int limite) {
+        if (val >= limite) {
+            val = 0;
+        }
+
+        if (num == 1) {//vai p esquerda
+            sprite.loadFromFile("assets/lobo/esquerda.png");
+            corpo.setTexture(&sprite);
+            corpo.setTextureRect(IntRect(100 * (val), 101, 100, 100));
+        }
+		else if (num == 2) {//vai p direita
+			sprite.loadFromFile("assets/lobo/direita.png");
+			corpo.setTexture(&sprite);
+			corpo.setTextureRect(IntRect(100 * (limite-val), 101, 100, 100));
+		}
+
+    }
 
     void Cachorro::executar() {
+
+        cont++;
+
+        
         if (verificaVida()) {
+
             if (atacando) {
                 if (turnos.getElapsedTime().asSeconds() >= 1.5) {
                     atacando = 0;

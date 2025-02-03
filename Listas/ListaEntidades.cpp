@@ -33,23 +33,32 @@ namespace Listas {
 		gc->executar();//executar do gerenciador de colisoes 
 
 		for (Lista<Entidade*>::iterator it = listaEntidades->begin(); it != listaEntidades->end(); it++)
-		{	
+		{
 			if ((*it)->getId() == 5) {//se for um projetil
 				if (static_cast<Projetil*>(*it)->getApareceu() == true) {//se ele ja apareceu
 					if (zona_chefao == true) {//se o jogador está na zona do chefao
 						(*it)->executar();//executa o projetil
-						std::cout << "Teste 2" << std::endl;
 					}
 				}
 			}
-			else {//se for um id diferente de 5, ou seja, 1,2,3,4,6
+
+			else if ((*it)->getId() == 10) {//se for um teletransporte
+				if (static_cast<Efeito*>(*it)->getApareceu() == true) {
+					if (zona_chefao == true) {
+						(*it)->executar();
+					}
+				}
+			}
+
+			else {//se for um id diferente de 5 e 10 ou seja, 1,2,3,4,6
 				(*it)->executar();
 
 				if ((*it)->getId() == 1) {//se for um jogador e sua posicao for maior q a ultima zona = zona do chefao
 					if ((*it)->getCorpo().getPosition().x >= static_cast<float>(5400)) {
-						zona_chefao = true;
+							zona_chefao = true;
 					}
 				}
+				
 			}
 		}
 	}
@@ -69,6 +78,12 @@ namespace Listas {
 			Chefao* chefao = static_cast<Chefao*>(aux);//transformo em chefao
 			chefao->criaProjeteis(static_cast<Projetil*>(entidade));//crio o projetil dentro do set do chefao
 
+		}
+		if (entidade->getId() == 10) {
+			Entidade* aux;
+			aux = listaEntidades->operator[](pos_chefao);//retorno a pos do chefao como entidade
+			Chefao* chefao = static_cast<Chefao*>(aux);
+			chefao->setTeletransporte(static_cast<Efeito*>(entidade));//coloco o teletransporte lá
 		}
 	}
 

@@ -10,6 +10,8 @@
 #include "../Listas/ListaEntidades.h"
 #include "../Projetil.h"
 #include "../Personagens/Chefao.h"
+#include "../Personagens/Efeitos.h"
+#include "../Personagens/Cachorro.h"
 
 namespace Fases {
 	class Fase1 {
@@ -35,6 +37,8 @@ namespace Fases {
 		Projetil p8;
 		Projetil p9;
 		Projetil p10;
+		Personagens::Efeito teletransporte;
+		Personagens::Cachorro teste;
 		static const int numero_projeteis;
 
 		/*Plataforma plat2;
@@ -52,6 +56,5 @@ namespace Fases {
 		void executar();
 		void geraChao();
 		void geraEspinho();
-		void criaProjeteis();
 	};
 }

@@ -152,6 +152,7 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClCompile Include="Gerenciadores\Gerenciador_Colisoes.cpp" />
     <ClCompile Include="Gerenciadores\Gerenciado_Grafico.cpp" />
     <ClCompile Include="Personagens\Chefao.cpp" />
+    <ClCompile Include="Personagens\Efeitos.cpp" />
     <ClCompile Include="Personagens\Inimigo.cpp" />
     <ClCompile Include="Jogo.cpp" />
     <ClCompile Include="Listas\ListaEntidades.cpp" />
@@ -174,6 +175,7 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClInclude Include="Gerenciadores\Gerenciador_Colisoes.h" />
     <ClInclude Include="Gerenciadores\Gerenciado_Grafico.h" />
     <ClInclude Include="Personagens\Chefao.h" />
+    <ClInclude Include="Personagens\Efeitos.h" />
     <ClInclude Include="Personagens\Inimigo.h" />
     <ClInclude Include="Jogo.h" />
     <ClInclude Include="Listas\Lista.h" />

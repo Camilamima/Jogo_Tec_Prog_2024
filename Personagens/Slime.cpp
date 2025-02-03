@@ -273,6 +273,9 @@ namespace Personagens {
 
 		pGGrafico->desenha(corpo);
 
+		if (cont == 2000) {
+			cont = 0;
+		}
 	}
 
 

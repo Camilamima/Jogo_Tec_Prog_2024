@@ -34,7 +34,9 @@ namespace Fases {
 		p7(5),
 		p8(5),
 		p9(5),
-		p10(5)
+		p10(5),
+		teste(4),
+		teletransporte(10)
 	{
 		geraChao();
 		geraEspinho();
@@ -79,6 +81,8 @@ namespace Fases {
 		listaEntidades.Incluir(&p8, &gerentC);
 		listaEntidades.Incluir(&p9, &gerentC);
 		listaEntidades.Incluir(&p10, &gerentC);
+		listaEntidades.Incluir(&teste, &gerentC);
+		//listaEntidades.Incluir(&teletransporte, &gerentC);
 		
 		/*listaEntidades.Incluir(&ratinho, &gerentC);
 		listaEntidades.Incluir(&plat, &gerentC);

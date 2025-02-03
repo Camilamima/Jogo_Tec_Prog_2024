@@ -3,45 +3,75 @@
 #include <set>
 
 namespace Personagens {
+
 	Chefao::Chefao(int id, const char* png) :
 		Inimigo(id, png),
-		ListProj()
+		ListProj(),
+		teletransporte(nullptr)
 	{
 		danoProjetil = 10;
 		turno = false;
 		vidas = 50;
-		setCoordenadas(6960, 450);
+		chao = 600;
+		setCoordenadas(600, 0);
 		setCorpo(224, 240);
-		setVelocidae(150, 0);
+		setVelocidae(0, 0);
 		setMaldade(3);
 		val = 0;
 		cont = 0;
+		//teletransporte->setCoordenadas(6960, 450);
+		//teletransporte->setCorpo(250, 250);
+		fim_animacao = true;
 	}
 
-	Chefao::~Chefao(){
+	Chefao::~Chefao() {
 	}
 
 	void Chefao::teletransportar() {
 
 		if (relogio1.getElapsedTime().asSeconds() >= 5.5 && !turno) {
-			corpo.setPosition(6250, 560);
-			setCoordenadas(6250, 560);
-			setCorpo(224, 240);
-			relogio1.restart();
-			turno = true;
+			//if (cont % 5 == 0) {
+				//animacaoTp(15);
+				//if (fim_animacao == true) {//teletransporte->getApareceu()==false) {
+					//teletransporte->setCoordenadas(6250, 560);
+					//teletransporte->setCorpo(250, 250);
+					//corpo.setPosition(6250, 560);
+					setCoordenadas(6250, 560);
+					setCorpo(224, 240);
+					relogio1.restart();
+					turno = true;
+				//}
+			//}
 		}
-		if(relogio1.getElapsedTime().asSeconds() >= 3.5 && turno){
-			corpo.setPosition(6960, 450);
-			setCoordenadas(6960, 450);
-			setCorpo(224, 240);
-			turno = false;
-			relogio1.restart();
+
+		if (relogio1.getElapsedTime().asSeconds() >= 3.5 && turno) {
+			//if (cont % 5 == 0) {
+				//teletransporte->animacao();
+				//animacaoTp(15);
+
+				//if (fim_animacao == true) {//teletransporte->getApareceu()==false) {
+					//teletransporte->setCoordenadas(6960, 450);
+					//teletransporte->setCorpo(250, 250);
+					corpo.setPosition(6960, 450);
+					setCoordenadas(6960, 450);
+					setCorpo(224, 240);
+					turno = false;
+					relogio1.restart();
+				//}
+			//}
 		}
 	}
 
 	void Chefao::executar()
 	{
 		cont++;
+		/*if (!noChao) { ********************MEXER NISSO P ELE TER GRAVIDADE
+			mover(0);
+		}
+
+		if (corpo.getPosition().y+240 >= chao) {
+			noChao = true;
+		}*/
 
 		if (cont % 7 == 0) {
 			val++;
@@ -50,13 +80,13 @@ namespace Personagens {
 		if (verificaVida()) {
 			pGGrafico->desenha(corpo);
 			teletransportar();
-		
-			if (turno == false && relogioProjetil.getElapsedTime().asSeconds() >= 1.5 ) {
+
+			if (turno == false && relogioProjetil.getElapsedTime().asSeconds() >= 1.5) {
 				//solta o projetil com o executar do primeiro projetil
-				if (!ListProj.empty()){
-				std::set<Projetil*>::iterator it = ListProj.begin();//o primeiro da lista
-				(*it)->realiza();
-				relogioProjetil.restart();
+				if (!ListProj.empty()) {
+					std::set<Projetil*>::iterator it = ListProj.begin();//o primeiro da lista
+					(*it)->realiza();
+					relogioProjetil.restart();
 				}
 			}
 
@@ -64,7 +94,7 @@ namespace Personagens {
 		}
 		//metodo que solta um projetil
 	}
-		
+
 
 	void Chefao::criaProjeteis(Projetil* proj) {//cria todos os projeteis
 
@@ -94,5 +124,19 @@ namespace Personagens {
 		corpo.setTexture(&sprite);
 		corpo.setTextureRect(IntRect(224 * val, 0, 224, 240));
 
+	}
+
+	void Chefao::animacaoTp(int limite) {
+		fim_animacao = false;
+
+		if (val >= limite) {
+			fim_animacao = true;
+			val = 0;
 		}
+
+		setSoCorpo(250, 250);
+		sprite.loadFromFile("assets/efeito/teletransporte.png");
+		corpo.setTexture(&sprite);
+		corpo.setTextureRect(IntRect(250 * val, 0, 250, 250));
+	}
 }
