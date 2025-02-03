@@ -36,7 +36,7 @@ namespace Personagens {
 					//teletransporte->setCoordenadas(6250, 560);
 					//teletransporte->setCorpo(250, 250);
 					//corpo.setPosition(6250, 560);
-					setCoordenadas(6250, 560);
+					setCoordenadas(100, 560);
 					setCorpo(224, 240);
 					relogio1.restart();
 					turno = true;

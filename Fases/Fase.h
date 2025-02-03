@@ -3,6 +3,7 @@
 #include <vector>
 #include <set>
 #include "../Personagens/Slime.h"
+#include <stdio.h>
 #include "../Obstaculos/Plataforma.h"
 #include "../Obstaculos/Espinho.h"
 #include "../Obstaculos/SlimeMau.h"
@@ -10,11 +11,16 @@
 #include "../Personagens/Rato.h"
 #include "../Gerenciadores/Gerenciador_Colisoes.h"
 #include "../Listas/ListaEntidades.h"
+#include "../Projetil.h"
+#include "../Personagens/Chefao.h"
+#include "../Personagens/Efeitos.h"
 #include "../Personagens/Cachorro.h"
+
 
 namespace Fases {
 	class Fase {
 	protected:
+		int qnt_jogadores;
 		const int tamanho_fase;
 		const int tamanho_zona;
 		int zona_atual;
@@ -31,6 +37,9 @@ namespace Fases {
 	public:
 		Fase();
 		~Fase();
+		int getJogadores() {
+			return qnt_jogadores;
+		}
 		void setGerenciador(Gerenciadores::Gerenciado_Grafico* g) { gerent = g; }
 		virtual void inicializa() = 0;
 		void limpaVec();
@@ -48,6 +57,6 @@ namespace Fases {
 		virtual void geraInimigos()=0;
 		void geraPlataformaFase();
 		void TipoPlataforma(int tipo,float x);
-		void executar();
+		virtual void executar();
 	};
 }

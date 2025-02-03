@@ -17,7 +17,8 @@ namespace Fases {
 		ladoE(3),
 		tamanho_fase(14400),
 		tamanho_zona(1800),
-		zona_atual(0)
+		zona_atual(0),
+		qnt_jogadores(-1)
 	{
 		gerent = nullptr;
 	}
@@ -174,7 +175,7 @@ namespace Fases {
 	}
 
 	void Fase::executar() {
-		int qnt_jogadores = 1;
+		qnt_jogadores = 1;
 		bool apareceu1 = false;
 		bool apareceu2 = false;
 		if (gerentC.getJogador2() != nullptr)
