@@ -7,8 +7,8 @@ class Jogo
 {
 private:
 	//Fases::Fase1 fase1;
-	Fases::Fase1 fase1;
-	Fases::Fase2 fase2;
+	Fases::Fase1 *fase1;
+	Fases::Fase2 *fase2;
 	Gerenciadores::Gerenciado_Grafico gerent;
 	int fase;
 	
