@@ -33,6 +33,7 @@ namespace Personagens {
         bool getAtacado() const { return atacado; }
         int getCont()const { return cont; }
 		void setMorrendo(bool a) { morrendo = a; }
+        bool const getnoChao() const { return noChao; }
         void processaEvento();
         void processaEvento2();
         void animacaoJog(int num, int limite);

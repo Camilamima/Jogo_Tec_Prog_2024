@@ -9,9 +9,8 @@ namespace Personagens {
 		Inimigo(id, png)
 	{
 		setVelocidae(150, 0);
-		setCoordenadas(450, 775);
 		relogio.restart();
-		setCorpo(150, 150);
+		setCorpo(100, 100);
 		distancia_percorrida = 0;
 		setMaldade(1);
 	}

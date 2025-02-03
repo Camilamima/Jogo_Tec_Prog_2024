@@ -24,5 +24,5 @@ void SlimeMau::executar() {
 void SlimeMau::obstacular(Slime* jogador) {
 
 	float velY = jogador->getVelocidadeY();
-	jogador->setVelocidae(atrasador, 0.96*velY);
+	jogador->setVelocidae(atrasador, 0.97*velY);
 }

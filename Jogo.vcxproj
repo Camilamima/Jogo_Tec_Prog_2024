@@ -143,12 +143,14 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Fases\Fase2.cpp" />
+    <ClCompile Include="Fases\Fase1.cpp" />
     <ClCompile Include="Obstaculos\Acelerador.cpp" />
     <ClCompile Include="Personagens\Cachorro.cpp" />
     <ClCompile Include="Ente.cpp" />
     <ClCompile Include="Entidade.cpp" />
     <ClCompile Include="Obstaculos\Espinho.cpp" />
-    <ClCompile Include="Fases\Fase1.cpp" />
+    <ClCompile Include="Fases\Fase.cpp" />
     <ClCompile Include="Gerenciadores\Gerenciador_Colisoes.cpp" />
     <ClCompile Include="Gerenciadores\Gerenciado_Grafico.cpp" />
     <ClCompile Include="Personagens\Chefao.cpp" />
@@ -166,12 +168,14 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClCompile Include="Obstaculos\SlimeMau.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Fases\Fase2.h" />
+    <ClInclude Include="Fases\Fase1.h" />
     <ClInclude Include="Obstaculos\Acelerador.h" />
     <ClInclude Include="Personagens\Cachorro.h" />
     <ClInclude Include="Ente.h" />
     <ClInclude Include="Entidade.h" />
     <ClInclude Include="Obstaculos\Espinho.h" />
-    <ClInclude Include="Fases\Fase1.h" />
+    <ClInclude Include="Fases\Fase.h" />
     <ClInclude Include="Gerenciadores\Gerenciador_Colisoes.h" />
     <ClInclude Include="Gerenciadores\Gerenciado_Grafico.h" />
     <ClInclude Include="Personagens\Chefao.h" />
@@ -189,6 +193,7 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClInclude Include="Obstaculos\SlimeMau.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="assets\Boost.png" />
     <Image Include="assets\plataforma.png" />
     <Image Include="assets\plataformateste.png" />
     <Image Include="assets\pngegg.png" />
@@ -196,6 +201,9 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <Image Include="assets\slimemau.png" />
     <Image Include="assets\Walking_KG_1 - Copia.png" />
     <Image Include="assets\Walking_KG_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\ARIAL.TTF" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

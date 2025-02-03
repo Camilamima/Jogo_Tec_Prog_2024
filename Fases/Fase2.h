@@ -1,15 +1,13 @@
-
+#pragma once
 #include "Fase.h"
-
 namespace Fases {
-	class Fase1 : public Fase
+	class Fase2 : public Fase
 	{
 	private:
-		int num_dificil;
-		int obsFacil;
+		int num_obs2;
 	public:
-		Fase1();
-		~Fase1();
+		Fase2();
+		~Fase2();
 		void inicializa();
 		void geraChao();
 		void geraInimigos();

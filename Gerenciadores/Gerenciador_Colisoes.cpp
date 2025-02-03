@@ -66,11 +66,11 @@ namespace Gerenciadores {
 			(x2 >= outro.getPosition().x && x2 <= (outro.getPosition().x + outro.getSize().x)))
 		{
 			//chão
-			if (y2 >= yy - 9.8 && y2 <= yy + 9.8) {
+			if (y2 >= yy - 15 && y2 <= yy + 15) {
 				return 1;
 			}
 			//teto
-			if (y >= yy2 - 9.8 && y <= yy2 + 9.8) {
+			if (y >= yy2 - 15 && y <= yy2 + 15) {
 				return 4;
 			}
 
@@ -132,11 +132,6 @@ namespace Gerenciadores {
 					else {
 						cachorro->setSeguindo(0);
 					}
-				}
-
-				if (inimigo->getMaldade() == 3) {
-					Personagens::Chefao* chefao = static_cast<Personagens::Chefao*>(inimigo);
-					chefao->teletransportar();
 				}
 
 				if (veriColisao(inimigo, jog1) == 1) {

@@ -7,6 +7,8 @@ namespace Personagens {
     Cachorro::Cachorro(int id, const char* png) :
         Inimigo(id, png)
     {
+        ladoAtaque = 0;
+        vidas=10;
         seguindo = 0;
         atacando = 0;
         xIni = 0;
@@ -102,9 +104,13 @@ namespace Personagens {
     }
 
     void Cachorro::atacar(int d) {
+
+        xIni = corpo.getPosition().x;
+        yIni = corpo.getPosition().y;
+
         //esquerda
         if (d == 1) {
-
+            ladoAtaque = 1;
             setTamanhoCorpo(corpo.getSize().x + 50, corpo.getSize().y);
             mover(-50);
             pGGrafico->desenha(corpo);
@@ -144,10 +150,15 @@ namespace Personagens {
 
             if (atacando) {
                 if (turnos.getElapsedTime().asSeconds() >= 1.5) {
-                    atacando = 0;
+                    if (ladoAtaque) {
+                        xIni = xIni + 50;
+                        ladoAtaque = 0;
+                    }
                     setCoordenadas(xIni, yIni);
-                    setTamanhoCorpo(100, 100);
+                    setCorpo(100, 100);
+                    atacando = 0;
                     turnos.restart();
+  
                 }
             }
             if (!noChao) {

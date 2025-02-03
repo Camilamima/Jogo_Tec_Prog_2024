@@ -15,6 +15,7 @@ namespace Personagens {
         bool atacando;
         int cont;
         int val;
+        bool ladoAtaque;
     public:
         Cachorro(int id, const char* png = "");
         ~Cachorro();

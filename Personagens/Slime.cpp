@@ -19,11 +19,15 @@ namespace Personagens {
 		dPress = 1;
 		relogio.restart();
 		impulso = -1;
+
 		setCorpo(50, 100);
 		vidas = 25;
 		val = 0;
 		cont = 0;
 		morrendo = false;
+
+		setCorpo(100, 100);
+		vidas = 200;
 	}
 
 	Slime::~Slime() {
