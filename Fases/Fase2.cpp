@@ -3,8 +3,9 @@
 namespace Fases {
 
 	Fase2::Fase2() :
-		teste2(6),//chefao
-		p1(5),
+		//teste2(6),
+		//teste3(6),//chefao
+		/*p1(5),
 		p2(5),
 		p3(5),
 		p4(5),
@@ -13,10 +14,13 @@ namespace Fases {
 		p7(5),
 		p8(5),
 		p9(5),
-		p10(5),
-		num_obs2(-1)
+		p10(5),*/
+		num_obs2(-1),
+		num_chefoes(-1),
+		num_projeteis(-1)
 	{
 	}
+
 	Fase2::~Fase2() {}
 
 	void Fase2::inicializa() {
@@ -26,8 +30,10 @@ namespace Fases {
 		geraChao();
 		geraEspinho();
 		//geraInimigos();
+		geraChefao();
+		geraProjeteis();
 
-		int num_jogadores;
+		int num_jogadores = 0;
 
 		cout << "Para 1 jogador tecle 1" << endl;
 		cout << "Para 2 jogadores tecle 2" << endl;
@@ -55,8 +61,9 @@ namespace Fases {
 		/*=== Colocando elementos constantes na lista ===*/
 		listaEntidades.Incluir(&chao, &gerentC);
 		listaEntidades.Incluir(&ladoE, &gerentC);
-		listaEntidades.Incluir(&teste2, &gerentC);
-		listaEntidades.Incluir(&p1, &gerentC);
+		//listaEntidades.Incluir(&teste2, &gerentC);
+		//listaEntidades.Incluir(&teste3, &gerentC);
+		/*listaEntidades.Incluir(&p1, &gerentC);
 		listaEntidades.Incluir(&p2, &gerentC);
 		listaEntidades.Incluir(&p3, &gerentC);
 		listaEntidades.Incluir(&p4, &gerentC);
@@ -65,7 +72,7 @@ namespace Fases {
 		listaEntidades.Incluir(&p7, &gerentC);
 		listaEntidades.Incluir(&p8, &gerentC);
 		listaEntidades.Incluir(&p9, &gerentC);
-		listaEntidades.Incluir(&p10, &gerentC);
+		listaEntidades.Incluir(&p10, &gerentC);*/
 
 		/*==== setando o gerenciador grafico ====*/
 		listaEntidades.setGG(gerent);
@@ -195,5 +202,62 @@ namespace Fases {
 
 			gerent->mostrar();
 	}
-	const int numero_projeteis = 20;
+
+	void Fase2::geraChefao() {
+		vector<int> posicoes; //2 por zona
+		bool alterna = false;
+		time_t tempo;
+		srand((unsigned)time(&tempo));
+
+		int teste = 0;
+
+		for (int i = 1; i < (tamanho_fase / tamanho_zona); i++) {//crio o vetor com posições aleatorias
+			teste = rand() % 477;
+			if (alterna == false) {
+				posicoes.push_back(static_cast<float>(i * tamanho_zona + 1000 + teste));
+				cout << static_cast<float>(i * tamanho_zona + 1000 + teste) << endl;
+				alterna = true;
+			}
+			else {
+				posicoes.push_back(static_cast<float>(i * tamanho_zona + 1000 + teste));
+				cout << static_cast<float>(i * tamanho_zona + 1000 + teste) << endl;
+				alterna = false;
+			}
+		}
+		
+		num_chefoes  = (rand() % 2) + 4; //de 4 a 5 entidades
+
+		//cout <<"Num chefoes: " << num_chefoes << endl;
+		//cout << "tam vetor: " << posicoes.size() << endl;
+
+		int pos = 0;
+
+		for (int i = 0; i < num_chefoes && pos<=posicoes.size(); i++) {
+
+			Personagens::Chefao* c = new Personagens::Chefao(6);
+
+			c->setCoordenadas((float)posicoes[pos], 300);
+			c->setPosInicialX((float)posicoes[pos]);
+			c->setCorpo(224, 240);
+			c->zonaChefao();
+
+			posicoes.erase(posicoes.begin() + pos);
+
+			listaEntidades.Incluir(c, &gerentC);
+			
+		}
+	}
+	
+	void Fase2::geraProjeteis() {//ser criada DEPOIS do chefao
+
+		num_projeteis = 10 * (num_chefoes);
+		//cout << "qntd de chefoes: " << num_chefoes << endl;
+		//cout << "qntd de projetil: " << num_projeteis<<endl;
+
+		for (int i = 0; i <num_projeteis; i++) {
+			Projetil* p = new Projetil(5);
+			listaEntidades.Incluir(p, &gerentC);
+			cout << i << endl;
+		}
+	}
 }

@@ -5,9 +5,9 @@ Projetil::Projetil(int id, const char* png):
 	Entidade(id, png)
 {
     relogio.restart();
-	setCoordenadas(7100, 450);
+	//setCoordenadas(7100, 450);
     chao = 825.0;
-    setCorpo(64, 32);
+    //setCorpo(64, 32);
     noChao = false;
     seguindo = false;
     segue = 0;
@@ -28,7 +28,7 @@ Projetil::~Projetil()
 void Projetil::executar()
 {
     cont++;
-	pGGrafico->desenha(corpo);
+    pGGrafico->desenha(corpo);
 
     if ((corpo.getPosition().y + corpo.getSize().y) >= chao) {
         noChao = true;
@@ -59,8 +59,8 @@ bool Projetil::segueQuem(Personagens::Slime* jog) {//no gerenciador de colisoes
 
     float Projetil_x, Projetil_y, Jog_x, Jog_y;
 
-    Projetil_x = corpo.getPosition().x + (corpo.getSize().x / 2);
-    Projetil_y = corpo.getPosition().y + (corpo.getSize().y / 2);
+    Projetil_x = corpo.getPosition().x + (corpo.getSize().x / 4);
+    Projetil_y = corpo.getPosition().y + (corpo.getSize().y / 4);
 
     Jog_x = aux.getPosition().x + (aux.getSize().x / 2);
     Jog_y = aux.getPosition().y + (aux.getSize().y / 2);
@@ -71,7 +71,7 @@ bool Projetil::segueQuem(Personagens::Slime* jog) {//no gerenciador de colisoes
     //hipotenusa
     float dist = std::sqrt(dx * dx + dy * dy);
 
-    if (dist <= 400) {
+    if (dist <= 500) {
         return true;
     }
    
@@ -98,32 +98,55 @@ void Projetil::moverSeguindo(float aux) {
 			animacao(5);
             val++;
 		}
+
+        /*=== aplicando a gravidade */
+        velocidadeY += (gravidade * atualizaFPS());//aplico a gravidade
+        velocidadeY += (forcaMistica * atualizaFPS());//aplico a força mistica
+
         corpo.move(aux, velocidadeY*atualizaFPS());
     }
 }
 
 void Projetil::mover() {
 
-    if (!noChao)
+    if (!noChao)//se nao ta no chao
     {
-        if (seguiu == false) {
-            setVelocidade(velocidadeX, 0);
+        /*=== se o projetil ainda nao seguiu o jogador ===*/
+        if (seguiu == false) {//se ele nao seguiu
+            setVelocidade(velocidadeX, 1);
+
+            /*=== aplicando a gravidade */
+            velocidadeY += (gravidade * atualizaFPS());//aplico a gravidade
+            velocidadeY += (forcaMistica * atualizaFPS());//aplico a força mistica
             if (cont % 10 == 0) {
                 animacao(5);
                 val++;
             }
             corpo.move(-velocidadeX * atualizaFPS(), velocidadeY * atualizaFPS());
         }
-        if (seguiu == true) {
+
+        /*=== se o projetil ja seguiu o jogador ===*/
+        if(seguiu == true) {
+         
             if (cont % 10 == 0) {
                 animacao(5);
                 val++;
             }
+
             setVelocidade(velocidadeX, 250);
+
+            /*=== aplicando a gravidade */
+            velocidadeY += (gravidade * atualizaFPS());//aplico a gravidade
+            velocidadeY += (forcaMistica * atualizaFPS());//aplico a força mistica
+
             corpo.move(-velocidadeX * atualizaFPS(), velocidadeY * atualizaFPS());
         }
         
-    }
+	}
+
+	else {
+		setVelocidade(0, 0);
+	}
 }
 
 
@@ -133,23 +156,54 @@ void Projetil::seguir(float x_alvo, float y_alvo) {
 	float yP = corpo.getPosition().y + (corpo.getSize().y / 2);
 
     if (seguindo == true) {
-        if (xP != x) {//se nao estao na mesma posicao
-			if (xP >= x && yP < y_alvo) {
+
+        if (xP != x_alvo) {//se nao estao na mesma posicao
+
+			if (xP > x_alvo && yP < y_alvo) {
                 setVelocidade(velocidadeX, 250);
+
+                /*=== aplicando a gravidade */
+                velocidadeY += (gravidade * atualizaFPS());//aplico a gravidade
+                velocidadeY += (forcaMistica * atualizaFPS());//aplico a força mistica
+
+
                 moverSeguindo(atualizaFPS() * -velocidadeX);
                 posX = corpo.getPosition().x;
                 posY = corpo.getPosition().y;
 			}
-            else if (xP >= x && yP >= y_alvo) {
-                setVelocidade(velocidadeX, 0);
+
+            else if (xP > x_alvo && yP >= y_alvo) {
+                setVelocidade(velocidadeX, 1);
+
+                /*=== aplicando a gravidade */
+                velocidadeY += (gravidade * atualizaFPS());//aplico a gravidade
+                velocidadeY += (forcaMistica * atualizaFPS());//aplico a força mistica
+
                 moverSeguindo(atualizaFPS() * -velocidadeX);
                 posX = corpo.getPosition().x;
                 posY = corpo.getPosition().y;
             }
+
+            else if (xP < x_alvo) {
+	
+                /*=== aplicando a gravidade */
+                velocidadeY += (gravidade * atualizaFPS());//aplico a gravidade
+                velocidadeY += (forcaMistica * atualizaFPS());//aplico a força mistica
+
+				mover();
+				posX = corpo.getPosition().x;
+				posY = corpo.getPosition().y;
+            }
+
 			if (corpo.getPosition().y + corpo.getSize().y > chao) {
                 setVelocidade(0, 0);
 			}
         }
+        /*else {
+            seguindo = false;
+            mover();
+        }*/
+
     }
 }
     void Projetil::danifica(Personagens::Slime* jog) {
@@ -195,6 +249,9 @@ void Projetil::seguir(float x_alvo, float y_alvo) {
             corpo.setTexture(&sprite);
         }
     }
+
+    const float Projetil::gravidade = (9.8*1000);
+    const float Projetil::forcaMistica = (-9.8*1000);
 
 
 

@@ -223,13 +223,16 @@ namespace Gerenciadores {
 			aux_jog1 = jog1->getCorpo();
 
 			for (Projetil* projetil : LProjetil) {
+
 				aux_proj = projetil->getCorpo();
+
 				if (projetil->getNoChao() == true) {
 					continue;
 				}
 
 				if(projetil->getApareceu()==true){
-					if (projetil->segueQuem(jog1)) {//se segue o jogador 1
+					
+					if (projetil->segueQuem(jog1)==true) {//se segue o jogador 1
 						projetil->setSeguindo(true);
 						projetil->setSeguiu(true);
 						projetil->seguir(aux_jog1.getPosition().x + (aux_jog1.getSize().x / 2), aux_jog1.getPosition().y + (aux_jog1.getSize().y / 2));

@@ -17,6 +17,8 @@ private:
 	Clock relogioVida;
 	int cont;
 	int val;
+	static const float gravidade;
+	static const float forcaMistica;//forca que atua para eliminar a gravidade
 	
 public:
 	Projetil(int id, const char* png = "assets/projetil/1.png");
@@ -43,4 +45,5 @@ public:
 	void danifica(Personagens::Slime* jog);
 	void animacao(int limite);
 	void setChao(float x) { chao = x; }
+	void setXY(float x1, float y1) { posX = x1; posY = y1; }
 };

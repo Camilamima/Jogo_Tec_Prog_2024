@@ -26,8 +26,8 @@ namespace Personagens {
 		cont = 0;
 		morrendo = false;
 
-		setCorpo(100, 100);
-		vidas = 200;
+		//setCorpo(100, 100);
+		//vidas = 200;
 	}
 
 	Slime::~Slime() {
