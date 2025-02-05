@@ -20,3 +20,10 @@ void Entidade::setCorpo(float largura, float altura) {
 	corpo.setTexture(&sprite);
 	corpo.setPosition(x, y);
 }
+
+void Entidade::setSoCorpo(float largura, float altura) {
+	corpo.setSize(Vector2f(largura, altura));
+}
+
+
+const float Entidade::gravidade = 9.8f;
