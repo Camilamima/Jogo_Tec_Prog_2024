@@ -147,13 +147,11 @@ namespace Personagens {
             sprite.loadFromFile("assets/espadachim/Run.png");
             corpo.setTexture(&sprite);
             corpo.setTextureRect(IntRect(65+(200 * (val)), 75, 70, 55));
-            //setSoCorpo(227.27, 100);
         }
         else if (num == 2) {//vai p direita
             sprite.loadFromFile("assets/espadachim/Run esquerda.png");
             corpo.setTexture(&sprite);
             corpo.setTextureRect(IntRect(65 + (200 * (val)), 75, 70, 55));
-            //setSoCorpo(227.27, 100);
         }
 
     }
@@ -179,9 +177,11 @@ namespace Personagens {
                 }
             }
             if (!atacando && !seguindo) {
-                sprite.loadFromFile("assets/espadachim/Attack1.png");
-                corpo.setTexture(&sprite);
-                corpo.setTextureRect(IntRect(65, 59, 70, 71));
+                if (cont % 5 == 0) {
+                    sprite.loadFromFile("assets/espadachim/Attack1.png");
+                    corpo.setTexture(&sprite);
+                    corpo.setTextureRect(IntRect(65, 59, 70, 71));
+                }
             }
             if (!noChao) {
                 mover(0);

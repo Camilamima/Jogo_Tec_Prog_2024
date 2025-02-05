@@ -6,7 +6,7 @@ using namespace std;
 using namespace Fases;
 Jogo::Jogo()
 {
-    fase = 1;
+    fase = 2;
     fase1 = nullptr;
     fase2 = nullptr;
 }

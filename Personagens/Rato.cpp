@@ -29,7 +29,7 @@ namespace Personagens {
 	}
 
 	void Rato::executar() {
-		cont++;
+		//cont++;
 		if (verificaVida()) {
 			if (distancia_percorrida >= CAMIHO) {
 
@@ -43,14 +43,14 @@ namespace Personagens {
 			if (velocidadeX > 0 && moviD) {
 				mover(velocidadeX * atualizaDelta());
 				if (cont % 5 == 0) {
-					animacao(2, 5);//0 eh direita 
+					//animacao(2, 5);//0 eh direita 
 					val--;
 				}
 			}
 			else if (velocidadeX < 0 && moviE) {
 				mover(velocidadeX * atualizaDelta());
 				if (cont % 5 == 0) {
-					animacao(1, 5);//1 eh esquerda e 
+					//animacao(1, 5);//1 eh esquerda e 
 					val++;
 				}
 			}

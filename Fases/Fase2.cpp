@@ -202,6 +202,7 @@ namespace Fases {
 
 		for (int i = 3; i < (tamanho_fase / tamanho_zona); i++) {//crio o vetor com posições aleatorias
 			teste = rand() % 477;
+
 			if (alterna == false) {
 				posicoes.push_back(static_cast<float>(i * tamanho_zona + 1000 + teste));
 				alterna = true;
