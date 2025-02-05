@@ -48,4 +48,18 @@ namespace Personagens {
 		}
 
 	}
+
+	json Rato::salvar()const {
+	
+		json entidadeJson;
+		entidadeJson["id"] = id;
+		entidadeJson["x"] = corpo.getPosition().x;
+		entidadeJson["y"] = corpo.getPosition().y;
+		entidadeJson["velocidadeY"] = velocidadeY;
+		entidadeJson["velocidadeX"] = velocidadeX;
+		entidadeJson["noChao"] = noChao;
+		entidadeJson["vidas"] = vidas;
+		entidadeJson["distancia_percorrida"] = distancia_percorrida;
+		return entidadeJson;
+	}
 }

@@ -7,6 +7,7 @@ namespace Personagens {
     Cachorro::Cachorro(int id, const char* png) :
         Inimigo(id, png)
     {
+        tempo = 0;
         ladoAtaque = 0;
         vidas=10;
         seguindo = 0;
@@ -145,11 +146,12 @@ namespace Personagens {
 
         cont++;
 
+        tempo = turnos.getElapsedTime().asSeconds();
         
         if (verificaVida()) {
 
             if (atacando) {
-                if (turnos.getElapsedTime().asSeconds() >= 1.5) {
+                if (tempo >= 1.5) {
                     if (ladoAtaque) {
                         xIni = xIni + 50;
                         ladoAtaque = 0;
@@ -166,5 +168,23 @@ namespace Personagens {
             }
             pGGrafico->desenha(corpo);
         }
+    }
+    json Cachorro::salvar() const {
+        json entidadeJson;
+        entidadeJson["id"] = id;
+        entidadeJson["x"] = corpo.getPosition().x;
+        entidadeJson["y"] = corpo.getPosition().y;
+        entidadeJson["velocidadeY"] = velocidadeY;
+        entidadeJson["velocidadeX"] = velocidadeX;
+        entidadeJson["noChao"] = noChao;
+		entidadeJson["chao"] = chao;    
+        entidadeJson["vidas"] = vidas;
+        entidadeJson["atacando"] = atacando;
+        entidadeJson["cont"] = cont;
+        entidadeJson["seguindo"] = seguindo;
+        entidadeJson["ladoAtaque"] = ladoAtaque;
+        entidadeJson["val"] = val;
+        entidadeJson["turnos"] = tempo;
+        return entidadeJson;
     }
 }

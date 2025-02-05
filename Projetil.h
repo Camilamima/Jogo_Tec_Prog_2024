@@ -43,4 +43,8 @@ public:
 	void danifica(Personagens::Slime* jog);
 	void animacao(int limite);
 	void setChao(float x) { chao = x; }
+	json salvar() const {
+		json aux;
+		return aux;
+	};
 };

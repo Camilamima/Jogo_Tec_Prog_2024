@@ -32,5 +32,9 @@ namespace Personagens {
 		void apagaProjetil();
 		void animacao(int limite);
 		void animacaoTp(int limite);
+		json salvar()const {
+			json aux;
+			return aux;
+		};
 	};
 }

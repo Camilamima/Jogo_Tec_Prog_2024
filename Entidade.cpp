@@ -26,3 +26,4 @@ void Entidade::setSoCorpo(float largura, float altura) {
 }
 
 
+const float Entidade::gravidade = 9.8f;

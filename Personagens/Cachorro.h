@@ -16,6 +16,7 @@ namespace Personagens {
         int cont;
         int val;
         bool ladoAtaque;
+        float tempo;
     public:
         Cachorro(int id, const char* png = "");
         ~Cachorro();
@@ -25,5 +26,9 @@ namespace Personagens {
         void atacar(int d);
         void setSeguindo(bool i) { seguindo = i; }
         void animacao(int num, int limite);
+        json salvar() const;
+		void setLadoAtacado(bool lado) { ladoAtaque = lado; }
+		void setTempo(float t) { tempo = t; }
+		void setAtacando(bool a) { atacando = a; }
     };
 }

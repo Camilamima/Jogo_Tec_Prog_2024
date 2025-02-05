@@ -2,6 +2,7 @@
 #include "Lista.h"
 #include "../Entidade.h"
 #include "../Gerenciadores/Gerenciador_Colisoes.h"
+#include <vector>
 
 namespace Listas {
 
@@ -19,6 +20,7 @@ namespace Listas {
 		void MatarEntidade(Entidade* ent, Gerenciadores::Gerenciador_Colisoes* gc);
 		int VerificMortos();//retona a posicao do morto -> se -1 nao tem mortos!
 		void matarEntidadePos(int pos, Gerenciadores::Gerenciador_Colisoes* gc);
+		vector<Entidade*> returnVec();
 	};
 
 }

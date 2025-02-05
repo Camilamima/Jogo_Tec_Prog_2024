@@ -52,7 +52,7 @@ namespace Listas {
 				}
 			}
 
-			else {//se for um id diferente de 5 e 10 ou seja, 1,2,3,4,6
+			else {//se for um id diferente de 5 e 10 ou seja, 1,2,3,4,6,7,8,9,11
 				(*it)->executar();
 
 				if ((*it)->getId() == 1) {//se for um jogador e sua posicao for maior q a ultima zona = zona do chefao
@@ -104,7 +104,7 @@ namespace Listas {
 
 		for (Lista<Entidade*>::iterator it = listaEntidades->begin(); it != listaEntidades->end() && temMortos == false; it++) {
 			tam++;
-			if ((*it)->getId() == 4 || (*it)->getId() == 6) {
+			if ((*it)->getId() == 4 || (*it)->getId() == 6 || (*it)->getId() == 7) {
 				if (static_cast<Inimigo*>(*it)->getVidas() <= 0) {
 					temMortos = true;
 					return listaEntidades->posicao(*it);
@@ -129,7 +129,7 @@ namespace Listas {
 	void ListaEntidade::matarEntidadePos(int pos, Gerenciadores::Gerenciador_Colisoes * gc){
 		Entidade* ent = listaEntidades->operator[](pos);
 
-		if (ent->getId() == 4 || ent->getId() == 6) {
+		if (ent->getId() == 7 || ent->getId() == 6 || ent->getId() == 4) {
 			MatarEntidade(ent, gc);
 		}
 
@@ -138,6 +138,25 @@ namespace Listas {
 			//Chefao* chefao = static_cast<Chefao*>(aux2);
 			MatarEntidade(ent, gc);
 		}
+	}
+
+	vector<Entidade*> ListaEntidade::returnVec() {
+		vector<Entidade*> aux;
+
+		for (Lista<Entidade*>::iterator it = listaEntidades->begin(); it != listaEntidades->end(); it++) {
+			if ((*it)->getId() == 1 || (*it)->getId() == 2 || (*it)->getId() == 4 ||
+				(*it)->getId() == 7 || (*it)->getId() == 6) {
+				Personagem* p = static_cast<Personagem*>(*it);
+				if (p->verificaVida()) {
+					aux.push_back(*it);
+				}
+			}
+			else {
+				aux.push_back(*it);
+			}
+		}
+
+		return aux;
 	}
 
 }//namespace Listas

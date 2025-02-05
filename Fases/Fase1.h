@@ -9,6 +9,7 @@ namespace Fases {
 		int obsFacil;
 	public:
 		Fase1();
+		Fase1(const json& dados, Gerenciadores::Gerenciado_Grafico* gC);
 		~Fase1();
 		void inicializa();
 		void geraChao();

@@ -1,12 +1,15 @@
 #include "Fase.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <fstream> 
+
 
 using namespace sf;
 using namespace std;
 
 namespace Fases {
 	Fase::Fase():
+		num_fase(-1),
 		Slime1(1),
 		Slime2(2),
 		listaEntidades(),
@@ -28,7 +31,7 @@ namespace Fases {
 	}
 
 	void Fase::limpaVec() {
-		localizacao_obs.clear();
+     localizacao_obs.clear();
 	}
 
 	const bool Fase::checaLocaliza(float x,int ver) const {
@@ -102,11 +105,10 @@ namespace Fases {
 			numeros[posicao] = 1;
 		}
 
-
 		//tamanho fase: 14400, 1400/144=100 cada espinho
 		for (int i = 0; i < 144; i++) {
 			if (numeros[i] != 0 && i > 3) {
-				Obstaculos::Espinho* p = new Obstaculos::Espinho(3);
+				Obstaculos::Espinho* p = new Obstaculos::Espinho(9);
 				p->setCoordenadas((float)i * 100, 700);
 				p->setCorpo(100, 70);
 				listaEntidades.Incluir(p, &gerentC);
@@ -210,5 +212,29 @@ namespace Fases {
 			}
 			gerent-> mostrar();
 		
+	}
+
+	void Fase::salvaFase() {
+		vector<Entidade*> vec = listaEntidades.returnVec();
+
+		json jsonData;//Json pra juntar tudo
+		int i;
+		jsonData["Fase"] = num_fase;
+		jsonData["zona"] = zona_atual;
+		jsonData["jogadores"] = qnt_jogadores;
+
+		jsonData["entidades"] = json::array();
+		for (i = 0; i < vec.size(); i++) {
+
+			jsonData["entidades"].push_back(vec[i]->salvar());
+
+		}
+
+		std::ofstream outFile("Save/fase.json");
+		outFile << jsonData.dump(4);  // "4" para indentação legível
+		outFile.close();  // Fecha o arquivo
+
+		std::cout << "Fase salva com sucesso!" << std::endl;
+
 	}
 }

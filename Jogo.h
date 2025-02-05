@@ -16,6 +16,7 @@ private:
 public:
 	Jogo();
 	~Jogo();
+	void lerFase();
 	void executar();
 };
 

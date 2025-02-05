@@ -12,6 +12,7 @@ namespace Personagens {
 		void mover(float aux);
 		void setMaldade(int maldade);
 		int getMaldade() const{ return nivel_maldade; }
+		virtual json salvar() const = 0;
 	};
 }
 

@@ -1,0 +1,703 @@
+{
+    "Fase": 1,
+    "entidades": [
+        {
+            "acelera": true,
+            "altura": 200.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 100.0,
+            "x": 1600.0,
+            "y": 560.0
+        },
+        {
+            "acelera": true,
+            "altura": 100.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 1450.0,
+            "y": 520.0
+        },
+        {
+            "acelera": true,
+            "altura": 200.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 300.0,
+            "x": 2100.0,
+            "y": 560.0
+        },
+        {
+            "acelera": true,
+            "altura": 100.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 200.0,
+            "x": 2300.0,
+            "y": 460.0
+        },
+        {
+            "acelera": true,
+            "altura": 150.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 100.0,
+            "x": 4300.0,
+            "y": 610.0
+        },
+        {
+            "acelera": true,
+            "altura": 300.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 200.0,
+            "x": 6800.0,
+            "y": 460.0
+        },
+        {
+            "acelera": true,
+            "altura": 100.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 600.0,
+            "x": 6810.0,
+            "y": 460.0
+        },
+        {
+            "acelera": true,
+            "altura": 150.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 100.0,
+            "x": 7700.0,
+            "y": 610.0
+        },
+        {
+            "acelera": true,
+            "altura": 200.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 300.0,
+            "x": 9300.0,
+            "y": 560.0
+        },
+        {
+            "acelera": true,
+            "altura": 100.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 200.0,
+            "x": 9500.0,
+            "y": 460.0
+        },
+        {
+            "acelera": true,
+            "altura": 300.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 200.0,
+            "x": 12200.0,
+            "y": 460.0
+        },
+        {
+            "acelera": true,
+            "altura": 100.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 600.0,
+            "x": 12210.0,
+            "y": 460.0
+        },
+        {
+            "acelera": true,
+            "altura": 150.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 100.0,
+            "x": 12900.0,
+            "y": 610.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 0.0,
+            "y": 760.0
+        },
+        {
+            "altura": 100.0,
+            "id": 11,
+            "largura": 400.0,
+            "x": 400.0,
+            "y": 800.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 800.0,
+            "y": 760.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 1200.0,
+            "y": 760.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 1600.0,
+            "y": 760.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 2000.0,
+            "y": 760.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 2400.0,
+            "y": 760.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 2800.0,
+            "y": 760.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 3200.0,
+            "y": 760.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 3600.0,
+            "y": 760.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 4000.0,
+            "y": 760.0
+        },
+        {
+            "altura": 100.0,
+            "id": 11,
+            "largura": 400.0,
+            "x": 4400.0,
+            "y": 800.0
+        },
+        {
+            "altura": 100.0,
+            "id": 11,
+            "largura": 400.0,
+            "x": 4800.0,
+            "y": 800.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 5200.0,
+            "y": 760.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 5600.0,
+            "y": 760.0
+        },
+        {
+            "altura": 100.0,
+            "id": 11,
+            "largura": 400.0,
+            "x": 6000.0,
+            "y": 800.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 6400.0,
+            "y": 760.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 6800.0,
+            "y": 760.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 7200.0,
+            "y": 760.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 7600.0,
+            "y": 760.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 8000.0,
+            "y": 760.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 8400.0,
+            "y": 760.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 8800.0,
+            "y": 760.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 9200.0,
+            "y": 760.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 9600.0,
+            "y": 760.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 10000.0,
+            "y": 760.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 10400.0,
+            "y": 760.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 10800.0,
+            "y": 760.0
+        },
+        {
+            "altura": 100.0,
+            "id": 11,
+            "largura": 400.0,
+            "x": 11200.0,
+            "y": 800.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 11600.0,
+            "y": 760.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 12000.0,
+            "y": 760.0
+        },
+        {
+            "altura": 100.0,
+            "id": 11,
+            "largura": 400.0,
+            "x": 12400.0,
+            "y": 800.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 12800.0,
+            "y": 760.0
+        },
+        {
+            "altura": 100.0,
+            "id": 11,
+            "largura": 400.0,
+            "x": 13200.0,
+            "y": 800.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 13600.0,
+            "y": 760.0
+        },
+        {
+            "acelera": true,
+            "altura": 140.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 400.0,
+            "x": 14000.0,
+            "y": 760.0
+        },
+        {
+            "id": 9,
+            "num_espinhos": 5,
+            "x": 900.0,
+            "y": 700.0
+        },
+        {
+            "id": 9,
+            "num_espinhos": 5,
+            "x": 1700.0,
+            "y": 700.0
+        },
+        {
+            "id": 9,
+            "num_espinhos": 5,
+            "x": 3400.0,
+            "y": 700.0
+        },
+        {
+            "id": 9,
+            "num_espinhos": 5,
+            "x": 3700.0,
+            "y": 700.0
+        },
+        {
+            "id": 9,
+            "num_espinhos": 5,
+            "x": 4100.0,
+            "y": 700.0
+        },
+        {
+            "id": 9,
+            "num_espinhos": 5,
+            "x": 5400.0,
+            "y": 700.0
+        },
+        {
+            "id": 9,
+            "num_espinhos": 5,
+            "x": 5700.0,
+            "y": 700.0
+        },
+        {
+            "id": 9,
+            "num_espinhos": 5,
+            "x": 7100.0,
+            "y": 700.0
+        },
+        {
+            "id": 9,
+            "num_espinhos": 5,
+            "x": 8300.0,
+            "y": 700.0
+        },
+        {
+            "id": 9,
+            "num_espinhos": 5,
+            "x": 9600.0,
+            "y": 700.0
+        },
+        {
+            "id": 9,
+            "num_espinhos": 5,
+            "x": 10000.0,
+            "y": 700.0
+        },
+        {
+            "id": 9,
+            "num_espinhos": 5,
+            "x": 10700.0,
+            "y": 700.0
+        },
+        {
+            "id": 9,
+            "num_espinhos": 5,
+            "x": 10900.0,
+            "y": 700.0
+        },
+        {
+            "id": 9,
+            "num_espinhos": 5,
+            "x": 14100.0,
+            "y": 700.0
+        },
+        {
+            "atacando": false,
+            "chao": 800.0,
+            "cont": 1307,
+            "id": 7,
+            "ladoAtaque": false,
+            "noChao": true,
+            "seguindo": false,
+            "turnos": 14.896997451782227,
+            "val": 4,
+            "velocidadeX": 150.0,
+            "velocidadeY": 0.0,
+            "vidas": 5,
+            "x": 4728.49609375,
+            "y": 800.0
+        },
+        {
+            "distancia_percorrida": 84,
+            "id": 4,
+            "noChao": true,
+            "velocidadeX": -150.0,
+            "velocidadeY": 0.0,
+            "vidas": 5,
+            "x": 7270.33203125,
+            "y": 660.0
+        },
+        {
+            "atacando": false,
+            "chao": 360.0,
+            "cont": 1307,
+            "id": 7,
+            "ladoAtaque": false,
+            "noChao": true,
+            "seguindo": false,
+            "turnos": 3.6087119579315186,
+            "val": 4,
+            "velocidadeX": 150.0,
+            "velocidadeY": 0.0,
+            "vidas": 9,
+            "x": 9419.6484375,
+            "y": 360.0
+        },
+        {
+            "distancia_percorrida": 84,
+            "id": 4,
+            "noChao": true,
+            "velocidadeX": -150.0,
+            "velocidadeY": 0.0,
+            "vidas": 5,
+            "x": 13402.1142578125,
+            "y": 800.0
+        },
+        {
+            "distancia_percorrida": 84,
+            "id": 4,
+            "noChao": true,
+            "velocidadeX": -150.0,
+            "velocidadeY": 0.0,
+            "vidas": 5,
+            "x": 14668.6083984375,
+            "y": 800.0
+        },
+        {
+            "acelera": true,
+            "altura": 40.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 14400.0,
+            "x": 0.0,
+            "y": 900.0
+        },
+        {
+            "acelera": true,
+            "altura": 900.0,
+            "atrito": 1.0,
+            "danoso": false,
+            "id": 3,
+            "impede": true,
+            "largura": 40.0,
+            "x": 0.0,
+            "y": 0.0
+        },
+        {
+            "atacado": false,
+            "atacando": false,
+            "chao": 660.0,
+            "cont": 1307,
+            "id": 1,
+            "impulso": 600.0,
+            "ladoAtacado": false,
+            "morrendo": false,
+            "noChao": true,
+            "val": 0,
+            "velocidadeX": 500.0,
+            "velocidadeY": 0.0,
+            "vidas": 82,
+            "x": 9093.0693359375,
+            "y": 660.0
+        }
+    ],
+    "jogadores": 1,
+    "zona": 5
+}
