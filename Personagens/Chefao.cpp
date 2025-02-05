@@ -59,7 +59,7 @@ namespace Personagens {
 					//teletransporte->setCoordenadas(6960, 450);
 					//teletransporte->setCorpo(250, 250);
 					//corpo.setPosition(6960, 450);
-					setCoordenadas(pos_inicial, 300);
+					setCoordenadas(pos_inicial, 200);
 					setCorpo(224, 240);
 					turno = false;
 					relogio1.restart();
@@ -72,13 +72,13 @@ namespace Personagens {
 	void Chefao::executar()
 	{
 		cont++;
-		/*if (!noChao) { ********************MEXER NISSO P ELE TER GRAVIDADE
+		if (!noChao) { //********************MEXER NISSO P ELE TER GRAVIDADE
 			mover(0);
 		}
 
-		if (corpo.getPosition().y+240 >= chao) {
+		if (corpo.getPosition().y + 240 >= chao) {
 			noChao = true;
-		}*/
+		}
 
 		if (ativo == true) {//se tem um jogador na zona
 
@@ -116,9 +116,9 @@ namespace Personagens {
 	void Chefao::criaProjeteis(Projetil* proj) {//cria todos os projeteis
 
 		if (proj != nullptr) {
-			proj->setCoordenadas(pos_inicial, 300);
+			proj->setCoordenadas(pos_inicial, 200);
 			proj->setCorpo(64, 32);
-			proj->setXY(pos_inicial, 300);
+			proj->setXY(pos_inicial, 200);
 			num_projetil++;
 			ListProj.insert(proj);
 		}
@@ -130,8 +130,9 @@ namespace Personagens {
 
 		if (!ListProj.empty()) {//se a lista nao estiver vazia (se tiver projetil dentro dela
 			std::set<Projetil*>::iterator it = ListProj.begin();
-			if ((*it)->getNoChao() == true) {//se o projetil tocou no chao
+			if ((*it)->getNoChao() == true || (*it)->getCorpo().getPosition().x+(*it)->getCorpo().getSize().x<=iniZona) {//se o projetil tocou no chao
 				std::cout << "Apaguei um projetil" << std::endl;
+				(*it)->setApagado(true);
 				ListProj.erase(it);//apagar o primeiro... parecido com um pop_front?
 			}
 		}
@@ -191,20 +192,15 @@ namespace Personagens {
 
 		//for pra descobrir a zona do chefao
 		for (int i = 1; i <= 8 && fim != true; i++) {
-			//std::cout << "Posicao x: " << corpo.getPosition().x << std::endl;
 
-			if (corpo.getPosition().x >= num_ant && corpo.getPosition().x + corpo.getSize().x <= 1800 * i) {
+			if (corpo.getPosition().x >= iniZona && corpo.getPosition().x + corpo.getSize().x <= 1800 * i) {
 				finalZona = 1800 * i;
-				//std::cout << "iniZona: " << iniZona << std::endl;
 				fim = true;
 			}
 			else {
-				//std::cout << "finalZona: " << finalZona << std::endl;
 				iniZona = 1800 * (i);
 			}
 		}
-		std::cout << "iniZona: " << iniZona << std::endl;
-		std::cout << "finalZona: " << finalZona << std::endl;
 		
 	}
 	const int Chefao::max_projetil = 10;

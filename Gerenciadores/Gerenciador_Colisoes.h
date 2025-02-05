@@ -32,5 +32,5 @@ namespace Gerenciadores {
 		void verificaObsIni();
 		void verificaObsProjetil();
 		void executar();
-	};
+	}; 
 }

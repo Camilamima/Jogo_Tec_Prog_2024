@@ -88,6 +88,10 @@ namespace Listas {
 		}
 	}
 
+	void ListaEntidade::Include(Entidade* entidade) {
+		listaEntidades->adicionarElemento(entidade);
+	}
+
 	/*===== seta o gerenciador gráfico em todas as instâncias da lista =====*/
 	void ListaEntidade::setGG(Gerenciadores::Gerenciado_Grafico* gg) {
 
@@ -112,7 +116,7 @@ namespace Listas {
 				}
 			}
 			if ((*it)->getId() == 5) {
-				if (static_cast<Projetil*>(*it)->getNoChao() == true) {
+				if (static_cast<Projetil*>(*it)->getNoChao() == true || static_cast<Projetil*>(*it)->getApagado()==true) {
 					temMortos = true;
 					return listaEntidades->posicao(*it);
 				}

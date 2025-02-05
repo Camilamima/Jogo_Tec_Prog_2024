@@ -19,6 +19,7 @@ Projetil::Projetil(int id, const char* png):
     apareceu = false;
     cont = 0;
     val = 0;
+    apagado = false;
 }
 
 Projetil::~Projetil()

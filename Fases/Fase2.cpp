@@ -28,9 +28,9 @@ namespace Fases {
 		/* Tirado gera Plataforma e geraInimigos, qualquer coisda descomentar */
 		//geraPlataformaFase();
 		geraChao();
+		geraChefao();
 		geraEspinho();
 		//geraInimigos();
-		geraChefao();
 		geraProjeteis();
 
 		int num_jogadores = 0;
@@ -61,18 +61,6 @@ namespace Fases {
 		/*=== Colocando elementos constantes na lista ===*/
 		listaEntidades.Incluir(&chao, &gerentC);
 		listaEntidades.Incluir(&ladoE, &gerentC);
-		//listaEntidades.Incluir(&teste2, &gerentC);
-		//listaEntidades.Incluir(&teste3, &gerentC);
-		/*listaEntidades.Incluir(&p1, &gerentC);
-		listaEntidades.Incluir(&p2, &gerentC);
-		listaEntidades.Incluir(&p3, &gerentC);
-		listaEntidades.Incluir(&p4, &gerentC);
-		listaEntidades.Incluir(&p5, &gerentC);
-		listaEntidades.Incluir(&p6, &gerentC);
-		listaEntidades.Incluir(&p7, &gerentC);
-		listaEntidades.Incluir(&p8, &gerentC);
-		listaEntidades.Incluir(&p9, &gerentC);
-		listaEntidades.Incluir(&p10, &gerentC);*/
 
 		/*==== setando o gerenciador grafico ====*/
 		listaEntidades.setGG(gerent);
@@ -195,7 +183,7 @@ namespace Fases {
 						listaEntidades.MatarEntidade(&Slime2, &gerentC);
 						qnt_jogadores--;
 						apareceu2 = true;
-					}
+					};
 				}
 			}
 		}
@@ -208,6 +196,7 @@ namespace Fases {
 		bool alterna = false;
 		time_t tempo;
 		srand((unsigned)time(&tempo));
+		int altura = 200;
 
 		int teste = 0;
 
@@ -215,12 +204,10 @@ namespace Fases {
 			teste = rand() % 477;
 			if (alterna == false) {
 				posicoes.push_back(static_cast<float>(i * tamanho_zona + 1000 + teste));
-				cout << static_cast<float>(i * tamanho_zona + 1000 + teste) << endl;
 				alterna = true;
 			}
 			else {
 				posicoes.push_back(static_cast<float>(i * tamanho_zona + 1000 + teste));
-				cout << static_cast<float>(i * tamanho_zona + 1000 + teste) << endl;
 				alterna = false;
 			}
 		}
@@ -235,15 +222,37 @@ namespace Fases {
 		for (int i = 0; i < num_chefoes && pos<=posicoes.size(); i++) {
 
 			Personagens::Chefao* c = new Personagens::Chefao(6);
+			Obstaculos::Obstaculo* o = new Obstaculos::Plataforma(3);
+			Obstaculos::Obstaculo* o2 = new Obstaculos::Plataforma(3);
+			Obstaculos::Obstaculo* o_mini1 = new Obstaculos::Plataforma(3);
+			Obstaculos::Obstaculo* o_mini2 = new Obstaculos::Plataforma(3);
 
-			c->setCoordenadas((float)posicoes[pos], 300);
+			
+			c->setCoordenadas((float)posicoes[pos], altura);
 			c->setPosInicialX((float)posicoes[pos]);
 			c->setCorpo(224, 240);
 			c->zonaChefao();
 
-			posicoes.erase(posicoes.begin() + pos);
+			o->setCoordenadas((float)(posicoes[pos] - 10), (float)(altura + 5 + c->getCorpo().getSize().y));
+			o->setCorpo((float)(c->getCorpo().getSize().x + 20), (float)(50));
+
+			o_mini1->setCoordenadas((float)(posicoes[pos] - 10), (float)(0));
+			o_mini1->setCorpo((float)(10), (float)(o->getCorpo().getPosition().y));
+
+			o_mini2->setCoordenadas((float)(o->getCorpo().getPosition().x+o->getCorpo().getSize().x-10), (float)(0));
+			o_mini2->setCorpo((float)(10), (float)(o->getCorpo().getPosition().y));
+
+			int meioZona = (c->getFinalZona() - ((c->getFinalZona() - c->getIniZona()) / 2));
+			o2->setCoordenadas((meioZona - 25), 760);
+			o2->setCorpo(c->getCorpo().getSize().x + 50, 140);
 
 			listaEntidades.Incluir(c, &gerentC);
+			listaEntidades.Incluir(o, &gerentC);
+			listaEntidades.Incluir(o2, &gerentC);
+			listaEntidades.Include(o_mini1);
+			listaEntidades.Include(o_mini2);
+
+			posicoes.erase(posicoes.begin() + pos);
 			
 		}
 	}
@@ -257,7 +266,6 @@ namespace Fases {
 		for (int i = 0; i <num_projeteis; i++) {
 			Projetil* p = new Projetil(5);
 			listaEntidades.Incluir(p, &gerentC);
-			cout << i << endl;
 		}
 	}
 }

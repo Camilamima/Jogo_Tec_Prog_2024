@@ -45,5 +45,7 @@ namespace Personagens {
 		void setAtivo(bool x) { ativo = x; }
 		void setPosInicialX(float x) { pos_inicial = x; }
 		float getPosInicial() { return pos_inicial; }
+		int getFinalZona() { return finalZona; }
+		int getIniZona() { return iniZona; }
 	};
 }
