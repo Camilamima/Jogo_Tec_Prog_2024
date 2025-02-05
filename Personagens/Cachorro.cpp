@@ -7,6 +7,9 @@ namespace Personagens {
     Cachorro::Cachorro(int id, const char* png) :
         Inimigo(id, png)
     {
+        //sprite.loadFromFile();
+        //corpo.setTexture(&sprite);
+        corpo.setTextureRect(IntRect(65, 59, 70, 71));
         ladoAtaque = 0;
         vidas=10;
         seguindo = 0;
@@ -17,7 +20,8 @@ namespace Personagens {
         setCoordenadas(600, 0);
         chao = 600;
         relogio.restart();
-        setCorpo(100, 100);
+        setCorpo(177.27, 100);
+        setSoCorpo(177.27, 100);
         setMaldade(2);
         cont = 0;
         val = 0;
@@ -73,8 +77,8 @@ namespace Personagens {
                 else if (xC - x > 0) {
                     if (moviE) {
                         if (cont % 5 == 0) {
-                            animacao(1, 5);//1 eh esquerda e 
-                            val++;
+                            animacao(2, 8);//2 eh esquerda e 
+                            val--;
                         }
                         mover(atualizaDelta() * -velocidadeX);
                     }
@@ -84,7 +88,7 @@ namespace Personagens {
                     if (moviD) {
                         mover(atualizaDelta() * velocidadeX);
                         if (cont % 5 == 0) {
-                            animacao(2, 4);//1 eh esquerda e 
+                            animacao(1, 8);//1 eh direita 
                             val++;
                         }
                     }
@@ -112,13 +116,20 @@ namespace Personagens {
         if (d == 1) {
             ladoAtaque = 1;
             setTamanhoCorpo(corpo.getSize().x + 50, corpo.getSize().y);
-            mover(-50);
+                sprite.loadFromFile("assets/espadachim/Attack1 esquerda.png");
+                corpo.setTexture(&sprite);
+                corpo.setTextureRect(IntRect(20+(200 * 1), 59, 160, 71));
+				//setSoCorpo(160.0 + 50.0, 130.0);
+            //mover(-50);
             pGGrafico->desenha(corpo);
         }
         //direita
         else if (d == 2) {
-
+            //animacao(3, 4);
             setTamanhoCorpo(corpo.getSize().x + 50, corpo.getSize().y);
+            sprite.loadFromFile("assets/espadachim/Attack1.png");
+            corpo.setTexture(&sprite);
+            corpo.setTextureRect(IntRect(20 + (200*2), 59, 160, 71));
             pGGrafico->desenha(corpo);
         }
     }
@@ -128,16 +139,22 @@ namespace Personagens {
             val = 0;
         }
 
-        if (num == 1) {//vai p esquerda
-            sprite.loadFromFile("assets/lobo/esquerda.png");
-            corpo.setTexture(&sprite);
-            corpo.setTextureRect(IntRect(100 * (val), 101, 100, 100));
+        if (val < 0) {
+			val = limite-1;
         }
-		else if (num == 2) {//vai p direita
-			sprite.loadFromFile("assets/lobo/direita.png");
-			corpo.setTexture(&sprite);
-			corpo.setTextureRect(IntRect(100 * (limite-val), 101, 100, 100));
-		}
+
+        if (num == 1) {//vai p direita
+            sprite.loadFromFile("assets/espadachim/Run.png");
+            corpo.setTexture(&sprite);
+            corpo.setTextureRect(IntRect(65+(200 * (val)), 75, 70, 55));
+            //setSoCorpo(227.27, 100);
+        }
+        else if (num == 2) {//vai p direita
+            sprite.loadFromFile("assets/espadachim/Run esquerda.png");
+            corpo.setTexture(&sprite);
+            corpo.setTextureRect(IntRect(65 + (200 * (val)), 75, 70, 55));
+            //setSoCorpo(227.27, 100);
+        }
 
     }
 
@@ -160,6 +177,11 @@ namespace Personagens {
                     turnos.restart();
   
                 }
+            }
+            if (!atacando && !seguindo) {
+                sprite.loadFromFile("assets/espadachim/Attack1.png");
+                corpo.setTexture(&sprite);
+                corpo.setTextureRect(IntRect(65, 59, 70, 71));
             }
             if (!noChao) {
                 mover(0);

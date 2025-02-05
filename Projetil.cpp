@@ -11,7 +11,7 @@ Projetil::Projetil(int id, const char* png):
     noChao = false;
     seguindo = false;
     segue = 0;
-    velocidadeX = 250;
+    velocidadeX = 300;
     velocidadeY = 0;
 	posX = 0;
     posY = 0;
@@ -72,7 +72,7 @@ bool Projetil::segueQuem(Personagens::Slime* jog) {//no gerenciador de colisoes
     //hipotenusa
     float dist = std::sqrt(dx * dx + dy * dy);
 
-    if (dist <= 500) {
+    if (dist <= 650) {
         return true;
     }
    
@@ -209,6 +209,7 @@ void Projetil::seguir(float x_alvo, float y_alvo) {
 }
     void Projetil::danifica(Personagens::Slime* jog) {
         if (relogioVida.getElapsedTime().asSeconds() >= 1.5) {
+            jog->animacaoJog(4, 1);
             jog->operator*=(10);
             std::cout << "Num vida do jog: " << jog->getVidas() << std::endl;
             relogioVida.restart();

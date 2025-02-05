@@ -30,7 +30,7 @@ namespace Fases {
 		geraChao();
 		geraChefao();
 		geraEspinho();
-		//geraInimigos();
+		geraInimigos();
 		geraProjeteis();
 
 		int num_jogadores = 0;
@@ -158,7 +158,7 @@ namespace Fases {
 			listaEntidades.matarEntidadePos(pos_morto, &gerentC);
 		}
 
-		if (Slime1.getVidas() <= 0 && apareceu1 == false) {
+		/*if (Slime1.getVidas() <= 0 && apareceu1 == false) {
 			Slime1.setMorrendo(true);
 			if (Slime1.getCont() % 8 == 0) {
 				morreu = Slime1.animacaoMorte(cont1, 10);
@@ -186,7 +186,7 @@ namespace Fases {
 					};
 				}
 			}
-		}
+		}*/
 
 			gerent->mostrar();
 	}
@@ -200,7 +200,7 @@ namespace Fases {
 
 		int teste = 0;
 
-		for (int i = 1; i < (tamanho_fase / tamanho_zona); i++) {//crio o vetor com posições aleatorias
+		for (int i = 3; i < (tamanho_fase / tamanho_zona); i++) {//crio o vetor com posições aleatorias
 			teste = rand() % 477;
 			if (alterna == false) {
 				posicoes.push_back(static_cast<float>(i * tamanho_zona + 1000 + teste));

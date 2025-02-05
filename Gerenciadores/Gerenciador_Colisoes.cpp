@@ -77,7 +77,7 @@ namespace Gerenciadores {
 			(x2 >= outro.getPosition().x && x2 <= (outro.getPosition().x + outro.getSize().x)))
 		{
 			//chão
-			if (y2 >= yy - 15 && y2 <= yy + 15) {
+			if (y2 >= yy - 15 && y2 <= yy + 15) {//teste antes 15
 				return 1;
 			}
 			//teto
@@ -159,6 +159,7 @@ namespace Gerenciadores {
 						--(*jog1);
 						jog1->pular(300);
 						jog1->setAtacado(1, 0);
+						cout << "vidas jog1: " << jog1->getVidas() << endl;
 					}
 				}
 				else if (veriColisao(inimigo, jog1) == 3) {
@@ -166,6 +167,7 @@ namespace Gerenciadores {
 						--(*jog1);
 						jog1->pular(300);
 						jog1->setAtacado(1, 1);
+						cout << "vidas jog1: " << jog1->getVidas() << endl;
 					}
 
 				}
@@ -210,7 +212,7 @@ namespace Gerenciadores {
 						--(*jog2);
 						jog2->pular(300);
 						jog2->setAtacado(1, 0);
-						cout << "vidas slime: " << jog2->getVidas() << endl;
+						cout << "vidas jog2: " << jog2->getVidas() << endl;
 					}
 				}
 				else if (veriColisao(inimigo, jog2) == 3) {
@@ -218,7 +220,7 @@ namespace Gerenciadores {
 						--(*jog2);
 						jog2->pular(300);
 						jog2->setAtacado(1, 1);
-						cout << "vidas slime: " << jog2->getVidas() << endl;
+						cout << "vidas jog2: " << jog2->getVidas() << endl;
 					}
 
 				}
@@ -508,7 +510,7 @@ namespace Gerenciadores {
 				if (veriColisao(obstaculo, inimigo) == 1) {
 					inimigo->setChao(aux.getPosition().y);
 					emCima = 1;
-					//inimigo->setNoChao(true);
+					inimigo->setNoChao(true);
 				}
 
 				if (veriColisao(obstaculo, inimigo) == 2) {

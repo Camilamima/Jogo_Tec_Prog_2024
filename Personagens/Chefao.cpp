@@ -19,15 +19,10 @@ namespace Personagens {
 		cont = 0;
 		pos_inicial = 0;
 
-		//setCoordenadas(6960, 450);
 		setCorpo(224, 240);
 		setVelocidae(0, 0);
 		setMaldade(3);
-
-		//fim_animacao = true;
 		num_projetil = 0; //qnd adicionar 1 projetil, soma +1
-		//zonaChefao();//seta a zona do chefao ---- chamar qnd dar new
-		
 
 	}
 
@@ -103,13 +98,6 @@ namespace Personagens {
 				apagaProjetil();
 			}
 		}
-		/*else {//se nao tem jogador na zona
-			if (!ListProj.empty()) {
-				std::set<Projetil*>::iterator it = ListProj.begin();//o primeiro da lista
-				(*it)->setApareceu(false);
-			}
-		}*/
-		//metodo que solta um projetil
 	}
 
 	/*===== cria um projetil =====*/

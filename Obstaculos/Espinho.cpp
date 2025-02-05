@@ -40,6 +40,7 @@ void Espinho::executar() {
 void Espinho::obstacular(Slime* jogador) {
 
 	if (timer % 50 == 0) {
+		jogador->animacaoJog(4, 1);
 		jogador->operator*=(num_espinhos);
 		std::cout << "Vidas depois: " << jogador->getVidas() << std::endl;
 	}
