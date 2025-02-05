@@ -32,10 +32,7 @@ namespace Obstaculos {
 		entidadeJson["y"] = corpo.getPosition().y;
 		entidadeJson["altura"] = altura;
 		entidadeJson["largura"] = largura;
-		entidadeJson["danoso"] = danoso;
-		entidadeJson["impede"] = impede;
-		entidadeJson["acelera"] = acelera;
-		entidadeJson["atrito"] = atrito;
+		entidadeJson["png"] = png;
 
 		return entidadeJson;
 	}

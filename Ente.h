@@ -6,6 +6,7 @@ protected:
 	int id;
 	Gerenciadores::Gerenciado_Grafico* pGGrafico;
 	Texture sprite;
+	const char* png;
 public:
 	Ente(int x, const char* png);
 	virtual ~Ente();

@@ -17,6 +17,7 @@ namespace Fases {
         num_fase = 1;
         cout << "cheguei1" << endl;
         setGerenciador(gC);
+        gerent->BackGFloresta();
         zona_atual = dados["zona"];
         qnt_jogadores = dados["jogadores"];
 
@@ -64,7 +65,9 @@ namespace Fases {
 
             }
             else if (id == 3) {
-                Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3);
+                std::string png_str = entidade["png"];
+                const char* png = png_str.c_str();
+                Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3,png);
                 listaEntidades.Incluir(p, &gerentC);
                 p->geraPlataforma(entidade["altura"], entidade["largura"], x, y);
             }
@@ -119,6 +122,7 @@ namespace Fases {
     }
 
     void Fase1::inicializa() {
+        gerent->BackGFloresta();
         num_fase = 1;
         obsFacil = -1;
         geraPlataformaFase();
@@ -182,7 +186,7 @@ namespace Fases {
         //tamanho fase: 14400, 8 segmentos, 7200/36=400 cada bloco
         for (int i = 0; i < 36; i++) {
             if (i == 0 || numeros[i] == 0) {
-                Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3);
+                Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3,"assets/Tiles.png");
                 p->geraPlataforma(140, 400, (float)i * 400, 760);
                 listaEntidades.Incluir(p, &gerentC);
             }

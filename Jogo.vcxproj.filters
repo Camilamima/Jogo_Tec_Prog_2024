@@ -24,6 +24,7 @@
     <ClCompile Include="Personagens\Rato.cpp" />
     <ClCompile Include="Personagens\Slime.cpp" />
     <ClCompile Include="Obstaculos\SlimeMau.cpp" />
+    <ClCompile Include="Menu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Fases\Fase2.h" />
@@ -49,9 +50,9 @@
     <ClInclude Include="Personagens\Rato.h" />
     <ClInclude Include="Personagens\Slime.h" />
     <ClInclude Include="Obstaculos\SlimeMau.h" />
+    <ClInclude Include="Menu.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="assets\Boost.png" />
     <Image Include="assets\plataforma.png" />
     <Image Include="assets\plataformateste.png" />
     <Image Include="assets\pngegg.png" />

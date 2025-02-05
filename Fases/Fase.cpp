@@ -137,11 +137,11 @@ namespace Fases {
 	void Fase::TipoPlataforma(int tipo,float x){
 
 		if (tipo == 1) {
-			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3);
+			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3,"assets/Tiles.png");
 			p->geraPlataforma(300, 200, x, 460);
 			
 			listaEntidades.Incluir(p, &gerentC);
-			Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3);
+			Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3,"assets/Tiles.png");
 			p2->geraPlataforma(100, 600, x+10, 460);
 			listaEntidades.Incluir(p2, &gerentC);
 
@@ -149,16 +149,16 @@ namespace Fases {
 			localizacao_obs.push_back((int)x+100);
 		}
 		else if (tipo == 2) {
-			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3);
+			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/Tiles.png");
 			p->geraPlataforma(150, 100, x, 610);
 			listaEntidades.Incluir(p, &gerentC);
 			localizacao_obs.push_back((int)x);
 		}
 		else if (tipo == 3) {
-			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3);
+			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/Tiles.png");
 			p->geraPlataforma(200, 300, x, 560);
 			listaEntidades.Incluir(p, &gerentC);
-			Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3);
+			Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/Tiles.png");
 			p2->geraPlataforma(100, 200, x+200, 460);
 			listaEntidades.Incluir(p2, &gerentC);
 			localizacao_obs.push_back((int)x);
@@ -166,11 +166,11 @@ namespace Fases {
 			localizacao_obs.push_back((int)x+200);
 		}
 		else if (tipo == 4) {
-			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3);
+			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/Tiles.png");
 			p->geraPlataforma(200, 100, x, 560);
 			listaEntidades.Incluir(p, &gerentC);
-			Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3);
-			p2->geraPlataforma(100, 400, x - 150, 520);
+			Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/Tiles.png");
+			p2->geraPlataforma(100, 400, x - 50, 520);
 			listaEntidades.Incluir(p2, &gerentC);
 			localizacao_obs.push_back((int)x);
 		}
@@ -183,10 +183,11 @@ namespace Fases {
 		if (gerentC.getJogador2() != nullptr)
 			qnt_jogadores = 2;
 
-			
 			gerent->arrumaCamera(checaZona());
 
 			gerent->clear();
+			gerent->desenha();
+			//gerent->BackGFloresta();
 			listaEntidades.Percorrer(&gerentC);//executar de td
 
 			if (Slime1.getVidas() <= 0 && apareceu1 == false) {
@@ -210,7 +211,8 @@ namespace Fases {
 					gerent->window.close();
 				}
 			}
-			gerent-> mostrar();
+			gerent->mostrar();
+			
 		
 	}
 

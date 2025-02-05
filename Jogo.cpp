@@ -7,8 +7,10 @@ using namespace std;
 using namespace Fases;
 using json = nlohmann::json;
 
-Jogo::Jogo()
+Jogo::Jogo():
+    menu(-1)
 {
+    menu.setGerenciador(&gerent);
     fase = 1;
     fase1 = nullptr;
     fase2 = nullptr;
@@ -44,21 +46,46 @@ void Jogo::lerFase(){
         }
 }
 
-void Jogo::executar()
-{   
-    int resp;
-	cout << "você deseja carregar o jogo salvo? 1 para sim 2 para não" << endl;  
-    cin >> resp;
-	if (resp == 1) {
-		lerFase();
-	}
-    else {
-        fase1 = new Fase1;
-        fase1->setGerenciador(&gerent);
-        fase1->inicializa();
+void Jogo::executar2() {
+
+    sf::Event event;
+    while (gerent.estaAberta()) {
+        while (gerent.window.pollEvent(event)) {
+
+            if (event.type == sf::Event::Closed) {
+
+                gerent.window.close();
+            }
+            if (event.type == sf::Event::KeyPressed) {
+                if (event.key.code == sf::Keyboard::Escape) {
+                    gerent.window.close();
+                }
+            }
+
+            menu.executar();
+        }
+        menu.executar();
     }
 
-    bool fase2ini = 0;
+}
+
+void Jogo::executar()
+{
+    
+        int resp;
+        cout << "você deseja carregar o jogo salvo? 1 para sim 2 para não" << endl;
+        cin >> resp;
+        if (resp == 1) {
+            lerFase();
+
+        }
+        else {
+            fase1 = new Fase1;
+            fase1->setGerenciador(&gerent);
+            fase1->inicializa();
+        }
+
+        bool fase2ini = 0;
         while (gerent.estaAberta()) {  // O loop principal fica aqui!
 
             sf::Event event;
@@ -122,4 +149,5 @@ void Jogo::executar()
 
 
         }
+
 }
