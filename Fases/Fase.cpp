@@ -180,6 +180,11 @@ namespace Fases {
 		qnt_jogadores = 1;
 		bool apareceu1 = false;
 		bool apareceu2 = false;
+		int cont1 = 0;
+		int cont2 = 0;
+		bool morreu = false;
+		bool morreu2 = false;
+
 		if (gerentC.getJogador2() != nullptr)
 			qnt_jogadores = 2;
 
@@ -190,12 +195,26 @@ namespace Fases {
 			//gerent->BackGFloresta();
 			listaEntidades.Percorrer(&gerentC);//executar de td
 
-			if (Slime1.getVidas() <= 0 && apareceu1 == false) {
+			/*if (Slime1.getVidas() <= 0 && apareceu1 == false) {
 				cout << "Jogador 1 morreu!" << endl;
 				listaEntidades.MatarEntidade(&Slime1, &gerentC);
 				qnt_jogadores--;
 				apareceu1 = true;
+			}*/
+			if (Slime1.getVidas() <= 0 && apareceu1 == false) {
+				Slime1.setMorrendo(true);
+				if (Slime1.getCont() % 8 == 0) {
+					morreu = Slime1.animacaoMorte(cont1, 10);
+					cont1++;
+					if (morreu == true) {
+						cout << "Jogador 1 morreu!" << endl;
+						listaEntidades.MatarEntidade(&Slime1, &gerentC);
+						qnt_jogadores--;
+						apareceu1 = true;
+					}
+				}
 			}
+
 			if (gerentC.getJogador2() != nullptr && apareceu2 == false) {
 				if (Slime2.getVidas() <= 0) {
 					cout << "Jogador 2 morreu!" << endl;
