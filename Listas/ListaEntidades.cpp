@@ -45,11 +45,12 @@ namespace Listas {
 				}
 			}
 
-			else {//se for um id diferente de 5 ou seja, 1,2,3,4,6
+
+			else {//se for um id diferente de 5 e 10 ou seja, 1,2,3,4,6,7,8,9,11
 				(*it)->executar();
 
 				if ((*it)->getId() == 1) {//se for um jogador
-					encontraZonaChefao(static_cast<Slime*>(*it));//verifico qual zona ele t·
+					encontraZonaChefao(static_cast<Slime*>(*it));//verifico qual zona ele t√°
 				}
 			}
 		}
@@ -67,7 +68,7 @@ namespace Listas {
 			
 		}
 
-		if(entidade->getId() == 5){//se for projetil, insiro no chefao que tiver espaÁo livre
+		if(entidade->getId() == 5){//se for projetil, insiro no chefao que tiver espa√ßo livre
 
 			bool inseri = false;
 			int i = 0;
@@ -92,7 +93,7 @@ namespace Listas {
 		listaEntidades->adicionarElemento(entidade);
 	}
 
-	/*===== seta o gerenciador gr·fico em todas as inst‚ncias da lista =====*/
+	/*===== seta o gerenciador gr√°fico em todas as inst√¢ncias da lista =====*/
 	void ListaEntidade::setGG(Gerenciadores::Gerenciado_Grafico* gg) {
 
 		for (Lista<Entidade*>::iterator it = listaEntidades->begin(); it != listaEntidades->end(); it++)
@@ -101,7 +102,7 @@ namespace Listas {
 		}
 	}
 
-	/*===== verifica se h· mortos na lista entidade e retorna a posiÁ„o do morto =====*/
+	/*===== verifica se h√° mortos na lista entidade e retorna a posi√ß√£o do morto =====*/
 	int ListaEntidade::VerificMortos() {
 		int tam = 0;
 		bool temMortos = false;
@@ -109,7 +110,7 @@ namespace Listas {
 
 		for (Lista<Entidade*>::iterator it = listaEntidades->begin(); it != listaEntidades->end() && temMortos == false; it++) {
 			tam++;
-			if ((*it)->getId() == 4 || (*it)->getId() == 6) {
+			if ((*it)->getId() == 4 || (*it)->getId() == 6 || (*it)->getId() == 7) {
 				if (static_cast<Inimigo*>(*it)->getVidas() <= 0) {
 					temMortos = true;
 					return listaEntidades->posicao(*it);
@@ -132,11 +133,11 @@ namespace Listas {
 		gc->removeEntidade(ent);
 	}
 
-	/*===== remove uma entidade com uma determinada posiÁ„o na lista =====*/
+	/*===== remove uma entidade com uma determinada posi√ß√£o na lista =====*/
 	void ListaEntidade::matarEntidadePos(int pos, Gerenciadores::Gerenciador_Colisoes * gc){
 		Entidade* ent = listaEntidades->operator[](pos);
 
-		if (ent->getId() == 4 || ent->getId() == 7 || ent->getId() == 6) {//inimigos
+		if (ent->getId() == 7 || ent->getId() == 6 || ent->getId() == 4) {
 			MatarEntidade(ent, gc);
 		}
 
@@ -145,7 +146,8 @@ namespace Listas {
 		}
 	}
 
-	/*===== seta se um jogador est· na zona de um determinado chefao... =====*/
+
+	/*===== seta se um jogador est√° na zona de um determinado chefao... =====*/
 	void ListaEntidade::encontraZonaChefao(Slime* jog) {
 		bool achou = false;
 
@@ -153,6 +155,24 @@ namespace Listas {
 			achou = chefoes->operator[](i)->zonaChefao(jog);
 			chefoes->operator[](i)->setAtivo(achou);
 		}
-	}
+    
+	vector<Entidade*> ListaEntidade::returnVec() {
+		vector<Entidade*> aux;
+
+		for (Lista<Entidade*>::iterator it = listaEntidades->begin(); it != listaEntidades->end(); it++) {
+			if ((*it)->getId() == 1 || (*it)->getId() == 2 || (*it)->getId() == 4 ||
+				(*it)->getId() == 7 || (*it)->getId() == 6) {
+				Personagem* p = static_cast<Personagem*>(*it);
+				if (p->verificaVida()) {
+					aux.push_back(*it);
+				}
+			}
+			else {
+				aux.push_back(*it);
+			}
+		}
+
+		return aux;
+  }
 
 }//namespace Listas

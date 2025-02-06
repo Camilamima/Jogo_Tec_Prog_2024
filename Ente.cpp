@@ -4,6 +4,7 @@
 Ente::Ente(int x, const char* png):
 	id(x)
 {
+	this->png = png;
 	sprite.loadFromFile(png);
 	pGGrafico = NULL;
 }

@@ -28,16 +28,14 @@ namespace Gerenciadores {
 	}
 
 	void Gerenciador_Colisoes::includeEntidade(Entidade* ent) {
-		if (ent->getId() == 3 ){//|| ent->getId() == 8 || ent->getId()==9 || ent->getId()==11) {//3 plat, 8 speedo, 9 esp, slime mau 11
+
+		if (ent->getId() == 3 || ent->getId() == 9 || ent->getId() == 8 || ent->getId() == 11) {//obstaculo
 			LObst.push_back(static_cast<Obstaculos::Obstaculo*>(ent));
 			static_cast<Obstaculos::Obstaculo*>(ent)->setpJogador(jog1);
 
 		}
-		else if (ent->getId() == 4) {//inimigo
-			LIni.push_back(static_cast<Personagens::Inimigo*>(ent));
-		}
 
-		else if (ent->getId() == 6) {//chefao
+		else if (ent->getId() == 4 || ent->getId() == 6 || ent->getId() == 7) {//inimigo
 			LIni.push_back(static_cast<Personagens::Inimigo*>(ent));
 		}
 

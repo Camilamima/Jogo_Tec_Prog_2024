@@ -15,6 +15,7 @@ namespace Obstaculos {
 		float getBooster()const { return booster; }
 		int getTimer()const { return timer; }
 		void setBooster(float boost) { booster = boost; }
+		virtual json salvar() const;
 
 	};
 }

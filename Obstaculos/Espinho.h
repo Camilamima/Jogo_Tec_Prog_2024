@@ -12,6 +12,13 @@ namespace Obstaculos {
 		~Espinho();
 		Personagens::Slime* getpJogador() { return pJogador; }
 		void executar();
+		int getEspinhos() const {
+			return num_espinhos;
+		}
+		void setEspinhos(int e) {
+			num_espinhos = e;
+		}
 		void obstacular(Personagens::Slime* jogador);
+		virtual json salvar() const;
 	};
 }

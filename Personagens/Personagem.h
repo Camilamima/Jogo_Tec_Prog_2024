@@ -15,12 +15,11 @@ namespace Personagens {
         bool moviE;
         float velocidadeY;
         float velocidadeX;
-        static const float gravidade;
 
     public:
         Personagem(int id, const char* png);
         ~Personagem();
-        bool verificaVida() const{ return vidas > 0; }
+        const bool verificaVida() const{ return vidas > 0; }
         virtual void mover(float aux) = 0;
         virtual void executar() = 0;
         void setVidas(int vid);
@@ -34,8 +33,10 @@ namespace Personagens {
         float getVelocidadeX();
         float getVelocidadeY();
         float atualizaDelta();
+        const bool getnoChao() const {return noChao;}
         void setChao(float a) { chao = a; }
         void setNoChao(float Xao) { noChao = Xao; }
+        virtual json salvar() const = 0;
     };
 
 }

@@ -47,5 +47,10 @@ namespace Personagens {
 		float getPosInicial() { return pos_inicial; }
 		int getFinalZona() { return finalZona; }
 		int getIniZona() { return iniZona; }
+
+		json salvar()const {
+			json aux;
+			return aux;
+		}
 	};
 }

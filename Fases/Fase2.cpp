@@ -25,6 +25,7 @@ namespace Fases {
 
 	void Fase2::inicializa() {
 
+		num_fase = 2;
 		/* Tirado gera Plataforma e geraInimigos, qualquer coisda descomentar */
 		//geraPlataformaFase();
 		geraChao();
@@ -93,7 +94,7 @@ namespace Fases {
 				listaEntidades.Incluir(p, &gerentC);
 			}
 			else {
-				Obstaculos::Acelerador* M = new Obstaculos::Acelerador(3);
+				Obstaculos::Acelerador* M = new Obstaculos::Acelerador(8);
 				M->setCoordenadas((float)i * 400, 800);
 				M->setCorpo(400, 130);
 				listaEntidades.Incluir(M, &gerentC);

@@ -10,6 +10,8 @@ namespace Personagens {
         //sprite.loadFromFile();
         //corpo.setTexture(&sprite);
         corpo.setTextureRect(IntRect(65, 59, 70, 71));
+
+        tempo = 0;
         ladoAtaque = 0;
         vidas=10;
         seguindo = 0;
@@ -40,14 +42,14 @@ namespace Personagens {
         xJog = aux.getPosition().x + (aux.getSize().x / 2);
         yJog = aux.getPosition().y + (aux.getSize().y / 2);
 
-        // Calculando a diferenÁa entre as posiÁıes (dist‚ncia entre os pontos)
+        // Calculando a diferen√ßa entre as posi√ß√µes (dist√¢ncia entre os pontos)
         float dx = xJog - x;
         float dy = yJog - y;
 
-        // Calculando a dist‚ncia euclidiana
+        // Calculando a dist√¢ncia euclidiana
         float distancia = std::sqrt(dx * dx + dy * dy);
 
-        // Verificando se a dist‚ncia est· dentro do raio de 130
+        // Verificando se a dist√¢ncia est√° dentro do raio de 130
         return distancia <= 400;
     }
 
@@ -160,11 +162,12 @@ namespace Personagens {
 
         cont++;
 
+        tempo = turnos.getElapsedTime().asSeconds();
         
         if (verificaVida()) {
 
             if (atacando) {
-                if (turnos.getElapsedTime().asSeconds() >= 1.5) {
+                if (tempo >= 1.5) {
                     if (ladoAtaque) {
                         xIni = xIni + 50;
                         ladoAtaque = 0;
@@ -188,5 +191,23 @@ namespace Personagens {
             }
             pGGrafico->desenha(corpo);
         }
+    }
+    json Cachorro::salvar() const {
+        json entidadeJson;
+        entidadeJson["id"] = id;
+        entidadeJson["x"] = corpo.getPosition().x;
+        entidadeJson["y"] = corpo.getPosition().y;
+        entidadeJson["velocidadeY"] = velocidadeY;
+        entidadeJson["velocidadeX"] = velocidadeX;
+        entidadeJson["noChao"] = noChao;
+		entidadeJson["chao"] = chao;    
+        entidadeJson["vidas"] = vidas;
+        entidadeJson["atacando"] = atacando;
+        entidadeJson["cont"] = cont;
+        entidadeJson["seguindo"] = seguindo;
+        entidadeJson["ladoAtaque"] = ladoAtaque;
+        entidadeJson["val"] = val;
+        entidadeJson["turnos"] = tempo;
+        return entidadeJson;
     }
 }

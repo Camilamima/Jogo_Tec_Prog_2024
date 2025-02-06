@@ -1,12 +1,15 @@
 #include "Fase.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <fstream> 
+
 
 using namespace sf;
 using namespace std;
 
 namespace Fases {
 	Fase::Fase():
+		num_fase(-1),
 		Slime1(1),
 		Slime2(2),
 		listaEntidades(),
@@ -28,7 +31,7 @@ namespace Fases {
 	}
 
 	void Fase::limpaVec() {
-		localizacao_obs.clear();
+     localizacao_obs.clear();
 	}
 
 	const bool Fase::checaLocaliza(float x,int ver) const {
@@ -102,11 +105,10 @@ namespace Fases {
 			numeros[posicao] = 1;
 		}
 
-
 		//tamanho fase: 14400, 1400/144=100 cada espinho
 		for (int i = 0; i < 144; i++) {
 			if (numeros[i] != 0 && i > 3) {
-				Obstaculos::Espinho* p = new Obstaculos::Espinho(3);
+				Obstaculos::Espinho* p = new Obstaculos::Espinho(9);
 				p->setCoordenadas((float)i * 100, 700);
 				p->setCorpo(100, 70);
 				listaEntidades.Incluir(p, &gerentC);
@@ -135,11 +137,11 @@ namespace Fases {
 	void Fase::TipoPlataforma(int tipo,float x){
 
 		if (tipo == 1) {
-			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3);
+			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3,"assets/Tiles.png");
 			p->geraPlataforma(300, 200, x, 460);
 			
 			listaEntidades.Incluir(p, &gerentC);
-			Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3);
+			Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3,"assets/Tiles.png");
 			p2->geraPlataforma(100, 600, x+10, 460);
 			listaEntidades.Incluir(p2, &gerentC);
 
@@ -147,16 +149,16 @@ namespace Fases {
 			localizacao_obs.push_back((int)x+100);
 		}
 		else if (tipo == 2) {
-			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3);
+			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/Tiles.png");
 			p->geraPlataforma(150, 100, x, 610);
 			listaEntidades.Incluir(p, &gerentC);
 			localizacao_obs.push_back((int)x);
 		}
 		else if (tipo == 3) {
-			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3);
+			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/Tiles.png");
 			p->geraPlataforma(200, 300, x, 560);
 			listaEntidades.Incluir(p, &gerentC);
-			Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3);
+			Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/Tiles.png");
 			p2->geraPlataforma(100, 200, x+200, 460);
 			listaEntidades.Incluir(p2, &gerentC);
 			localizacao_obs.push_back((int)x);
@@ -164,11 +166,11 @@ namespace Fases {
 			localizacao_obs.push_back((int)x+200);
 		}
 		else if (tipo == 4) {
-			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3);
+			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/Tiles.png");
 			p->geraPlataforma(200, 100, x, 560);
 			listaEntidades.Incluir(p, &gerentC);
-			Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3);
-			p2->geraPlataforma(100, 400, x - 150, 520);
+			Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/Tiles.png");
+			p2->geraPlataforma(100, 400, x - 50, 520);
 			listaEntidades.Incluir(p2, &gerentC);
 			localizacao_obs.push_back((int)x);
 		}
@@ -186,10 +188,11 @@ namespace Fases {
 		if (gerentC.getJogador2() != nullptr)
 			qnt_jogadores = 2;
 
-			
 			gerent->arrumaCamera(checaZona());
 
 			gerent->clear();
+			gerent->desenha();
+			//gerent->BackGFloresta();
 			listaEntidades.Percorrer(&gerentC);//executar de td
 
 			/*if (Slime1.getVidas() <= 0 && apareceu1 == false) {
@@ -227,7 +230,32 @@ namespace Fases {
 					gerent->window.close();
 				}
 			}
-			gerent-> mostrar();
+			gerent->mostrar();
+			
 		
+	}
+
+	void Fase::salvaFase() {
+		vector<Entidade*> vec = listaEntidades.returnVec();
+
+		json jsonData;//Json pra juntar tudo
+		int i;
+		jsonData["Fase"] = num_fase;
+		jsonData["zona"] = zona_atual;
+		jsonData["jogadores"] = qnt_jogadores;
+
+		jsonData["entidades"] = json::array();
+		for (i = 0; i < vec.size(); i++) {
+
+			jsonData["entidades"].push_back(vec[i]->salvar());
+
+		}
+
+		std::ofstream outFile("Save/fase.json");
+		outFile << jsonData.dump(4);  // "4" para indentação legível
+		outFile.close();  // Fecha o arquivo
+
+		std::cout << "Fase salva com sucesso!" << std::endl;
+
 	}
 }

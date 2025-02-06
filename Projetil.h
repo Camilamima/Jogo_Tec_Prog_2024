@@ -49,4 +49,8 @@ public:
 	void animacao(int limite);
 	void setChao(float x) { chao = x; }
 	void setXY(float x1, float y1) { posX = x1; posY = y1; }
+	json salvar() const {
+		json aux;
+		return aux;
+	};
 };
