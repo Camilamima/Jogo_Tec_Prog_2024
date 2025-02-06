@@ -1,44 +1,19 @@
-#pragma once
-#include "../Personagens/Slime.h"
-#include <stdio.h>
-#include "../Obstaculos/Plataforma.h"
-#include "../Obstaculos/Espinho.h"
-#include "../Obstaculos/SlimeMau.h"
-#include "../Obstaculos/Acelerador.h"
-#include "../Personagens/Rato.h"
-#include "../Gerenciadores/Gerenciador_Colisoes.h"
-#include "../Listas/ListaEntidades.h"
+
+#include "Fase.h"
 
 namespace Fases {
-	class Fase1 {
-
+	class Fase1 : public Fase
+	{
 	private:
-		int tamanho_fase;
-		int tamanho_zona;
-		int zona_atual;
-		Gerenciadores::Gerenciador_Colisoes gerentC;
-		Gerenciadores::Gerenciado_Grafico gerent;
-		Personagens::Slime Slime1;
-		Personagens::Slime Slime2;
-		Obstaculos::Plataforma chao;
-		Obstaculos::Plataforma ladoE;
-
-
-
-		/*Plataforma plat2;
-		Plataforma plat3;
-		Espinho esp;
-		SlimeMau obst_facil;
-		Acelerador booster;
-		Rato ratinho;*/
-		Listas::ListaEntidade listaEntidades;
-
+		int num_dificil;
+		int obsFacil;
 	public:
 		Fase1();
+		Fase1(const json& dados, Gerenciadores::Gerenciado_Grafico* gC);
 		~Fase1();
-		float checaZona();
-		void executar();
+		void inicializa();
 		void geraChao();
-		void geraEspinho();
+		void geraInimigos();
 	};
 }
+

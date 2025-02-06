@@ -7,6 +7,9 @@ namespace Personagens {
     Cachorro::Cachorro(int id, const char* png) :
         Inimigo(id, png)
     {
+        tempo = 0;
+        ladoAtaque = 0;
+        vidas=10;
         seguindo = 0;
         atacando = 0;
         xIni = 0;
@@ -17,6 +20,8 @@ namespace Personagens {
         relogio.restart();
         setCorpo(100, 100);
         setMaldade(2);
+        cont = 0;
+        val = 0;
     }
 
     Cachorro::~Cachorro() {
@@ -68,6 +73,10 @@ namespace Personagens {
                 //esquerda
                 else if (xC - x > 0) {
                     if (moviE) {
+                        if (cont % 5 == 0) {
+                            animacao(1, 5);//1 eh esquerda e 
+                            val++;
+                        }
                         mover(atualizaDelta() * -velocidadeX);
                     }
                 }
@@ -75,6 +84,10 @@ namespace Personagens {
                 else {
                     if (moviD) {
                         mover(atualizaDelta() * velocidadeX);
+                        if (cont % 5 == 0) {
+                            animacao(2, 4);//1 eh esquerda e 
+                            val++;
+                        }
                     }
                 }
             }
@@ -92,9 +105,13 @@ namespace Personagens {
     }
 
     void Cachorro::atacar(int d) {
+
+        xIni = corpo.getPosition().x;
+        yIni = corpo.getPosition().y;
+
         //esquerda
         if (d == 1) {
-
+            ladoAtaque = 1;
             setTamanhoCorpo(corpo.getSize().x + 50, corpo.getSize().y);
             mover(-50);
             pGGrafico->desenha(corpo);
@@ -106,15 +123,44 @@ namespace Personagens {
             pGGrafico->desenha(corpo);
         }
     }
+    
+    void Cachorro::animacao(int num, int limite) {
+        if (val >= limite) {
+            val = 0;
+        }
+
+        if (num == 1) {//vai p esquerda
+            sprite.loadFromFile("assets/lobo/esquerda.png");
+            corpo.setTexture(&sprite);
+            corpo.setTextureRect(IntRect(100 * (val), 101, 100, 100));
+        }
+		else if (num == 2) {//vai p direita
+			sprite.loadFromFile("assets/lobo/direita.png");
+			corpo.setTexture(&sprite);
+			corpo.setTextureRect(IntRect(100 * (limite-val), 101, 100, 100));
+		}
+
+    }
 
     void Cachorro::executar() {
+
+        cont++;
+
+        tempo = turnos.getElapsedTime().asSeconds();
+        
         if (verificaVida()) {
+
             if (atacando) {
-                if (turnos.getElapsedTime().asSeconds() >= 1.5) {
-                    atacando = 0;
+                if (tempo >= 1.5) {
+                    if (ladoAtaque) {
+                        xIni = xIni + 50;
+                        ladoAtaque = 0;
+                    }
                     setCoordenadas(xIni, yIni);
-                    setTamanhoCorpo(100, 100);
+                    setCorpo(100, 100);
+                    atacando = 0;
                     turnos.restart();
+  
                 }
             }
             if (!noChao) {
@@ -122,5 +168,23 @@ namespace Personagens {
             }
             pGGrafico->desenha(corpo);
         }
+    }
+    json Cachorro::salvar() const {
+        json entidadeJson;
+        entidadeJson["id"] = id;
+        entidadeJson["x"] = corpo.getPosition().x;
+        entidadeJson["y"] = corpo.getPosition().y;
+        entidadeJson["velocidadeY"] = velocidadeY;
+        entidadeJson["velocidadeX"] = velocidadeX;
+        entidadeJson["noChao"] = noChao;
+		entidadeJson["chao"] = chao;    
+        entidadeJson["vidas"] = vidas;
+        entidadeJson["atacando"] = atacando;
+        entidadeJson["cont"] = cont;
+        entidadeJson["seguindo"] = seguindo;
+        entidadeJson["ladoAtaque"] = ladoAtaque;
+        entidadeJson["val"] = val;
+        entidadeJson["turnos"] = tempo;
+        return entidadeJson;
     }
 }

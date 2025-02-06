@@ -11,5 +11,6 @@ namespace Obstaculos {
 		Personagens::Slime* getpJogador() { return pJogador; }
 		void executar();
 		void obstacular(Personagens::Slime* jogador);
+		virtual json salvar() const;
 	};
 }

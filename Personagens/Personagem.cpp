@@ -50,6 +50,4 @@ namespace Personagens {
 
 		return deltaTimeAtual;
 	}
-
-	const float Personagem::gravidade = 9.8f;
 }

@@ -4,6 +4,7 @@
 #include "../Personagens/Inimigo.h"
 #include "../Personagens/Slime.h"
 #include "../Entidade.h"
+#include "../Projetil.h"
 
 using namespace std;
 
@@ -13,6 +14,7 @@ namespace Gerenciadores {
 	private:
 		list<Obstaculos::Obstaculo*> LObst;
 		list<Personagens::Inimigo*> LIni;
+		list<Projetil*> LProjetil;
 		Personagens::Slime *jog1;
 		Personagens::Slime *jog2;
 	public:
@@ -26,7 +28,9 @@ namespace Gerenciadores {
 		int veriColisao(Entidade* ent,Entidade* sl);
 		void verificaObs();
 		void verificaIni();
+		void veriProjetil();
 		void verificaObsIni();
+		void verificaObsProjetil();
 		void executar();
 	};
 }

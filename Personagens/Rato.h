@@ -9,8 +9,10 @@ namespace Personagens {
 	public:
 		Rato(int id, const char* png = "ratinho.png");
 		~Rato();
+		void setDistancia(int d) { distancia_percorrida = d; }
 		void calculaDis();
 		void executar();
+		json salvar() const;
 
 	};
 }

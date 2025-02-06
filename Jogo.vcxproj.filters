@@ -1,146 +1,67 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Arquivos de Origem">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Arquivos de Cabeçalho">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Arquivos de Recurso">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="Fases\Fase2.cpp" />
+    <ClCompile Include="Fases\Fase1.cpp" />
+    <ClCompile Include="Obstaculos\Acelerador.cpp" />
+    <ClCompile Include="Personagens\Cachorro.cpp" />
+    <ClCompile Include="Ente.cpp" />
+    <ClCompile Include="Entidade.cpp" />
+    <ClCompile Include="Obstaculos\Espinho.cpp" />
+    <ClCompile Include="Fases\Fase.cpp" />
+    <ClCompile Include="Gerenciadores\Gerenciador_Colisoes.cpp" />
+    <ClCompile Include="Gerenciadores\Gerenciado_Grafico.cpp" />
+    <ClCompile Include="Personagens\Chefao.cpp" />
+    <ClCompile Include="Personagens\Efeitos.cpp" />
+    <ClCompile Include="Personagens\Inimigo.cpp" />
+    <ClCompile Include="Jogo.cpp" />
+    <ClCompile Include="Listas\ListaEntidades.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Obstaculos\Obstaculo.cpp" />
+    <ClCompile Include="Personagens\Personagem.cpp" />
+    <ClCompile Include="Obstaculos\Plataforma.cpp" />
+    <ClCompile Include="Projetil.cpp" />
+    <ClCompile Include="Personagens\Rato.cpp" />
+    <ClCompile Include="Personagens\Slime.cpp" />
+    <ClCompile Include="Obstaculos\SlimeMau.cpp" />
+    <ClCompile Include="Menu.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Jogo.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="Gerenciadores\Gerenciado_Grafico.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="Entidade.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="Ente.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="Personagens\Personagem.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="Personagens\Slime.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="Obstaculos\Obstaculo.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="Obstaculos\Plataforma.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="Obstaculos\Espinho.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="Obstaculos\SlimeMau.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="Personagens\Inimigo.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="Personagens\Rato.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="Gerenciadores\Gerenciador_Colisoes.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="Listas\ListaEntidades.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="Fases\Fase1.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="Obstaculos\Acelerador.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
-    <ClCompile Include="Personagens\Cachorro.cpp">
-      <Filter>Arquivos de Origem</Filter>
-    </ClCompile>
+    <ClInclude Include="Fases\Fase2.h" />
+    <ClInclude Include="Fases\Fase1.h" />
+    <ClInclude Include="Obstaculos\Acelerador.h" />
+    <ClInclude Include="Personagens\Cachorro.h" />
+    <ClInclude Include="Ente.h" />
+    <ClInclude Include="Entidade.h" />
+    <ClInclude Include="Obstaculos\Espinho.h" />
+    <ClInclude Include="Fases\Fase.h" />
+    <ClInclude Include="Gerenciadores\Gerenciador_Colisoes.h" />
+    <ClInclude Include="Gerenciadores\Gerenciado_Grafico.h" />
+    <ClInclude Include="Personagens\Chefao.h" />
+    <ClInclude Include="Personagens\Efeitos.h" />
+    <ClInclude Include="Personagens\Inimigo.h" />
+    <ClInclude Include="Jogo.h" />
+    <ClInclude Include="Listas\Lista.h" />
+    <ClInclude Include="Listas\ListaEntidades.h" />
+    <ClInclude Include="Obstaculos\Obstaculo.h" />
+    <ClInclude Include="Personagens\Personagem.h" />
+    <ClInclude Include="Obstaculos\Plataforma.h" />
+    <ClInclude Include="Projetil.h" />
+    <ClInclude Include="Personagens\Rato.h" />
+    <ClInclude Include="Personagens\Slime.h" />
+    <ClInclude Include="Obstaculos\SlimeMau.h" />
+    <ClInclude Include="Menu.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Gerenciadores\Gerenciado_Grafico.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Jogo.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Entidade.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Ente.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Personagens\Personagem.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Personagens\Slime.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Obstaculos\Obstaculo.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Obstaculos\Plataforma.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Obstaculos\SlimeMau.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Obstaculos\Espinho.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Personagens\Inimigo.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Personagens\Rato.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Gerenciadores\Gerenciador_Colisoes.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Listas\Lista.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Listas\ListaEntidades.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Fases\Fase1.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Obstaculos\Acelerador.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
-    <ClInclude Include="Personagens\Cachorro.h">
-      <Filter>Arquivos de Cabeçalho</Filter>
-    </ClInclude>
+    <Image Include="assets\plataforma.png" />
+    <Image Include="assets\plataformateste.png" />
+    <Image Include="assets\pngegg.png" />
+    <Image Include="assets\ratinho.png" />
+    <Image Include="assets\slimemau.png" />
+    <Image Include="assets\Walking_KG_1 - Copia.png" />
+    <Image Include="assets\Walking_KG_1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="assets\pngegg.png">
-      <Filter>Arquivos de Recurso</Filter>
-    </Image>
-    <Image Include="assets\ratinho.png">
-      <Filter>Arquivos de Recurso</Filter>
-    </Image>
-    <Image Include="assets\slimemau.png">
-      <Filter>Arquivos de Recurso</Filter>
-    </Image>
-    <Image Include="assets\plataformateste.png">
-      <Filter>Arquivos de Recurso</Filter>
-    </Image>
-    <Image Include="assets\plataforma.png">
-      <Filter>Arquivos de Recurso</Filter>
-    </Image>
+    <Font Include="assets\ARIAL.TTF" />
   </ItemGroup>
 </Project>

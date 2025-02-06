@@ -12,10 +12,18 @@ namespace Gerenciadores {
 
 	Gerenciado_Grafico::~Gerenciado_Grafico() {
 	}
+	
+	void Gerenciado_Grafico::BackGFloresta() {
+		Fundo.loadFromFile("assets/floresta.png");
+		sprite.setTexture(Fundo);
+
+	}
 
 	void Gerenciado_Grafico::arrumaCamera(float x) {
 		camera = View(sf::FloatRect(x, 0, 1800, 900));
 		window.setView(camera);
+		sprite.setPosition(camera.getCenter().x - 900, camera.getCenter().y - 450);
+		
 	}
 
 	const bool Gerenciado_Grafico::estaAberta() const {
@@ -24,6 +32,11 @@ namespace Gerenciadores {
 
 	void Gerenciado_Grafico::desenha(const RectangleShape& retangulo) {
 		window.draw(retangulo);
+	}
+	
+	void Gerenciado_Grafico::desenha() {
+
+		window.draw(sprite);
 	}
 
 	void Gerenciado_Grafico::mostrar() {

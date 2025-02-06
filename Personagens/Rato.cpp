@@ -9,9 +9,8 @@ namespace Personagens {
 		Inimigo(id, png)
 	{
 		setVelocidae(150, 0);
-		setCoordenadas(450, 775);
 		relogio.restart();
-		setCorpo(150, 150);
+		setCorpo(100, 100);
 		distancia_percorrida = 0;
 		setMaldade(1);
 	}
@@ -48,5 +47,19 @@ namespace Personagens {
 			pGGrafico->desenha(corpo);
 		}
 
+	}
+
+	json Rato::salvar()const {
+	
+		json entidadeJson;
+		entidadeJson["id"] = id;
+		entidadeJson["x"] = corpo.getPosition().x;
+		entidadeJson["y"] = corpo.getPosition().y;
+		entidadeJson["velocidadeY"] = velocidadeY;
+		entidadeJson["velocidadeX"] = velocidadeX;
+		entidadeJson["noChao"] = noChao;
+		entidadeJson["vidas"] = vidas;
+		entidadeJson["distancia_percorrida"] = distancia_percorrida;
+		return entidadeJson;
 	}
 }
