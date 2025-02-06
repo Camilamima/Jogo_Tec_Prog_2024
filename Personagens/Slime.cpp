@@ -20,13 +20,30 @@ namespace Personagens {
 		relogio.restart();
 		impulso = -1;
 
+		//setCorpo(62, 100);
+		vidas = 25;
 		setCorpo(50, 100);
-
 		val = 0;
 		cont = 0;
 		morrendo = false;
+		
+		if (id == 1) {
+			setCorpo(87.35, 100.0);
+			sprite.loadFromFile("assets/jog1/Jump.png");
+			corpo.setTexture(&sprite);
+			corpo.setTextureRect(IntRect(868, 0, 56, 64));
+		}
+		else if (id == 2) {
+			setCorpo(88.5, 100.0);
+			sprite.loadFromFile("assets/jog2/Jump.png");
+			corpo.setTexture(&sprite);
+			corpo.setTextureRect(IntRect(21, 0, 54, 71));
 
-		setCorpo(100, 100);
+		}
+			
+		
+		//setCorpo(100, 100);
+		//vidas = 200;
 		vidas =	100;
 	}
 
@@ -38,10 +55,8 @@ namespace Personagens {
 
 		if (!noChao)
 		{
-			if (cont % 10 == 0) {
-				val++;
 				animacaoJog(3, 3);
-			}
+
 
 			velocidadeY += static_cast<float>(gravidade) * atualizaDelta();
 			if ((corpo.getPosition().y + velocidadeY) >= chao) {
@@ -122,7 +137,7 @@ namespace Personagens {
 					if (moviD == 1) {
 						dPress = 1;
 						aPress = 0;
-						if (cont % 10 == 0) {
+						if (cont % 5 == 0) {
 							val++;
 							animacaoJog(1, 7);
 						}
@@ -135,9 +150,9 @@ namespace Personagens {
 					if (moviE == 1) {
 						aPress = 1;
 						dPress = 0;
-						if (cont % 10 == 0) {
-							val++;
-							animacaoJog(2, 7);
+						if (cont % 5 == 0) {
+							val--;
+								animacaoJog(2, 7);//antes era 7
 						}
 						mover(atualizaDelta() * -velocidadeX);
 						clicado = 1;
@@ -162,9 +177,10 @@ namespace Personagens {
 
 			if (clicado == 0) {
 				mover(0);
-				if (cont % 15 == 0) {
+				if (cont % 10 == 0) {
 					val++;
-					animacaoJog(0, 8);
+					animacaoJog(0, 9);//era 8
+				
 				}
 			}
 		}
@@ -207,9 +223,9 @@ namespace Personagens {
 					if (moviD == 1) {
 						dPress = 1;
 						aPress = 0;
-						if (cont % 10 == 0) {
+						if (cont % 5 == 0) {
 							val++;
-							animacaoJog(1, 7);
+								animacaoJog(1, 6);
 						}
 						mover(atualizaDelta() * velocidadeX);
 						clicado = 1;
@@ -219,9 +235,9 @@ namespace Personagens {
 					if (moviE == 1) {
 						aPress = 1;
 						dPress = 0;
-						if (cont % 10 == 0) {
-							val++;
-							animacaoJog(2, 7);
+						if (cont % 5 == 0) {
+							val--;
+								animacaoJog(2, 6);
 						}
 						mover(atualizaDelta() * -velocidadeX);
 						clicado = 1;
@@ -246,9 +262,15 @@ namespace Personagens {
 
 			if (clicado == 0) {
 				mover(0);
-				if (cont % 15 == 0) {
+				if (cont % 10 == 0) {
 					val++;
-					animacaoJog(0, 8);
+					if (getId() == 1) {
+						animacaoJog(0, 9);//era 8
+					}
+					else {
+						animacaoJog(0, 7);
+					}
+					
 				}
 			}
 		}
@@ -288,75 +310,125 @@ namespace Personagens {
 		if (val >= limite) {
 			val = 0;
 		}
+		if (val == -1) {
+			val = limite-1;
+		}
+		
 		if (getId() == 1) {//se for o jogador 1
+
 			if (num == 0) {//parado
 				if (dPress) {
-					sprite.loadFromFile("assets/Jogador1/parado.png");
+					//sprite.loadFromFile("assets/Jogador1/parado.png");
+					sprite.loadFromFile("assets/jog1/Idle.png");
 				}
 				else if (aPress) {
-					sprite.loadFromFile("assets/Jogador1/parado esq.png");
+					sprite.loadFromFile("assets/jog1/Idle esquerda.png");
 				}
 				corpo.setTexture(&sprite);
-				corpo.setTextureRect(IntRect(50 * val, 0, 50, 100));
+				corpo.setTextureRect(IntRect(36 + (128 * val), 0, 56, 64));//50*val,0,50,100
+				//setSoCorpo(74.87, 100);
 			}
 			else if (num == 1) {//andar direita
-				sprite.loadFromFile("assets/jogador1/andar direita.png");
+				//sprite.loadFromFile("assets/jogador1/andar direita.png");
+				sprite.loadFromFile("assets/jog1/Run.png");
 				corpo.setTexture(&sprite);
-				corpo.setTextureRect(IntRect(50 * val, 0, 50, 100));
+				corpo.setTextureRect(IntRect(36+(128 * val), 0, 56, 64));
+				//setSoCorpo(74.87, 100);
 			}
 			else if (num == 2) {
-				sprite.loadFromFile("assets/jogador1/andar esquerda.png");
+				sprite.loadFromFile("assets/jog1/Run esquerda.png");
 				corpo.setTexture(&sprite);
-				corpo.setTextureRect(IntRect(50 * val, 0, 50, 100));
+				corpo.setTextureRect(IntRect(36 + (128 * val), 0, 56, 64));
+				//setSoCorpo(74.87, 100);
 			}
 			else if (num == 3) {//caindo
 				if (dPress) {
-					sprite.loadFromFile("assets/jogador1/caiu.png");
+					sprite.loadFromFile("assets/jog1/Jump.png");
+					
+					//sprite.loadFromFile("assets/jogador1/caiu.png");
+					corpo.setTexture(&sprite);
+					corpo.setTextureRect(IntRect(868, 0, 56, 64));
 				}
 				else if (aPress)
 				{
-					sprite.loadFromFile("assets/jogador1/caiu esq.png");
+					sprite.loadFromFile("assets/jog1/Jump esquerda.png");
+					//sprite.loadFromFile("assets/jogador1/caiu esq.png");
+					corpo.setTexture(&sprite);
+					corpo.setTextureRect(IntRect(292, 0, 56, 64));
+				}
+				//corpo.setTexture(&sprite);
+				//corpo.setTextureRect(IntRect(50 * val, 0, 50, 100));
+				
+				//setSoCorpo(87.35, 100.0);
+			}
+			else if (num == 4) {//sendo atacado
+				if (dPress) {
+					sprite.loadFromFile("assets/jog1/Hurt.png");
+				}
+				else if (aPress) {
+					sprite.loadFromFile("assets/jog1/Hurt esquerda.png");
 				}
 				corpo.setTexture(&sprite);
-				corpo.setTextureRect(IntRect(50 * val, 0, 50, 100));
+				corpo.setTextureRect(IntRect(36, 0, 56, 64));
 			}
 		}
 
 		if (getId() == 2) {
 			if (num == 0) {//parado
 				if (dPress) {
-					sprite.loadFromFile("assets/Jogador2/parado.png");
+					//sprite.loadFromFile("assets/Jogador1/parado.png");
+					sprite.loadFromFile("assets/jog2/Idle.png");
 				}
 				else if (aPress) {
-					sprite.loadFromFile("assets/Jogador2/parado esq.png");
+					sprite.loadFromFile("assets/jog2/Idle esquerda.png");
 				}
 				corpo.setTexture(&sprite);
-				corpo.setTextureRect(IntRect(50 * val, 0, 50, 100));
+				corpo.setTextureRect(IntRect(21+(96 * val), 0, 54, 71));//50*val,0,50,100
+				//setSoCorpo(53.49, 100.0);
 			}
 			else if (num == 1) {//andar direita
-				sprite.loadFromFile("assets/jogador2/andar direita.png");
+				//sprite.loadFromFile("assets/jogador1/andar direita.png");
+				sprite.loadFromFile("assets/jog2/Run.png");
 				corpo.setTexture(&sprite);
-				corpo.setTextureRect(IntRect(50 * val, 0, 50, 100));
+				corpo.setTextureRect(IntRect(21+(96 * val), 0, 54, 71));
+				//setSoCorpo(149.29, 100.0);
 			}
 			else if (num == 2) {
-				sprite.loadFromFile("assets/jogador2/andar esquerda.png");
+				sprite.loadFromFile("assets/jog2/Run esquerda.png");
 				corpo.setTexture(&sprite);
-				corpo.setTextureRect(IntRect(50 * val, 0, 50, 100));
+				corpo.setTextureRect(IntRect(21 + (96 * val), 0, 54, 71));
+				//setSoCorpo(149.29, 100.0);
 			}
 			else if (num == 3) {//caindo
 				if (dPress) {
-					sprite.loadFromFile("assets/jogador2/caiu.png");
+					sprite.loadFromFile("assets/jog2/Jump.png");
+
+					//sprite.loadFromFile("assets/jogador1/caiu.png");
+					corpo.setTexture(&sprite);
+					corpo.setTextureRect(IntRect(21, 0, 54, 71));
 				}
 				else if (aPress)
 				{
-					sprite.loadFromFile("assets/jogador2/caiu esq.png");
+					sprite.loadFromFile("assets/jog2/Jump esquerda.png");
+					//sprite.loadFromFile("assets/jogador1/caiu esq.png");
+					corpo.setTexture(&sprite);
+					corpo.setTextureRect(IntRect(21, 0, 54, 71));
+				}
+			}
+			else if (num == 4) {//sendo atacado
+				if (dPress) {
+					sprite.loadFromFile("assets/jog2/Hurt.png");
+				}
+				else if (aPress) {
+					sprite.loadFromFile("assets/jog2/Hurt esquerda.png");
 				}
 				corpo.setTexture(&sprite);
-				corpo.setTextureRect(IntRect(50 * val, 0, 50, 100));
+				corpo.setTextureRect(IntRect(21, 0, 54, 71));
 			}
-		
+
 		}
 	}
+
 	bool Slime::animacaoMorte(int cont, int limite) {
 		bool fim = 0;
 

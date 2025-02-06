@@ -16,7 +16,7 @@ namespace Obstaculos {
 		setCorpo(78.0, 100.0);
 		timer = 0;
 
-		time_t tempo;//usei isso da prova de POO s73 1 sem23 do prof Simão
+		time_t tempo;//usei isso da prova de POO s73 1 sem23 do prof SimÃ£o
 
 		srand((unsigned)time(&tempo));//isso tbm
 		num_espinhos = (int)(rand() % 10);//isso tbm
@@ -56,6 +56,13 @@ namespace Obstaculos {
 		entidadeJson["num_espinhos"]= num_espinhos;
 
 
+	if (timer % 50 == 0) {
+		jogador->animacaoJog(4, 1);
+		jogador->operator*=(num_espinhos);
+		std::cout << "Vidas depois: " << jogador->getVidas() << std::endl;
+  }
+
 		return entidadeJson;
+
 	}
 }

@@ -18,7 +18,7 @@ namespace Personagens {
         bool ladoAtaque;
         float tempo;
     public:
-        Cachorro(int id, const char* png = "");
+        Cachorro(int id, const char* png = "assets/espadachim/Attack1.png");
         ~Cachorro();
         void executar();
         const bool deveSeguir(Slime* jog) const;
