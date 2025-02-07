@@ -5,12 +5,14 @@
 namespace Fases {
 
     Fase1::Fase1() :
+        Fase(),
         num_dificil(-1),
         obsFacil(-1)
     {
     }
 
     Fase1::Fase1(const json& dados, Gerenciadores::Gerenciado_Grafico* gC) :
+        Fase(),
         num_dificil(-1),
         obsFacil(-1)
     {
@@ -92,6 +94,7 @@ namespace Fases {
                 c->setTempo(entidade["turnos"]);
                 c->setAtacando(entidade["atacando"]);
                 c->setChao(entidade["chao"]);
+                c->setYeXini(entidade["xIni"], entidade["yIni"]);
             }
             else if (id == 11) {
                 Obstaculos::SlimeMau* M = new Obstaculos::SlimeMau(11);
@@ -108,7 +111,7 @@ namespace Fases {
             }
         }
 
-        // Add player characters last to ensure they are rendered on top
+
         listaEntidades.Incluir(&Slime1, &gerentC);
         if (qnt_jogadores == 2) {
             listaEntidades.Incluir(&Slime2, &gerentC);
@@ -127,33 +130,21 @@ namespace Fases {
         obsFacil = -1;
         geraPlataformaFase();
         geraChao();
-        geraEspinho();
+        //geraEspinho();
         geraInimigos();
+        
 
-        /*==== setando numero de jogadores ====*/
-        int num_jogadores;
 
-        std::cout << "Para 1 jogador tecle 1" << std::endl;
-        std::cout << "Para 2 jogadores tecle 2" << std::endl;
-        //cin >> num_jogadores;
-        num_jogadores = 1;
-
-        if (num_jogadores == 1) {
+        if (qnt_jogadores == 1) {
             std::cout << " Selecionado 1 jogador! " << std::endl;
             gerentC.setJogadores(&Slime1, nullptr);
             listaEntidades.Incluir(&Slime1, &gerentC);
         }
-        if (num_jogadores == 2) {
+        if (qnt_jogadores == 2) {
             std::cout << " Selecionado 2 jogadores! " << std::endl;
             gerentC.setJogadores(&Slime1, &Slime2);
             listaEntidades.Incluir(&Slime1, &gerentC);
             listaEntidades.Incluir(&Slime2, &gerentC);
-        }
-        if (num_jogadores != 1 && num_jogadores != 2) {
-            std::cout << "Numero invalido de jogadores!" << std::endl;
-            std::cout << "Selecionado 1 jogador!" << std::endl;
-            gerentC.setJogadores(&Slime1, nullptr);
-            listaEntidades.Incluir(&Slime1, &gerentC);
         }
 
         /*=== Colocando elementos constantes na lista ===*/
@@ -164,7 +155,7 @@ namespace Fases {
         listaEntidades.setGG(gerent);
 
         /*==== gerando plataforma fixas ====*/
-        ladoE.geraPlataforma(900, 40, 0, 0);
+        ladoE.geraPlataforma(900, 40, -40, 0);
         chao.geraPlataforma(40, (float)tamanho_fase, 0, 900);
     }
 

@@ -1,3 +1,4 @@
+#pragma once
 #include <stdio.h>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>

@@ -1,5 +1,6 @@
 #include "Slime.h"
 #include <iostream>
+#include "Inimigo.h"
 
 
 using namespace std;
@@ -28,7 +29,7 @@ namespace Personagens {
 		morrendo = false;
 		
 		if (id == 1) {
-			setCorpo(87.35, 100.0);
+			setCorpo(87.35f, 100.0f);
 			sprite.loadFromFile("assets/jog1/Jump.png");
 			corpo.setTexture(&sprite);
 			corpo.setTextureRect(IntRect(868, 0, 56, 64));
@@ -58,7 +59,7 @@ namespace Personagens {
 				animacaoJog(3, 3);
 
 
-			velocidadeY += static_cast<float>(gravidade) * atualizaDelta();
+			velocidadeY += static_cast<float>(gravidade) * atualizaDelta(relogio);
 			if ((corpo.getPosition().y + velocidadeY) >= chao) {
 				velocidadeY = chao - corpo.getPosition().y;
 			}
@@ -94,7 +95,7 @@ namespace Personagens {
 
 	void Slime::pular(float imp) {
 		impulso = imp;
-		velocidadeY = -impulso * atualizaDelta();
+		velocidadeY = -impulso * atualizaDelta(relogio);
 		noChao = 0;
 	}
 
@@ -113,7 +114,7 @@ namespace Personagens {
 
 				if (!ladoAtacado) {
 					if (moviE == 1) {
-						mover(atualizaDelta() * -300);
+						mover(atualizaDelta(relogio) * -300);
 					}
 					else {
 						mover(0);
@@ -123,7 +124,7 @@ namespace Personagens {
 				else if (ladoAtacado) {
 
 					if (moviD == 1) {
-						mover(atualizaDelta() * +300);
+						mover(atualizaDelta(relogio) * +300);
 					}
 					else {
 						mover(0);
@@ -141,7 +142,7 @@ namespace Personagens {
 							val++;
 							animacaoJog(1, 7);
 						}
-						mover(atualizaDelta() * velocidadeX);
+						mover(atualizaDelta(relogio) * velocidadeX);
 						clicado = 1;
 					}
 				}
@@ -154,7 +155,7 @@ namespace Personagens {
 							val--;
 								animacaoJog(2, 7);//antes era 7
 						}
-						mover(atualizaDelta() * -velocidadeX);
+						mover(atualizaDelta(relogio) * -velocidadeX);
 						clicado = 1;
 					}
 				}
@@ -200,7 +201,7 @@ namespace Personagens {
 
 				if (!ladoAtacado) {
 					if (moviE == 1) {
-						mover(atualizaDelta() * -300);
+						mover(atualizaDelta(relogio) * -300);
 					}
 					else {
 						mover(0);
@@ -210,7 +211,7 @@ namespace Personagens {
 				else if (ladoAtacado) {
 
 					if (moviD == 1) {
-						mover(atualizaDelta() * +300);
+						mover(atualizaDelta(relogio) * +300);
 					}
 					else {
 						mover(0);
@@ -227,7 +228,7 @@ namespace Personagens {
 							val++;
 								animacaoJog(1, 6);
 						}
-						mover(atualizaDelta() * velocidadeX);
+						mover(atualizaDelta(relogio) * velocidadeX);
 						clicado = 1;
 					}
 				}
@@ -239,7 +240,7 @@ namespace Personagens {
 							val--;
 								animacaoJog(2, 6);
 						}
-						mover(atualizaDelta() * -velocidadeX);
+						mover(atualizaDelta(relogio) * -velocidadeX);
 						clicado = 1;
 					}
 				}
@@ -550,6 +551,13 @@ namespace Personagens {
 		}
 
 	}
+
+	void Slime::atacarIni(Personagem* ini) {
+		setAtacando(1);
+		pular(300);
+		--(*ini);
+	}
+
 	json Slime::salvar() const {
 		json entidadeJson;
 		entidadeJson["id"] = id;

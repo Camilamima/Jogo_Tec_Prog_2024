@@ -17,7 +17,7 @@ namespace Personagens {
 		if (!noChao)
 		{
 
-			velocidadeY += static_cast<float>(gravidade) * atualizaDelta();
+			velocidadeY += static_cast<float>(gravidade) * atualizaDelta(relogio);
 			if ((corpo.getPosition().y + velocidadeY) >= chao) {
 				velocidadeY = chao - corpo.getPosition().y;
 			}
@@ -35,5 +35,22 @@ namespace Personagens {
 
 	void Inimigo::setMaldade(int maldade) {
 		nivel_maldade = maldade;
+	}
+
+	void Inimigo::ataca(Slime* jog,int lado) {
+		if (lado == 2) {
+			if (!jog->getAtacado()) {
+				jog->operator*=(nivel_maldade*5);
+				jog->pular(300);
+				jog->setAtacado(1, 0);
+			}
+		}
+		else if (lado == 3) {
+			if (!jog->getAtacado()) {
+				jog->operator*=(nivel_maldade * 5);
+				jog->pular(300);
+				jog->setAtacado(1, 1);
+			}
+		}
 	}
 }

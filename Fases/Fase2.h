@@ -23,12 +23,13 @@ namespace Fases {
 	public:
 		Fase2();
 		~Fase2();
+		Fase2(const json& dados, Gerenciadores::Gerenciado_Grafico* gC);
 		void inicializa();
 		void geraChao();
 		void geraInimigos();
 		void geraChefao();
 		void geraProjeteis();
-		void executar() override;
+		//void executar() override;
 	};
 }
 

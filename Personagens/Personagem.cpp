@@ -39,7 +39,7 @@ namespace Personagens {
 		vidas--;
 	}
 
-	float Personagem::atualizaDelta() {
+	float Personagem::atualizaDelta(Clock relogio) {
 
 		float deltaTimeAtual = relogio.restart().asSeconds();
 		float minimoDeltaTime = 0.0667f;
