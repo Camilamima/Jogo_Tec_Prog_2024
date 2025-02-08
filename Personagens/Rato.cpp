@@ -8,6 +8,7 @@ namespace Personagens {
 	Rato::Rato(int id, const char* png) :
 		Inimigo(id, png)
 	{
+		vidas = 3;
 		setVelocidae(150, 0);
 		relogio.restart();
 		setCorpo(100, 100);
@@ -21,10 +22,10 @@ namespace Personagens {
 
 	void Rato::calculaDis() {
 		if (velocidadeX > 0) {
-			distancia_percorrida += velocidadeX * atualizaDelta();
+			distancia_percorrida += velocidadeX * atualizaDelta(relogio);
 		}
 		else {
-			distancia_percorrida += -velocidadeX * atualizaDelta();
+			distancia_percorrida += -velocidadeX * atualizaDelta(relogio);
 		}
 	}
 
@@ -41,14 +42,14 @@ namespace Personagens {
 				mover(0);
 			}
 			if (velocidadeX > 0 && moviD) {
-				mover(velocidadeX * atualizaDelta());
+				mover(velocidadeX * atualizaDelta(relogio));
 				if (cont % 5 == 0) {
 					//animacao(2, 5);//0 eh direita 
 					val--;
 				}
 			}
 			else if (velocidadeX < 0 && moviE) {
-				mover(velocidadeX * atualizaDelta());
+				mover(velocidadeX * atualizaDelta(relogio));
 				if (cont % 5 == 0) {
 					//animacao(1, 5);//1 eh esquerda e 
 					val++;
@@ -76,7 +77,6 @@ namespace Personagens {
 			corpo.setTexture(&sprite);
 			corpo.setTextureRect(IntRect(100 * (val), 101, 100, 100));
 		}
-
 	}
 
 	json Rato::salvar()const {

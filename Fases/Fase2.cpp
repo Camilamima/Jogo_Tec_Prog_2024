@@ -1,8 +1,10 @@
 #include "Fase2.h"
+#include "../Menu.h"
 
 namespace Fases {
 
 	Fase2::Fase2() :
+		Fase(),
 		//teste2(6),
 		//teste3(6),//chefao
 		/*p1(5),
@@ -20,6 +22,97 @@ namespace Fases {
 		num_projeteis(-1)
 	{
 		//gerent->BackGFloresta(2);
+	}
+
+	Fase2::Fase2(const json& dados, Gerenciadores::Gerenciado_Grafico* gC) :
+		Fase(),
+		num_obs2(-1),
+		num_chefoes(-1),
+		num_projeteis(-1)
+	{
+		num_fase = 2;
+		cout << "cheguei1" << endl;
+		setGerenciador(gC);
+		zona_atual = dados["zona"];
+		qnt_jogadores = dados["jogadores"];
+
+		if (qnt_jogadores == 1) {
+			std::cout << " Selecionado 1 jogador! " << std::endl;
+			gerentC.setJogadores(&Slime1, nullptr);
+		}
+		if (qnt_jogadores == 2) {
+			std::cout << " Selecionado 2 jogadores! " << std::endl;
+			gerentC.setJogadores(&Slime1, &Slime2);
+		}
+
+		int id;
+		float x, y;
+		cout << "cheguei2" << endl;
+		for (const auto& entidade : dados["entidades"]) {
+			if (entidade.is_null()) {
+				continue;
+			}
+			id = entidade["id"];
+			x = entidade["x"];
+			y = entidade["y"];
+
+			// Aqui você pode criar as entidades e configurá-las conforme necessário
+			if (id == 1) {
+				// Crie e configure um objeto Rato
+				Slime1.setCoordenadas(x, y);
+				Slime1.setCorpo(100, 100);
+				Slime1.setAtacado(entidade["atacado"], entidade["ladoAtacado"]);
+				Slime1.setAtacando(entidade["atacando"]);
+				Slime1.setChao(entidade["chao"]);
+				Slime1.setVidas(entidade["vidas"]);
+				Slime1.setVelocidae(entidade["velocidadeX"], entidade["velocidadeY"]);
+				Slime1.setChao(entidade["chao"]);
+				Slime1.setImpulso(entidade["impulso"]);
+
+			}
+			else if (id == 2) {
+				Slime2.setCoordenadas(x, y);
+				Slime2.setCorpo(100, 100);
+				Slime2.setAtacado(entidade["atacado"], entidade["ladoAtacado"]);
+				Slime2.setAtacando(entidade["atacando"]);
+				Slime2.setChao(entidade["chao"]);
+				Slime2.setVidas(entidade["vidas"]);
+				Slime2.setVelocidae(entidade["velocidadeX"], entidade["velocidadeY"]);
+				Slime2.setChao(entidade["chao"]);
+				Slime2.setImpulso(entidade["impulso"]);
+
+			}
+			else if (id == 3) {
+
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3);
+				listaEntidades.Incluir(p, &gerentC);
+				p->geraPlataforma(entidade["altura"], entidade["largura"], x, y);
+
+			}
+			else if (id == 4) {
+				Personagens::Rato* r = new Personagens::Rato(4);
+				listaEntidades.Incluir(r, &gerentC);
+				r->setCoordenadas(x, y);
+				r->setCorpo(100, 100);
+				r->setDistancia(entidade["distancia_percorrida"]);
+				r->setVidas(entidade["vidas"]);
+				r->setNoChao(entidade["noChao"]);
+			}
+			else if (id == 9) {
+				Obstaculos::Espinho* e = new Obstaculos::Espinho(9);
+				e->setCoordenadas(x, y);
+				e->setCorpo(100, 70);
+				e->setEspinhos(entidade["num_espinhos"]);
+				listaEntidades.Incluir(e, &gerentC);
+			}
+			//adicionar aqui outros ids
+		}
+		listaEntidades.Incluir(&Slime1, &gerentC);
+		if (qnt_jogadores == 2) {
+			listaEntidades.Incluir(&Slime2, &gerentC);
+		}
+
+		listaEntidades.setGG(gerent);
 	}
 
 	Fase2::~Fase2() {}
@@ -168,7 +261,7 @@ namespace Fases {
 
 		num_fase = 2;
 		/* Tirado gera Plataforma e geraInimigos, qualquer coisda descomentar */
-		//geraPlataformaFase();
+		geraPlataformaFase();
 		geraChao();
 		geraChefao();
 		geraEspinho();
@@ -176,29 +269,17 @@ namespace Fases {
 		geraProjeteis();
 		//gerent->BackGFloresta(2);
 
-		int num_jogadores = 0;
 
-		cout << "Para 1 jogador tecle 1" << endl;
-		cout << "Para 2 jogadores tecle 2" << endl;
-		//cin >> num_jogadores;
-		num_jogadores = 1;
-
-		if (num_jogadores == 1) {
+		if (qnt_jogadores == 1) {
 			cout << " Selecionado 1 jogador! " << endl;
 			gerentC.setJogadores(&Slime1, nullptr);
 			listaEntidades.Incluir(&Slime1, &gerentC);
 		}
-		if (num_jogadores == 2) {
+		if (qnt_jogadores == 2) {
 			cout << " Selecionado 2 jogadores! " << endl;
 			gerentC.setJogadores(&Slime1, &Slime2);
 			listaEntidades.Incluir(&Slime1, &gerentC);
 			listaEntidades.Incluir(&Slime2, &gerentC);
-		}
-		if (num_jogadores != 1 && num_jogadores != 2) {
-			cout << "Numero invalido de jogadores!" << endl;
-			cout << "Selecionado 1 jogador!" << endl;
-			gerentC.setJogadores(&Slime1, nullptr);
-			listaEntidades.Incluir(&Slime1, &gerentC);
 		}
 
 		/*=== Colocando elementos constantes na lista ===*/
@@ -216,35 +297,11 @@ namespace Fases {
 
 	void Fase2::geraChao() {
 		int numeros[36] = { 0 };
-		time_t tempo;
-		srand((unsigned)time(&tempo));
-		num_obs2 = (int)((rand() % 13) + 5);
-
-		for (int k = num_obs2; k > 0; k--) {
-			int posicao = (rand() % 33) + 1;
-			while (numeros[posicao] != 0 ||
-				checaLocaliza((float)posicao * 400, 2)) {
-				posicao = (rand() % 33) + 1;
-			}
-			numeros[posicao] = 1;
-		}
-
-		//tamanho fase: 14400, 8 segmentos, 7200/36=400 cada bloco
 		for (int i = 0; i < 36; i++) {
-			if (i == 0 || numeros[i] == 0) {
-				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3);
-				p->geraPlataforma(140, 400, (float)i * 400, 760);
-				listaEntidades.Incluir(p, &gerentC);
-			}
-			else {
-				Obstaculos::Acelerador* M = new Obstaculos::Acelerador(8);
-				M->setCoordenadas((float)i * 400, 800);
-				M->setCorpo(400, 130);
-				listaEntidades.Incluir(M, &gerentC);
-				for (int k = 0; k <= 4; k++) {
-					localizacao_obs.push_back((k * 100) + i * 400);
-				}
-			}
+
+			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3);
+			p->geraPlataforma(100, 400, (float)i * 400, 760);
+			listaEntidades.Incluir(p, &gerentC);
 		}
 	}
 
@@ -276,7 +333,9 @@ namespace Fases {
 
 		}
 	}
+	/*
 	void Fase2::executar() {
+
 
 		int qnt_jogadores = 1;
 		bool apareceu1 = false;
@@ -294,6 +353,15 @@ namespace Fases {
 		gerent->arrumaCamera(checaZona());
 		
 		gerent->clear();
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
+			Pause = true;
+			pMenu->restartTime();
+			while (Pause) {
+				pMenu->Pause();
+			}
+
+		}
 
 		listaEntidades.Percorrer(&gerentC);//executar de td
 		pos_morto = listaEntidades.VerificMortos();
@@ -331,9 +399,10 @@ namespace Fases {
 				}
 			}
 		}*/
-
+	/*
 			gerent->mostrar();
 	}
+	*/
 
 	void Fase2::geraChefao() {
 		vector<int> posicoes;

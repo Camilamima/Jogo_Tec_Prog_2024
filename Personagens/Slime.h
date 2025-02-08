@@ -1,13 +1,11 @@
 #pragma once
-#include "Personagem.h"
-
-
 #include <algorithm>
+#include "Personagem.h"
 
 #define VX 500
 
-namespace Personagens {
 
+namespace Personagens {
     class Slime : public Personagem {
     private:
         int pontos;
@@ -27,6 +25,7 @@ namespace Personagens {
         Slime(int id, const char* png = ""); // pngegg.png
         ~Slime();
         void mover(float aux);
+        void atacarIni(Personagem* ini);
         void executar();
         void pular(float imp);
 		void setImpulso(float i) { impulso = i; }

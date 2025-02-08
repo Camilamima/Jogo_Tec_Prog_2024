@@ -32,7 +32,7 @@ namespace Personagens {
         void setMoviE(bool a) { moviE = a; }
         float getVelocidadeX();
         float getVelocidadeY();
-        float atualizaDelta();
+        static float atualizaDelta(Clock relogio);
         const bool getnoChao() const {return noChao;}
         void setChao(float a) { chao = a; }
         void setNoChao(float Xao) { noChao = Xao; }
