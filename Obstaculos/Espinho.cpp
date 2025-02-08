@@ -43,7 +43,7 @@ namespace Obstaculos {
 
 		if (timer % 50 == 0) {
 			jogador->animacao(4, 1);
-			jogador->operator*=(num_espinhos);
+			jogador->operator-=(num_espinhos);
 			std::cout << "Vidas depois: " << jogador->getVidas() << std::endl;
 		}
 		timer++;

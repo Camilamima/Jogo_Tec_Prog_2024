@@ -1,6 +1,8 @@
 #include "Chefao.h"
 #include <iostream>
 #include <set>
+#include <iostream>
+#include <stdexcept>
 
 
 namespace Personagens {
@@ -33,10 +35,7 @@ namespace Personagens {
 
 		if (relogio1.getElapsedTime().asSeconds() >= 7.5 && !turno) {
 			
-			//std::cout << "Fim da zona do chefao" << finalZona <<std::endl;
-			//std::cout << "teste" << std::endl;
 			int meioZona = (finalZona - ((finalZona-iniZona)/2));
-			//std::cout << meioZona << std::endl;
 			setCoordenadas(meioZona, 530);
 			setCorpo(224, 240);
 			relogio1.restart();
@@ -45,20 +44,11 @@ namespace Personagens {
 		}
 
 		if (relogio1.getElapsedTime().asSeconds() >= 3.5 && turno) {
-			//if (cont % 5 == 0) {
-				//teletransporte->animacao();
-				//animacaoTp(15);
 
-				//if (fim_animacao == true) {//teletransporte->getApareceu()==false) {
-					//teletransporte->setCoordenadas(6960, 450);
-					//teletransporte->setCorpo(250, 250);
-					//corpo.setPosition(6960, 450);
-					setCoordenadas(pos_inicial, 200);
-					setCorpo(224, 240);
-					turno = false;
-					relogio1.restart();
-				//}
-			//}
+			setCoordenadas(pos_inicial, 200);
+			setCorpo(224, 240);
+			turno = false;
+			relogio1.restart();
 		}
 	}
 
@@ -66,7 +56,7 @@ namespace Personagens {
 	void Chefao::executar()
 	{
 		cont++;
-		if (!noChao) { //********************MEXER NISSO P ELE TER GRAVIDADE
+		if (!noChao) {
 			mover(0);
 		}
 
@@ -104,7 +94,7 @@ namespace Personagens {
 
 		if (proj != nullptr) {
 			proj->setCoordenadas(pos_inicial, 200);
-			proj->setCorpo(64, 32);
+			proj->setCorpo(200, 113.42);
 			proj->setXY(pos_inicial, 200);
 			num_projetil++;
 			ListProj.insert(proj);
@@ -114,7 +104,7 @@ namespace Personagens {
 
 	void Chefao::criaProjeteisSalv(Projetil* proj) {
 		if (proj != nullptr) {
-			proj->setCorpo(64, 32);
+			proj->setCorpo(200, 113.42);
 			num_proj_salvamento++;
 			ListProj.insert(proj);
 		}
@@ -141,7 +131,15 @@ namespace Personagens {
 		}
 
 		if (num == 1) {
-			sprite.loadFromFile("assets/chefao/Agis.png");
+			//sprite.loadFromFile("assets/chefao/Agis.png");
+			try {
+				if (!sprite.loadFromFile("assets/chefao/Agis.png")) {  // Se o arquivo não for encontrado
+					throw std::runtime_error("Erro ao carregar a textura: assets/chefao/Agis.png");
+				}
+			}
+			catch (const std::exception& e) {
+				std::cerr << "Exceção capturada: " << e.what() << std::endl;
+			}
 			corpo.setTexture(&sprite);
 			corpo.setTextureRect(IntRect(224 * val, 0, 224, 240));
 		}

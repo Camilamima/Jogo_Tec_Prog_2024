@@ -123,7 +123,7 @@ namespace Fases {
 				Projetil* p = new Projetil(5);
 				p->setCoordenadas(x, y);
 				p->setVelocidade(entidade["velocidadeX"], entidade["velocidadeY"]);
-				p->setAtivo(entidade["segue"]);
+				//p->setAtivo(entidade["segue"]);
 				p->setNoChao(entidade["noChao"]);
 				p->setChao(entidade["chao"]);
 				p->setSeguindo(entidade["seguindo"]);

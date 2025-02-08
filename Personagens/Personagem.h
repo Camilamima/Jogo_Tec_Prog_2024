@@ -27,7 +27,7 @@ namespace Personagens {
         void setVidas(int vid);
         int getVidas() const{ return vidas; }
         void operator--();
-        void operator*=(int dano) { vidas -= dano; }
+        void operator-=(int dano) { vidas -= dano; }
         void setVelocidae(float vX, float vY);
         void setVelocidadeY(float y) { velocidadeY = y; }
         void setMoviD(bool a) { moviD = a; }
