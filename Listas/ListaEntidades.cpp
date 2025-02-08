@@ -11,7 +11,7 @@ namespace Listas {
 	ListaEntidade::ListaEntidade() :
 		listaEntidades(new Lista<Entidade*>()),
 		chefoes(new std::vector<Chefao*>()),
-		plataforma_chefao(new std::vector<Entidade*>())
+		plataforma_chefao(new std::queue<Entidade*>())
 	{
 		pos_chefao = 0;
 		zona_chefao = false;
@@ -88,7 +88,9 @@ namespace Listas {
 		}
 
 		if (entidade->getId() == 12) {//se for plataforma do chefao
-			plataforma_chefao->push_back(static_cast<Obstaculos::Plataforma*>(entidade));
+			//plataforma_chefao->push_back(static_cast<Obstaculos::Plataforma*>(entidade));
+			plataforma_chefao->push(entidade);
+			cout << "Inseri: " << plataforma_chefao->size() << endl;
 		}
 	}
 
@@ -103,7 +105,6 @@ namespace Listas {
 		gc->includeEntidade(entidade);//incluo no gerenciador de colisoes
 
 		if (entidade->getId() == 6) {//se for chefao adiciono-o no vector
-			//pos_chefao = listaEntidades->tamanho() - 1;//pego a posicao do chefao
 			chefoes->push_back(static_cast<Chefao*>(entidade));//coloco o chefao no vetor de chefao
 
 		}
@@ -124,6 +125,9 @@ namespace Listas {
 					i++;
 				}
 			}
+		}
+		if (entidade->getId() == 12) {//se for plataforma do chefao
+			plataforma_chefao->push(entidade);
 		}
 
 	}
@@ -179,9 +183,10 @@ namespace Listas {
 		}
 		if (ent->getId() == 6) {//se for chefao PRECISO remover a plataforma dele
 			MatarEntidade(ent, gc);
-			gc->removeEntidade(*plataforma_chefao->begin());
-			listaEntidades->removerElemento(*plataforma_chefao->begin());
-			plataforma_chefao->erase(plataforma_chefao->begin());
+			cout << "removendo plataforma chefao: " << plataforma_chefao->front() << endl;
+			gc->removeEntidade(plataforma_chefao->front());
+			listaEntidades->removerElemento(plataforma_chefao->front());
+			plataforma_chefao->pop();
 		}
 
 		if (ent->getId() == 5) {//projetil

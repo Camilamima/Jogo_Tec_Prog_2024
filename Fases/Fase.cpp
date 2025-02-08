@@ -124,17 +124,38 @@ namespace Fases {
 
 
 	void Fase::geraPlataformaFase(){
-		float lugar = 0;
-		int tipo = 0;
-		int plataforma = 0;
-		time_t tempo;
-		srand((unsigned)time(&tempo));
+		if (num_fase == 1) {
+			float lugar = 0;
+			int tipo = 0;
+			int plataforma = 0;
+			time_t tempo;
+			srand((unsigned)time(&tempo));
 
-		for (float zona = 0; zona <= 7; zona++) {
-			lugar = static_cast<float>((((rand() % 16) + 1) * 100) + (zona*1800));
+			for (float zona = 0; zona <= 7; zona++) {
+				lugar = static_cast<float>((((rand() % 16) + 1) * 100) + (zona * 1800));
+				tipo = (rand() % 4) + 1;
+				TipoPlataforma(tipo, lugar);
+
+			}
+		}
+		else if (num_fase == 2) {
+			float lugar = 0;
+			int tipo = 0;
+			int plataforma = 0;
+			time_t tempo;
+			srand((unsigned)time(&tempo));
+
+			for (float zona = 0; zona < 3; zona++) {
+				lugar = static_cast<float>((((rand() % 16) + 1) * 100) + (zona * 1800));
+				tipo = (rand() % 4) + 1;
+				TipoPlataforma(tipo, lugar);
+			}	
+
+			//==== teste ===//
+			lugar = static_cast<float>((((rand() % 10) + 1) * 50) + (1 * 1800));
 			tipo = (rand() % 4) + 1;
-			TipoPlataforma(tipo,lugar);
-
+			TipoPlataforma(tipo, lugar);
+			//==============//
 		}
 	}
 
@@ -187,6 +208,7 @@ namespace Fases {
 		int cont2 = 0;
 		bool morreu = false;
 		bool morreu2 = false;
+		int pos_morto = -1;
 
 		if (gerentC.getJogador2() != nullptr)
 			qnt_jogadores = 2;
@@ -204,6 +226,12 @@ namespace Fases {
 			}
 			gerent->desenha();
 			listaEntidades.Percorrer(&gerentC);
+
+			pos_morto = listaEntidades.VerificMortos();
+
+			if (pos_morto != -1) {
+				listaEntidades.matarEntidadePos(pos_morto, &gerentC);
+			}
 
 			
 			if (Slime1.getVidas() <= 0 && apareceu1 == false) {

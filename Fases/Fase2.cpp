@@ -453,9 +453,6 @@ namespace Fases {
 		
 		num_chefoes  = (rand() % 2) + 4; //de 4 a 5 entidades
 
-		//cout <<"Num chefoes: " << num_chefoes << endl;
-		//cout << "tam vetor: " << posicoes.size() << endl;
-
 		int pos = 0;
 
 		for (int i = 0; i < num_chefoes && pos<=posicoes.size(); i++) {
