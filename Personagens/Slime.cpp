@@ -1,6 +1,8 @@
 #include "Slime.h"
 #include <iostream>
 #include "Inimigo.h"
+#include <iostream>
+#include <stdexcept>
 
 
 using namespace std;
@@ -30,21 +32,42 @@ namespace Personagens {
 		
 		if (id == 1) {
 			setCorpo(87.35f, 100.0f);
-			sprite.loadFromFile("assets/jog1/Jump.png");
+
+			try {
+				if (!sprite.loadFromFile("assets/jog1/Jump.png")) {  // Se o arquivo não for encontrado
+					throw std::runtime_error("Erro ao carregar a textura: assets/jog1/Jump.png");
+				}
+
+				//std::cout << "Textura carregada com sucesso!" << std::endl;
+			}
+			catch (const std::exception& e) {
+				std::cerr << "Excecao capturada: " << e.what() << std::endl;
+			}
+			
 			corpo.setTexture(&sprite);
 			corpo.setTextureRect(IntRect(868, 0, 56, 64));
+			
 		}
 		else if (id == 2) {
+
 			setCorpo(88.5, 100.0);
-			sprite.loadFromFile("assets/jog2/Jump.png");
+
+			try {
+				if (!sprite.loadFromFile("assets/jog2/Jump.png")) {  // Se o arquivo não for encontrado
+					throw std::runtime_error("Erro ao carregar a textura: assets/jog2/Jump.png");
+				}
+
+				//std::cout << "Textura carregada com sucesso!" << std::endl;
+			}
+			catch (const std::exception& e) {
+				std::cerr << "Exceção capturada: " << e.what() << std::endl;
+			}
+
 			corpo.setTexture(&sprite);
 			corpo.setTextureRect(IntRect(21, 0, 54, 71));
 
 		}
 			
-		
-		//setCorpo(100, 100);
-		//vidas = 200;
 		vidas =	100;
 	}
 
@@ -312,55 +335,109 @@ namespace Personagens {
 
 			if (num == 0) {//parado
 				if (dPress) {
-					//sprite.loadFromFile("assets/Jogador1/parado.png");
-					sprite.loadFromFile("assets/jog1/Idle.png");
+					//sprite.loadFromFile("assets/jog1/Idle.png");
+					try {
+						if (!sprite.loadFromFile("assets/jog1/Idle.png")) {  // Se o arquivo não for encontrado
+							throw std::runtime_error("Erro ao carregar a textura: assets/jog1/Idle.png");
+						}
+					}
+					catch (const std::exception& e) {
+						std::cerr << "Exceção capturada: " << e.what() << std::endl;
+					}
 				}
 				else if (aPress) {
 					sprite.loadFromFile("assets/jog1/Idle esquerda.png");
+					try {
+						if (!sprite.loadFromFile("assets/jog1/Idle esquerda.png")) {  // Se o arquivo não for encontrado
+							throw std::runtime_error("Erro ao carregar a textura: assets/jog1/Idle esquerda.png");
+						}
+					}
+					catch (const std::exception& e) {
+						std::cerr << "Exceção capturada: " << e.what() << std::endl;
+					}
 				}
 				corpo.setTexture(&sprite);
-				corpo.setTextureRect(IntRect(36 + (128 * val), 0, 56, 64));//50*val,0,50,100
-				//setSoCorpo(74.87, 100);
+				corpo.setTextureRect(IntRect(36 + (128 * val), 0, 56, 64));
 			}
 			else if (num == 1) {//andar direita
-				//sprite.loadFromFile("assets/jogador1/andar direita.png");
-				sprite.loadFromFile("assets/jog1/Run.png");
+				//sprite.loadFromFile("assets/jog1/Run.png");
+				try {
+					if (!sprite.loadFromFile("assets/jog1/Run.png")) {  // Se o arquivo não for encontrado
+						throw std::runtime_error("Erro ao carregar a textura: assets/jog1/Run.png");
+					}
+				}
+				catch (const std::exception& e) {
+					std::cerr << "Exceção capturada: " << e.what() << std::endl;
+				}
 				corpo.setTexture(&sprite);
 				corpo.setTextureRect(IntRect(36+(128 * val), 0, 56, 64));
-				//setSoCorpo(74.87, 100);
 			}
 			else if (num == 2) {
-				sprite.loadFromFile("assets/jog1/Run esquerda.png");
+				//sprite.loadFromFile("assets/jog1/Run esquerda.png");
+				try {
+					if (!sprite.loadFromFile("assets/jog1/Run esquerda.png")) {  // Se o arquivo não for encontrado
+						throw std::runtime_error("Erro ao carregar a textura: assets/jog1/Run esquerda.png");
+					}
+				}
+				catch (const std::exception& e) {
+					std::cerr << "Exceção capturada: " << e.what() << std::endl;
+				}
 				corpo.setTexture(&sprite);
 				corpo.setTextureRect(IntRect(36 + (128 * val), 0, 56, 64));
-				//setSoCorpo(74.87, 100);
 			}
 			else if (num == 3) {//caindo
 				if (dPress) {
-					sprite.loadFromFile("assets/jog1/Jump.png");
-					
-					//sprite.loadFromFile("assets/jogador1/caiu.png");
+					//sprite.loadFromFile("assets/jog1/Jump.png");
+					try {
+						if (!sprite.loadFromFile("assets/jog1/Jump.png")) {  // Se o arquivo não for encontrado
+							throw std::runtime_error("Erro ao carregar a textura: assets/jog1/Jump.png");
+						}
+					}
+					catch (const std::exception& e) {
+						std::cerr << "Exceção capturada: " << e.what() << std::endl;
+					}
 					corpo.setTexture(&sprite);
 					corpo.setTextureRect(IntRect(868, 0, 56, 64));
 				}
 				else if (aPress)
 				{
-					sprite.loadFromFile("assets/jog1/Jump esquerda.png");
+					//sprite.loadFromFile("assets/jog1/Jump esquerda.png");
+
+					try {
+						if (!sprite.loadFromFile("assets/jog1/Jump esquerda.png")) {  // Se o arquivo não for encontrado
+							throw std::runtime_error("Erro ao carregar a textura: assets/jog1/Jump esquerda.png");
+						}
+					}
+					catch (const std::exception& e) {
+						std::cerr << "Exceção capturada: " << e.what() << std::endl;
+					}
 					//sprite.loadFromFile("assets/jogador1/caiu esq.png");
 					corpo.setTexture(&sprite);
 					corpo.setTextureRect(IntRect(292, 0, 56, 64));
 				}
-				//corpo.setTexture(&sprite);
-				//corpo.setTextureRect(IntRect(50 * val, 0, 50, 100));
-				
-				//setSoCorpo(87.35, 100.0);
 			}
 			else if (num == 4) {//sendo atacado
 				if (dPress) {
-					sprite.loadFromFile("assets/jog1/Hurt.png");
+					//sprite.loadFromFile("assets/jog1/Hurt.png");
+					try {
+						if (!sprite.loadFromFile("assets/jog1/Hurt.png")) {  // Se o arquivo não for encontrado
+							throw std::runtime_error("Erro ao carregar a textura: assets/jog1/Hurt.png");
+						}
+					}
+					catch (const std::exception& e) {
+						std::cerr << "Exceção capturada: " << e.what() << std::endl;
+					}
 				}
 				else if (aPress) {
-					sprite.loadFromFile("assets/jog1/Hurt esquerda.png");
+					//sprite.loadFromFile("assets/jog1/Hurt esquerda.png");
+					try {
+						if (!sprite.loadFromFile("assets/jog1/Hurt esquerda.png")) {  // Se o arquivo não for encontrado
+							throw std::runtime_error("Erro ao carregar a textura: assets/jog1/Hurt esquerda.png");
+						}
+					}
+					catch (const std::exception& e) {
+						std::cerr << "Exceção capturada: " << e.what() << std::endl;
+					}
 				}
 				corpo.setTexture(&sprite);
 				corpo.setTextureRect(IntRect(36, 0, 56, 64));
@@ -371,24 +448,54 @@ namespace Personagens {
 			if (num == 0) {//parado
 				if (dPress) {
 					//sprite.loadFromFile("assets/Jogador1/parado.png");
-					sprite.loadFromFile("assets/jog2/Idle.png");
+					//sprite.loadFromFile("assets/jog2/Idle.png");
+					try {
+						if (!sprite.loadFromFile("assets/jog2/Idle.png")) {  // Se o arquivo não for encontrado
+							throw std::runtime_error("Erro ao carregar a textura: assets/jog2/Idle.png");
+						}
+					}
+					catch (const std::exception& e) {
+						std::cerr << "Exceção capturada: " << e.what() << std::endl;
+					}
 				}
 				else if (aPress) {
-					sprite.loadFromFile("assets/jog2/Idle esquerda.png");
+					//sprite.loadFromFile("assets/jog2/Idle esquerda.png");
+					try {
+						if (!sprite.loadFromFile("assets/jog2/Idle esquerda.png")) {  // Se o arquivo não for encontrado
+							throw std::runtime_error("Erro ao carregar a textura: assets/jog2/Idle esquerda.png");
+						}
+					}
+					catch (const std::exception& e) {
+						std::cerr << "Exceção capturada: " << e.what() << std::endl;
+					}
 				}
 				corpo.setTexture(&sprite);
 				corpo.setTextureRect(IntRect(21+(96 * val), 0, 54, 71));//50*val,0,50,100
 				//setSoCorpo(53.49, 100.0);
 			}
 			else if (num == 1) {//andar direita
-				//sprite.loadFromFile("assets/jogador1/andar direita.png");
-				sprite.loadFromFile("assets/jog2/Run.png");
+				//sprite.loadFromFile("assets/jog2/Run.png");
+				try {
+					if (!sprite.loadFromFile("assets/jog2/Run.png")) {  // Se o arquivo não for encontrado
+						throw std::runtime_error("Erro ao carregar a textura: assets/jog2/Run.png");
+					}
+				}
+				catch (const std::exception& e) {
+					std::cerr << "Exceção capturada: " << e.what() << std::endl;
+				}
 				corpo.setTexture(&sprite);
 				corpo.setTextureRect(IntRect(21+(96 * val), 0, 54, 71));
-				//setSoCorpo(149.29, 100.0);
 			}
 			else if (num == 2) {
-				sprite.loadFromFile("assets/jog2/Run esquerda.png");
+				//sprite.loadFromFile("assets/jog2/Run esquerda.png");
+				try {
+					if (!sprite.loadFromFile("assets/jog2/Run esquerda.png")) {  // Se o arquivo não for encontrado
+						throw std::runtime_error("Erro ao carregar a textura: assets/jog2/Run esquerda.png");
+					}
+				}
+				catch (const std::exception& e) {
+					std::cerr << "Exceção capturada: " << e.what() << std::endl;
+				}
 				corpo.setTexture(&sprite);
 				corpo.setTextureRect(IntRect(21 + (96 * val), 0, 54, 71));
 				//setSoCorpo(149.29, 100.0);
@@ -396,25 +503,55 @@ namespace Personagens {
 			else if (num == 3) {//caindo
 				if (dPress) {
 					sprite.loadFromFile("assets/jog2/Jump.png");
-
-					//sprite.loadFromFile("assets/jogador1/caiu.png");
+					try {
+						if (!sprite.loadFromFile("assets/jog2/Jump.png")) {  // Se o arquivo não for encontrado
+							throw std::runtime_error("Erro ao carregar a textura: assets/jog2/Jump.png");
+						}
+					}
+					catch (const std::exception& e) {
+						std::cerr << "Exceção capturada: " << e.what() << std::endl;
+					}
+										
 					corpo.setTexture(&sprite);
 					corpo.setTextureRect(IntRect(21, 0, 54, 71));
 				}
 				else if (aPress)
 				{
-					sprite.loadFromFile("assets/jog2/Jump esquerda.png");
-					//sprite.loadFromFile("assets/jogador1/caiu esq.png");
+					//sprite.loadFromFile("assets/jog2/Jump esquerda.png");
+					try {
+						if (!sprite.loadFromFile("assets/jog2/Jump esquerda.png")) {  // Se o arquivo não for encontrado
+							throw std::runtime_error("Erro ao carregar a textura: assets/jog2/Jump esquerda.png");
+						}
+					}
+					catch (const std::exception& e) {
+						std::cerr << "Exceção capturada: " << e.what() << std::endl;
+					}
 					corpo.setTexture(&sprite);
 					corpo.setTextureRect(IntRect(21, 0, 54, 71));
 				}
 			}
 			else if (num == 4) {//sendo atacado
 				if (dPress) {
-					sprite.loadFromFile("assets/jog2/Hurt.png");
+					//sprite.loadFromFile("assets/jog2/Hurt.png");
+					try {
+						if (!sprite.loadFromFile("assets/jog2/Hurt.png")) {  // Se o arquivo não for encontrado
+							throw std::runtime_error("Erro ao carregar a textura: assets/jog2/Hurt.png");
+						}
+					}
+					catch (const std::exception& e) {
+						std::cerr << "Exceção capturada: " << e.what() << std::endl;
+					}
 				}
 				else if (aPress) {
-					sprite.loadFromFile("assets/jog2/Hurt esquerda.png");
+					//sprite.loadFromFile("assets/jog2/Hurt esquerda.png");
+					try {
+						if (!sprite.loadFromFile("assets/jog2/Hurt esquerda.png")) {  // Se o arquivo não for encontrado
+							throw std::runtime_error("Erro ao carregar a textura: assets/jog2/Hurt esquerda.png");
+						}
+					}
+					catch (const std::exception& e) {
+						std::cerr << "Exceção capturada: " << e.what() << std::endl;
+					}
 				}
 				corpo.setTexture(&sprite);
 				corpo.setTextureRect(IntRect(21, 0, 54, 71));
@@ -466,12 +603,6 @@ namespace Personagens {
 				corpo.setTextureRect(IntRect(626, 0, 108, 100));
 				return false;
 			}
-
-			/*primeiro 62x100 - 0, 0
-			segundo 96x100 - 125,0
-			terceiro 105x100 - 293,0
-			quarto 105x100 - 461,0
-			quinto	108x100 -626,0*/
 		}
 
 		else if (getId() == 2) {//se for o jogador 2
