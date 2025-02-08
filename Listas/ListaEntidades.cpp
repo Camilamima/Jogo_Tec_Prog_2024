@@ -10,7 +10,8 @@ namespace Listas {
 	/*===== construtora =====*/
 	ListaEntidade::ListaEntidade() :
 		listaEntidades(new Lista<Entidade*>()),
-		chefoes(new std::vector<Chefao*>())
+		chefoes(new std::vector<Chefao*>()),
+		plataforma_chefao(new std::vector<Entidade*>())
 	{
 		pos_chefao = 0;
 		zona_chefao = false;
@@ -73,6 +74,7 @@ namespace Listas {
 			bool inseri = false;
 			int i = 0;
 			int tam;
+
 			tam = chefoes->size();
 			while (inseri != true && i<tam) {
 				Chefao* chefao = chefoes->operator[](i);
@@ -80,17 +82,50 @@ namespace Listas {
 				if (chefao->getNum_Projetil() < chefao->getMaxProjetil()) {
 					chefao->criaProjeteis(static_cast<Projetil*>(entidade));
 					inseri = true;
-					//cout << "Inseri proj em: " << i << endl;
 				}
 				else {
 					i++;
 				}
 			}
 		}
+
+		if (entidade->getId() == 12) {//se for plataforma do chefao
+			plataforma_chefao->push_back(static_cast<Obstaculos::Plataforma*>(entidade));
+		}
 	}
 
 	void ListaEntidade::Include(Entidade* entidade) {
 		listaEntidades->adicionarElemento(entidade);
+	}
+
+	void ListaEntidade::IncluirSalvamento(Entidade* entidade, Gerenciadores::Gerenciador_Colisoes* gc) {
+		listaEntidades->adicionarElemento(entidade);//adiciono na lista
+		gc->includeEntidade(entidade);//incluo no gerenciador de colisoes
+
+		if (entidade->getId() == 6) {//se for chefao adiciono-o no vector
+			//pos_chefao = listaEntidades->tamanho() - 1;//pego a posicao do chefao
+			chefoes->push_back(static_cast<Chefao*>(entidade));//coloco o chefao no vetor de chefao
+
+		}
+		if (entidade->getId() == 5) {//se for projetil, insiro no chefao que tiver espaço livre
+
+			bool inseri = false;
+			int i = 0;
+			int tam;
+			tam = chefoes->size();
+			while (inseri != true && i < tam) {
+				Chefao* chefao = chefoes->operator[](i);
+
+				if (chefao->getNum_Proj_Salv() < chefao->getNum_Projetil()) {
+					chefao->criaProjeteisSalv((static_cast<Projetil*>(entidade)));
+					inseri = true;
+				}
+				else {
+					i++;
+				}
+			}
+		}
+
 	}
 
 	/*===== seta o gerenciador gráfico em todas as instâncias da lista =====*/
@@ -128,17 +163,25 @@ namespace Listas {
 
 	/*===== remove uma determinada entidade da lista =====*/
 	void ListaEntidade::MatarEntidade(Entidade* ent, Gerenciadores::Gerenciador_Colisoes* gc) {
-		
+
 		listaEntidades->removerElemento(ent);
 		gc->removeEntidade(ent);
+
+		
 	}
 
 	/*===== remove uma entidade com uma determinada posição na lista =====*/
 	void ListaEntidade::matarEntidadePos(int pos, Gerenciadores::Gerenciador_Colisoes * gc){
 		Entidade* ent = listaEntidades->operator[](pos);
 
-		if (ent->getId() == 7 || ent->getId() == 6 || ent->getId() == 4) {
+		if (ent->getId() == 7 || ent->getId() == 4) {
 			MatarEntidade(ent, gc);
+		}
+		if (ent->getId() == 6) {
+			MatarEntidade(ent, gc);
+			gc->removeEntidade(*plataforma_chefao->begin());
+			listaEntidades->removerElemento(*plataforma_chefao->begin());
+			plataforma_chefao->erase(plataforma_chefao->begin());
 		}
 
 		if (ent->getId() == 5) {//projetil
@@ -155,7 +198,8 @@ namespace Listas {
 			achou = chefoes->operator[](i)->zonaChefao(jog);
 			chefoes->operator[](i)->setAtivo(achou);
 		}
-    
+	}
+
 	vector<Entidade*> ListaEntidade::returnVec() {
 		vector<Entidade*> aux;
 

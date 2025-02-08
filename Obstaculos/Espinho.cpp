@@ -41,6 +41,7 @@ namespace Obstaculos {
 	void Espinho::obstacular(Slime* jogador) {
 
 		if (timer % 50 == 0) {
+			jogador->animacaoJog(4, 1);
 			jogador->operator*=(num_espinhos);
 			std::cout << "Vidas depois: " << jogador->getVidas() << std::endl;
 		}
@@ -54,13 +55,6 @@ namespace Obstaculos {
 		entidadeJson["x"] = corpo.getPosition().x;
 		entidadeJson["y"] = corpo.getPosition().y;
 		entidadeJson["num_espinhos"]= num_espinhos;
-
-
-	if (timer % 50 == 0) {
-		jogador->animacaoJog(4, 1);
-		jogador->operator*=(num_espinhos);
-		std::cout << "Vidas depois: " << jogador->getVidas() << std::endl;
-  }
 
 		return entidadeJson;
 

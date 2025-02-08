@@ -3,6 +3,7 @@
 #include "../Entidade.h"
 #include "../Personagens/Chefao.h"
 #include "../Gerenciadores/Gerenciador_Colisoes.h"
+#include "../Obstaculos/Plataforma.h"
 #include <vector>
 
 namespace Listas {
@@ -11,6 +12,7 @@ namespace Listas {
 	private:
 		Lista <Entidade*>* listaEntidades;
 		vector<Personagens::Chefao*> *chefoes;
+		vector<Entidade*> *plataforma_chefao;
 		int pos_chefao;
 		bool zona_chefao;//zona onde está o chefao
 		int zona_chefao_num;
@@ -19,6 +21,7 @@ namespace Listas {
 		~ListaEntidade();
 		void Percorrer(Gerenciadores::Gerenciador_Colisoes* gc);
 		void Incluir(Entidade* entidade, Gerenciadores::Gerenciador_Colisoes* gc);
+		void IncluirSalvamento(Entidade* entidade, Gerenciadores::Gerenciador_Colisoes* gc);
 		void setGG(Gerenciadores::Gerenciado_Grafico *gg);
 		void Include(Entidade* entidade);
 		void MatarEntidade(Entidade* ent, Gerenciadores::Gerenciador_Colisoes* gc);

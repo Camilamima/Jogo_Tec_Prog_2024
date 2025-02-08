@@ -13,7 +13,7 @@ namespace Personagens {
 		finalZona = 0;
 		ativo = false;
 		turno = false;
-		vidas = 50;
+		vidas = 2;
 		chao = 560;
 		val = 0;
 		cont = 0;
@@ -23,7 +23,7 @@ namespace Personagens {
 		setVelocidae(0, 0);
 		setMaldade(3);
 		num_projetil = 0; //qnd adicionar 1 projetil, soma +1
-
+		num_proj_salvamento = 0;
 	}
 
 	Chefao::~Chefao() {
@@ -113,6 +113,14 @@ namespace Personagens {
 
 	}
 
+	void Chefao::criaProjeteisSalv(Projetil* proj) {
+		if (proj != nullptr) {
+			proj->setCorpo(64, 32);
+			num_proj_salvamento++;
+			ListProj.insert(proj);
+		}
+	}
+
 	/*===== apaga um projetil =====*/
 	void Chefao::apagaProjetil() {//apaga se ele tocou no chao...
 
@@ -122,6 +130,7 @@ namespace Personagens {
 				std::cout << "Apaguei um projetil" << std::endl;
 				(*it)->setApagado(true);
 				ListProj.erase(it);//apagar o primeiro... parecido com um pop_front?
+				num_projetil--;
 			}
 		}
 	}
@@ -192,4 +201,25 @@ namespace Personagens {
 		
 	}
 	const int Chefao::max_projetil = 10;
+
+	json Chefao::salvar() const {
+		json entidadeJson;
+		entidadeJson["id"] = id;
+		entidadeJson["x"] = corpo.getPosition().x;
+		entidadeJson["y"] = corpo.getPosition().y;
+		entidadeJson["velocidadeY"] = velocidadeY;
+		entidadeJson["velocidadeX"] = velocidadeX;
+		entidadeJson["noChao"] = noChao;
+		entidadeJson["chao"] = chao;
+		entidadeJson["vidas"] = vidas;
+		entidadeJson["turno"] = turno;
+		entidadeJson["cont"] = cont;
+		entidadeJson["num_projetil"] = num_projetil;
+		entidadeJson["ativo"] = ativo;
+		entidadeJson["val"] = val;
+		entidadeJson["iniZona"] = iniZona;
+		entidadeJson["finalZona"] = finalZona;
+		entidadeJson["pos_inicial"] = pos_inicial;
+		return entidadeJson;
+	}
 }

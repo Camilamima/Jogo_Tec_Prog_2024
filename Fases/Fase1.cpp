@@ -17,7 +17,7 @@ namespace Fases {
         num_fase = 1;
         cout << "cheguei1" << endl;
         setGerenciador(gC);
-        gerent->BackGFloresta();
+        gerent->BackGFloresta(1);
         zona_atual = dados["zona"];
         qnt_jogadores = dados["jogadores"];
 
@@ -122,7 +122,7 @@ namespace Fases {
     }
 
     void Fase1::inicializa() {
-        gerent->BackGFloresta();
+        gerent->BackGFloresta(1);
         num_fase = 1;
         obsFacil = -1;
         geraPlataformaFase();
@@ -136,7 +136,7 @@ namespace Fases {
         std::cout << "Para 1 jogador tecle 1" << std::endl;
         std::cout << "Para 2 jogadores tecle 2" << std::endl;
         //cin >> num_jogadores;
-        num_jogadores = 1;
+        num_jogadores = 2;
 
         if (num_jogadores == 1) {
             std::cout << " Selecionado 1 jogador! " << std::endl;

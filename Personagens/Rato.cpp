@@ -77,6 +77,7 @@ namespace Personagens {
 			corpo.setTextureRect(IntRect(100 * (val), 101, 100, 100));
 		}
 
+	}
 
 	json Rato::salvar()const {
 	

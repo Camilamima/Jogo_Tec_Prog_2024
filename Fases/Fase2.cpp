@@ -19,9 +19,150 @@ namespace Fases {
 		num_chefoes(-1),
 		num_projeteis(-1)
 	{
+		//gerent->BackGFloresta(2);
 	}
 
 	Fase2::~Fase2() {}
+
+	Fase2::Fase2(const json& dados, Gerenciadores::Gerenciado_Grafico* gC):
+	num_obs2(-1),
+	num_chefoes(-1),
+	num_projeteis(-1)
+	{
+		num_fase = 2;
+		cout << "cheguei2" << endl;
+		setGerenciador(gC);
+		zona_atual = dados["zona"];
+		qnt_jogadores = dados["jogadores"];
+
+		if (qnt_jogadores == 1) {
+			std::cout << " Selecionado 1 jogador! " << std::endl;
+			gerentC.setJogadores(&Slime1, nullptr);
+		}
+		if (qnt_jogadores == 2) {
+			std::cout << " Selecionado 2 jogadores! " << std::endl;
+			gerentC.setJogadores(&Slime1, &Slime2);
+		}
+
+		int id;
+		float x, y;
+		for (const auto& entidade : dados["entidades"]) {
+			id = entidade["id"];
+			x = entidade["x"];
+			y = entidade["y"];
+
+			// Aqui você pode criar as entidades e configurá-las conforme necessário
+			if (id == 1) {
+				// Crie e configure um objeto Rato
+				Slime1.setCoordenadas(x, y);
+				Slime1.setCorpo(100, 100);
+				Slime1.setAtacado(entidade["atacado"], entidade["ladoAtacado"]);
+				Slime1.setAtacando(entidade["atacando"]);
+				Slime1.setChao(entidade["chao"]);
+				Slime1.setVidas(entidade["vidas"]);
+				Slime1.setVelocidae(entidade["velocidadeX"], entidade["velocidadeY"]);
+				Slime1.setChao(entidade["chao"]);
+				Slime1.setImpulso(entidade["impulso"]);
+
+			}
+			else if (id == 2) {
+				Slime2.setCoordenadas(x, y);
+				Slime2.setCorpo(100, 100);
+				Slime2.setAtacado(entidade["atacado"], entidade["ladoAtacado"]);
+				Slime2.setAtacando(entidade["atacando"]);
+				Slime2.setChao(entidade["chao"]);
+				Slime2.setVidas(entidade["vidas"]);
+				Slime2.setVelocidae(entidade["velocidadeX"], entidade["velocidadeY"]);
+				Slime2.setChao(entidade["chao"]);
+				Slime2.setImpulso(entidade["impulso"]);
+
+			}
+			else if (id == 3) {//arrumar salvamento disso.......
+				std::string png_str = entidade["png"];
+				const char* png = png_str.c_str();
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, png);
+				p->setCoordenadas(x, y);
+				p->setCorpo(entidade["largura"], entidade["altura"]);
+				//p->geraPlataforma(entidade["altura"], entidade["largura"], x, y);
+				listaEntidades.IncluirSalvamento(p, &gerentC);
+			}
+			else if (id == 12) {//e disso
+				std::string png_str = entidade["png"];
+				const char* png = png_str.c_str();
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(12, png);
+				p->geraPlataforma(entidade["altura"], entidade["largura"], x, y);
+				listaEntidades.IncluirSalvamento(p, &gerentC);
+			}
+			else if (id == 4) {
+				Personagens::Rato* r = new Personagens::Rato(4);
+				r->setCoordenadas(x, y);
+				r->setCorpo(100, 100);
+				r->setDistancia(entidade["distancia_percorrida"]);
+				r->setVidas(entidade["vidas"]);
+				r->setNoChao(entidade["noChao"]);
+
+				listaEntidades.IncluirSalvamento(r, &gerentC);
+			}
+			else if (id == 9) {
+				Obstaculos::Espinho* e = new Obstaculos::Espinho(9);
+				e->setCoordenadas(x, y);
+				e->setCorpo(100, 70);
+				e->setEspinhos(entidade["num_espinhos"]);
+				listaEntidades.IncluirSalvamento(e, &gerentC);
+			}
+			else if (id == 11) {
+				Obstaculos::SlimeMau* M = new Obstaculos::SlimeMau(11);
+				M->setCoordenadas(x, y);
+				M->setCorpo(entidade["largura"], entidade["altura"]);
+				listaEntidades.IncluirSalvamento(M, &gerentC);
+			}
+	
+			else if (id == 6) {
+				Personagens::Chefao* c = new Personagens::Chefao(6);
+				c->setCoordenadas(x, y);
+				c->setCorpo(224, 240);
+				c->setMaldade(3);
+				c->setPosInicialX(entidade["pos_inicial"]);
+				c->setAtivo(entidade["ativo"]);
+				c->setChao(entidade["chao"]);
+				c->setVelocidae(entidade["velocidadeX"], entidade["velocidadeY"]);
+				c->setNoChao(entidade["noChao"]);
+				c->setVidas(entidade["vidas"]);
+				c->setTurno(entidade["turno"]);
+				c->setIniZona(entidade["iniZona"]);
+				c->setFinalZona(entidade["finalZona"]);
+				c->setVal(entidade["val"]);
+				c->setCont(entidade["cont"]);
+				c->setNum_Projetil(entidade["num_projetil"]);
+				listaEntidades.IncluirSalvamento(c, &gerentC);
+			}
+			else if (id == 5) {
+				Projetil* p = new Projetil(5);
+				p->setCoordenadas(x, y);
+				p->setVelocidade(entidade["velocidadeX"], entidade["velocidadeY"]);
+				p->setAtivo(entidade["segue"]);
+				p->setNoChao(entidade["noChao"]);
+				p->setChao(entidade["chao"]);
+				p->setSeguindo(entidade["seguindo"]);
+				p->setSeguiu(entidade["seguiu"]);
+				p->setCont(entidade["cont"]);
+				p->setVal(entidade["val"]);
+				p->setApagado(entidade["apagado"]);
+				p->setApareceu(entidade["apareceu"]);
+				p->setCoordenadas(entidade["posX"], entidade["posY"]);
+				p->setXY(entidade["posX"], entidade["posY"]);
+
+				listaEntidades.IncluirSalvamento(p, &gerentC);
+			}
+		}
+
+		listaEntidades.Incluir(&Slime1, &gerentC);
+		if (qnt_jogadores == 2) {
+			listaEntidades.Incluir(&Slime2, &gerentC);
+		}
+
+		listaEntidades.setGG(gerent);
+	}
 
 	void Fase2::inicializa() {
 
@@ -33,6 +174,7 @@ namespace Fases {
 		geraEspinho();
 		geraInimigos();
 		geraProjeteis();
+		//gerent->BackGFloresta(2);
 
 		int num_jogadores = 0;
 
@@ -69,6 +211,7 @@ namespace Fases {
 		/*==== gerando plataforma fixas ====*/
 		ladoE.geraPlataforma(900, 40, 0, 0);
 		chao.geraPlataforma(40, (float)tamanho_fase, 0, 900);
+
 	}
 
 	void Fase2::geraChao() {
@@ -149,7 +292,7 @@ namespace Fases {
 			qnt_jogadores = 2;
 
 		gerent->arrumaCamera(checaZona());
-
+		
 		gerent->clear();
 
 		listaEntidades.Percorrer(&gerentC);//executar de td
@@ -193,25 +336,18 @@ namespace Fases {
 	}
 
 	void Fase2::geraChefao() {
-		vector<int> posicoes; //2 por zona
-		bool alterna = false;
+		vector<int> posicoes;
 		time_t tempo;
 		srand((unsigned)time(&tempo));
-		int altura = 200;
+		int altura = 190;
 
 		int teste = 0;
 
 		for (int i = 3; i < (tamanho_fase / tamanho_zona); i++) {//crio o vetor com posições aleatorias
 			teste = rand() % 477;
 
-			if (alterna == false) {
-				posicoes.push_back(static_cast<float>(i * tamanho_zona + 1000 + teste));
-				alterna = true;
-			}
-			else {
-				posicoes.push_back(static_cast<float>(i * tamanho_zona + 1000 + teste));
-				alterna = false;
-			}
+			posicoes.push_back(static_cast<float>(i * tamanho_zona + 1200 + teste));
+
 		}
 		
 		num_chefoes  = (rand() % 2) + 4; //de 4 a 5 entidades
@@ -224,10 +360,8 @@ namespace Fases {
 		for (int i = 0; i < num_chefoes && pos<=posicoes.size(); i++) {
 
 			Personagens::Chefao* c = new Personagens::Chefao(6);
-			Obstaculos::Obstaculo* o = new Obstaculos::Plataforma(3);
+			Obstaculos::Obstaculo* o = new Obstaculos::Plataforma(12);
 			Obstaculos::Obstaculo* o2 = new Obstaculos::Plataforma(3);
-			Obstaculos::Obstaculo* o_mini1 = new Obstaculos::Plataforma(3);
-			Obstaculos::Obstaculo* o_mini2 = new Obstaculos::Plataforma(3);
 
 			
 			c->setCoordenadas((float)posicoes[pos], altura);
@@ -236,13 +370,7 @@ namespace Fases {
 			c->zonaChefao();
 
 			o->setCoordenadas((float)(posicoes[pos] - 10), (float)(altura + 5 + c->getCorpo().getSize().y));
-			o->setCorpo((float)(c->getCorpo().getSize().x + 20), (float)(50));
-
-			o_mini1->setCoordenadas((float)(posicoes[pos] - 10), (float)(0));
-			o_mini1->setCorpo((float)(10), (float)(o->getCorpo().getPosition().y));
-
-			o_mini2->setCoordenadas((float)(o->getCorpo().getPosition().x+o->getCorpo().getSize().x-10), (float)(0));
-			o_mini2->setCorpo((float)(10), (float)(o->getCorpo().getPosition().y));
+			o->setCorpo((float)(c->getCorpo().getSize().x + 20), (float)(600));
 
 			int meioZona = (c->getFinalZona() - ((c->getFinalZona() - c->getIniZona()) / 2));
 			o2->setCoordenadas((meioZona - 25), 760);
@@ -251,8 +379,7 @@ namespace Fases {
 			listaEntidades.Incluir(c, &gerentC);
 			listaEntidades.Incluir(o, &gerentC);
 			listaEntidades.Incluir(o2, &gerentC);
-			listaEntidades.Include(o_mini1);
-			listaEntidades.Include(o_mini2);
+
 
 			posicoes.erase(posicoes.begin() + pos);
 			
@@ -262,8 +389,6 @@ namespace Fases {
 	void Fase2::geraProjeteis() {//ser criada DEPOIS do chefao
 
 		num_projeteis = 10 * (num_chefoes);
-		//cout << "qntd de chefoes: " << num_chefoes << endl;
-		//cout << "qntd de projetil: " << num_projeteis<<endl;
 
 		for (int i = 0; i <num_projeteis; i++) {
 			Projetil* p = new Projetil(5);

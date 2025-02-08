@@ -10,7 +10,7 @@ Projetil::Projetil(int id, const char* png):
     //setCorpo(64, 32);
     noChao = false;
     seguindo = false;
-    segue = 0;
+    //segue = 0;
     velocidadeX = 300;
     velocidadeY = 0;
 	posX = 0;
@@ -200,10 +200,6 @@ void Projetil::seguir(float x_alvo, float y_alvo) {
                 setVelocidade(0, 0);
 			}
         }
-        /*else {
-            seguindo = false;
-            mover();
-        }*/
 
     }
 }
@@ -255,5 +251,26 @@ void Projetil::seguir(float x_alvo, float y_alvo) {
     const float Projetil::gravidade = (9.8*1000);
     const float Projetil::forcaMistica = (-9.8*1000);
 
+    json Projetil::salvar() const {
+        json entidadeJson;
+        entidadeJson["id"] = id;
+        entidadeJson["x"] = corpo.getPosition().x;
+        entidadeJson["y"] = corpo.getPosition().y;
+        entidadeJson["velocidadeY"] = velocidadeY;
+        entidadeJson["velocidadeX"] = velocidadeX;
+        entidadeJson["noChao"] = noChao;
+        entidadeJson["chao"] = chao;
+        entidadeJson["seguindo"] = seguindo;
+        entidadeJson["seguiu"] = seguiu;
+        entidadeJson["cont"] = cont;
+        entidadeJson["apagado"] = apagado;
+		entidadeJson["val"] = val;
+		entidadeJson["apareceu"] = apareceu;
+		entidadeJson["posX"] = posX;
+		entidadeJson["posY"] = posY;
+		entidadeJson["segue"] = segue;
+        
+        return entidadeJson;
+    }
 
 
