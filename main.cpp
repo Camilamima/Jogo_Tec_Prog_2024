@@ -3,7 +3,7 @@
 int main() {
 	Jogo a;
 
-	a.executar2();
+	a.executar();
 
 	return 0;
 }

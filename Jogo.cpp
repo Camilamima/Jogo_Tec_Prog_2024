@@ -11,7 +11,7 @@ Jogo::Jogo():
     menu(-1)
 {
     menu.setGerenciador(&gerent);
-    fase = 1;
+    fase = 2;
     fase1 = nullptr;
     fase2 = nullptr;
 }
@@ -37,12 +37,13 @@ void Jogo::lerFase(){
         arquivo >> dados;
 
 		fase=dados["Fase"];
+
         if (fase == 1) {
 
             fase1 = new Fase1(dados, &gerent);
         }
         else if (fase == 2) {
-            cout << "ainda ser implementado" << endl;
+			fase2 = new Fase2(dados, &gerent);\
         }
 }
 
@@ -102,10 +103,12 @@ void Jogo::executar()
                 }
                 if (event.key.code == sf::Keyboard::F1) {
                     // Chama a função para salvar o jogo
-                    if (fase == 1)
+                    if (fase == 1) {
                         fase1->salvaFase();
-                    else if (fase == 2)
+                    }
+                    else if (fase == 2) {
                         fase2->salvaFase();
+                    }
                 }
             }
 
@@ -132,12 +135,16 @@ void Jogo::executar()
                 }
             }
             else if (fase == 2) {
-                if (fase2ini == 0) {
+                if (fase2ini == 0 && resp!=1) {
                     fase2 = new Fase2;
                     fase2->setGerenciador(&gerent);
                     fase2->inicializa();
                     fase2ini = 1;
 
+				}
+                else if (fase2ini == 0 && resp == 1) {//teste
+                    fase2->setGerenciador(&gerent);
+                    fase2ini = 1;
                 }
                 fase2->executar();
                 /*if (fase2->getJogadores() == 0) {

@@ -28,13 +28,22 @@ namespace Gerenciadores {
 	}
 
 	void Gerenciador_Colisoes::includeEntidade(Entidade* ent) {
-		if (ent->getId() == 3 || ent->getId() == 9 || ent->getId() == 8 || ent->getId() == 11) {//obstaculo
+
+		if (ent->getId() == 3 || ent->getId() == 9 || ent->getId() == 8 || ent->getId() == 11 || ent->getId()==12) {//obstaculo
 			LObst.push_back(static_cast<Obstaculos::Obstaculo*>(ent));
 			static_cast<Obstaculos::Obstaculo*>(ent)->setpJogador(jog1);
 
 		}
+
 		else if (ent->getId() == 4 || ent->getId() == 6 || ent->getId() == 7) {//inimigo
 			LIni.push_back(static_cast<Personagens::Inimigo*>(ent));
+		}
+
+		else if (ent->getId() == 1) {//jogador 1
+			jog1 = static_cast<Personagens::Slime*>(ent);
+		}
+		else if (ent->getId() == 2) {//jogador 2
+			jog2 = static_cast<Personagens::Slime*>(ent);
 		}
 		else if (ent->getId() == 5) {//projetil
 			LProjetil.push_back(static_cast<Projetil*>(ent));
@@ -66,7 +75,7 @@ namespace Gerenciadores {
 			(x2 >= outro.getPosition().x && x2 <= (outro.getPosition().x + outro.getSize().x)))
 		{
 			//chão
-			if (y2 >= yy - 15 && y2 <= yy + 15) {
+			if (y2 >= yy - 15 && y2 <= yy + 15) {//teste antes 15
 				return 1;
 			}
 			//teto
@@ -115,6 +124,7 @@ namespace Gerenciadores {
 		if (jog1 != nullptr) {
 			aux2 = jog1->getCorpo();
 			for (Personagens::Inimigo* inimigo : LIni) {
+
 				aux1 = inimigo->getCorpo();
 
 				if (!inimigo->verificaVida()) {
@@ -147,6 +157,7 @@ namespace Gerenciadores {
 						--(*jog1);
 						jog1->pular(300);
 						jog1->setAtacado(1, 0);
+						cout << "vidas jog1: " << jog1->getVidas() << endl;
 					}
 				}
 				else if (veriColisao(inimigo, jog1) == 3) {
@@ -154,6 +165,7 @@ namespace Gerenciadores {
 						--(*jog1);
 						jog1->pular(300);
 						jog1->setAtacado(1, 1);
+						cout << "vidas jog1: " << jog1->getVidas() << endl;
 					}
 
 				}
@@ -198,7 +210,7 @@ namespace Gerenciadores {
 						--(*jog2);
 						jog2->pular(300);
 						jog2->setAtacado(1, 0);
-						cout << "vidas slime: " << jog2->getVidas() << endl;
+						cout << "vidas jog2: " << jog2->getVidas() << endl;
 					}
 				}
 				else if (veriColisao(inimigo, jog2) == 3) {
@@ -206,7 +218,7 @@ namespace Gerenciadores {
 						--(*jog2);
 						jog2->pular(300);
 						jog2->setAtacado(1, 1);
-						cout << "vidas slime: " << jog2->getVidas() << endl;
+						cout << "vidas jog2: " << jog2->getVidas() << endl;
 					}
 
 				}
@@ -223,13 +235,16 @@ namespace Gerenciadores {
 			aux_jog1 = jog1->getCorpo();
 
 			for (Projetil* projetil : LProjetil) {
+
 				aux_proj = projetil->getCorpo();
+
 				if (projetil->getNoChao() == true) {
 					continue;
 				}
 
 				if(projetil->getApareceu()==true){
-					if (projetil->segueQuem(jog1)) {//se segue o jogador 1
+					
+					if (projetil->segueQuem(jog1)==true) {//se segue o jogador 1
 						projetil->setSeguindo(true);
 						projetil->setSeguiu(true);
 						projetil->seguir(aux_jog1.getPosition().x + (aux_jog1.getSize().x / 2), aux_jog1.getPosition().y + (aux_jog1.getSize().y / 2));
@@ -452,7 +467,10 @@ namespace Gerenciadores {
 
 
 	void Gerenciador_Colisoes::removeEntidade(Entidade* ent) {
-		if (ent->getId() == 4 || ent->getId() == 6) {//se for inimigo ou chefao
+		if (ent->getId() == 4) {//se for inimigo ou chefao
+			LIni.remove(static_cast<Personagens::Inimigo*>(ent));
+		}
+		if (ent->getId() == 6) {
 			LIni.remove(static_cast<Personagens::Inimigo*>(ent));
 		}
 		else if (ent->getId() == 1) {//se for jogador 1
@@ -460,6 +478,9 @@ namespace Gerenciadores {
 		}
 		else if (ent->getId() == 2) {//se for jogador 2
 			setJogadores(jog1, nullptr);
+		}
+		else if (ent->getId() == 12) {
+			LObst.remove(static_cast<Obstaculos::Plataforma*>(ent));
 		}
 	}
 
@@ -488,8 +509,9 @@ namespace Gerenciadores {
 
 
 				if (veriColisao(obstaculo, inimigo) == 1) {
-					inimigo->setChao(aux.getPosition().y - 100);
+					inimigo->setChao(aux.getPosition().y);
 					emCima = 1;
+					inimigo->setNoChao(true);
 				}
 
 				if (veriColisao(obstaculo, inimigo) == 2) {

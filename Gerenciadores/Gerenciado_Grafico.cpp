@@ -13,10 +13,21 @@ namespace Gerenciadores {
 	Gerenciado_Grafico::~Gerenciado_Grafico() {
 	}
 	
-	void Gerenciado_Grafico::BackGFloresta() {
-		Fundo.loadFromFile("assets/floresta.png");
-		sprite.setTexture(Fundo);
+	void Gerenciado_Grafico::BackGFloresta(int fase) {
+		if (fase == 1) {
+			Fundo.loadFromFile("assets/floresta.png");
+			sprite.setTexture(Fundo);
+		}
+		if (fase == 2) {
+			Fundo.loadFromFile("assets/caverna.png");
+			sprite.setTexture(Fundo);
+		}
 
+	}
+
+	void Gerenciado_Grafico::BackGCaverna() {
+		Fundo.loadFromFile("assets/caverna.png");
+		sprite.setTexture(Fundo);
 	}
 
 	void Gerenciado_Grafico::arrumaCamera(float x) {

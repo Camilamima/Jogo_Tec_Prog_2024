@@ -10,7 +10,7 @@ namespace Obstaculos {
 		pJogador = nullptr;
 		atrito = 1.0f;
 		impede = true;
-		setCoordenadas(x, y);
+		//setCoordenadas(x, y);
 	}
 	Plataforma::~Plataforma() {
 	}

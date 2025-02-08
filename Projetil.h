@@ -14,10 +14,13 @@ private:
 	bool seguindo;
 	bool seguiu;
 	bool apareceu;
-	Clock relogioVida;
-	int cont;
-	int val;
-	
+	Clock relogioVida;//relogio para dar dano
+	int cont;//cont para animacao
+	int val;//cont para animacao
+	bool apagado;
+	static const float gravidade;
+	static const float forcaMistica;//forca que atua para eliminar a gravidade
+
 public:
 	Projetil(int id, const char* png = "assets/projetil/1.png");
 	~Projetil();
@@ -36,6 +39,8 @@ public:
 	void setVelocidade(float x, float y);
 	float getVelocidadeX() const { return velocidadeX; }
 	float getVelocidadeY() const { return velocidadeY; }
+	void setApagado(bool x) { apagado = x; }
+	bool getApagado() { return apagado; }
 	void moverSeguindo(float aux);
 	void mover();
 	float atualizaFPS();
@@ -43,8 +48,8 @@ public:
 	void danifica(Personagens::Slime* jog);
 	void animacao(int limite);
 	void setChao(float x) { chao = x; }
-	json salvar() const {
-		json aux;
-		return aux;
-	};
+	void setXY(float x1, float y1) { posX = x1; posY = y1; }
+	void setCont(int a) { cont = a; }
+	void setVal(int a) { val = a; }
+	json salvar() const;
 };
