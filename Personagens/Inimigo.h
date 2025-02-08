@@ -13,6 +13,7 @@ namespace Personagens {
 		void setMaldade(int maldade);
 		void ataca(Slime* jog1,int lado);
 		int getMaldade() const{ return nivel_maldade; }
+		virtual void animacao(int num, int limite) = 0;
 		virtual json salvar() const = 0;
 	};
 }

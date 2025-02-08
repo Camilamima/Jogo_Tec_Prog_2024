@@ -11,7 +11,7 @@ Jogo::Jogo():
     menu(-1)
 {
     menu.setGerenciador(&gerent);
-    fase = 2;
+    fase = 1;
     fase1 = nullptr;
     fase2 = nullptr;
 }
@@ -245,14 +245,14 @@ void Jogo::executar()
                 }
             }
             else if (fase == 2) {
-                if (fase2ini == 0 && resp!=1) {
+                if (fase2ini == 0 ) {
                     fase2 = new Fase2;
                     fase2->setGerenciador(&gerent);
                     fase2->inicializa();
                     fase2ini = 1;
 
 				}
-                else if (fase2ini == 0 && resp == 1) {//teste
+                else if (fase2ini == 0 ) {//teste
                     fase2->setGerenciador(&gerent);
                     fase2ini = 1;
                 }

@@ -5,18 +5,6 @@ namespace Fases {
 
 	Fase2::Fase2() :
 		Fase(),
-		//teste2(6),
-		//teste3(6),//chefao
-		/*p1(5),
-		p2(5),
-		p3(5),
-		p4(5),
-		p5(5),
-		p6(5),
-		p7(5),
-		p8(5),
-		p9(5),
-		p10(5),*/
 		num_obs2(-1),
 		num_chefoes(-1),
 		num_projeteis(-1)
@@ -89,6 +77,13 @@ namespace Fases {
 				p->geraPlataforma(entidade["altura"], entidade["largura"], x, y);
 
 			}
+			else if (id == 12) {
+
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(12);
+				listaEntidades.Incluir(p, &gerentC);
+				p->geraPlataforma(entidade["altura"], entidade["largura"], x, y);
+
+			}
 			else if (id == 4) {
 				Personagens::Rato* r = new Personagens::Rato(4);
 				listaEntidades.Incluir(r, &gerentC);
@@ -105,6 +100,43 @@ namespace Fases {
 				e->setEspinhos(entidade["num_espinhos"]);
 				listaEntidades.Incluir(e, &gerentC);
 			}
+			else if (id == 6) {
+				Personagens::Chefao* c = new Personagens::Chefao(6);
+				c->setCoordenadas(x, y);
+				c->setCorpo(224, 240);
+				c->setMaldade(3);
+				c->setPosInicialX(entidade["pos_inicial"]);
+				c->setAtivo(entidade["ativo"]);
+				c->setChao(entidade["chao"]);
+				c->setVelocidae(entidade["velocidadeX"], entidade["velocidadeY"]);
+				c->setNoChao(entidade["noChao"]);
+				c->setVidas(entidade["vidas"]);
+				c->setTurno(entidade["turno"]);
+				c->setIniZona(entidade["iniZona"]);
+				c->setFinalZona(entidade["finalZona"]);
+				c->setVal(entidade["val"]);
+				c->setCont(entidade["cont"]);
+				c->setNum_Projetil(entidade["num_projetil"]);
+				listaEntidades.IncluirSalvamento(c, &gerentC);
+			}
+			else if (id == 5) {
+				Projetil* p = new Projetil(5);
+				p->setCoordenadas(x, y);
+				p->setVelocidade(entidade["velocidadeX"], entidade["velocidadeY"]);
+				p->setAtivo(entidade["segue"]);
+				p->setNoChao(entidade["noChao"]);
+				p->setChao(entidade["chao"]);
+				p->setSeguindo(entidade["seguindo"]);
+				p->setSeguiu(entidade["seguiu"]);
+				p->setCont(entidade["cont"]);
+				p->setVal(entidade["val"]);
+				p->setApagado(entidade["apagado"]);
+				p->setApareceu(entidade["apareceu"]);
+				p->setCoordenadas(entidade["posX"], entidade["posY"]);
+				p->setXY(entidade["posX"], entidade["posY"]);
+
+				listaEntidades.IncluirSalvamento(p, &gerentC);
+			}
 			//adicionar aqui outros ids
 		}
 		listaEntidades.Incluir(&Slime1, &gerentC);
@@ -117,7 +149,7 @@ namespace Fases {
 
 	Fase2::~Fase2() {}
 
-	Fase2::Fase2(const json& dados, Gerenciadores::Gerenciado_Grafico* gC):
+	/*Fase2::Fase2(const json& dados, Gerenciadores::Gerenciado_Grafico* gC) :
 	num_obs2(-1),
 	num_chefoes(-1),
 	num_projeteis(-1)
@@ -255,7 +287,7 @@ namespace Fases {
 		}
 
 		listaEntidades.setGG(gerent);
-	}
+	}*/
 
 	void Fase2::inicializa() {
 

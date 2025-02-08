@@ -56,7 +56,7 @@ namespace Personagens {
 
 		if (!noChao)
 		{
-				animacaoJog(3, 3);
+				animacao(3, 3);
 
 
 			velocidadeY += static_cast<float>(gravidade) * atualizaDelta(relogio);
@@ -102,176 +102,176 @@ namespace Personagens {
 
 
 	void Slime::processaEvento() {
-		if (!morrendo) {
-			bool clicado;
-			clicado = false;
+		if (getId() == 1) {
+			if (!morrendo) {
+				bool clicado;
+				clicado = false;
 
-			if (val == 7) {
-				val = 0;
-			}
-
-			if (atacado) {
-
-				if (!ladoAtacado) {
-					if (moviE == 1) {
-						mover(atualizaDelta(relogio) * -300);
-					}
-					else {
-						mover(0);
-					}
+				if (val == 7) {
+					val = 0;
 				}
 
-				else if (ladoAtacado) {
+				if (atacado) {
 
-					if (moviD == 1) {
-						mover(atualizaDelta(relogio) * +300);
-					}
-					else {
-						mover(0);
-					}
-				}
-			}
-
-			else {
-
-				if (Keyboard::isKeyPressed(Keyboard::D)) {
-					if (moviD == 1) {
-						dPress = 1;
-						aPress = 0;
-						if (cont % 5 == 0) {
-							val++;
-							animacaoJog(1, 7);
+					if (!ladoAtacado) {
+						if (moviE == 1) {
+							mover(atualizaDelta(relogio) * -300);
 						}
-						mover(atualizaDelta(relogio) * velocidadeX);
-						clicado = 1;
-					}
-				}
-
-				else if (Keyboard::isKeyPressed(Keyboard::A)) {
-					if (moviE == 1) {
-						aPress = 1;
-						dPress = 0;
-						if (cont % 5 == 0) {
-							val--;
-								animacaoJog(2, 7);//antes era 7
+						else {
+							mover(0);
 						}
-						mover(atualizaDelta(relogio) * -velocidadeX);
-						clicado = 1;
+					}
+
+					else if (ladoAtacado) {
+
+						if (moviD == 1) {
+							mover(atualizaDelta(relogio) * +300);
+						}
+						else {
+							mover(0);
+						}
 					}
 				}
 
-				if (Keyboard::isKeyPressed(sf::Keyboard::W)) {
-					clicado = 1;
-					if (noChao) {
-						pular(600);
-						wPress = 1;
-					}
-					mover(0);
-				}
 				else {
-					wPress = 0;
-					mover(0);
+
+					if (Keyboard::isKeyPressed(Keyboard::D)) {
+						if (moviD == 1) {
+							dPress = 1;
+							aPress = 0;
+							if (cont % 5 == 0) {
+								val++;
+								animacao(1, 7);
+							}
+							mover(atualizaDelta(relogio) * velocidadeX);
+							clicado = 1;
+						}
+					}
+
+					else if (Keyboard::isKeyPressed(Keyboard::A)) {
+						if (moviE == 1) {
+							aPress = 1;
+							dPress = 0;
+							if (cont % 5 == 0) {
+								val--;
+								animacao(2, 7);//antes era 7
+							}
+							mover(atualizaDelta(relogio) * -velocidadeX);
+							clicado = 1;
+						}
+					}
+
+					if (Keyboard::isKeyPressed(sf::Keyboard::W)) {
+						clicado = 1;
+						if (noChao) {
+							pular(600);
+							wPress = 1;
+						}
+						mover(0);
+					}
+					else {
+						wPress = 0;
+						mover(0);
 
 
+					}
 				}
-			}
 
-			if (clicado == 0) {
-				mover(0);
-				if (cont % 10 == 0) {
-					val++;
-					animacaoJog(0, 9);//era 8
-				
+				if (clicado == 0) {
+					mover(0);
+					if (cont % 10 == 0) {
+						val++;
+						animacao(0, 9);//era 8
+
+					}
 				}
 			}
 		}
-	}
+		if (getId() == 2) {
+			if (!morrendo) {
+				bool clicado;
+				clicado = false;
 
-	void Slime::processaEvento2() {
-		
-		if (!morrendo) {
-			bool clicado;
-			clicado = false;
-
-			if (val == 7) {
-				val = 0;
-			}
-
-			if (atacado) {
-
-				if (!ladoAtacado) {
-					if (moviE == 1) {
-						mover(atualizaDelta(relogio) * -300);
-					}
-					else {
-						mover(0);
-					}
+				if (val == 7) {
+					val = 0;
 				}
 
-				else if (ladoAtacado) {
+				if (atacado) {
 
-					if (moviD == 1) {
-						mover(atualizaDelta(relogio) * +300);
-					}
-					else {
-						mover(0);
-					}
-				}
-			}
-
-			else {
-				if (Keyboard::isKeyPressed(Keyboard::Right)) {
-					if (moviD == 1) {
-						dPress = 1;
-						aPress = 0;
-						if (cont % 5 == 0) {
-							val++;
-								animacaoJog(1, 6);
+					if (!ladoAtacado) {
+						if (moviE == 1) {
+							mover(atualizaDelta(relogio) * -300);
 						}
-						mover(atualizaDelta(relogio) * velocidadeX);
-						clicado = 1;
-					}
-				}
-				else if (Keyboard::isKeyPressed(Keyboard::Left)) {
-					if (moviE == 1) {
-						aPress = 1;
-						dPress = 0;
-						if (cont % 5 == 0) {
-							val--;
-								animacaoJog(2, 6);
+						else {
+							mover(0);
 						}
-						mover(atualizaDelta(relogio) * -velocidadeX);
-						clicado = 1;
+					}
+
+					else if (ladoAtacado) {
+
+						if (moviD == 1) {
+							mover(atualizaDelta(relogio) * +300);
+						}
+						else {
+							mover(0);
+						}
 					}
 				}
 
-				if (Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-
-					if (noChao) {
-						clicado = 1;
-						pular(600);
-						wPress = 1;
-					}
-					mover(0);
-				}
 				else {
-					wPress = 0;
-					mover(0);
+					if (Keyboard::isKeyPressed(Keyboard::Right)) {
+						if (moviD == 1) {
+							dPress = 1;
+							aPress = 0;
+							if (cont % 5 == 0) {
+								val++;
+								animacao(1, 6);
+							}
+							mover(atualizaDelta(relogio) * velocidadeX);
+							clicado = 1;
+						}
+					}
+					else if (Keyboard::isKeyPressed(Keyboard::Left)) {
+						if (moviE == 1) {
+							aPress = 1;
+							dPress = 0;
+							if (cont % 5 == 0) {
+								val--;
+								animacao(2, 6);
+							}
+							mover(atualizaDelta(relogio) * -velocidadeX);
+							clicado = 1;
+						}
+					}
 
-				}
-			}
+					if (Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 
-			if (clicado == 0) {
-				mover(0);
-				if (cont % 10 == 0) {
-					val++;
-					if (getId() == 1) {
-						animacaoJog(0, 9);//era 8
+						if (noChao) {
+							clicado = 1;
+							pular(600);
+							wPress = 1;
+						}
+						mover(0);
 					}
 					else {
-						animacaoJog(0, 7);
+						wPress = 0;
+						mover(0);
+
 					}
-					
+				}
+
+				if (clicado == 0) {
+					mover(0);
+					if (cont % 10 == 0) {
+						val++;
+						if (getId() == 1) {
+							animacao(0, 9);//era 8
+						}
+						else {
+							animacao(0, 7);
+						}
+
+					}
 				}
 			}
 		}
@@ -289,14 +289,7 @@ namespace Personagens {
 			atacando = 0;
 		}
 
-
-		if (getId() == 1) {
-			processaEvento();
-		}
-
-		if (getId() == 2) {
-			processaEvento2();
-		}
+		processaEvento();
 
 		pGGrafico->desenha(corpo);
 
@@ -307,7 +300,7 @@ namespace Personagens {
 
 
 
-	void Slime::animacaoJog(int num, int limite) {
+	void Slime::animacao(int num, int limite) {
 		if (val >= limite) {
 			val = 0;
 		}

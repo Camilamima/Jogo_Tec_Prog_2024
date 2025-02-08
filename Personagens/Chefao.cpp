@@ -2,6 +2,7 @@
 #include <iostream>
 #include <set>
 
+
 namespace Personagens {
 
 	Chefao::Chefao(int id, const char* png) :
@@ -15,8 +16,6 @@ namespace Personagens {
 		turno = false;
 		vidas = 2;
 		chao = 560;
-		val = 0;
-		cont = 0;
 		pos_inicial = 0;
 
 		setCorpo(224, 240);
@@ -79,7 +78,7 @@ namespace Personagens {
 
 			if (cont % 7 == 0) {
 				val++;
-				animacao(15);
+				animacao(1,15);
 			}
 
 			if (verificaVida()) {
@@ -136,15 +135,16 @@ namespace Personagens {
 	}
 
 	/*===== animacao chefao =====*/
-	void Chefao::animacao(int limite) {
+	void Chefao::animacao(int num, int limite) {
 		if (val >= limite) {
 			val = 0;
 		}
 
-		sprite.loadFromFile("assets/chefao/Agis.png");
-		corpo.setTexture(&sprite);
-		corpo.setTextureRect(IntRect(224 * val, 0, 224, 240));
-
+		if (num == 1) {
+			sprite.loadFromFile("assets/chefao/Agis.png");
+			corpo.setTexture(&sprite);
+			corpo.setTextureRect(IntRect(224 * val, 0, 224, 240));
+		}
 	}
 
 	void Chefao::operator++() {

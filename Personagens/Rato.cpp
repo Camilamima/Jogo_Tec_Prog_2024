@@ -14,8 +14,6 @@ namespace Personagens {
 		setCorpo(100, 100);
 		distancia_percorrida = 0;
 		setMaldade(1);
-		val = 0;
-		cont = 0;
 	}
 
 	Rato::~Rato() {  }

@@ -25,8 +25,6 @@ namespace Personagens {
         setCorpo(177.27f, 100);
         setSoCorpo(177.27f, 100);
         setMaldade(2);
-        cont = 0;
-        val = 0;
     }
 
     Cachorro::~Cachorro() {

@@ -41,17 +41,13 @@ namespace Listas {
 		{
 			if ((*it)->getId() == 5) {//se for um projetil
 				if (static_cast<Projetil*>(*it)->getApareceu() == true) {//se ele ja apareceu
-					//cout << "Apareceu" << endl;
 						(*it)->executar();//executa o projetil
 				}
 			}
 
 
-			else {//se for um id diferente de 5 e 10 ou seja, 1,2,3,4,6,7,8,9,11
-
-				cout << "id: " << (*it)->getId() << endl;
+			else {
 				(*it)->executar();
-
 
 				if ((*it)->getId() == 1) {//se for um jogador
 					encontraZonaChefao(static_cast<Slime*>(*it));//verifico qual zona ele tá
@@ -67,7 +63,6 @@ namespace Listas {
 		gc->includeEntidade(entidade);//incluo no gerenciador de colisoes
 
 		if (entidade->getId() == 6) {//se for chefao adiciono-o no vector
-			//pos_chefao = listaEntidades->tamanho() - 1;//pego a posicao do chefao
 			chefoes->push_back(static_cast<Chefao*>(entidade));//coloco o chefao no vetor de chefao
 			
 		}
@@ -97,10 +92,12 @@ namespace Listas {
 		}
 	}
 
+	/*=== Inclui entidade na lista ===*/ //*************** nao está sendo usado!!
 	void ListaEntidade::Include(Entidade* entidade) {
 		listaEntidades->adicionarElemento(entidade);
 	}
 
+	/*=== incluir para o salvamento!! ===*/
 	void ListaEntidade::IncluirSalvamento(Entidade* entidade, Gerenciadores::Gerenciador_Colisoes* gc) {
 		listaEntidades->adicionarElemento(entidade);//adiciono na lista
 		gc->includeEntidade(entidade);//incluo no gerenciador de colisoes
@@ -180,7 +177,7 @@ namespace Listas {
 		if (ent->getId() == 7 || ent->getId() == 4) {
 			MatarEntidade(ent, gc);
 		}
-		if (ent->getId() == 6) {
+		if (ent->getId() == 6) {//se for chefao PRECISO remover a plataforma dele
 			MatarEntidade(ent, gc);
 			gc->removeEntidade(*plataforma_chefao->begin());
 			listaEntidades->removerElemento(*plataforma_chefao->begin());

@@ -15,6 +15,8 @@ namespace Personagens {
         bool moviE;
         float velocidadeY;
         float velocidadeX;
+        int cont;
+        int val;
 
     public:
         Personagem(int id, const char* png);
@@ -36,6 +38,7 @@ namespace Personagens {
         const bool getnoChao() const {return noChao;}
         void setChao(float a) { chao = a; }
         void setNoChao(float Xao) { noChao = Xao; }
+        virtual void animacao(int num, int limite) = 0;
         virtual json salvar() const = 0;
     };
 

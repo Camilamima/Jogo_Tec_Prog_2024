@@ -205,7 +205,7 @@ void Projetil::seguir(float x_alvo, float y_alvo) {
 }
     void Projetil::danifica(Personagens::Slime* jog) {
         if (relogioVida.getElapsedTime().asSeconds() >= 1.5) {
-            jog->animacaoJog(4, 1);
+            jog->animacao(4, 1);
             jog->operator*=(10);
             std::cout << "Num vida do jog: " << jog->getVidas() << std::endl;
             relogioVida.restart();

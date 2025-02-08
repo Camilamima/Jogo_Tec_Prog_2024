@@ -16,8 +16,6 @@ namespace Personagens {
 		Clock relogio1;
 		Clock relogio2;
 		Clock relogioProjetil;
-		int cont;
-		int val;
 		//Efeito* teletransporte;
 		//bool fim_animacao;
 		static const int max_projetil;
@@ -37,7 +35,6 @@ namespace Personagens {
 		void criaProjeteis(Projetil* proj);
 		void criaProjeteisSalv(Projetil* proj);
 		void apagaProjetil();
-		void animacao(int limite);
 		void setTurno(bool turno1) { turno = turno1; }
 		//void animacaoTp(int limite);
 		static int getMaxProjetil() { return max_projetil; }
@@ -57,5 +54,6 @@ namespace Personagens {
 		void setCont(int a) { cont = a; }
 		void setVal(int a) { val = a; }
 		json salvar()const;
+		void animacao(int num, int limite);
 	};
 }
