@@ -13,7 +13,6 @@ private:
 	Fases::Fase2 *fase2;
 	Gerenciadores::Gerenciado_Grafico gerent;
 	int fase;
-	
 
 public:
 	Jogo();

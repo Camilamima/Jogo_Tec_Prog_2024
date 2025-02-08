@@ -47,7 +47,10 @@ namespace Listas {
 
 
 			else {//se for um id diferente de 5 e 10 ou seja, 1,2,3,4,6,7,8,9,11
+
+				cout << "id: " << (*it)->getId() << endl;
 				(*it)->executar();
+
 
 				if ((*it)->getId() == 1) {//se for um jogador
 					encontraZonaChefao(static_cast<Slime*>(*it));//verifico qual zona ele tá
@@ -155,6 +158,7 @@ namespace Listas {
 			achou = chefoes->operator[](i)->zonaChefao(jog);
 			chefoes->operator[](i)->setAtivo(achou);
 		}
+	}
     
 	vector<Entidade*> ListaEntidade::returnVec() {
 		vector<Entidade*> aux;

@@ -17,6 +17,7 @@
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
+class Menu;
 
 namespace Fases {
 	class Fase {
@@ -27,6 +28,8 @@ namespace Fases {
 		const int tamanho_zona;
 		int zona_atual;
 		int num_facil;
+		bool Pause;
+		Menu* pMenu;
 		vector <int> localizacao_obs;
 		Gerenciadores::Gerenciador_Colisoes gerentC;
 		Gerenciadores::Gerenciado_Grafico* gerent;
@@ -41,6 +44,15 @@ namespace Fases {
 		~Fase();
 		int getJogadores() const {
 			return qnt_jogadores;
+		}
+		void setPause(const bool i) {
+			Pause = i;
+		}
+		void setJogadores(const int i) {
+			qnt_jogadores = i;
+		}
+		void setMenu(Menu* m) {
+			pMenu = m;
 		}
 		void setGerenciador(Gerenciadores::Gerenciado_Grafico* g) { gerent = g; }
 		virtual void inicializa() = 0;
