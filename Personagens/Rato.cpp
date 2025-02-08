@@ -1,5 +1,6 @@
 #include "Rato.h"
-#include "iostream"
+#include <stdexcept>
+#include <iostream>
 
 
 using namespace std;
@@ -70,7 +71,7 @@ namespace Personagens {
 				}
 			}
 			catch (const std::exception& e) {
-				std::cerr << "Exceção capturada: " << e.what() << std::endl;
+				std::cerr << "Excecao capturada: " << e.what() << std::endl;
 			}
 
 			corpo.setTexture(&sprite);
@@ -85,7 +86,7 @@ namespace Personagens {
 				}
 			}
 			catch (const std::exception& e) {
-				std::cerr << "Exceção capturada: " << e.what() << std::endl;
+				std::cerr << "Excecao capturada: " << e.what() << std::endl;
 			}
 
 			corpo.setTexture(&sprite);

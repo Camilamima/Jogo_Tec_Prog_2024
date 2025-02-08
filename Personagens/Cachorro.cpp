@@ -1,5 +1,7 @@
 #include "Cachorro.h"
 #include <cmath>
+#include <stdexcept>
+#include <iostream>
 
 using namespace std;
 
@@ -126,7 +128,15 @@ namespace Personagens {
                 ladoAtaque = 1;
                 setTamanhoCorpo(corpo.getSize().x + 60.0f, corpo.getSize().y+35.0f);
                 corpo.move(-60.0f,-35.0f);
-                sprite.loadFromFile("assets/espadachim/Attack1 esquerda.png");
+                //sprite.loadFromFile("assets/espadachim/Attack1 esquerda.png");
+                try {
+                    if (!sprite.loadFromFile("assets/espadachim/Attack1 esquerda.png")) {  // Se o arquivo não for encontrado
+                        throw std::runtime_error("Erro ao carregar a textura: assets/espadachim/Attack1 esquerda.png");
+                    }
+                }
+                catch (const std::exception& e) {
+                    std::cerr << "Excecao capturada: " << e.what() << std::endl;
+                }
                 corpo.setTexture(&sprite);
                 corpo.setTextureRect(IntRect(20 + (200 * 1), 59, 160, 71));
                 pGGrafico->desenha(corpo);
@@ -137,7 +147,15 @@ namespace Personagens {
             if (moviD) {
                 setTamanhoCorpo(corpo.getSize().x + 60.0f, corpo.getSize().y +35.0f);
                 corpo.move(0.0f, -35.0f);
-                sprite.loadFromFile("assets/espadachim/Attack1.png");
+                //sprite.loadFromFile("assets/espadachim/Attack1.png");
+                try {
+                    if (!sprite.loadFromFile("assets/espadachim/Attack1.png")) {  // Se o arquivo não for encontrado
+                        throw std::runtime_error("Erro ao carregar a textura: assets/espadachim/Attack1.png");
+                    }
+                }
+                catch (const std::exception& e) {
+                    std::cerr << "Excecao capturada: " << e.what() << std::endl;
+                }
                 corpo.setTexture(&sprite);
                 corpo.setTextureRect(IntRect(20 + (200 * 2), 59, 160, 71));
                 pGGrafico->desenha(corpo);
@@ -155,12 +173,28 @@ namespace Personagens {
         }
 
         if (num == 1) {//vai p direita
-            sprite.loadFromFile("assets/espadachim/Run.png");
+            //sprite.loadFromFile("assets/espadachim/Run.png");
+            try {
+                if (!sprite.loadFromFile("assets/espadachim/Run.png")) {  // Se o arquivo não for encontrado
+                    throw std::runtime_error("Erro ao carregar a textura: assets/espadachim/Run.png");
+                }
+            }
+            catch (const std::exception& e) {
+                std::cerr << "Excecao capturada: " << e.what() << std::endl;
+            }
             corpo.setTexture(&sprite);
             corpo.setTextureRect(IntRect(65+(200 * (val)), 75, 70, 55));
         }
         else if (num == 2) {//vai p direita
-            sprite.loadFromFile("assets/espadachim/Run esquerda.png");
+            //sprite.loadFromFile("assets/espadachim/Run esquerda.png");
+            try {
+                if (!sprite.loadFromFile("assets/espadachim/Run esquerda.png")) {  // Se o arquivo não for encontrado
+                    throw std::runtime_error("Erro ao carregar a textura: assets/espadachim/Run esquerda.png");
+                }
+            }
+            catch (const std::exception& e) {
+                std::cerr << "Excecao capturada: " << e.what() << std::endl;
+            }
             corpo.setTexture(&sprite);
             corpo.setTextureRect(IntRect(65 + (200 * (val)), 75, 70, 55));
         }
