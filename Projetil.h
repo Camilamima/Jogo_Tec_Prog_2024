@@ -4,7 +4,7 @@
 
 class Projetil : public Entidade {
 private:
-	int segue;
+	//int segue;
 	float velocidadeX;
 	float velocidadeY;
 	float posX;
@@ -20,14 +20,14 @@ private:
 	bool apagado;
 	static const float gravidade;
 	static const float forcaMistica;//forca que atua para eliminar a gravidade
-	
+
 public:
-	Projetil(int id, const char* png = "assets/projetil/1.png");
+	Projetil(int id, const char* png = "assets/proj/1.png");
 	~Projetil();
 	void executar();
 	void realiza();
-	void setAtivo(int ativo1) { segue = ativo1; }
-	int getAtivo() const { return segue; }
+	//void setAtivo(int ativo1) { segue = ativo1; }
+	//int getAtivo() const { return segue; }
 	bool getNoChao() const { return noChao; }
 	void setNoChao(bool noChao1) { noChao = noChao1; }
 	void setSeguindo(bool x) { seguindo = x; }
@@ -49,8 +49,7 @@ public:
 	void animacao(int limite);
 	void setChao(float x) { chao = x; }
 	void setXY(float x1, float y1) { posX = x1; posY = y1; }
-	json salvar() const {
-		json aux;
-		return aux;
-	};
+	void setCont(int a) { cont = a; }
+	void setVal(int a) { val = a; }
+	json salvar() const;
 };

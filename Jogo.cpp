@@ -37,6 +37,7 @@ void Jogo::lerFase(){
         arquivo >> dados;
 
 		fase=dados["Fase"];
+
         if (fase == 1) {
 
             fase1 = new Fase1(dados, &gerent);
@@ -45,7 +46,6 @@ void Jogo::lerFase(){
         else if (fase == 2) {
             fase2 = new Fase2(dados, &gerent);
             menu.setFase(fase2);
-
         }
 }
 
@@ -71,7 +71,7 @@ void Jogo::executar2() {
                 }
             }
             if (event.key.code == sf::Keyboard::F1) {
-                // Chama a função para salvar o jogo
+                // Chama a funÃ§Ã£o para salvar o jogo
                 if (fase == 1)
                     fase1->salvaFase();
                 else if (fase == 2)
@@ -111,6 +111,7 @@ void Jogo::executar2() {
                         fase1 = new Fase1;
                         fase1->setJogadores(jogadores);
                         fase1->setGerenciador(&gerent);
+                        gerent.BackGFloresta(1);
                         fase1->inicializa();
                         iniciarFase = true;
                         menu.setFase(fase1);
@@ -121,6 +122,7 @@ void Jogo::executar2() {
                         fase2 = new Fase2;
                         fase2->setJogadores(jogadores);
                         fase2->setGerenciador(&gerent);
+                        gerent.BackGFloresta(2);
                         fase2->inicializa();
                         menu.setFase(fase2);
                         iniciarFase = true;
@@ -171,6 +173,7 @@ void Jogo::executar2() {
                     fase2->setJogadores(jogadores);
                     fase2->setGerenciador(&gerent);
                     fase2->inicializa();
+                    gerent.BackGFloresta(2);
                     menu.setFase(fase2);
                     fase2ini = 1;
 
@@ -212,11 +215,13 @@ void Jogo::executar()
                     }
                 }
                 if (event.key.code == sf::Keyboard::F1) {
-                    // Chama a função para salvar o jogo
-                    if (fase == 1)
+                    // Chama a funÃ§Ã£o para salvar o jogo
+                    if (fase == 1) {
                         fase1->salvaFase();
-                    else if (fase == 2)
+                    }
+                    else if (fase == 2) {
                         fase2->salvaFase();
+                    }
                 }
             }
 
@@ -243,12 +248,16 @@ void Jogo::executar()
                 }
             }
             else if (fase == 2) {
-                if (fase2ini == 0) {
+                if (fase2ini == 0 ) {
                     fase2 = new Fase2;
                     fase2->setGerenciador(&gerent);
                     fase2->inicializa();
                     fase2ini = 1;
 
+				}
+                else if (fase2ini == 0 ) {//teste
+                    fase2->setGerenciador(&gerent);
+                    fase2ini = 1;
                 }
                 fase2->executar();
                 /*if (fase2->getJogadores() == 0) {

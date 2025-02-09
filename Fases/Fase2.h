@@ -22,8 +22,9 @@ namespace Fases {
 		Projetil p10*/
 	public:
 		Fase2();
-		~Fase2();
 		Fase2(const json& dados, Gerenciadores::Gerenciado_Grafico* gC);
+		~Fase2();
+		//Fase2(const json& dados, Gerenciadores::Gerenciado_Grafico* gC);
 		void inicializa();
 		void geraChao();
 		void geraInimigos();

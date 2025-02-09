@@ -10,16 +10,19 @@ Projetil::Projetil(int id, const char* png):
     //setCorpo(64, 32);
     noChao = false;
     seguindo = false;
-    segue = 0;
+    //segue = 0;
     velocidadeX = 300;
     velocidadeY = 0;
 	posX = 0;
     posY = 0;
     seguiu = false;
+    //segue = false;
     apareceu = false;
     cont = 0;
     val = 0;
     apagado = false;
+    corpo.setTexture(&sprite);
+    corpo.setTextureRect(IntRect(567, 631, 827, 469));
 }
 
 Projetil::~Projetil()
@@ -37,7 +40,7 @@ void Projetil::executar()
 
     if (apareceu == true) {
         setCoordenadas(posX, posY);
-        setSoCorpo(168, 84);
+        setSoCorpo(200, 113.42);
     }
 
 }
@@ -95,10 +98,10 @@ float Projetil::atualizaFPS()
 void Projetil::moverSeguindo(float aux) {
     if (!noChao)
     {
-		if (cont % 10 == 0) {
-			animacao(5);
+        if (cont % 5 == 0) {
+            animacao(5);
             val++;
-		}
+        }
 
         /*=== aplicando a gravidade */
         velocidadeY += (gravidade * atualizaFPS());//aplico a gravidade
@@ -119,7 +122,7 @@ void Projetil::mover() {
             /*=== aplicando a gravidade */
             velocidadeY += (gravidade * atualizaFPS());//aplico a gravidade
             velocidadeY += (forcaMistica * atualizaFPS());//aplico a força mistica
-            if (cont % 10 == 0) {
+            if(cont % 5 == 0) {
                 animacao(5);
                 val++;
             }
@@ -129,7 +132,7 @@ void Projetil::mover() {
         /*=== se o projetil ja seguiu o jogador ===*/
         if(seguiu == true) {
          
-            if (cont % 10 == 0) {
+            if (cont % 5 == 0) {
                 animacao(5);
                 val++;
             }
@@ -200,28 +203,24 @@ void Projetil::seguir(float x_alvo, float y_alvo) {
                 setVelocidade(0, 0);
 			}
         }
-        /*else {
-            seguindo = false;
-            mover();
-        }*/
 
     }
 }
     void Projetil::danifica(Personagens::Slime* jog) {
         if (relogioVida.getElapsedTime().asSeconds() >= 1.5) {
-            jog->animacaoJog(4, 1);
-            jog->operator*=(10);
+            jog->animacao(4, 1);
+            jog->operator-=(10);
             std::cout << "Num vida do jog: " << jog->getVidas() << std::endl;
             relogioVida.restart();
         }
     }
 
     void Projetil::animacao(int limite) {
-        if(val>=limite){
-			val = 0;
+        if (val >= limite) {
+            val = 0;
         }
-        
-        if (val == 0) {
+
+        /*if (val == 0) {
             setSoCorpo(168, 84);
             sprite.loadFromFile("assets/projetil/1.png");
             corpo.setTexture(&sprite);
@@ -249,11 +248,102 @@ void Projetil::seguir(float x_alvo, float y_alvo) {
             setSoCorpo(158, 84);
             sprite.loadFromFile("assets/projetil/5.png");
             corpo.setTexture(&sprite);
+        }*/
+        if (val == 0) {
+            //sprite.loadFromFile("assets/proj/1.png");
+            try {
+                if (!sprite.loadFromFile("assets/proj/1.png")) {  // Se o arquivo não for encontrado
+                    throw std::runtime_error("Erro ao carregar a textura: assets/proj/1.png");
+                }
+            }
+            catch (const std::exception& e) {
+                std::cerr << "Excecao capturada: " << e.what() << std::endl;
+            }
+            corpo.setTexture(&sprite);
+            corpo.setTextureRect(IntRect(567, 631, 827, 469));
+            //setSoCorpo(100, 56.71);
+        }
+
+        else if (val == 1) {
+            //sprite.loadFromFile("assets/proj/2.png");
+            try {
+                if (!sprite.loadFromFile("assets/proj/2.png")) {  // Se o arquivo não for encontrado
+                    throw std::runtime_error("Erro ao carregar a textura: assets/proj/2.png");
+                }
+            }
+            catch (const std::exception& e) {
+                std::cerr << "Excecao capturada: " << e.what() << std::endl;
+            }
+            corpo.setTexture(&sprite);
+            corpo.setTextureRect(IntRect(567, 631, 827, 469));
+        }
+
+        else if (val == 2) {
+            //sprite.loadFromFile("assets/proj/3.png");
+            try {
+                if (!sprite.loadFromFile("assets/proj/3.png")) {  // Se o arquivo não for encontrado
+                    throw std::runtime_error("Erro ao carregar a textura: assets/proj/3.png");
+                }
+            }
+            catch (const std::exception& e) {
+                std::cerr << "Excecao capturada: " << e.what() << std::endl;
+            }
+            corpo.setTexture(&sprite);
+            corpo.setTextureRect(IntRect(567, 631, 827, 469));
+        }
+
+        else if (val == 3) {
+            //sprite.loadFromFile("assets/proj/4.png");
+            try {
+                if (!sprite.loadFromFile("assets/proj/4.png")) {  // Se o arquivo não for encontrado
+                    throw std::runtime_error("Erro ao carregar a textura: assets/proj/4.png");
+                }
+            }
+            catch (const std::exception& e) {
+                std::cerr << "Excecao capturada: " << e.what() << std::endl;
+            }
+            corpo.setTexture(&sprite);
+            corpo.setTextureRect(IntRect(567, 631, 827, 469));
+        }
+
+        else {
+            //sprite.loadFromFile("assets/proj/5.png");
+            try {
+                if (!sprite.loadFromFile("assets/proj/5.png")) {  // Se o arquivo não for encontrado
+                    throw std::runtime_error("Erro ao carregar a textura: assets/proj/5.png");
+                }
+            }
+            catch (const std::exception& e) {
+                std::cerr << "Excecao capturada: " << e.what() << std::endl;
+            }
+            corpo.setTexture(&sprite);
+            corpo.setTextureRect(IntRect(567, 631, 827, 469));
         }
     }
 
     const float Projetil::gravidade = (9.8*1000);
     const float Projetil::forcaMistica = (-9.8*1000);
 
+    json Projetil::salvar() const {
+        json entidadeJson;
+        entidadeJson["id"] = id;
+        entidadeJson["x"] = corpo.getPosition().x;
+        entidadeJson["y"] = corpo.getPosition().y;
+        entidadeJson["velocidadeY"] = velocidadeY;
+        entidadeJson["velocidadeX"] = velocidadeX;
+        entidadeJson["noChao"] = noChao;
+        entidadeJson["chao"] = chao;
+        entidadeJson["seguindo"] = seguindo;
+        entidadeJson["seguiu"] = seguiu;
+        entidadeJson["cont"] = cont;
+        entidadeJson["apagado"] = apagado;
+		entidadeJson["val"] = val;
+		entidadeJson["apareceu"] = apareceu;
+		entidadeJson["posX"] = posX;
+		entidadeJson["posY"] = posY;
+		//entidadeJson["segue"] = segue;
+        
+        return entidadeJson;
+    }
 
 

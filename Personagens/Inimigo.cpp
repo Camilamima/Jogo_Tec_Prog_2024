@@ -40,14 +40,14 @@ namespace Personagens {
 	void Inimigo::ataca(Slime* jog,int lado) {
 		if (lado == 2) {
 			if (!jog->getAtacado()) {
-				jog->operator*=(nivel_maldade*5);
+				jog->operator-=(nivel_maldade*5);
 				jog->pular(300);
 				jog->setAtacado(1, 0);
 			}
 		}
 		else if (lado == 3) {
 			if (!jog->getAtacado()) {
-				jog->operator*=(nivel_maldade * 5);
+				jog->operator-=(nivel_maldade * 5);
 				jog->pular(300);
 				jog->setAtacado(1, 1);
 			}

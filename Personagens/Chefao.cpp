@@ -1,29 +1,28 @@
 #include "Chefao.h"
 #include <iostream>
 #include <set>
+#include <iostream>
+#include <stdexcept>
+
 
 namespace Personagens {
 
 	Chefao::Chefao(int id, const char* png) :
 		Inimigo(id, png),
-		ListProj()//,
-		//teletransporte(nullptr)
+		ListProj()
 	{
 		iniZona = 0;
 		finalZona = 0;
 		ativo = false;
 		turno = false;
-		vidas = 50;
+		vidas = 2;
 		chao = 560;
-		val = 0;
-		cont = 0;
 		pos_inicial = 0;
 
-		setCorpo(224, 240);
 		setVelocidae(0, 0);
 		setMaldade(3);
-		num_projetil = 0; //qnd adicionar 1 projetil, soma +1
-
+		num_projetil = 0;
+		num_proj_salvamento = 0;
 	}
 
 	Chefao::~Chefao() {
@@ -34,10 +33,7 @@ namespace Personagens {
 
 		if (relogio1.getElapsedTime().asSeconds() >= 7.5 && !turno) {
 			
-			//std::cout << "Fim da zona do chefao" << finalZona <<std::endl;
-			//std::cout << "teste" << std::endl;
 			int meioZona = (finalZona - ((finalZona-iniZona)/2));
-			//std::cout << meioZona << std::endl;
 			setCoordenadas(meioZona, 530);
 			setCorpo(224, 240);
 			relogio1.restart();
@@ -46,28 +42,19 @@ namespace Personagens {
 		}
 
 		if (relogio1.getElapsedTime().asSeconds() >= 3.5 && turno) {
-			//if (cont % 5 == 0) {
-				//teletransporte->animacao();
-				//animacaoTp(15);
 
-				//if (fim_animacao == true) {//teletransporte->getApareceu()==false) {
-					//teletransporte->setCoordenadas(6960, 450);
-					//teletransporte->setCorpo(250, 250);
-					//corpo.setPosition(6960, 450);
-					setCoordenadas(pos_inicial, 200);
-					setCorpo(224, 240);
-					turno = false;
-					relogio1.restart();
-				//}
-			//}
+			setCoordenadas(pos_inicial, 200);
+			setCorpo(224, 240);
+			turno = false;
+			relogio1.restart();
 		}
 	}
 
 	/*===== executar =====*/
 	void Chefao::executar()
 	{
-		cont++;
-		if (!noChao) { //********************MEXER NISSO P ELE TER GRAVIDADE
+		//cont++;
+		if (!noChao) {
 			mover(0);
 		}
 
@@ -79,7 +66,7 @@ namespace Personagens {
 
 			if (cont % 7 == 0) {
 				val++;
-				animacao(15);
+				animacao(1,15);
 			}
 
 			if (verificaVida()) {
@@ -105,12 +92,20 @@ namespace Personagens {
 
 		if (proj != nullptr) {
 			proj->setCoordenadas(pos_inicial, 200);
-			proj->setCorpo(64, 32);
+			proj->setCorpo(200, 113.42);
 			proj->setXY(pos_inicial, 200);
 			num_projetil++;
 			ListProj.insert(proj);
 		}
 
+	}
+
+	void Chefao::criaProjeteisSalv(Projetil* proj) {
+		if (proj != nullptr) {
+			proj->setCorpo(200, 113.42);
+			num_proj_salvamento++;
+			ListProj.insert(proj);
+		}
 	}
 
 	/*===== apaga um projetil =====*/
@@ -122,20 +117,29 @@ namespace Personagens {
 				std::cout << "Apaguei um projetil" << std::endl;
 				(*it)->setApagado(true);
 				ListProj.erase(it);//apagar o primeiro... parecido com um pop_front?
+				num_projetil--;
 			}
 		}
 	}
 
 	/*===== animacao chefao =====*/
-	void Chefao::animacao(int limite) {
+	void Chefao::animacao(int num, int limite) {
 		if (val >= limite) {
 			val = 0;
 		}
 
-		sprite.loadFromFile("assets/chefao/Agis.png");
-		corpo.setTexture(&sprite);
-		corpo.setTextureRect(IntRect(224 * val, 0, 224, 240));
-
+		if (num == 1) {
+			try {
+				if (!sprite.loadFromFile("assets/chefao/Agis.png")) {  // Se o arquivo não for encontrado
+					throw std::runtime_error("Erro ao carregar a textura: assets/chefao/Agis.png");
+				}
+			}
+			catch (const std::exception& e) {
+				std::cerr << "Exceção capturada: " << e.what() << std::endl;
+			}
+			corpo.setTexture(&sprite);
+			corpo.setTextureRect(IntRect(224 * val, 0, 224, 240));
+		}
 	}
 
 	void Chefao::operator++() {
@@ -191,5 +195,26 @@ namespace Personagens {
 		}
 		
 	}
-	const int Chefao::max_projetil = 10;
+	const int Chefao::max_projetil = 5;
+
+	json Chefao::salvar() const {
+		json entidadeJson;
+		entidadeJson["id"] = id;
+		entidadeJson["x"] = corpo.getPosition().x;
+		entidadeJson["y"] = corpo.getPosition().y;
+		entidadeJson["velocidadeY"] = velocidadeY;
+		entidadeJson["velocidadeX"] = velocidadeX;
+		entidadeJson["noChao"] = noChao;
+		entidadeJson["chao"] = chao;
+		entidadeJson["vidas"] = vidas;
+		entidadeJson["turno"] = turno;
+		entidadeJson["cont"] = cont;
+		entidadeJson["num_projetil"] = num_projetil;
+		entidadeJson["ativo"] = ativo;
+		entidadeJson["val"] = val;
+		entidadeJson["iniZona"] = iniZona;
+		entidadeJson["finalZona"] = finalZona;
+		entidadeJson["pos_inicial"] = pos_inicial;
+		return entidadeJson;
+	}
 }

@@ -19,7 +19,7 @@ namespace Fases {
         num_fase = 1;
         cout << "cheguei1" << endl;
         setGerenciador(gC);
-        gerent->BackGFloresta();
+        gerent->BackGFloresta(1);
         zona_atual = dados["zona"];
         qnt_jogadores = dados["jogadores"];
 
@@ -40,7 +40,7 @@ namespace Fases {
             x = entidade["x"];
             y = entidade["y"];
 
-            // Aqui você pode criar as entidades e configurá-las conforme necessário
+            // Aqui vocÃª pode criar as entidades e configurÃ¡-las conforme necessÃ¡rio
             if (id == 1) {
                 // Crie e configure um objeto Rato
                 Slime1.setCoordenadas(x, y);
@@ -125,7 +125,7 @@ namespace Fases {
     }
 
     void Fase1::inicializa() {
-        gerent->BackGFloresta();
+        gerent->BackGFloresta(1);
         num_fase = 1;
         obsFacil = -1;
         geraPlataformaFase();
@@ -133,7 +133,6 @@ namespace Fases {
         //geraEspinho();
         geraInimigos();
         
-
 
         if (qnt_jogadores == 1) {
             std::cout << " Selecionado 1 jogador! " << std::endl;

@@ -42,8 +42,8 @@ namespace Obstaculos {
 
 
 		if (timer % 50 == 0) {
-			jogador->animacaoJog(4, 1);
-			jogador->operator*=(num_espinhos);
+			jogador->animacao(4, 1);
+			jogador->operator-=(num_espinhos);
 			std::cout << "Vidas depois: " << jogador->getVidas() << std::endl;
 		}
 		timer++;
@@ -56,7 +56,6 @@ namespace Obstaculos {
 		entidadeJson["x"] = corpo.getPosition().x;
 		entidadeJson["y"] = corpo.getPosition().y;
 		entidadeJson["num_espinhos"]= num_espinhos;
-
 
 		return entidadeJson;
 

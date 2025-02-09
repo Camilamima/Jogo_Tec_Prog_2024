@@ -13,6 +13,8 @@ namespace Personagens {
 		velocidadeX = 0;
 		velocidadeY = 0;
 		vidas = 5;
+		cont = 0;
+		val = 0;
 	}
 
 	Personagem::~Personagem() {

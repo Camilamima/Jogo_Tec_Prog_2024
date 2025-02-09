@@ -1,28 +1,68 @@
 {
-    "Fase": 2,
+    "Fase": 1,
     "entidades": [
         {
-            "altura": 200.0,
+            "altura": 300.0,
             "id": 3,
-            "largura": 100.0,
-            "png": "assets/tronco2.png",
-            "x": 1200.0,
+            "largura": 200.0,
+            "png": "assets/pedra_tiles.png",
+            "x": 1500.0,
             "y": 560.0
         },
         {
             "altura": 100.0,
             "id": 3,
-            "largura": 400.0,
-            "png": "assets/folhas_3x.png",
-            "x": 1150.0,
-            "y": 520.0
+            "largura": 600.0,
+            "png": "assets/tronco.png",
+            "x": 1510.0,
+            "y": 460.0
         },
         {
-            "altura": 200.0,
+            "altura": 150.0,
             "id": 3,
             "largura": 100.0,
-            "png": "assets/tronco2.png",
+            "png": "assets/planta.png",
             "x": 2400.0,
+            "y": 610.0
+        },
+        {
+            "altura": 300.0,
+            "id": 3,
+            "largura": 200.0,
+            "png": "assets/pedra_tiles.png",
+            "x": 4500.0,
+            "y": 560.0
+        },
+        {
+            "altura": 100.0,
+            "id": 3,
+            "largura": 600.0,
+            "png": "assets/tronco.png",
+            "x": 4510.0,
+            "y": 460.0
+        },
+        {
+            "altura": 300.0,
+            "id": 3,
+            "largura": 200.0,
+            "png": "assets/pedra_tiles.png",
+            "x": 6500.0,
+            "y": 560.0
+        },
+        {
+            "altura": 100.0,
+            "id": 3,
+            "largura": 600.0,
+            "png": "assets/tronco.png",
+            "x": 6510.0,
+            "y": 460.0
+        },
+        {
+            "altura": 200.0,
+            "id": 3,
+            "largura": 100.0,
+            "png": "assets/tronco2.png",
+            "x": 8600.0,
             "y": 560.0
         },
         {
@@ -30,7 +70,7 @@
             "id": 3,
             "largura": 400.0,
             "png": "assets/folhas_3x.png",
-            "x": 2350.0,
+            "x": 8550.0,
             "y": 520.0
         },
         {
@@ -38,7 +78,7 @@
             "id": 3,
             "largura": 300.0,
             "png": "assets/pedra_tiles.png",
-            "x": 4100.0,
+            "x": 9600.0,
             "y": 560.0
         },
         {
@@ -46,714 +86,461 @@
             "id": 3,
             "largura": 200.0,
             "png": "assets/tronco.png",
-            "x": 4300.0,
-            "y": 460.0
-        },
-        {
-            "altura": 300.0,
-            "id": 3,
-            "largura": 200.0,
-            "png": "assets/pedra_tiles.png",
-            "x": 6200.0,
-            "y": 560.0
-        },
-        {
-            "altura": 100.0,
-            "id": 3,
-            "largura": 600.0,
-            "png": "assets/tronco.png",
-            "x": 6210.0,
+            "x": 9800.0,
             "y": 460.0
         },
         {
             "altura": 200.0,
             "id": 3,
-            "largura": 100.0,
-            "png": "assets/tronco2.png",
-            "x": 7500.0,
+            "largura": 300.0,
+            "png": "assets/pedra_tiles.png",
+            "x": 11400.0,
             "y": 560.0
         },
         {
             "altura": 100.0,
-            "id": 3,
-            "largura": 400.0,
-            "png": "assets/folhas_3x.png",
-            "x": 7450.0,
-            "y": 520.0
-        },
-        {
-            "altura": 150.0,
-            "id": 3,
-            "largura": 100.0,
-            "png": "assets/planta.png",
-            "x": 9900.0,
-            "y": 610.0
-        },
-        {
-            "altura": 300.0,
             "id": 3,
             "largura": 200.0,
-            "png": "assets/pedra_tiles.png",
-            "x": 11700.0,
-            "y": 560.0
-        },
-        {
-            "altura": 100.0,
-            "id": 3,
-            "largura": 600.0,
             "png": "assets/tronco.png",
-            "x": 11710.0,
+            "x": 11600.0,
             "y": 460.0
         },
         {
-            "altura": 150.0,
+            "altura": 200.0,
             "id": 3,
-            "largura": 100.0,
-            "png": "assets/planta.png",
-            "x": 13600.0,
-            "y": 610.0
+            "largura": 300.0,
+            "png": "assets/pedra_tiles.png",
+            "x": 13200.0,
+            "y": 560.0
         },
         {
             "altura": 100.0,
             "id": 3,
+            "largura": 200.0,
+            "png": "assets/tronco.png",
+            "x": 13400.0,
+            "y": 460.0
+        },
+        {
+            "altura": 140.0,
+            "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 0.0,
             "y": 760.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 400.0,
             "y": 760.0
         },
         {
             "altura": 100.0,
-            "id": 3,
+            "id": 11,
             "largura": 400.0,
-            "png": "",
             "x": 800.0,
-            "y": 760.0
+            "y": 800.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 1200.0,
             "y": 760.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 1600.0,
             "y": 760.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 2000.0,
             "y": 760.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 2400.0,
             "y": 760.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 2800.0,
             "y": 760.0
         },
         {
             "altura": 100.0,
-            "id": 3,
+            "id": 11,
             "largura": 400.0,
-            "png": "",
             "x": 3200.0,
-            "y": 760.0
+            "y": 800.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 3600.0,
             "y": 760.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 4000.0,
             "y": 760.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 4400.0,
             "y": 760.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 4800.0,
             "y": 760.0
         },
         {
             "altura": 100.0,
-            "id": 3,
+            "id": 11,
             "largura": 400.0,
-            "png": "",
             "x": 5200.0,
-            "y": 760.0
+            "y": 800.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 5600.0,
             "y": 760.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 6000.0,
             "y": 760.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 6400.0,
             "y": 760.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 6800.0,
             "y": 760.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 7200.0,
             "y": 760.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 7600.0,
             "y": 760.0
         },
         {
             "altura": 100.0,
-            "id": 3,
+            "id": 11,
             "largura": 400.0,
-            "png": "",
             "x": 8000.0,
-            "y": 760.0
+            "y": 800.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 8400.0,
             "y": 760.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 8800.0,
             "y": 760.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 9200.0,
             "y": 760.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 9600.0,
             "y": 760.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 10000.0,
             "y": 760.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 10400.0,
             "y": 760.0
         },
         {
             "altura": 100.0,
-            "id": 3,
+            "id": 11,
             "largura": 400.0,
-            "png": "",
             "x": 10800.0,
-            "y": 760.0
+            "y": 800.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 11200.0,
             "y": 760.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 11600.0,
             "y": 760.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 12000.0,
             "y": 760.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 12400.0,
             "y": 760.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 12800.0,
             "y": 760.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 13200.0,
             "y": 760.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 13600.0,
             "y": 760.0
         },
         {
-            "altura": 100.0,
+            "altura": 140.0,
             "id": 3,
             "largura": 400.0,
-            "png": "",
+            "png": "assets/Tiles.png",
             "x": 14000.0,
             "y": 760.0
         },
-        null,
         {
-            "altura": 0.0,
-            "id": 3,
-            "largura": 0.0,
-            "png": "",
-            "x": 6752.0,
-            "y": 445.0
-        },
-        {
-            "altura": 0.0,
-            "id": 3,
-            "largura": 0.0,
-            "png": "",
-            "x": 6275.0,
-            "y": 760.0
-        },
-        {
-            "altura": 0.0,
-            "id": 3,
-            "largura": 0.0,
-            "png": "",
-            "x": 6752.0,
-            "y": 0.0
-        },
-        {
-            "altura": 0.0,
-            "id": 3,
-            "largura": 0.0,
-            "png": "",
-            "x": 6986.0,
-            "y": 0.0
-        },
-        null,
-        {
-            "altura": 0.0,
-            "id": 3,
-            "largura": 0.0,
-            "png": "",
-            "x": 8219.0,
-            "y": 445.0
-        },
-        {
-            "altura": 0.0,
-            "id": 3,
-            "largura": 0.0,
-            "png": "",
-            "x": 8075.0,
-            "y": 760.0
-        },
-        {
-            "altura": 0.0,
-            "id": 3,
-            "largura": 0.0,
-            "png": "",
-            "x": 8219.0,
-            "y": 0.0
-        },
-        {
-            "altura": 0.0,
-            "id": 3,
-            "largura": 0.0,
-            "png": "",
-            "x": 8453.0,
-            "y": 0.0
-        },
-        null,
-        {
-            "altura": 0.0,
-            "id": 3,
-            "largura": 0.0,
-            "png": "",
-            "x": 10150.0,
-            "y": 445.0
-        },
-        {
-            "altura": 0.0,
-            "id": 3,
-            "largura": 0.0,
-            "png": "",
-            "x": 9875.0,
-            "y": 760.0
-        },
-        {
-            "altura": 0.0,
-            "id": 3,
-            "largura": 0.0,
-            "png": "",
-            "x": 10150.0,
-            "y": 0.0
-        },
-        {
-            "altura": 0.0,
-            "id": 3,
-            "largura": 0.0,
-            "png": "",
-            "x": 10384.0,
-            "y": 0.0
-        },
-        null,
-        {
-            "altura": 0.0,
-            "id": 3,
-            "largura": 0.0,
-            "png": "",
-            "x": 12185.0,
-            "y": 445.0
-        },
-        {
-            "altura": 0.0,
-            "id": 3,
-            "largura": 0.0,
-            "png": "",
-            "x": 11675.0,
-            "y": 760.0
-        },
-        {
-            "altura": 0.0,
-            "id": 3,
-            "largura": 0.0,
-            "png": "",
-            "x": 12185.0,
-            "y": 0.0
-        },
-        {
-            "altura": 0.0,
-            "id": 3,
-            "largura": 0.0,
-            "png": "",
-            "x": 12419.0,
-            "y": 0.0
-        },
-        {
-            "id": 9,
-            "num_espinhos": 3,
-            "x": 600.0,
-            "y": 700.0
-        },
-        {
-            "id": 9,
-            "num_espinhos": 3,
-            "x": 1600.0,
-            "y": 700.0
-        },
-        {
-            "id": 9,
-            "num_espinhos": 3,
-            "x": 4000.0,
-            "y": 700.0
-        },
-        {
-            "id": 9,
-            "num_espinhos": 3,
-            "x": 6500.0,
-            "y": 700.0
-        },
-        {
-            "id": 9,
-            "num_espinhos": 3,
-            "x": 7300.0,
-            "y": 700.0
-        },
-        {
-            "id": 9,
-            "num_espinhos": 3,
-            "x": 10200.0,
-            "y": 700.0
-        },
-        {
-            "id": 9,
-            "num_espinhos": 3,
-            "x": 10800.0,
-            "y": 700.0
-        },
-        {
-            "id": 9,
-            "num_espinhos": 3,
-            "x": 11300.0,
-            "y": 700.0
-        },
-        {
-            "id": 9,
-            "num_espinhos": 3,
-            "x": 11500.0,
-            "y": 700.0
-        },
-        {
-            "id": 9,
-            "num_espinhos": 3,
-            "x": 12000.0,
-            "y": 700.0
-        },
-        {
-            "id": 9,
-            "num_espinhos": 3,
-            "x": 13100.0,
-            "y": 700.0
-        },
-        {
-            "id": 9,
-            "num_espinhos": 3,
-            "x": 13500.0,
-            "y": 700.0
-        },
-        {
-            "id": 9,
-            "num_espinhos": 3,
-            "x": 14000.0,
-            "y": 700.0
-        },
-        {
-            "distancia_percorrida": 268,
+            "distancia_percorrida": 186,
             "id": 4,
             "noChao": true,
             "velocidadeX": -150.0,
             "velocidadeY": 14.729403495788574,
             "vidas": 3,
-            "x": 1640.080078125,
+            "x": 2640.46875,
             "y": 670.1878662109375
         },
         {
-            "distancia_percorrida": 268,
+            "distancia_percorrida": 186,
             "id": 4,
             "noChao": true,
             "velocidadeX": -150.0,
             "velocidadeY": 14.729403495788574,
-            "vidas": 3,
-            "x": 2497.6904296875,
+            "vidas": 1,
+            "x": 6172.0556640625,
             "y": 670.1878662109375
         },
         {
-            "distancia_percorrida": 268,
-            "id": 4,
-            "noChao": true,
-            "velocidadeX": -150.0,
-            "velocidadeY": 10.801562309265137,
-            "vidas": 3,
-            "x": 6322.1533203125,
-            "y": 361.8523254394531
-        },
-        {
-            "distancia_percorrida": 268,
+            "distancia_percorrida": 186,
             "id": 4,
             "noChao": true,
             "velocidadeX": -150.0,
             "velocidadeY": 14.729403495788574,
-            "vidas": 3,
-            "x": 10240.078125,
+            "vidas": 1,
+            "x": 7342.7783203125,
             "y": 670.1878662109375
         },
         {
-            "distancia_percorrida": 268,
+            "atacando": false,
+            "chao": 900.0,
+            "cont": 2343,
+            "id": 7,
+            "ladoAtaque": false,
+            "noChao": true,
+            "seguindo": false,
+            "turnos": 34.11184310913086,
+            "val": 5,
+            "velocidadeX": 150.0,
+            "velocidadeY": 0.0,
+            "vidas": 1,
+            "x": 10867.6318359375,
+            "xIni": 10684.775390625,
+            "y": 800.0,
+            "yIni": 655.4584350585938
+        },
+        {
+            "distancia_percorrida": 186,
+            "id": 4,
+            "noChao": true,
+            "velocidadeX": -150.0,
+            "velocidadeY": 16.03868293762207,
+            "vidas": 3,
+            "x": 10872.4462890625,
+            "y": 793.9148559570313
+        },
+        {
+            "distancia_percorrida": 186,
             "id": 4,
             "noChao": true,
             "velocidadeX": -150.0,
             "velocidadeY": 14.729403495788574,
-            "vidas": 3,
-            "x": 11269.94140625,
+            "vidas": 2,
+            "x": 12742.7783203125,
             "y": 670.1878662109375
         },
         {
-            "distancia_percorrida": 268,
-            "id": 4,
+            "atacando": false,
+            "chao": 760.0,
+            "cont": 2343,
+            "id": 7,
+            "ladoAtaque": false,
             "noChao": true,
-            "velocidadeX": -150.0,
-            "velocidadeY": 14.729403495788574,
-            "vidas": 3,
-            "x": 13697.8857421875,
-            "y": 670.1878662109375
+            "seguindo": false,
+            "turnos": 305.8309631347656,
+            "val": 0,
+            "velocidadeX": 150.0,
+            "velocidadeY": 14.565743446350098,
+            "vidas": 5,
+            "x": 13700.0,
+            "xIni": 0.0,
+            "y": 655.4584350585938,
+            "yIni": 0.0
         },
         {
-            "distancia_percorrida": 268,
-            "id": 4,
+            "atacando": false,
+            "chao": 760.0,
+            "cont": 2343,
+            "id": 7,
+            "ladoAtaque": false,
             "noChao": true,
-            "velocidadeX": -150.0,
-            "velocidadeY": 14.729403495788574,
-            "vidas": 3,
-            "x": 14040.078125,
-            "y": 670.1878662109375
+            "seguindo": false,
+            "turnos": 305.8159484863281,
+            "val": 0,
+            "velocidadeX": 150.0,
+            "velocidadeY": 14.565743446350098,
+            "vidas": 5,
+            "x": 14100.0,
+            "xIni": 0.0,
+            "y": 655.4584350585938,
+            "yIni": 0.0
         },
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
         {
             "atacado": false,
             "atacando": false,
-            "chao": 660.0,
-            "cont": 284,
+            "chao": 800.0,
+            "cont": 343,
             "id": 1,
             "impulso": 600.0,
             "ladoAtacado": false,
             "morrendo": false,
-            "noChao": true,
-            "val": 6,
+            "noChao": false,
+            "val": 0,
             "velocidadeX": 500.0,
-            "velocidadeY": 0.0,
-            "vidas": 100,
-            "x": 986.848876953125,
-            "y": 660.0
+            "velocidadeY": 9.128225326538086,
+            "vidas": 80,
+            "x": 12889.6328125,
+            "y": 617.4052734375
         },
         {
             "atacado": false,
             "atacando": false,
             "chao": 660.0,
-            "cont": 284,
+            "cont": 343,
             "id": 2,
-            "impulso": -1.0,
+            "impulso": 300.0,
             "ladoAtacado": false,
             "morrendo": false,
             "noChao": true,
-            "val": 4,
+            "val": 3,
             "velocidadeX": 500.0,
             "velocidadeY": 0.0,
-            "vidas": 100,
-            "x": 60.0,
-            "y": 670.1878662109375
+            "vidas": 98,
+            "x": 12599.900390625,
+            "y": 660.0
         },
         {
             "altura": 40.0,
@@ -768,10 +555,10 @@
             "id": 3,
             "largura": 40.0,
             "png": "",
-            "x": 0.0,
+            "x": -40.0,
             "y": 0.0
         }
     ],
     "jogadores": 2,
-    "zona": 0
+    "zona": 7
 }

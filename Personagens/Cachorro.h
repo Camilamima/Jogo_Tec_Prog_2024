@@ -13,8 +13,6 @@ namespace Personagens {
         Clock turnos;
         bool seguindo;
         bool atacando;
-        int cont;
-        int val;
         bool ladoAtaque;
         float tempo;
     public:
@@ -25,7 +23,6 @@ namespace Personagens {
         void seguir(float x);
         void atacar(int d);
         void setSeguindo(bool i) { seguindo = i; }
-        void animacao(int num, int limite);
         json salvar() const;
         void setYeXini(float x,float y) {
             xIni = x;
@@ -34,5 +31,6 @@ namespace Personagens {
 		void setLadoAtacado(bool lado) { ladoAtaque = lado; }
 		void setTempo(float t) { tempo = t; }
 		void setAtacando(bool a) { atacando = a; }
+        void animacao(int num, int limite);//eh virtual
     };
 }

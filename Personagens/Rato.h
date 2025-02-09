@@ -6,16 +6,14 @@ namespace Personagens {
 	{
 	private:
 		int distancia_percorrida;
-		int val;
-		int cont;
 
 	public:
-		Rato(int id, const char* png = "ratinho.png");
+		Rato(int id, const char* png = "assets/lobo/direita.png");
 		~Rato();
 		void setDistancia(int d) { distancia_percorrida = d; }
 		void calculaDis();
 		void executar();
-		void animacao(int num, int limite);
+		void animacao(int num, int limite);//eh virtual
 		json salvar() const;
 	};
 }

@@ -5,22 +5,11 @@ namespace Fases {
 
 	Fase2::Fase2() :
 		Fase(),
-		//teste2(6),
-		//teste3(6),//chefao
-		/*p1(5),
-		p2(5),
-		p3(5),
-		p4(5),
-		p5(5),
-		p6(5),
-		p7(5),
-		p8(5),
-		p9(5),
-		p10(5),*/
 		num_obs2(-1),
 		num_chefoes(-1),
 		num_projeteis(-1)
 	{
+		//gerent->BackGFloresta(2);
 	}
 
 	Fase2::Fase2(const json& dados, Gerenciadores::Gerenciado_Grafico* gC) :
@@ -88,6 +77,13 @@ namespace Fases {
 				p->geraPlataforma(entidade["altura"], entidade["largura"], x, y);
 
 			}
+			else if (id == 12) {
+
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(12);
+				listaEntidades.Incluir(p, &gerentC);
+				p->geraPlataforma(entidade["altura"], entidade["largura"], x, y);
+
+			}
 			else if (id == 4) {
 				Personagens::Rato* r = new Personagens::Rato(4);
 				listaEntidades.Incluir(r, &gerentC);
@@ -104,6 +100,43 @@ namespace Fases {
 				e->setEspinhos(entidade["num_espinhos"]);
 				listaEntidades.Incluir(e, &gerentC);
 			}
+			else if (id == 6) {
+				Personagens::Chefao* c = new Personagens::Chefao(6);
+				c->setCoordenadas(x, y);
+				c->setCorpo(224, 240);
+				c->setMaldade(3);
+				c->setPosInicialX(entidade["pos_inicial"]);
+				c->setAtivo(entidade["ativo"]);
+				c->setChao(entidade["chao"]);
+				c->setVelocidae(entidade["velocidadeX"], entidade["velocidadeY"]);
+				c->setNoChao(entidade["noChao"]);
+				c->setVidas(entidade["vidas"]);
+				c->setTurno(entidade["turno"]);
+				c->setIniZona(entidade["iniZona"]);
+				c->setFinalZona(entidade["finalZona"]);
+				c->setVal(entidade["val"]);
+				c->setCont(entidade["cont"]);
+				c->setNum_Projetil(entidade["num_projetil"]);
+				listaEntidades.IncluirSalvamento(c, &gerentC);
+			}
+			else if (id == 5) {
+				Projetil* p = new Projetil(5);
+				p->setCoordenadas(x, y);
+				p->setVelocidade(entidade["velocidadeX"], entidade["velocidadeY"]);
+				//p->setAtivo(entidade["segue"]);
+				p->setNoChao(entidade["noChao"]);
+				p->setChao(entidade["chao"]);
+				p->setSeguindo(entidade["seguindo"]);
+				p->setSeguiu(entidade["seguiu"]);
+				p->setCont(entidade["cont"]);
+				p->setVal(entidade["val"]);
+				p->setApagado(entidade["apagado"]);
+				p->setApareceu(entidade["apareceu"]);
+				p->setCoordenadas(entidade["posX"], entidade["posY"]);
+				p->setXY(entidade["posX"], entidade["posY"]);
+
+				listaEntidades.IncluirSalvamento(p, &gerentC);
+			}
 			//adicionar aqui outros ids
 		}
 		listaEntidades.Incluir(&Slime1, &gerentC);
@@ -116,6 +149,146 @@ namespace Fases {
 
 	Fase2::~Fase2() {}
 
+	/*Fase2::Fase2(const json& dados, Gerenciadores::Gerenciado_Grafico* gC) :
+	num_obs2(-1),
+	num_chefoes(-1),
+	num_projeteis(-1)
+	{
+		num_fase = 2;
+		cout << "cheguei2" << endl;
+		setGerenciador(gC);
+		zona_atual = dados["zona"];
+		qnt_jogadores = dados["jogadores"];
+
+		if (qnt_jogadores == 1) {
+			std::cout << " Selecionado 1 jogador! " << std::endl;
+			gerentC.setJogadores(&Slime1, nullptr);
+		}
+		if (qnt_jogadores == 2) {
+			std::cout << " Selecionado 2 jogadores! " << std::endl;
+			gerentC.setJogadores(&Slime1, &Slime2);
+		}
+
+		int id;
+		float x, y;
+		for (const auto& entidade : dados["entidades"]) {
+			id = entidade["id"];
+			x = entidade["x"];
+			y = entidade["y"];
+
+			// Aqui você pode criar as entidades e configurá-las conforme necessário
+			if (id == 1) {
+				// Crie e configure um objeto Rato
+				Slime1.setCoordenadas(x, y);
+				Slime1.setCorpo(100, 100);
+				Slime1.setAtacado(entidade["atacado"], entidade["ladoAtacado"]);
+				Slime1.setAtacando(entidade["atacando"]);
+				Slime1.setChao(entidade["chao"]);
+				Slime1.setVidas(entidade["vidas"]);
+				Slime1.setVelocidae(entidade["velocidadeX"], entidade["velocidadeY"]);
+				Slime1.setChao(entidade["chao"]);
+				Slime1.setImpulso(entidade["impulso"]);
+
+			}
+			else if (id == 2) {
+				Slime2.setCoordenadas(x, y);
+				Slime2.setCorpo(100, 100);
+				Slime2.setAtacado(entidade["atacado"], entidade["ladoAtacado"]);
+				Slime2.setAtacando(entidade["atacando"]);
+				Slime2.setChao(entidade["chao"]);
+				Slime2.setVidas(entidade["vidas"]);
+				Slime2.setVelocidae(entidade["velocidadeX"], entidade["velocidadeY"]);
+				Slime2.setChao(entidade["chao"]);
+				Slime2.setImpulso(entidade["impulso"]);
+
+			}
+			else if (id == 3) {//arrumar salvamento disso.......
+				std::string png_str = entidade["png"];
+				const char* png = png_str.c_str();
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, png);
+				p->setCoordenadas(x, y);
+				p->setCorpo(entidade["largura"], entidade["altura"]);
+				//p->geraPlataforma(entidade["altura"], entidade["largura"], x, y);
+				listaEntidades.IncluirSalvamento(p, &gerentC);
+			}
+			else if (id == 12) {//e disso
+				std::string png_str = entidade["png"];
+				const char* png = png_str.c_str();
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(12, png);
+				p->geraPlataforma(entidade["altura"], entidade["largura"], x, y);
+				listaEntidades.IncluirSalvamento(p, &gerentC);
+			}
+			else if (id == 4) {
+				Personagens::Rato* r = new Personagens::Rato(4);
+				r->setCoordenadas(x, y);
+				r->setCorpo(100, 100);
+				r->setDistancia(entidade["distancia_percorrida"]);
+				r->setVidas(entidade["vidas"]);
+				r->setNoChao(entidade["noChao"]);
+
+				listaEntidades.IncluirSalvamento(r, &gerentC);
+			}
+			else if (id == 9) {
+				Obstaculos::Espinho* e = new Obstaculos::Espinho(9);
+				e->setCoordenadas(x, y);
+				e->setCorpo(100, 70);
+				e->setEspinhos(entidade["num_espinhos"]);
+				listaEntidades.IncluirSalvamento(e, &gerentC);
+			}
+			else if (id == 11) {
+				Obstaculos::SlimeMau* M = new Obstaculos::SlimeMau(11);
+				M->setCoordenadas(x, y);
+				M->setCorpo(entidade["largura"], entidade["altura"]);
+				listaEntidades.IncluirSalvamento(M, &gerentC);
+			}
+	
+			else if (id == 6) {
+				Personagens::Chefao* c = new Personagens::Chefao(6);
+				c->setCoordenadas(x, y);
+				c->setCorpo(224, 240);
+				c->setMaldade(3);
+				c->setPosInicialX(entidade["pos_inicial"]);
+				c->setAtivo(entidade["ativo"]);
+				c->setChao(entidade["chao"]);
+				c->setVelocidae(entidade["velocidadeX"], entidade["velocidadeY"]);
+				c->setNoChao(entidade["noChao"]);
+				c->setVidas(entidade["vidas"]);
+				c->setTurno(entidade["turno"]);
+				c->setIniZona(entidade["iniZona"]);
+				c->setFinalZona(entidade["finalZona"]);
+				c->setVal(entidade["val"]);
+				c->setCont(entidade["cont"]);
+				c->setNum_Projetil(entidade["num_projetil"]);
+				listaEntidades.IncluirSalvamento(c, &gerentC);
+			}
+			else if (id == 5) {
+				Projetil* p = new Projetil(5);
+				p->setCoordenadas(x, y);
+				p->setVelocidade(entidade["velocidadeX"], entidade["velocidadeY"]);
+				p->setAtivo(entidade["segue"]);
+				p->setNoChao(entidade["noChao"]);
+				p->setChao(entidade["chao"]);
+				p->setSeguindo(entidade["seguindo"]);
+				p->setSeguiu(entidade["seguiu"]);
+				p->setCont(entidade["cont"]);
+				p->setVal(entidade["val"]);
+				p->setApagado(entidade["apagado"]);
+				p->setApareceu(entidade["apareceu"]);
+				p->setCoordenadas(entidade["posX"], entidade["posY"]);
+				p->setXY(entidade["posX"], entidade["posY"]);
+
+				listaEntidades.IncluirSalvamento(p, &gerentC);
+			}
+		}
+
+		listaEntidades.Incluir(&Slime1, &gerentC);
+		if (qnt_jogadores == 2) {
+			listaEntidades.Incluir(&Slime2, &gerentC);
+		}
+
+		listaEntidades.setGG(gerent);
+	}*/
+
 	void Fase2::inicializa() {
 
 		num_fase = 2;
@@ -126,7 +299,6 @@ namespace Fases {
 		geraEspinho();
 		geraInimigos();
 		geraProjeteis();
-
 
 		if (qnt_jogadores == 1) {
 			cout << " Selecionado 1 jogador! " << endl;
@@ -150,15 +322,42 @@ namespace Fases {
 		/*==== gerando plataforma fixas ====*/
 		ladoE.geraPlataforma(900, 40, 0, 0);
 		chao.geraPlataforma(40, (float)tamanho_fase, 0, 900);
+
 	}
 
 	void Fase2::geraChao() {
-		int numeros[36] = { 0 };
+		/*int numeros[36] = {0};
 		for (int i = 0; i < 36; i++) {
 
-			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3);
-			p->geraPlataforma(100, 400, (float)i * 400, 760);
+			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/plataforma_chao.png");
+			p->geraPlataforma(100, 97.91, (float)i * 400, 760);//era 400
 			listaEntidades.Incluir(p, &gerentC);
+		}*/
+		Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/chao.png");
+		p->geraPlataforma(100, 14400, 0, 860);
+		listaEntidades.Incluir(p, &gerentC);
+
+		int numeros[144] = { 0 };
+		int alterna = 1;
+		for (int i = 0; i < 144; i++) {
+			if (alterna == 1) {
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/pedra11.png");
+				p->geraPlataforma(100, 100, (float)i * 100, 760);//era 400
+				listaEntidades.Incluir(p, &gerentC);
+				alterna++;
+			}
+			else if (alterna == 2) {
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/pedra21.png");
+				p->geraPlataforma(100, 100, (float)i * 100, 760);//era 400
+				listaEntidades.Incluir(p, &gerentC);
+				alterna++;
+			}
+			else {
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/pedra31.png");
+				p->geraPlataforma(100, 100, (float)i * 100, 760);//era 400
+				listaEntidades.Incluir(p, &gerentC);
+				alterna = 1;
+			}
 		}
 	}
 
@@ -190,113 +389,30 @@ namespace Fases {
 
 		}
 	}
-	/*
-	void Fase2::executar() {
-
-
-		int qnt_jogadores = 1;
-		bool apareceu1 = false;
-		bool apareceu2 = false;
-		int cont1 = 0;
-		int cont2 = 0;
-		bool morreu = false;
-		bool morreu2 = false;
-		int pos_morto = 0;
-
-
-		if (gerentC.getJogador2() != nullptr)
-			qnt_jogadores = 2;
-
-		gerent->arrumaCamera(checaZona());
-
-		gerent->clear();
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-			Pause = true;
-			pMenu->restartTime();
-			while (Pause) {
-				pMenu->Pause();
-			}
-
-		}
-
-		listaEntidades.Percorrer(&gerentC);//executar de td
-		pos_morto = listaEntidades.VerificMortos();
-
-		if (pos_morto != -1) {
-			listaEntidades.matarEntidadePos(pos_morto, &gerentC);
-		}
-
-		/*if (Slime1.getVidas() <= 0 && apareceu1 == false) {
-			Slime1.setMorrendo(true);
-			if (Slime1.getCont() % 8 == 0) {
-				morreu = Slime1.animacaoMorte(cont1, 10);
-				cont1++;
-				if (morreu == true) {
-					cout << "Jogador 1 morreu!" << endl;
-					listaEntidades.MatarEntidade(&Slime1, &gerentC);
-					qnt_jogadores--;
-					apareceu1 = true;
-				}
-			}
-		}
-
-		if (gerentC.getJogador2() != nullptr) {
-			if (Slime2.getVidas() <= 0 && apareceu2 == false) {
-				Slime2.setMorrendo(true);
-				if (Slime2.getCont() % 8 == 0) {
-					morreu2 = Slime2.animacaoMorte(cont2, 10);
-					cont2++;
-					if (morreu2 == true) {
-						cout << "Jogador 2 morreu!" << endl;
-						listaEntidades.MatarEntidade(&Slime2, &gerentC);
-						qnt_jogadores--;
-						apareceu2 = true;
-					};
-				}
-			}
-		}*/
-	/*
-			gerent->mostrar();
-	}
-	*/
 
 	void Fase2::geraChefao() {
-		vector<int> posicoes; //2 por zona
-		bool alterna = false;
+		vector<int> posicoes;
 		time_t tempo;
 		srand((unsigned)time(&tempo));
-		int altura = 200;
+		int altura = 190;
 
 		int teste = 0;
 
 		for (int i = 3; i < (tamanho_fase / tamanho_zona); i++) {//crio o vetor com posições aleatorias
 			teste = rand() % 477;
 
-			if (alterna == false) {
-				posicoes.push_back(static_cast<float>(i * tamanho_zona + 1000 + teste));
-				alterna = true;
-			}
-			else {
-				posicoes.push_back(static_cast<float>(i * tamanho_zona + 1000 + teste));
-				alterna = false;
-			}
+			posicoes.push_back(static_cast<float>(i * tamanho_zona + 1200 + teste));
+
 		}
 		
 		num_chefoes  = (rand() % 2) + 4; //de 4 a 5 entidades
-
-		//cout <<"Num chefoes: " << num_chefoes << endl;
-		//cout << "tam vetor: " << posicoes.size() << endl;
 
 		int pos = 0;
 
 		for (int i = 0; i < num_chefoes && pos<=posicoes.size(); i++) {
 
-			Personagens::Chefao* c = new Personagens::Chefao(6);
-			Obstaculos::Obstaculo* o = new Obstaculos::Plataforma(3);
-			Obstaculos::Obstaculo* o2 = new Obstaculos::Plataforma(3);
-			Obstaculos::Obstaculo* o_mini1 = new Obstaculos::Plataforma(3);
-			Obstaculos::Obstaculo* o_mini2 = new Obstaculos::Plataforma(3);
+			Personagens::Chefao* c = new Personagens::Chefao(6, "assets/chefao/Agis.png");
+			Obstaculos::Obstaculo* o = new Obstaculos::Plataforma(12, "assets/parede11.png");
 
 			
 			c->setCoordenadas((float)posicoes[pos], altura);
@@ -305,23 +421,13 @@ namespace Fases {
 			c->zonaChefao();
 
 			o->setCoordenadas((float)(posicoes[pos] - 10), (float)(altura + 5 + c->getCorpo().getSize().y));
-			o->setCorpo((float)(c->getCorpo().getSize().x + 20), (float)(50));
-
-			o_mini1->setCoordenadas((float)(posicoes[pos] - 10), (float)(0));
-			o_mini1->setCorpo((float)(10), (float)(o->getCorpo().getPosition().y));
-
-			o_mini2->setCoordenadas((float)(o->getCorpo().getPosition().x+o->getCorpo().getSize().x-10), (float)(0));
-			o_mini2->setCorpo((float)(10), (float)(o->getCorpo().getPosition().y));
+			o->setCorpo((float)(c->getCorpo().getSize().x + 20), (float)(600));
 
 			int meioZona = (c->getFinalZona() - ((c->getFinalZona() - c->getIniZona()) / 2));
-			o2->setCoordenadas((meioZona - 25), 760);
-			o2->setCorpo(c->getCorpo().getSize().x + 50, 140);
 
 			listaEntidades.Incluir(c, &gerentC);
 			listaEntidades.Incluir(o, &gerentC);
-			listaEntidades.Incluir(o2, &gerentC);
-			listaEntidades.Include(o_mini1);
-			listaEntidades.Include(o_mini2);
+
 
 			posicoes.erase(posicoes.begin() + pos);
 			
@@ -331,8 +437,6 @@ namespace Fases {
 	void Fase2::geraProjeteis() {//ser criada DEPOIS do chefao
 
 		num_projeteis = 10 * (num_chefoes);
-		//cout << "qntd de chefoes: " << num_chefoes << endl;
-		//cout << "qntd de projetil: " << num_projeteis<<endl;
 
 		for (int i = 0; i <num_projeteis; i++) {
 			Projetil* p = new Projetil(5);

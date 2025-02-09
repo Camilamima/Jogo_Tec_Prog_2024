@@ -24,6 +24,7 @@ private:
 	int selec;
 	int fase;
 	int menu;
+
 public:
 	Menu(int id,const char *png="assets/pointer.png");
 	~Menu();

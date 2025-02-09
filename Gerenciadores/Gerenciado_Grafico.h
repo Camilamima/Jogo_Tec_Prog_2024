@@ -11,12 +11,13 @@ namespace Gerenciadores {
 	private:
 		View camera;
 		Texture Fundo;
+		Texture Fundo2;
 		Sprite sprite;
 	public:
 		RenderWindow window;
 		Gerenciado_Grafico();
 		~Gerenciado_Grafico();
-		void BackGFloresta();
+		void BackGFloresta(int fase);
 		const bool estaAberta() const;
 		void arrumaCamera(float x);
 		void clear();
@@ -24,6 +25,7 @@ namespace Gerenciadores {
 		void desenha();
 		void mostrar();
 		void fechar();
+		void BackGCaverna();
 	};
 }
 

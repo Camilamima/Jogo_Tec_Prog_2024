@@ -1,5 +1,6 @@
 #include "Rato.h"
-#include "iostream"
+#include <stdexcept>
+#include <iostream>
 
 
 using namespace std;
@@ -11,11 +12,9 @@ namespace Personagens {
 		vidas = 3;
 		setVelocidae(150, 0);
 		relogio.restart();
-		setCorpo(100, 100);
+		setCorpo(100, 65);
 		distancia_percorrida = 0;
 		setMaldade(1);
-		val = 0;
-		cont = 0;
 	}
 
 	Rato::~Rato() {  }
@@ -30,7 +29,7 @@ namespace Personagens {
 	}
 
 	void Rato::executar() {
-		//cont++;
+		cont++;
 		if (verificaVida()) {
 			if (distancia_percorrida >= CAMIHO) {
 
@@ -43,15 +42,15 @@ namespace Personagens {
 			}
 			if (velocidadeX > 0 && moviD) {
 				mover(velocidadeX * atualizaDelta(relogio));
-				if (cont % 5 == 0) {
-					//animacao(2, 5);//0 eh direita 
+				if (cont % 4 == 0) {
+					animacao(2, 5);//0 eh direita 
 					val--;
 				}
 			}
 			else if (velocidadeX < 0 && moviE) {
 				mover(velocidadeX * atualizaDelta(relogio));
-				if (cont % 5 == 0) {
-					//animacao(1, 5);//1 eh esquerda e 
+				if (cont % 4 == 0) {
+					animacao(1, 5);//1 eh esquerda e 
 					val++;
 				}
 			}
@@ -66,16 +65,32 @@ namespace Personagens {
 		}
 
 		if (num == 1) {//vai p esquerda
-			sprite.loadFromFile("assets/lobo/esquerda.png");
+			try {
+				if (!sprite.loadFromFile("assets/lobo/esquerda1.png")) {  // Se o arquivo não for encontrado
+					throw std::runtime_error("Erro ao carregar a textura: assets/lobo/esquerda1.png");
+				}
+			}
+			catch (const std::exception& e) {
+				std::cerr << "Excecao capturada: " << e.what() << std::endl;
+			}
+
 			corpo.setTexture(&sprite);
-			corpo.setTextureRect(IntRect(100 * (val), 101, 100, 100));
+			corpo.setTextureRect(IntRect(100 * (val), 35, 100, 65));
 		}
 		else if (num == 2) {//vai p direita
 			if (val == 0 || val == 1)
 				val = limite;
-			sprite.loadFromFile("assets/lobo/direita.png");
+			try {
+				if (!sprite.loadFromFile("assets/lobo/direita1.png")) {  // Se o arquivo não for encontrado
+					throw std::runtime_error("Erro ao carregar a textura: assets/lobo/direita1.png");
+				}
+			}
+			catch (const std::exception& e) {
+				std::cerr << "Excecao capturada: " << e.what() << std::endl;
+			}
+
 			corpo.setTexture(&sprite);
-			corpo.setTextureRect(IntRect(100 * (val), 101, 100, 100));
+			corpo.setTextureRect(IntRect(100 * (val), 35, 100, 65));
 		}
 	}
 

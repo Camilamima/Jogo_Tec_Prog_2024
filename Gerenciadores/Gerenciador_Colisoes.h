@@ -1,6 +1,7 @@
 #pragma once
 #include <list>
 #include "../Obstaculos/Obstaculo.h"
+#include "../Obstaculos/Plataforma.h"
 #include "../Personagens/Inimigo.h"
 #include "../Personagens/Slime.h"
 #include "../Entidade.h"

@@ -124,58 +124,146 @@ namespace Fases {
 
 
 	void Fase::geraPlataformaFase(){
-		float lugar = 0;
-		int tipo = 0;
-		int plataforma = 0;
-		time_t tempo;
-		srand((unsigned)time(&tempo));
+		if (num_fase == 1) {
+			float lugar = 0;
+			int tipo = 0;
+			int plataforma = 0;
+			time_t tempo;
+			srand((unsigned)time(&tempo));
 
-		for (float zona = 0; zona <= 7; zona++) {
-			lugar = static_cast<float>((((rand() % 16) + 1) * 100) + (zona*1800));
-			tipo = (rand() % 4) + 1;
-			TipoPlataforma(tipo,lugar);
+			for (float zona = 0; zona <= 7; zona++) {
+				lugar = static_cast<float>((((rand() % 16) + 1) * 100) + (zona * 1800));
+				tipo = (rand() % 4) + 1;
+				TipoPlataforma(tipo, lugar);
 
+			}
+		}
+		else if (num_fase == 2) {
+			float lugar = 0;
+			int tipo = 0;
+			int plataforma = 0;
+			time_t tempo;
+			srand((unsigned)time(&tempo));
+
+			for (float zona = 0; zona < 3; zona++) {
+				lugar = static_cast<float>((((rand() % 16) + 1) * 100) + (zona * 1800));
+				tipo = (rand() % 4) + 1;
+				TipoPlataforma(tipo, lugar);//tipo
+			}	
+
+			//==== teste ===//
+			lugar = static_cast<float>((((rand() % 10) + 1) * 50) + (1 * 1800));
+			TipoPlataforma(2, lugar);
+			//==============//
 		}
 	}
 
 	void Fase::TipoPlataforma(int tipo,float x){
+		if (num_fase == 1) {
+			if (tipo == 1) {//a em formato L invertido
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/pedra_tiles.png");
+				p->geraPlataforma(300, 200, x, 560);
 
-		if (tipo == 1) {//a em formato L invertido
-			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3,"assets/pedra_tiles.png");
-			p->geraPlataforma(300, 200, x, 560);
-			
-			listaEntidades.Incluir(p, &gerentC);
-			Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/tronco.png");
-			p2->geraPlataforma(100, 600, x + 10, 460);
-			listaEntidades.Incluir(p2, &gerentC);
-			localizacao_obs.push_back((int)x);
-			localizacao_obs.push_back((int)x+100);
+				listaEntidades.Incluir(p, &gerentC);
+				Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/tronco.png");
+				p2->geraPlataforma(100, 600, x + 10, 460);
+				listaEntidades.Incluir(p2, &gerentC);
+				localizacao_obs.push_back((int)x);
+				localizacao_obs.push_back((int)x + 100);
+			}
+			else if (tipo == 2) {
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/planta.png");
+				p->geraPlataforma(150, 100, x, 610);
+				listaEntidades.Incluir(p, &gerentC);
+				localizacao_obs.push_back((int)x);
+			}
+			else if (tipo == 3) {
+				/*Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/pedra_tiles.png");
+				p->geraPlataforma(200, 300, x, 560);
+				listaEntidades.Incluir(p, &gerentC);
+				Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/tronco.png");
+				p2->geraPlataforma(100, 200, x + 200, 460);
+				listaEntidades.Incluir(p2, &gerentC);
+				localizacao_obs.push_back((int)x);
+				localizacao_obs.push_back((int)x + 100);
+				localizacao_obs.push_back((int)x + 200);*/
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/tronco2.png");
+				p->geraPlataforma(200, 100, x, 560);
+				listaEntidades.Incluir(p, &gerentC);
+				Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/folhas_3x.png");
+				p2->geraPlataforma(100, 400, x - 50, 520);
+				listaEntidades.Incluir(p2, &gerentC);
+				localizacao_obs.push_back((int)x);
+			}
+			else if (tipo == 4) {
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/tronco2.png");
+				p->geraPlataforma(200, 100, x, 560);
+				listaEntidades.Incluir(p, &gerentC);
+				Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/folhas_3x.png");
+				p2->geraPlataforma(100, 400, x - 50, 520);
+				listaEntidades.Incluir(p2, &gerentC);
+				localizacao_obs.push_back((int)x);
+			}
 		}
-		else if (tipo == 2) {
-			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/planta.png");
-			p->geraPlataforma(150, 100, x, 610);
-			listaEntidades.Incluir(p, &gerentC);
-			localizacao_obs.push_back((int)x);
-		}
-		else if (tipo == 3) {
-			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/pedra_tiles.png");
-			p->geraPlataforma(200, 300, x, 560);
-			listaEntidades.Incluir(p, &gerentC);
-			Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/tronco.png");
-			p2->geraPlataforma(100, 200, x+200, 460);
-			listaEntidades.Incluir(p2, &gerentC);
-			localizacao_obs.push_back((int)x);
-			localizacao_obs.push_back((int)x+100);
-			localizacao_obs.push_back((int)x+200);
-		}
-		else if (tipo == 4) {
-			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/tronco2.png");
-			p->geraPlataforma(200, 100, x, 560);
-			listaEntidades.Incluir(p, &gerentC);
-			Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/folhas_3x.png");
-			p2->geraPlataforma(100, 400, x - 50, 520);
-			listaEntidades.Incluir(p2, &gerentC);
-			localizacao_obs.push_back((int)x);
+		else if (num_fase == 2) {
+			if (tipo == 1) {//feitaaa
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/parede41.png");
+				p->geraPlataforma(300, 200, x, 560);
+				listaEntidades.Incluir(p, &gerentC);
+				Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/pedra11.png");
+				p2->geraPlataforma(100, 100, x + 10, 460);//era 600
+				Obstaculos::Plataforma* p3 = new Obstaculos::Plataforma(3, "assets/pedra21.png");
+				p3->geraPlataforma(100, 100, x + 110, 460);
+				Obstaculos::Plataforma* p4 = new Obstaculos::Plataforma(3, "assets/pedra31.png");
+				p4->geraPlataforma(100, 100, x + 210, 460);
+				Obstaculos::Plataforma* p5 = new Obstaculos::Plataforma(3, "assets/pedra11.png");
+				p5->geraPlataforma(100, 100, x + 310, 460);
+				Obstaculos::Plataforma* p6 = new Obstaculos::Plataforma(3, "assets/pedra21.png");
+				p6->geraPlataforma(100, 100, x + 410, 460);
+				Obstaculos::Plataforma* p7 = new Obstaculos::Plataforma(3, "assets/pedra31.png");
+				p7->geraPlataforma(100, 100, x + 510, 460);
+				listaEntidades.Incluir(p2, &gerentC);
+				listaEntidades.Incluir(p3, &gerentC); 
+				listaEntidades.Incluir(p4, &gerentC);
+				listaEntidades.Incluir(p5, &gerentC);
+				listaEntidades.Incluir(p6, &gerentC);
+				listaEntidades.Incluir(p7, &gerentC);
+				localizacao_obs.push_back((int)x);
+				localizacao_obs.push_back((int)x + 100);
+			}
+			else if (tipo == 2) {//2
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/parede11.png");
+				p->geraPlataforma(150, 100, x, 610);
+				listaEntidades.Incluir(p, &gerentC);
+				localizacao_obs.push_back((int)x);
+			}
+			else if (tipo == 3) {//3
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/parede61.png");
+				p->geraPlataforma(200, 300, x, 560);
+				listaEntidades.Incluir(p, &gerentC);
+				Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/parede21.png");
+				p2->geraPlataforma(100, 200, x + 200, 460);
+				listaEntidades.Incluir(p2, &gerentC);
+				localizacao_obs.push_back((int)x);
+				localizacao_obs.push_back((int)x + 100);
+				localizacao_obs.push_back((int)x + 200);
+			}
+			else if (tipo == 4) {//4 em T
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/parede41.png");
+				p->geraPlataforma(200, 100, x, 560);
+				listaEntidades.Incluir(p, &gerentC);
+				Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/pedra11.png");
+				p2->geraPlataforma(100, 100, x - 50, 520);
+				Obstaculos::Plataforma* p3 = new Obstaculos::Plataforma(3, "assets/pedra21.png");
+				p3->geraPlataforma(100, 100, x - 50+100, 520);
+				Obstaculos::Plataforma* p4 = new Obstaculos::Plataforma(3, "assets/pedra31.png");
+				p4->geraPlataforma(100, 100, x - 50+200, 520);
+				listaEntidades.Incluir(p2, &gerentC);
+				listaEntidades.Incluir(p3, &gerentC);
+				listaEntidades.Incluir(p4, &gerentC);
+				localizacao_obs.push_back((int)x);
+
+			}
 		}
 	}
 
@@ -187,6 +275,7 @@ namespace Fases {
 		int cont2 = 0;
 		bool morreu = false;
 		bool morreu2 = false;
+		int pos_morto = -1;
 
 		if (gerentC.getJogador2() != nullptr)
 			qnt_jogadores = 2;
@@ -204,6 +293,12 @@ namespace Fases {
 			}
 			gerent->desenha();
 			listaEntidades.Percorrer(&gerentC);
+
+			pos_morto = listaEntidades.VerificMortos();
+
+			if (pos_morto != -1) {
+				listaEntidades.matarEntidadePos(pos_morto, &gerentC);
+			}
 
 			
 			if (Slime1.getVidas() <= 0 && apareceu1 == false) {

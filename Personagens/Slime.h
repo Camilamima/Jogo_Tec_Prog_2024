@@ -17,8 +17,6 @@ namespace Personagens {
         bool atacando;
         bool ladoAtacado;
         float impulso;
-        int val;
-        int cont;
         Clock turno;
 
     public:
@@ -35,9 +33,8 @@ namespace Personagens {
         int getCont()const { return cont; }
 		void setMorrendo(bool a) { morrendo = a; }
         bool const getLadoAtacado() const { return ladoAtacado; }
-        void processaEvento();
-        void processaEvento2();
-        void animacaoJog(int num, int limite);
+        void processaEvento();//generalizado
+        void animacao(int num, int limite);//eh virtual
         bool animacaoMorte(int cont, int limite);
         json salvar() const;
     };
