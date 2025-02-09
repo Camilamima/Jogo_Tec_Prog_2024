@@ -88,9 +88,7 @@ namespace Listas {
 		}
 
 		if (entidade->getId() == 12) {//se for plataforma do chefao
-			//plataforma_chefao->push_back(static_cast<Obstaculos::Plataforma*>(entidade));
 			plataforma_chefao->push(entidade);
-			cout << "Inseri: " << plataforma_chefao->size() << endl;
 		}
 	}
 
@@ -183,7 +181,6 @@ namespace Listas {
 		}
 		if (ent->getId() == 6) {//se for chefao PRECISO remover a plataforma dele
 			MatarEntidade(ent, gc);
-			cout << "removendo plataforma chefao: " << plataforma_chefao->front() << endl;
 			gc->removeEntidade(plataforma_chefao->front());
 			listaEntidades->removerElemento(plataforma_chefao->front());
 			plataforma_chefao->pop();

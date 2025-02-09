@@ -98,10 +98,10 @@ float Projetil::atualizaFPS()
 void Projetil::moverSeguindo(float aux) {
     if (!noChao)
     {
-		if (cont % 5 == 0) {
-			animacao(5);
+        if (cont % 5 == 0) {
+            animacao(5);
             val++;
-		}
+        }
 
         /*=== aplicando a gravidade */
         velocidadeY += (gravidade * atualizaFPS());//aplico a gravidade
@@ -122,7 +122,7 @@ void Projetil::mover() {
             /*=== aplicando a gravidade */
             velocidadeY += (gravidade * atualizaFPS());//aplico a gravidade
             velocidadeY += (forcaMistica * atualizaFPS());//aplico a força mistica
-            if (cont % 5 == 0) {
+            if(cont % 5 == 0) {
                 animacao(5);
                 val++;
             }

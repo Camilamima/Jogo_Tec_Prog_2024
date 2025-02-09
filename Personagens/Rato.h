@@ -8,7 +8,7 @@ namespace Personagens {
 		int distancia_percorrida;
 
 	public:
-		Rato(int id, const char* png = "ratinho.png");
+		Rato(int id, const char* png = "assets/lobo/direita.png");
 		~Rato();
 		void setDistancia(int d) { distancia_percorrida = d; }
 		void calculaDis();

@@ -9,8 +9,7 @@ namespace Personagens {
 
 	Chefao::Chefao(int id, const char* png) :
 		Inimigo(id, png),
-		ListProj()//,
-		//teletransporte(nullptr)
+		ListProj()
 	{
 		iniZona = 0;
 		finalZona = 0;
@@ -20,10 +19,9 @@ namespace Personagens {
 		chao = 560;
 		pos_inicial = 0;
 
-		setCorpo(224, 240);
 		setVelocidae(0, 0);
 		setMaldade(3);
-		num_projetil = 0; //qnd adicionar 1 projetil, soma +1
+		num_projetil = 0;
 		num_proj_salvamento = 0;
 	}
 
@@ -55,7 +53,7 @@ namespace Personagens {
 	/*===== executar =====*/
 	void Chefao::executar()
 	{
-		cont++;
+		//cont++;
 		if (!noChao) {
 			mover(0);
 		}
@@ -131,7 +129,6 @@ namespace Personagens {
 		}
 
 		if (num == 1) {
-			//sprite.loadFromFile("assets/chefao/Agis.png");
 			try {
 				if (!sprite.loadFromFile("assets/chefao/Agis.png")) {  // Se o arquivo não for encontrado
 					throw std::runtime_error("Erro ao carregar a textura: assets/chefao/Agis.png");
@@ -198,7 +195,7 @@ namespace Personagens {
 		}
 		
 	}
-	const int Chefao::max_projetil = 10;
+	const int Chefao::max_projetil = 5;
 
 	json Chefao::salvar() const {
 		json entidadeJson;

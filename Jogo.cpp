@@ -111,6 +111,7 @@ void Jogo::executar2() {
                         fase1 = new Fase1;
                         fase1->setJogadores(jogadores);
                         fase1->setGerenciador(&gerent);
+                        gerent.BackGFloresta(1);
                         fase1->inicializa();
                         iniciarFase = true;
                         menu.setFase(fase1);
@@ -121,6 +122,7 @@ void Jogo::executar2() {
                         fase2 = new Fase2;
                         fase2->setJogadores(jogadores);
                         fase2->setGerenciador(&gerent);
+                        gerent.BackGFloresta(2);
                         fase2->inicializa();
                         menu.setFase(fase2);
                         iniciarFase = true;
@@ -171,6 +173,7 @@ void Jogo::executar2() {
                     fase2->setJogadores(jogadores);
                     fase2->setGerenciador(&gerent);
                     fase2->inicializa();
+                    gerent.BackGFloresta(2);
                     menu.setFase(fase2);
                     fase2ini = 1;
 

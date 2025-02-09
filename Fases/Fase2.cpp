@@ -299,8 +299,6 @@ namespace Fases {
 		geraEspinho();
 		geraInimigos();
 		geraProjeteis();
-		//gerent->BackGFloresta(2);
-
 
 		if (qnt_jogadores == 1) {
 			cout << " Selecionado 1 jogador! " << endl;
@@ -328,12 +326,38 @@ namespace Fases {
 	}
 
 	void Fase2::geraChao() {
-		int numeros[36] = { 0 };
+		/*int numeros[36] = {0};
 		for (int i = 0; i < 36; i++) {
 
-			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3);
-			p->geraPlataforma(100, 400, (float)i * 400, 760);
+			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/plataforma_chao.png");
+			p->geraPlataforma(100, 97.91, (float)i * 400, 760);//era 400
 			listaEntidades.Incluir(p, &gerentC);
+		}*/
+		Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/chao.png");
+		p->geraPlataforma(100, 14400, 0, 860);
+		listaEntidades.Incluir(p, &gerentC);
+
+		int numeros[144] = { 0 };
+		int alterna = 1;
+		for (int i = 0; i < 144; i++) {
+			if (alterna == 1) {
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/pedra11.png");
+				p->geraPlataforma(100, 100, (float)i * 100, 760);//era 400
+				listaEntidades.Incluir(p, &gerentC);
+				alterna++;
+			}
+			else if (alterna == 2) {
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/pedra21.png");
+				p->geraPlataforma(100, 100, (float)i * 100, 760);//era 400
+				listaEntidades.Incluir(p, &gerentC);
+				alterna++;
+			}
+			else {
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/pedra31.png");
+				p->geraPlataforma(100, 100, (float)i * 100, 760);//era 400
+				listaEntidades.Incluir(p, &gerentC);
+				alterna = 1;
+			}
 		}
 	}
 
@@ -365,76 +389,6 @@ namespace Fases {
 
 		}
 	}
-	/*
-	void Fase2::executar() {
-
-
-		int qnt_jogadores = 1;
-		bool apareceu1 = false;
-		bool apareceu2 = false;
-		int cont1 = 0;
-		int cont2 = 0;
-		bool morreu = false;
-		bool morreu2 = false;
-		int pos_morto = 0;
-
-
-		if (gerentC.getJogador2() != nullptr)
-			qnt_jogadores = 2;
-
-		gerent->arrumaCamera(checaZona());
-		
-		gerent->clear();
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
-			Pause = true;
-			pMenu->restartTime();
-			while (Pause) {
-				pMenu->Pause();
-			}
-
-		}
-
-		listaEntidades.Percorrer(&gerentC);//executar de td
-		pos_morto = listaEntidades.VerificMortos();
-
-		if (pos_morto != -1) {
-			listaEntidades.matarEntidadePos(pos_morto, &gerentC);
-		}
-
-		/*if (Slime1.getVidas() <= 0 && apareceu1 == false) {
-			Slime1.setMorrendo(true);
-			if (Slime1.getCont() % 8 == 0) {
-				morreu = Slime1.animacaoMorte(cont1, 10);
-				cont1++;
-				if (morreu == true) {
-					cout << "Jogador 1 morreu!" << endl;
-					listaEntidades.MatarEntidade(&Slime1, &gerentC);
-					qnt_jogadores--;
-					apareceu1 = true;
-				}
-			}
-		}
-
-		if (gerentC.getJogador2() != nullptr) {
-			if (Slime2.getVidas() <= 0 && apareceu2 == false) {
-				Slime2.setMorrendo(true);
-				if (Slime2.getCont() % 8 == 0) {
-					morreu2 = Slime2.animacaoMorte(cont2, 10);
-					cont2++;
-					if (morreu2 == true) {
-						cout << "Jogador 2 morreu!" << endl;
-						listaEntidades.MatarEntidade(&Slime2, &gerentC);
-						qnt_jogadores--;
-						apareceu2 = true;
-					};
-				}
-			}
-		}*/
-	/*
-			gerent->mostrar();
-	}
-	*/
 
 	void Fase2::geraChefao() {
 		vector<int> posicoes;
@@ -457,9 +411,8 @@ namespace Fases {
 
 		for (int i = 0; i < num_chefoes && pos<=posicoes.size(); i++) {
 
-			Personagens::Chefao* c = new Personagens::Chefao(6);
-			Obstaculos::Obstaculo* o = new Obstaculos::Plataforma(12);
-			Obstaculos::Obstaculo* o2 = new Obstaculos::Plataforma(3);
+			Personagens::Chefao* c = new Personagens::Chefao(6, "assets/chefao/Agis.png");
+			Obstaculos::Obstaculo* o = new Obstaculos::Plataforma(12, "assets/parede11.png");
 
 			
 			c->setCoordenadas((float)posicoes[pos], altura);
@@ -471,12 +424,9 @@ namespace Fases {
 			o->setCorpo((float)(c->getCorpo().getSize().x + 20), (float)(600));
 
 			int meioZona = (c->getFinalZona() - ((c->getFinalZona() - c->getIniZona()) / 2));
-			o2->setCoordenadas((meioZona - 25), 760);
-			o2->setCorpo(c->getCorpo().getSize().x + 50, 140);
 
 			listaEntidades.Incluir(c, &gerentC);
 			listaEntidades.Incluir(o, &gerentC);
-			listaEntidades.Incluir(o2, &gerentC);
 
 
 			posicoes.erase(posicoes.begin() + pos);

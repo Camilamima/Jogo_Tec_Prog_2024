@@ -29,14 +29,12 @@ namespace Personagens {
 	public:
 		Chefao(int id, const char* png = "assets/chefao/Agis.png");
 		~Chefao();
-		//void setTeletransporte(Efeito* tp) { teletransporte = tp; }
 		void executar();
 		void teletransportar();
 		void criaProjeteis(Projetil* proj);
 		void criaProjeteisSalv(Projetil* proj);
 		void apagaProjetil();
 		void setTurno(bool turno1) { turno = turno1; }
-		//void animacaoTp(int limite);
 		static int getMaxProjetil() { return max_projetil; }
 		int getNum_Projetil()const { return num_projetil; }
 		void setNum_Projetil(int a) { num_projetil = a; }
