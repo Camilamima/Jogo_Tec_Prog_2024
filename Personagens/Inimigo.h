@@ -1,6 +1,9 @@
 #pragma once
-#include "Slime.h"
+#include "Personagem.h"
+
+
 namespace Personagens {
+	class Slime;
 	class Inimigo : public Personagem
 	{
 	protected:

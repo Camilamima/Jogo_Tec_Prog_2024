@@ -3,7 +3,6 @@
   <ItemGroup>
     <ClCompile Include="Fases\Fase2.cpp" />
     <ClCompile Include="Fases\Fase1.cpp" />
-    <ClCompile Include="Obstaculos\Acelerador.cpp" />
     <ClCompile Include="Personagens\Cachorro.cpp" />
     <ClCompile Include="Ente.cpp" />
     <ClCompile Include="Entidade.cpp" />
@@ -25,11 +24,11 @@
     <ClCompile Include="Personagens\Slime.cpp" />
     <ClCompile Include="Obstaculos\SlimeMau.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Texto.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Fases\Fase2.h" />
     <ClInclude Include="Fases\Fase1.h" />
-    <ClInclude Include="Obstaculos\Acelerador.h" />
     <ClInclude Include="Personagens\Cachorro.h" />
     <ClInclude Include="Ente.h" />
     <ClInclude Include="Entidade.h" />
@@ -51,6 +50,7 @@
     <ClInclude Include="Personagens\Slime.h" />
     <ClInclude Include="Obstaculos\SlimeMau.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="Texto.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\plataforma.png" />

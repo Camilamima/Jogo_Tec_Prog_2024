@@ -25,7 +25,6 @@ namespace Obstaculos {
 		bool  getImpede() const { return impede; }
 		bool getAtrapalha() const { return atrapalha; }
 		bool getDanoso() const { return danoso; }
-		bool getAcelera() const { return acelera; }
 		virtual void obstacular(Personagens::Slime* jogador) = 0;
 		void restaura(Personagens::Slime* jogador);
 		virtual json salvar() const = 0;

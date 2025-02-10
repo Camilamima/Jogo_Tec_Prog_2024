@@ -4,8 +4,8 @@
 
 #define VX 500
 
-
 namespace Personagens {
+    class Inimigo;
     class Slime : public Personagem {
     private:
         int pontos;
@@ -23,7 +23,7 @@ namespace Personagens {
         Slime(int id, const char* png = ""); // pngegg.png
         ~Slime();
         void mover(float aux);
-        void atacarIni(Personagem* ini);
+        void atacarIni(Inimigo* ini);
         void executar();
         void pular(float imp);
 		void setImpulso(float i) { impulso = i; }
@@ -36,6 +36,9 @@ namespace Personagens {
         void processaEvento();//generalizado
         void animacao(int num, int limite);//eh virtual
         bool animacaoMorte(int cont, int limite);
+        const int getPontos() const {
+            return pontos;
+        }
         json salvar() const;
     };
 

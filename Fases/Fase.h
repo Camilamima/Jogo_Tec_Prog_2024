@@ -6,7 +6,6 @@
 #include "../Obstaculos/Plataforma.h"
 #include "../Obstaculos/Espinho.h"
 #include "../Obstaculos/SlimeMau.h"
-#include "../Obstaculos/Acelerador.h"
 #include "../Personagens/Rato.h"
 #include "../Gerenciadores/Gerenciador_Colisoes.h"
 #include "../Listas/ListaEntidades.h"
@@ -15,12 +14,13 @@
 #include "../Personagens/Efeitos.h"
 #include "../Personagens/Cachorro.h"
 #include <nlohmann/json.hpp>
+#include "../Texto.h"
 using json = nlohmann::json;
 
 class Menu;
 
 namespace Fases {
-	class Fase {
+	class Fase:public Ente, public Texto{
 	protected:
 		int num_fase;
 		int qnt_jogadores;
@@ -32,7 +32,6 @@ namespace Fases {
 		Menu* pMenu;
 		vector <int> localizacao_obs;
 		Gerenciadores::Gerenciador_Colisoes gerentC;
-		Gerenciadores::Gerenciado_Grafico* gerent;
 		Personagens::Slime Slime1;
 		Personagens::Slime Slime2;
 		Obstaculos::Plataforma chao;
@@ -45,6 +44,9 @@ namespace Fases {
 		int getJogadores() const {
 			return qnt_jogadores;
 		}
+		int getZona()const {
+			return zona_atual;
+		}
 		void setPause(const bool i) {
 			Pause = i;
 		}
@@ -54,7 +56,6 @@ namespace Fases {
 		void setMenu(Menu* m) {
 			pMenu = m;
 		}
-		void setGerenciador(Gerenciadores::Gerenciado_Grafico* g) { gerent = g; }
 		virtual void inicializa() = 0;
 		void limpaVec();
 		const bool checaLocaliza(float x, int ver) const;
@@ -73,5 +74,7 @@ namespace Fases {
 		void TipoPlataforma(int tipo, float x);
 		virtual void executar();
 		void salvaFase();
+		void setaTextos(int text);
+		void digitarNome();
 	};
 }
