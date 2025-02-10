@@ -540,6 +540,9 @@ namespace Gerenciadores {
 				if (obstaculo->getImpede() == false) {//se nao eh plataforma
 					continue;
 				}
+				if (obstaculo->getId() == 12) {
+					continue;
+				}
 
 				aux = obstaculo->getCorpo();
 
