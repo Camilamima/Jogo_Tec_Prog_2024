@@ -29,10 +29,15 @@ namespace Gerenciadores {
 
 	void Gerenciador_Colisoes::includeEntidade(Entidade* ent) {
 
-		if (ent->getId() == 3 || ent->getId() == 9 || ent->getId() == 8 || ent->getId() == 11 || ent->getId()==12) {//obstaculo
+		if (ent->getId() == 3 || ent->getId() == 9 || ent->getId() == 8 || ent->getId() == 11) {//obstaculo
 			LObst.push_back(static_cast<Obstaculos::Obstaculo*>(ent));
 			static_cast<Obstaculos::Obstaculo*>(ent)->setpJogador(jog1);
 
+		}
+
+		if (ent->getId() == 12) {
+			LObst.push_back(static_cast<Obstaculos::Obstaculo*>(ent));
+			static_cast<Obstaculos::Obstaculo*>(ent)->setpJogador(jog1);
 		}
 
 		else if (ent->getId() == 4 || ent->getId() == 6 || ent->getId() == 7) {//inimigo
@@ -135,38 +140,45 @@ namespace Gerenciadores {
 
 					Personagens::Cachorro* cachorro = static_cast<Personagens::Cachorro*>(inimigo);
 
-					if (cachorro->deveSeguir(jog1)) {
+					cachorro->deveSeguir(jog1);
+					/*if (cachorro->deveSeguir(jog1)) {
 						cachorro->setSeguindo(1);
 						cachorro->seguir(aux2.getPosition().x + (aux2.getSize().x / 2));
 					}
 					else {
 						cachorro->setSeguindo(0);
-					}
+					}*/
 				}
 
 				if (veriColisao(inimigo, jog1) == 1) {
-					jog1->setAtacando(1);
-					jog1->pular(300);
-					--(*inimigo);
+					jog1->atacarIni(inimigo);
 					cout << "Vida inimigo atacado" << inimigo->getVidas() << endl;
 				}
 
 				else if (veriColisao(inimigo, jog1) == 2) {
 
-					if (!jog1->getAtacado()) {
-						--(*jog1);
-						jog1->pular(300);
-						jog1->setAtacado(1, 0);
-						cout << "vidas jog1: " << jog1->getVidas() << endl;
-					}
+					inimigo->ataca(jog1, 2);
+					cout << "vidas jog1: " << jog1->getVidas() << endl;
 				}
 				else if (veriColisao(inimigo, jog1) == 3) {
-					if (!jog1->getAtacado()) {
-						--(*jog1);
-						jog1->pular(300);
-						jog1->setAtacado(1, 1);
-						cout << "vidas jog1: " << jog1->getVidas() << endl;
-					}
+
+					inimigo->ataca(jog1, 3);
+					cout << "vidas jog1: " << jog1->getVidas() << endl;
+
+				}
+				else if (veriColisao(inimigo, jog1) == 5) {
+
+						float xini = aux1.getPosition().x+aux1.getSize().x/2;
+
+						float xjog = aux2.getPosition().x + aux2.getSize().x / 2;
+
+						if (xini >= xjog) {
+							inimigo->ataca(jog1, 2);
+						}
+						else {
+							inimigo->ataca(jog1, 3);
+						}
+
 
 				}
 			}
@@ -187,13 +199,13 @@ namespace Gerenciadores {
 
 					Personagens::Cachorro* cachorro = static_cast<Personagens::Cachorro*>(inimigo);
 
-					if (cachorro->deveSeguir(jog2)) {
+					/*if (cachorro->deveSeguir(jog2)) {
 						cachorro->setSeguindo(1);
 						cachorro->seguir(aux3.getPosition().x + (aux3.getSize().x / 2));
 					}
 					else {
 						cachorro->setSeguindo(0);
-					}
+					}*/
 				}
 
 

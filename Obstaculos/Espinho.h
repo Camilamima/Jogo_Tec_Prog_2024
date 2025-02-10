@@ -8,7 +8,7 @@ namespace Obstaculos {
 		int num_espinhos;
 		int timer;
 	public:
-		Espinho(int id, const char* png ="assets/espinho.png");
+		Espinho(int id, const char* png ="assets/espinho2.png");
 		~Espinho();
 		Personagens::Slime* getpJogador() { return pJogador; }
 		void executar();

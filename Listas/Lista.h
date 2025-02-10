@@ -162,6 +162,7 @@ namespace Listas {
                 pos++;
                 atual = atual->pProx;
             }
+            //falta um return aqui
         }
 
         // retorna elemento em uma posição informada

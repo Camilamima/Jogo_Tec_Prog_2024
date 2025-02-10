@@ -15,6 +15,8 @@ namespace Personagens {
         bool moviE;
         float velocidadeY;
         float velocidadeX;
+        int cont;
+        int val;
 
     public:
         Personagem(int id, const char* png);
@@ -25,17 +27,18 @@ namespace Personagens {
         void setVidas(int vid);
         int getVidas() const{ return vidas; }
         void operator--();
-        void operator*=(int dano) { vidas -= dano; }
+        void operator-=(int dano) { vidas -= dano; }
         void setVelocidae(float vX, float vY);
         void setVelocidadeY(float y) { velocidadeY = y; }
         void setMoviD(bool a) { moviD = a; }
         void setMoviE(bool a) { moviE = a; }
         float getVelocidadeX();
         float getVelocidadeY();
-        float atualizaDelta();
+        static float atualizaDelta(Clock relogio);
         const bool getnoChao() const {return noChao;}
         void setChao(float a) { chao = a; }
         void setNoChao(float Xao) { noChao = Xao; }
+        virtual void animacao(int num, int limite) = 0;
         virtual json salvar() const = 0;
     };
 

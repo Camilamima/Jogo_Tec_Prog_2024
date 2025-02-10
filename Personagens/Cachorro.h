@@ -13,22 +13,24 @@ namespace Personagens {
         Clock turnos;
         bool seguindo;
         bool atacando;
-        int cont;
-        int val;
         bool ladoAtaque;
         float tempo;
     public:
         Cachorro(int id, const char* png = "assets/espadachim/Attack1.png");
         ~Cachorro();
         void executar();
-        const bool deveSeguir(Slime* jog) const;
+        void deveSeguir(Slime* jog);
         void seguir(float x);
         void atacar(int d);
         void setSeguindo(bool i) { seguindo = i; }
-        void animacao(int num, int limite);
         json salvar() const;
+        void setYeXini(float x,float y) {
+            xIni = x;
+            yIni = y;
+        }
 		void setLadoAtacado(bool lado) { ladoAtaque = lado; }
 		void setTempo(float t) { tempo = t; }
 		void setAtacando(bool a) { atacando = a; }
+        void animacao(int num, int limite);//eh virtual
     };
 }

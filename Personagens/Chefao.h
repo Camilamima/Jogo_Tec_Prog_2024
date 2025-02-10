@@ -14,12 +14,8 @@ namespace Personagens {
 		//int danoProjetil; n usei
 		bool turno;
 		Clock relogio1;
-		Clock relogio2;
+		bool atirou;
 		Clock relogioProjetil;
-		int cont;
-		int val;
-		//Efeito* teletransporte;
-		//bool fim_animacao;
 		static const int max_projetil;
 		int num_projetil;
 		int num_proj_salvamento;
@@ -29,17 +25,14 @@ namespace Personagens {
 		float pos_inicial;
 		
 	public:
-		Chefao(int id, const char* png = "assets/chefao/Agis.png");
+		Chefao(int id, const char* png = "");
 		~Chefao();
-		//void setTeletransporte(Efeito* tp) { teletransporte = tp; }
 		void executar();
 		void teletransportar();
 		void criaProjeteis(Projetil* proj);
 		void criaProjeteisSalv(Projetil* proj);
 		void apagaProjetil();
-		void animacao(int limite);
 		void setTurno(bool turno1) { turno = turno1; }
-		//void animacaoTp(int limite);
 		static int getMaxProjetil() { return max_projetil; }
 		int getNum_Projetil()const { return num_projetil; }
 		void setNum_Projetil(int a) { num_projetil = a; }
@@ -48,6 +41,7 @@ namespace Personagens {
 		bool zonaChefao(Slime* jog);
 		void zonaChefao();
 		void setAtivo(bool x) { ativo = x; }
+		bool getAtivo() { return ativo; }
 		void setPosInicialX(float x) { pos_inicial = x; }
 		float getPosInicial() { return pos_inicial; }
 		int getFinalZona() { return finalZona; }
@@ -57,5 +51,6 @@ namespace Personagens {
 		void setCont(int a) { cont = a; }
 		void setVal(int a) { val = a; }
 		json salvar()const;
+		void animacao(int num, int limite);
 	};
 }

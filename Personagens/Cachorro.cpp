@@ -1,5 +1,7 @@
 #include "Cachorro.h"
 #include <cmath>
+#include <stdexcept>
+#include <iostream>
 
 using namespace std;
 
@@ -13,7 +15,7 @@ namespace Personagens {
 
         tempo = 0;
         ladoAtaque = 0;
-        vidas=10;
+        vidas=5;
         seguindo = 0;
         atacando = 0;
         xIni = 0;
@@ -22,18 +24,16 @@ namespace Personagens {
         setCoordenadas(600, 0);
         chao = 600;
         relogio.restart();
-        setCorpo(177.27, 100);
-        setSoCorpo(177.27, 100);
+        setCorpo(177.27f, 100);
+        setSoCorpo(177.27f, 100);
         setMaldade(2);
-        cont = 0;
-        val = 0;
     }
 
     Cachorro::~Cachorro() {
 
     }
 
-    const bool Cachorro::deveSeguir(Personagens::Slime* jog) const {
+    void Cachorro::deveSeguir(Personagens::Slime* jog) {
         RectangleShape aux = jog->getCorpo();
         float x, y, xJog, yJog;
         x = corpo.getPosition().x + (corpo.getSize().x / 2);
@@ -49,8 +49,14 @@ namespace Personagens {
         // Calculando a distância euclidiana
         float distancia = std::sqrt(dx * dx + dy * dy);
 
-        // Verificando se a distância está dentro do raio de 130
-        return distancia <= 400;
+        if (distancia <= 600) {
+            seguindo = 1;
+            seguir(aux.getPosition().x + (aux.getSize().x / 2));
+        }
+        else {
+            seguindo = 0;
+        }
+
     }
 
     void Cachorro::seguir(float x) {
@@ -58,22 +64,26 @@ namespace Personagens {
         if (seguindo && !atacando) {
             if (xC != x) {
                 //direita
-                if (xC <= x + 150 && xC >= x) {
+                if (xC <= x + 100 && xC >= x) {
+                    xIni = corpo.getPosition().x;
+                    yIni = corpo.getPosition().y;
+
                     atacar(1);
                     atacando = 1;
                     seguindo = 0;
                     turnos.restart();
-                    xIni = corpo.getPosition().x;
-                    yIni = corpo.getPosition().y;
+
                 }
                 //esquerda
-                else if (xC >= x - 150 && xC <= x) {
+                else if (xC >= x - 100 && xC <= x) {
+                    xIni = corpo.getPosition().x;
+                    yIni = corpo.getPosition().y;
+
                     atacar(2);
                     atacando = 1;
                     seguindo = 0;
                     turnos.restart();
-                    xIni = corpo.getPosition().x;
-                    yIni = corpo.getPosition().y;
+
                 }
                 //esquerda
                 else if (xC - x > 0) {
@@ -82,13 +92,13 @@ namespace Personagens {
                             animacao(2, 8);//2 eh esquerda e 
                             val--;
                         }
-                        mover(atualizaDelta() * -velocidadeX);
+                        mover(atualizaDelta(relogio) * -velocidadeX);
                     }
                 }
                 //direita
                 else {
                     if (moviD) {
-                        mover(atualizaDelta() * velocidadeX);
+                        mover(atualizaDelta(relogio) * velocidadeX);
                         if (cont % 5 == 0) {
                             animacao(1, 8);//1 eh direita 
                             val++;
@@ -111,28 +121,45 @@ namespace Personagens {
 
     void Cachorro::atacar(int d) {
 
-        xIni = corpo.getPosition().x;
-        yIni = corpo.getPosition().y;
 
         //esquerda
         if (d == 1) {
-            ladoAtaque = 1;
-            setTamanhoCorpo(corpo.getSize().x + 50, corpo.getSize().y);
-                sprite.loadFromFile("assets/espadachim/Attack1 esquerda.png");
+            if (moviE) {
+                ladoAtaque = 1;
+                setTamanhoCorpo(corpo.getSize().x + 60.0f, corpo.getSize().y+35.0f);
+                corpo.move(-60.0f,-35.0f);
+                //sprite.loadFromFile("assets/espadachim/Attack1 esquerda.png");
+                try {
+                    if (!sprite.loadFromFile("assets/espadachim/Attack1 esquerda.png")) {  // Se o arquivo não for encontrado
+                        throw std::runtime_error("Erro ao carregar a textura: assets/espadachim/Attack1 esquerda.png");
+                    }
+                }
+                catch (const std::exception& e) {
+                    std::cerr << "Excecao capturada: " << e.what() << std::endl;
+                }
                 corpo.setTexture(&sprite);
-                corpo.setTextureRect(IntRect(20+(200 * 1), 59, 160, 71));
-				//setSoCorpo(160.0 + 50.0, 130.0);
-            //mover(-50);
-            pGGrafico->desenha(corpo);
+                corpo.setTextureRect(IntRect(20 + (200 * 1), 59, 160, 71));
+                pGGrafico->desenha(corpo);
+            }
         }
         //direita
         else if (d == 2) {
-            //animacao(3, 4);
-            setTamanhoCorpo(corpo.getSize().x + 50, corpo.getSize().y);
-            sprite.loadFromFile("assets/espadachim/Attack1.png");
-            corpo.setTexture(&sprite);
-            corpo.setTextureRect(IntRect(20 + (200*2), 59, 160, 71));
-            pGGrafico->desenha(corpo);
+            if (moviD) {
+                setTamanhoCorpo(corpo.getSize().x + 60.0f, corpo.getSize().y +35.0f);
+                corpo.move(0.0f, -35.0f);
+                //sprite.loadFromFile("assets/espadachim/Attack1.png");
+                try {
+                    if (!sprite.loadFromFile("assets/espadachim/Attack1.png")) {  // Se o arquivo não for encontrado
+                        throw std::runtime_error("Erro ao carregar a textura: assets/espadachim/Attack1.png");
+                    }
+                }
+                catch (const std::exception& e) {
+                    std::cerr << "Excecao capturada: " << e.what() << std::endl;
+                }
+                corpo.setTexture(&sprite);
+                corpo.setTextureRect(IntRect(20 + (200 * 2), 59, 160, 71));
+                pGGrafico->desenha(corpo);
+            }
         }
     }
     
@@ -146,16 +173,31 @@ namespace Personagens {
         }
 
         if (num == 1) {//vai p direita
-            sprite.loadFromFile("assets/espadachim/Run.png");
+            //sprite.loadFromFile("assets/espadachim/Run.png");
+            try {
+                if (!sprite.loadFromFile("assets/espadachim/Run.png")) {  // Se o arquivo não for encontrado
+                    throw std::runtime_error("Erro ao carregar a textura: assets/espadachim/Run.png");
+                }
+            }
+            catch (const std::exception& e) {
+                std::cerr << "Excecao capturada: " << e.what() << std::endl;
+            }
             corpo.setTexture(&sprite);
             corpo.setTextureRect(IntRect(65+(200 * (val)), 75, 70, 55));
         }
-        else if (num == 2) {//vai p direita
-            sprite.loadFromFile("assets/espadachim/Run esquerda.png");
+        else if (num == 2) {//vai p esquerda
+            //sprite.loadFromFile("assets/espadachim/Run esquerda.png");
+            try {
+                if (!sprite.loadFromFile("assets/espadachim/Run esquerda.png")) {  // Se o arquivo não for encontrado
+                    throw std::runtime_error("Erro ao carregar a textura: assets/espadachim/Run esquerda.png");
+                }
+            }
+            catch (const std::exception& e) {
+                std::cerr << "Excecao capturada: " << e.what() << std::endl;
+            }
             corpo.setTexture(&sprite);
             corpo.setTextureRect(IntRect(65 + (200 * (val)), 75, 70, 55));
         }
-
     }
 
     void Cachorro::executar() {
@@ -168,19 +210,16 @@ namespace Personagens {
 
             if (atacando) {
                 if (tempo >= 1.5) {
-                    if (ladoAtaque) {
-                        xIni = xIni + 50;
-                        ladoAtaque = 0;
-                    }
+                    atacando = 0;
+                    ladoAtaque = 0;
                     setCoordenadas(xIni, yIni);
                     setCorpo(100, 100);
-                    atacando = 0;
                     turnos.restart();
   
                 }
             }
             if (!atacando && !seguindo) {
-                if (cont % 5 == 0) {
+                if(cont % 5 == 0) {
                     sprite.loadFromFile("assets/espadachim/Attack1.png");
                     corpo.setTexture(&sprite);
                     corpo.setTextureRect(IntRect(65, 59, 70, 71));
@@ -192,6 +231,7 @@ namespace Personagens {
             pGGrafico->desenha(corpo);
         }
     }
+
     json Cachorro::salvar() const {
         json entidadeJson;
         entidadeJson["id"] = id;
@@ -208,6 +248,8 @@ namespace Personagens {
         entidadeJson["ladoAtaque"] = ladoAtaque;
         entidadeJson["val"] = val;
         entidadeJson["turnos"] = tempo;
+        entidadeJson["xIni"] = xIni;
+        entidadeJson["yIni"] = yIni;
         return entidadeJson;
     }
 }

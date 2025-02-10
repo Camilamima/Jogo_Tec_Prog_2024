@@ -13,6 +13,8 @@ namespace Personagens {
 		velocidadeX = 0;
 		velocidadeY = 0;
 		vidas = 5;
+		cont = 0;
+		val = 0;
 	}
 
 	Personagem::~Personagem() {
@@ -39,7 +41,7 @@ namespace Personagens {
 		vidas--;
 	}
 
-	float Personagem::atualizaDelta() {
+	float Personagem::atualizaDelta(Clock relogio) {
 
 		float deltaTimeAtual = relogio.restart().asSeconds();
 		float minimoDeltaTime = 0.0667f;
