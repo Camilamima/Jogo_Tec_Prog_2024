@@ -24,6 +24,7 @@ namespace Fases {
 	protected:
 		int num_fase;
 		int qnt_jogadores;
+		int qnt_jogadores_ini;
 		const int tamanho_fase;
 		const int tamanho_zona;
 		int zona_atual;
@@ -47,6 +48,7 @@ namespace Fases {
 		int getZona()const {
 			return zona_atual;
 		}
+
 		void setPause(const bool i) {
 			Pause = i;
 		}

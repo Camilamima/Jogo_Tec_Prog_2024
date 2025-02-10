@@ -7,7 +7,6 @@ namespace Obstaculos {
 	{
 		altura = 0;
 		largura = 0;
-		pJogador = nullptr;
 		atrito = 1.0f;
 		impede = true;
 		//setCoordenadas(x, y);
@@ -35,6 +34,24 @@ namespace Obstaculos {
 		entidadeJson["png"] = png;
 
 		return entidadeJson;
+	}
+
+	void Plataforma::obstacular(Slime* jogador,int i) {
+		if (i == 1) {
+			jogador->setChao(corpo.getPosition().y - 100);
+		}
+
+		if (i == 2) {
+			jogador->setMoviD(0);
+		}
+		if (i == 3) {
+
+			jogador->setMoviE(0);
+		}
+		if (i == 4) {
+			jogador->setVelocidadeY(0);
+			jogador->pular(-100);
+		}
 	}
 }
 

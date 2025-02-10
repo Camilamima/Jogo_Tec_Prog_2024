@@ -122,6 +122,7 @@ namespace Fases {
 
 
     Fase1::~Fase1() {
+        pGGrafico->clear();
     }
 
     void Fase1::inicializa() {

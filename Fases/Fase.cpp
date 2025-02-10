@@ -27,6 +27,7 @@ namespace Fases {
 		qnt_jogadores(-1),
 		Pause(0)
 	{
+		qnt_jogadores_ini = -1;
 		pMenu = nullptr;
 	}
 
@@ -298,9 +299,17 @@ namespace Fases {
 		bool morreu = false;
 		bool morreu2 = false;
 		int pos_morto = -1;
+
 		if (qnt_jogadores > 0) {
-			if (gerentC.getJogador2() != nullptr)
+			if (gerentC.getJogador2() != nullptr) {
 				qnt_jogadores = 2;
+			}
+			if (qnt_jogadores_ini == -1) {
+
+				qnt_jogadores_ini = qnt_jogadores;
+
+
+			}
 
 			pGGrafico->arrumaCamera(checaZona());
 
@@ -351,13 +360,11 @@ namespace Fases {
 
 			if (Slime1.getVidas() <= 0) {
 
-				setaTextos(2);
-				if (gerentC.getJogador2() == nullptr) {
+				if (qnt_jogadores_ini ==1) {
 					setaTextos(2);
 					Pause = true;
 					pGGrafico->clear();
 					while (Pause) {
-						std::cout << "voltamos aqui?" << endl;
 						desenhaTexto(pGGrafico);
 						pGGrafico->window.display();
 						pGGrafico->clear();
@@ -370,6 +377,27 @@ namespace Fases {
 					pGGrafico->clear();
 					textos.clear();
 				}
+
+				else if (qnt_jogadores_ini ==2 && Slime2.getVidas()<=0) {
+
+					setaTextos(3);
+					Pause = true;
+					pGGrafico->clear();
+					while (Pause) {
+						desenhaTexto(pGGrafico);
+						pGGrafico->window.display();
+						pGGrafico->clear();
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::X)) {
+							Pause = false;
+						}
+					}
+					Pause = true;
+					qnt_jogadores = -1;
+					pGGrafico->clear();
+					textos.clear();
+
+				}
+
 			}
 		}
 		else if(qnt_jogadores==-1)
@@ -440,6 +468,64 @@ namespace Fases {
 			}
 		}
 		pMenu->salvaScore(input, Slime1.getPontos());
+
+		if (qnt_jogadores_ini == 2) {
+			t.restart();
+			Pause = true;
+			input = "";
+			setaTextos(7);
+			textoInput.setString("");
+
+			desenhaTexto(pGGrafico);
+
+			Text textoInput2;
+			textoInput2.setFont(fonte);
+			textoInput2.setCharacterSize(30);
+			textoInput2.setFillColor(sf::Color::White);
+			textoInput2.setPosition(((float)zona_atual * 1800.0f) + 200.0f, 300.0f);
+
+			while (Pause) {
+
+				while (pGGrafico->window.pollEvent(event)) {
+					float tempo = t.getElapsedTime().asSeconds();
+
+					if (event.type == sf::Event::TextEntered) {
+
+						// Verifica se o caractere está entre A-Z ou a-z (ASCII)
+						if ((event.text.unicode >= 'A' && event.text.unicode <= 'Z') ||
+							(event.text.unicode >= 'a' && event.text.unicode <= 'z')) {
+
+							// Adiciona o caractere ao input
+							input += static_cast<char>(event.text.unicode);
+						}
+						else if (event.text.unicode == 8 && input.length() > 0) {
+							input.pop_back();
+						}
+
+						textoInput2.setString(input);
+						t.restart();
+						pGGrafico->window.display();
+						// Se apertar Enter, finaliza o input
+					}
+					if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter) {
+
+						Pause = false;
+						break;
+
+					}
+
+					// Limpa a tela, desenha os textos e exibe
+					pGGrafico->clear();
+					desenhaTexto(pGGrafico);  // Mostra a mensagem inicial
+					pGGrafico->window.draw(textoInput2); // Mostra o nome digitado
+					pGGrafico->window.display();
+					t.restart();
+
+				}
+			}
+			pMenu->salvaScore(input, Slime2.getPontos());
+
+		}
 
 	}
 
@@ -552,6 +638,19 @@ namespace Fases {
 		}
 		else if (text == 6) {
 			nomes.push_back("Jogador 1, digite o seu nome:");
+
+			textos.resize(nomes.size()); // Garante que textos tenha o mesmo número de elementos que nomes
+
+			for (int i = 0; i < nomes.size(); i++) {
+				textos[i].setFont(fonte);
+				textos[i].setString(nomes[i]);
+				textos[i].setCharacterSize(30);
+				textos[i].setFillColor(sf::Color::White);
+				textos[i].setPosition(((float)zona_atual * 1800.0f) + 200.0f, 200);
+			}
+		}
+		else if (text == 7) {
+			nomes.push_back("Jogador 2, digite o seu nome:");
 
 			textos.resize(nomes.size()); // Garante que textos tenha o mesmo número de elementos que nomes
 

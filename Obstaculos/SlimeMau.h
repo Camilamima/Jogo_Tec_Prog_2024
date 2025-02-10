@@ -8,9 +8,8 @@ namespace Obstaculos {
 	public:
 		SlimeMau(int id, const char* png = "assets/slimemau.png");
 		~SlimeMau();
-		Personagens::Slime* getpJogador() { return pJogador; }
 		void executar();
-		void obstacular(Personagens::Slime* jogador);
+		void obstacular(Personagens::Slime* jogador,int i=-1);
 		virtual json salvar() const;
 	};
 }

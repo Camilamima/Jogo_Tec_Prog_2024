@@ -9,6 +9,7 @@ namespace Fases {
 		num_chefoes(-1),
 		num_projeteis(-1)
 	{
+		
 	}
 
 	Fase2::Fase2(const json& dados, Gerenciadores::Gerenciado_Grafico* gC) :
@@ -145,7 +146,7 @@ namespace Fases {
 			listaEntidades.Incluir(&Slime2, &gerentC);
 		}
 
-		listaEntidades.setGG(gerent);
+		listaEntidades.setGG(pGGrafico);
 	}
 
 	Fase2::~Fase2() {}
@@ -160,6 +161,7 @@ namespace Fases {
 		geraChefao();
 		geraInimigos();
 		geraProjeteis();
+
 
 		if (qnt_jogadores == 1) {
 			cout << " Selecionado 1 jogador! " << endl;
@@ -178,7 +180,7 @@ namespace Fases {
 		listaEntidades.Incluir(&ladoE, &gerentC);
 
 		/*==== setando o gerenciador grafico ====*/
-		listaEntidades.setGG(gerent);
+		listaEntidades.setGG(pGGrafico);
 
 		/*==== gerando plataforma fixas ====*/
 		ladoE.geraPlataforma(900, 40, 0, 0);

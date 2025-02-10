@@ -21,6 +21,17 @@ namespace Listas {
 	public:
 		ListaEntidade();
 		~ListaEntidade();
+
+		const bool chefeNulo() const {
+			if (!chefoes) return true;
+
+			for (const auto& chefe : *chefoes) {
+				if (chefe != nullptr) {
+					return false; 
+				}
+			}
+			return true; 
+		}
 		void Percorrer(Gerenciadores::Gerenciador_Colisoes* gc);
 		void Incluir(Entidade* entidade, Gerenciadores::Gerenciador_Colisoes* gc);
 		void IncluirSalvamento(Entidade* entidade, Gerenciadores::Gerenciador_Colisoes* gc);

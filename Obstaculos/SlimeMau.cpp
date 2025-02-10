@@ -6,7 +6,6 @@ namespace Obstaculos {
 	SlimeMau::SlimeMau(int id, const char* png) :
 		Obstaculo(id, png)
 	{
-		pJogador = nullptr;
 		setCoordenadas(1200, 800);
 		setCorpo(100.0, 100.00);
 		atrapalha = true;
@@ -22,7 +21,7 @@ namespace Obstaculos {
 		pGGrafico->desenha(corpo);
 	}
 
-	void SlimeMau::obstacular(Slime* jogador) {
+	void SlimeMau::obstacular(Slime* jogador,int i) {
 
 		float velY = jogador->getVelocidadeY();
 		jogador->setVelocidae(atrasador, (float)0.97 * (float) velY);

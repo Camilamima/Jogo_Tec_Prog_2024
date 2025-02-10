@@ -9,10 +9,7 @@ namespace Obstaculos {
 		bool danoso;
 		bool atrapalha;
 		bool impede;
-		bool acelera;
 		float atrito;
-		Personagens::Slime* pJogador;
-
 	public:
 		Obstaculo(int id, const char* png);
 		~Obstaculo();
@@ -20,12 +17,10 @@ namespace Obstaculos {
 		float getAtrito() const {
 			return atrito;
 		}
-		void obstacular(Personagens::Slime* jogador, float atrito) {};
-		void setpJogador(Personagens::Slime* jogador) { pJogador = jogador; }
 		bool  getImpede() const { return impede; }
 		bool getAtrapalha() const { return atrapalha; }
 		bool getDanoso() const { return danoso; }
-		virtual void obstacular(Personagens::Slime* jogador) = 0;
+		virtual void obstacular(Personagens::Slime* jogador,int i=-1) = 0;
 		void restaura(Personagens::Slime* jogador);
 		virtual json salvar() const = 0;
 	};

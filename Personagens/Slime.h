@@ -26,6 +26,9 @@ namespace Personagens {
         void atacarIni(Inimigo* ini);
         void executar();
         void pular(float imp);
+        void setPonto(int ponto) {
+            pontos = ponto;
+        }
 		void setImpulso(float i) { impulso = i; }
         void setAtacando(float a) { atacando = a; }
         void setAtacado(float x, float y) { atacado = x; ladoAtacado = y; }

@@ -30,13 +30,12 @@ namespace Gerenciadores {
 
 		if (ent->getId() == 3 || ent->getId() == 9 || ent->getId() == 8 || ent->getId() == 11) {//obstaculo
 			LObst.push_back(static_cast<Obstaculos::Obstaculo*>(ent));
-			static_cast<Obstaculos::Obstaculo*>(ent)->setpJogador(jog1);
+
 
 		}
 
 		if (ent->getId() == 12) {
 			LObst.push_back(static_cast<Obstaculos::Obstaculo*>(ent));
-			static_cast<Obstaculos::Obstaculo*>(ent)->setpJogador(jog1);
 		}
 
 		else if (ent->getId() == 4 || ent->getId() == 6 || ent->getId() == 7) {//inimigo
@@ -194,7 +193,7 @@ namespace Gerenciadores {
 				}
 
 				if (veriColisao(inimigo, jog2) == 1) {
-					jog1->atacarIni(inimigo);
+					jog2->atacarIni(inimigo);
 				}
 
 				else if (veriColisao(inimigo, jog2) == 2) {
@@ -291,7 +290,6 @@ namespace Gerenciadores {
 	void Gerenciador_Colisoes::verificaObs() {
 
 		RectangleShape aux;
-		int tempo;
 		bool emCima = 0;
 		bool ladoD = 0;
 		bool ladoE = 0;
@@ -318,22 +316,20 @@ namespace Gerenciadores {
 				if (obstaculo->getImpede() == true) {
 
 					if (veriColisao(obstaculo, jog1) == 1) {
-						jog1->setChao(aux.getPosition().y - 100);
+						obstaculo->obstacular(jog1, 1);
 						emCima = 1;
 					}
 
 					if (veriColisao(obstaculo, jog1) == 2) {
-						jog1->setMoviD(0);
+						obstaculo->obstacular(jog1, 2);
 						ladoD = 1;
 					}
 					if (veriColisao(obstaculo, jog1) == 3) {
-
-						jog1->setMoviE(0);
+						obstaculo->obstacular(jog1, 2);
 						ladoE = 1;
 					}
 					if (veriColisao(obstaculo, jog1) == 4) {
-						jog1->setVelocidadeY(0);
-						jog1->pular(-100);
+						obstaculo->obstacular(jog1, 2);
 						break;
 					}
 				}

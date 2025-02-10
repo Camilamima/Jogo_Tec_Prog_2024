@@ -13,6 +13,10 @@ namespace Fases {
 		~Fase2();
 		//Fase2(const json& dados, Gerenciadores::Gerenciado_Grafico* gC);
 		void inicializa();
+		void setPontos(int ponto1, int ponto2) {
+			Slime1.setPonto(ponto1);
+			Slime2.setPonto(ponto2);
+		}
 		void geraChao();
 		void geraInimigos();
 		void geraChefao();

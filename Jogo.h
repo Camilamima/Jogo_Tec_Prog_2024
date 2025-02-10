@@ -4,7 +4,7 @@
 #include "Fases/Fase2.h"
 #include "Menu.h"
 
-class Jogo
+class Jogo: public Texto
 {
 private:
 	//Fases::Fase1 fase1;
@@ -17,8 +17,8 @@ private:
 public:
 	Jogo();
 	~Jogo();
+	void setaTextos(int text);
 	void lerFase();
 	void executar2();
-	void executar();
 };
 

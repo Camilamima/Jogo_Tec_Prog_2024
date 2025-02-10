@@ -6,8 +6,7 @@ using namespace Obstaculos;
 
 Obstaculo::Obstaculo(int id,const char* png) : 
 Entidade(id, png), 
-atrito(1.0f),
-pJogador(nullptr)
+atrito(1.0f)
 {
 	danoso = false;
 	atrapalha = false;

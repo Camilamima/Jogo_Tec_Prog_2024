@@ -8,6 +8,7 @@ using namespace Fases;
 using json = nlohmann::json;
 
 Jogo::Jogo():
+    Texto(),
     menu(-1)
 {
     menu.setGerenciador(&gerent);
@@ -18,6 +19,38 @@ Jogo::Jogo():
 
 Jogo::~Jogo()
 {
+
+}
+
+void Jogo::setaTextos(int text) {
+    limpaTextos();
+    if (text == 1) {
+        nomes.push_back("Saindo da Floresta Profunda");
+        nomes.push_back("Entrando na Caverna Obscura");
+
+        textos.resize(nomes.size()); // Garante que textos tenha o mesmo número de elementos que nomes
+
+        for (int i = 0; i < nomes.size(); i++) {
+            textos[i].setFont(fonte);
+            textos[i].setString(nomes[i]);
+            textos[i].setCharacterSize(50);
+            textos[i].setFillColor(sf::Color::White);
+            textos[i].setPosition(14600.0f, 300 + i * 60);
+        }
+    }
+    else if (text == 2) {
+        nomes.push_back("Fim de jogo");
+
+        textos.resize(nomes.size()); // Garante que textos tenha o mesmo número de elementos que nomes
+
+        for (int i = 0; i < nomes.size(); i++) {
+            textos[i].setFont(fonte);
+            textos[i].setString(nomes[i]);
+            textos[i].setCharacterSize(50);
+            textos[i].setFillColor(sf::Color::White);
+            textos[i].setPosition(100, 300 + i * 60);
+        }
+    }
 
 }
 
@@ -57,6 +90,8 @@ void Jogo::executar2() {
     bool iniciarFase = false;
     bool fase2ini = 0;
     int jogadores = 0;
+    int ponto1 = 0;
+    int ponto2 = 0;
 
     sf::Event event;
     while (gerent.estaAberta()) {
@@ -96,15 +131,6 @@ void Jogo::executar2() {
                     else if (opc == 1) {
 
                         jogadores = 2;
-
-                        /*fase1 = new Fase1;
-                        fase1->setJogadores(2);
-                        jogadores = 2;
-                        fase1->setGerenciador(&gerent);
-                        fase1->inicializa();
-                        iniciarFase = true;
-                        fase = 1;
-                        gerent.clear();*/
                     }
                     fase = menu.getFase();
 
@@ -147,7 +173,6 @@ void Jogo::executar2() {
         else {
             if (fase == 1) {
 
-                bool i = fase1->checaFinal();
 
                 if (fase1->checaFinal()) {
 
@@ -155,17 +180,28 @@ void Jogo::executar2() {
                     gerent.clear();
                     fase2ini = 0;
                     jogadores = fase1->getJogadores();
+                    ponto1 = fase1->getPontos(1);
+                    ponto2 = fase1->getPontos(2);
                     delete fase1;
                     fase1 = nullptr;
+                    Clock t;
+                    t.restart();
+                    int x = -1;
+                    setaTextos(1);
+                    while (x == -1) {
+                        gerent.clear();
+                        desenhaTexto(&gerent); // Certifique-se de chamar a função correta para desenhar os textos
+                        gerent.window.display(); // Atualiza a tela
+
+                        if (t.getElapsedTime().asSeconds() > 3) {
+                            x = 0;
+                        }
+                    }
+
                 }
-                else {
+                else{
 
                     fase1->executar();
-                    /*if (fase1->getJogadores() == 0) {
-                        cout << "Fim de jogo!" << endl;
-                        gerent.window.close();
-                        break;
-                    }*/
                 }
             }
             else if (fase == 2) {
@@ -174,17 +210,14 @@ void Jogo::executar2() {
                     fase2->setJogadores(jogadores);
                     fase2->setGerenciador(&gerent);
                     fase2->inicializa();
+                    fase2->setPontos(ponto1, ponto2);
                     gerent.BackGFloresta(2);
                     menu.setFase(fase2);
                     fase2ini = 1;
 
                 }
                 fase2->executar();
-                /*if (fase2->getJogadores() == 0) {
-                    gerent.window.close();
-                    cout << "Fim de jogo!" << endl;
-                    break;
-                }*/
+ 
             }
         }
 
@@ -192,83 +225,3 @@ void Jogo::executar2() {
 
 }
 
-void Jogo::executar()
-{
-    
-        fase1 = new Fase1;
-        fase1->setJogadores(1);
-        fase1->setGerenciador(&gerent);
-        fase1->inicializa();
-
-        bool fase2ini = 0;
-        while (gerent.estaAberta()) {  // O loop principal fica aqui!
-
-            sf::Event event;
-            while (gerent.window.pollEvent(event)) {
-
-                if (event.type == sf::Event::Closed) {
-
-                    gerent.window.close();
-                }
-                if (event.type == sf::Event::KeyPressed) {
-                    if (event.key.code == sf::Keyboard::Escape) {
-                        gerent.window.close();
-                    }
-                }
-                if (event.key.code == sf::Keyboard::F1) {
-                    // Chama a função para salvar o jogo
-                    if (fase == 1) {
-                        fase1->salvaFase();
-                    }
-                    else if (fase == 2) {
-                        fase2->salvaFase();
-                    }
-                }
-            }
-
-            if (fase == 1) {
-
-                bool i = fase1->checaFinal();
-
-                if (fase1->checaFinal()) {
-
-                    fase = 2;
-                    gerent.clear();
-                    fase2ini = 0;
-                    delete fase1;
-                    fase1 = nullptr;
-                }
-                else {
-
-                    fase1->executar();
-                    /*if (fase1->getJogadores() == 0) {
-                        cout << "Fim de jogo!" << endl;
-                        gerent.window.close();
-                        break;
-                    }*/
-                }
-            }
-            else if (fase == 2) {
-                if (fase2ini == 0 ) {
-                    fase2 = new Fase2;
-                    fase2->setGerenciador(&gerent);
-                    fase2->inicializa();
-                    fase2ini = 1;
-
-				}
-                else if (fase2ini == 0 ) {//teste
-                    fase2->setGerenciador(&gerent);
-                    fase2ini = 1;
-                }
-                fase2->executar();
-                /*if (fase2->getJogadores() == 0) {
-                    gerent.window.close();
-                    cout << "Fim de jogo!" << endl;
-                    break;
-                }*/
-            }
-
-
-        }
-
-}

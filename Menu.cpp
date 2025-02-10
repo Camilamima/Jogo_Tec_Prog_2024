@@ -170,21 +170,6 @@ void Menu::salvaScore(const string& nome, int pontos) {
 }
 
 
-void Menu::setaPause() {
- 
-    nomes.clear(); // Limpa o vetor nomes
-    textos.clear();
-    nomes.push_back("Salvar");
-    nomes.push_back("Sair do jogo");
-    nomes.push_back("Voltar ao jogo");
-    textos.resize(nomes.size());
-
-    for (int i = 0; i < nomes.size(); i++) {
-        textos[i].setFont(fonte);
-        textos[i].setString(nomes[i]);
-        textos[i].setCharacterSize(50);
-        textos[i].setFillColor(sf::Color::White);
-        textos[i].setPosition(100.0f, 300.0f + (float)i * 60.0f);
 
 void Menu::setaTextos(int text) {
     limpaTextos();
@@ -362,7 +347,7 @@ void Menu::executar() {
     pGGrafico->clear();
     comandos();
     if (continuar == 1) {
-        setaPause();
+        setaTextos(4);
 
     }
 

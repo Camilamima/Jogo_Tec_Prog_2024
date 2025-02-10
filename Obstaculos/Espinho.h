@@ -10,7 +10,6 @@ namespace Obstaculos {
 	public:
 		Espinho(int id, const char* png ="assets/espinho2.png");
 		~Espinho();
-		Personagens::Slime* getpJogador() { return pJogador; }
 		void executar();
 		int getEspinhos() const {
 			return num_espinhos;
@@ -18,7 +17,7 @@ namespace Obstaculos {
 		void setEspinhos(int e) {
 			num_espinhos = e;
 		}
-		void obstacular(Personagens::Slime* jogador);
+		void obstacular(Personagens::Slime* jogador,int i=-1);
 		virtual json salvar() const;
 	};
 }

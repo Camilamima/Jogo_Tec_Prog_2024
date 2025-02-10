@@ -9,7 +9,6 @@ namespace Obstaculos {
 	Espinho::Espinho(int id, const char* png) :
 		Obstaculo(id, png)
 	{
-		pJogador = nullptr;
 		atrito = 1.0f;
 		danoso = true;
 		setCoordenadas(1500, 800);
@@ -38,7 +37,7 @@ namespace Obstaculos {
 		pGGrafico->desenha(corpo);
 	}
 
-	void Espinho::obstacular(Slime* jogador) {
+	void Espinho::obstacular(Slime* jogador,int i) {
 
 
 		if (timer % 50 == 0) {
