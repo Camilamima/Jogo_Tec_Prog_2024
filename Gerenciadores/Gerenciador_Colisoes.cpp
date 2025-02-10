@@ -29,10 +29,15 @@ namespace Gerenciadores {
 
 	void Gerenciador_Colisoes::includeEntidade(Entidade* ent) {
 
-		if (ent->getId() == 3 || ent->getId() == 9 || ent->getId() == 8 || ent->getId() == 11 || ent->getId()==12) {//obstaculo
+		if (ent->getId() == 3 || ent->getId() == 9 || ent->getId() == 8 || ent->getId() == 11) {//obstaculo
 			LObst.push_back(static_cast<Obstaculos::Obstaculo*>(ent));
 			static_cast<Obstaculos::Obstaculo*>(ent)->setpJogador(jog1);
 
+		}
+
+		if (ent->getId() == 12) {
+			LObst.push_back(static_cast<Obstaculos::Obstaculo*>(ent));
+			static_cast<Obstaculos::Obstaculo*>(ent)->setpJogador(jog1);
 		}
 
 		else if (ent->getId() == 4 || ent->getId() == 6 || ent->getId() == 7) {//inimigo

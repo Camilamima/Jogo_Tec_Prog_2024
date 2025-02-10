@@ -14,10 +14,8 @@ namespace Personagens {
 		//int danoProjetil; n usei
 		bool turno;
 		Clock relogio1;
-		Clock relogio2;
+		bool atirou;
 		Clock relogioProjetil;
-		//Efeito* teletransporte;
-		//bool fim_animacao;
 		static const int max_projetil;
 		int num_projetil;
 		int num_proj_salvamento;
@@ -27,7 +25,7 @@ namespace Personagens {
 		float pos_inicial;
 		
 	public:
-		Chefao(int id, const char* png = "assets/chefao/Agis.png");
+		Chefao(int id, const char* png = "");
 		~Chefao();
 		void executar();
 		void teletransportar();
@@ -43,6 +41,7 @@ namespace Personagens {
 		bool zonaChefao(Slime* jog);
 		void zonaChefao();
 		void setAtivo(bool x) { ativo = x; }
+		bool getAtivo() { return ativo; }
 		void setPosInicialX(float x) { pos_inicial = x; }
 		float getPosInicial() { return pos_inicial; }
 		int getFinalZona() { return finalZona; }

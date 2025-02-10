@@ -24,6 +24,9 @@ private:
 	int selec;
 	int fase;
 	int menu;
+	sf::RectangleShape fundo;
+	sf::Texture menu1;
+	sf::Texture pause;
 
 public:
 	Menu(int id,const char *png="assets/pointer.png");

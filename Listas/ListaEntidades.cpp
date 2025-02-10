@@ -44,9 +44,15 @@ namespace Listas {
 						(*it)->executar();//executa o projetil
 				}
 			}
-
-
-			else {
+			else if ((*it)->getId() == 6) {//se for um chefao
+				if (static_cast<Personagens::Chefao*>(*it)->getAtivo() == true) {
+					(*it)->executar();
+				}
+			}
+			else if ((*it)->getId() == 12) {
+				(*it)->executar();
+			}
+			else {//se nao for projetil nem chefao nem plat chefao
 				(*it)->executar();
 
 				if ((*it)->getId() == 1) {//se for um jogador
@@ -126,6 +132,7 @@ namespace Listas {
 		}
 		if (entidade->getId() == 12) {//se for plataforma do chefao
 			plataforma_chefao->push(entidade);
+			cout << "Inseri plataforma chefao" << endl;
 		}
 
 	}

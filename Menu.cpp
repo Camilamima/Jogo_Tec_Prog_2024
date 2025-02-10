@@ -15,6 +15,11 @@ Menu::Menu(int id,const char* png):
     seta.setTexture(&sprite);
     seta.setPosition(60.0f, 300.0f);
     timer.restart();
+	fundo = RectangleShape(Vector2f(1800, 900));
+    fundo.setSize(Vector2f(1800, 900));
+    menu1.loadFromFile("assets/Menu.png");
+	fundo.setTexture(&menu1);
+    fundo.setPosition(0, 0);
 }
 
 Menu::~Menu() {
@@ -136,7 +141,7 @@ void Menu::setaTextos3() {
 }
 
 void Menu::setaPause() {
-
+ 
     nomes.clear(); // Limpa o vetor nomes
     textos.clear();
     nomes.push_back("Salvar");
@@ -172,6 +177,10 @@ void Menu::setaTextos2() {
 }
 
 void Menu::Pause() {
+    pause.loadFromFile("assets/Pause.png");
+    fundo.setTexture(&pause);
+    pGGrafico->desenha(fundo);
+
     int i = (int)nomes.size() - 1;
 
     for (int i = 0; i < textos.size(); i++) {
@@ -223,11 +232,10 @@ void Menu::Pause() {
 
 
 void Menu::executar() {
-
+    pGGrafico->desenha(fundo);
     for (int i = 0; i < textos.size(); i++) {
         pGGrafico->window.draw(textos[i]);
     }
-
     pGGrafico->desenha(seta);
     pGGrafico->window.display();
     pGGrafico->clear();

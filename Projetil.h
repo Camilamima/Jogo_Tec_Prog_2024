@@ -25,7 +25,7 @@ public:
 	Projetil(int id, const char* png = "assets/proj/1.png");
 	~Projetil();
 	void executar();
-	void realiza();
+	//void realiza();
 	//void setAtivo(int ativo1) { segue = ativo1; }
 	//int getAtivo() const { return segue; }
 	bool getNoChao() const { return noChao; }

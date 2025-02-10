@@ -45,12 +45,6 @@ void Projetil::executar()
 
 }
 
-void Projetil::realiza() {//metodo que solta um projetil
-    if (apareceu == false) {
-        apareceu = true;
-        std::cout << "Teste1" << std::endl;
-    }
-}
 
 void Projetil:: setVelocidade(float x, float y) {
     velocidadeX = x;
@@ -220,35 +214,6 @@ void Projetil::seguir(float x_alvo, float y_alvo) {
             val = 0;
         }
 
-        /*if (val == 0) {
-            setSoCorpo(168, 84);
-            sprite.loadFromFile("assets/projetil/1.png");
-            corpo.setTexture(&sprite);
-        }
-
-        else if (val == 1) {
-            setSoCorpo(149, 83);
-            sprite.loadFromFile("assets/projetil/2.png");
-            corpo.setTexture(&sprite);
-        }
-
-        else if (val == 2) {
-            setSoCorpo(153, 84);
-            sprite.loadFromFile("assets/projetil/3.png");
-            corpo.setTexture(&sprite);
-        }
-
-        else if (val == 3) {
-            setSoCorpo(140, 88);
-            sprite.loadFromFile("assets/projetil/4.png");
-            corpo.setTexture(&sprite);
-        }
-
-        else{
-            setSoCorpo(158, 84);
-            sprite.loadFromFile("assets/projetil/5.png");
-            corpo.setTexture(&sprite);
-        }*/
         if (val == 0) {
             //sprite.loadFromFile("assets/proj/1.png");
             try {

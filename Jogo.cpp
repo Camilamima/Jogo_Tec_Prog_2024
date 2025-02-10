@@ -45,6 +45,7 @@ void Jogo::lerFase(){
         }
         else if (fase == 2) {
             fase2 = new Fase2(dados, &gerent);
+            gerent.BackGFloresta(2);
             menu.setFase(fase2);
         }
 }
@@ -84,7 +85,7 @@ void Jogo::executar2() {
                 menu.executar();
             }
             else {
-
+                gerent.BackGFloresta(3);
                 opc = menu.getSelect();
                 qualMenu = menu.getMenu();
 
