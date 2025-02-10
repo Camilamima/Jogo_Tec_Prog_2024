@@ -43,7 +43,7 @@ namespace Fases {
 			x = entidade["x"];
 			y = entidade["y"];
 
-			// Aqui você pode criar as entidades e configurá-las conforme necessário
+			// Aqui vocÃª pode criar as entidades e configurÃ¡-las conforme necessÃ¡rio
 			if (id == 1) {
 				// Crie e configure um objeto Rato
 				Slime1.setCoordenadas(x, y);
@@ -252,7 +252,7 @@ namespace Fases {
 
 		int teste = 0;
 
-		for (int i = 3; i < (tamanho_fase / tamanho_zona); i++) {//crio o vetor com posições aleatorias
+		for (int i = 3; i < (tamanho_fase / tamanho_zona); i++) {//crio o vetor com posiÃ§Ãµes aleatorias
 			teste = rand() % 400;
 
 			posicoes.push_back(static_cast<float>(i * tamanho_zona + 1100 + teste));

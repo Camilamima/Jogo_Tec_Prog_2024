@@ -1,4 +1,6 @@
 #include "Personagem.h"
+#include "iostream"
+using namespace std;
 #pragma once
 
 namespace Personagens {

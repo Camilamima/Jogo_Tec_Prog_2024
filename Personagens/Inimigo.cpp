@@ -1,5 +1,5 @@
 #include "Inimigo.h"
-
+#include "Slime.h"
 
 namespace Personagens {
 	Inimigo::Inimigo(int id, const char* png) :

@@ -10,12 +10,13 @@ using namespace sf;
 using namespace std;
 
 namespace Fases {
-	Fase::Fase() :
+	Fase::Fase():
+		Ente(),
+		Texto(),
 		num_fase(-1),
 		Slime1(1),
 		Slime2(2),
 		listaEntidades(),
-		gerent(NULL),
 		gerentC(),
 		num_facil(-1),
 		chao(3),
@@ -27,7 +28,6 @@ namespace Fases {
 		Pause(0)
 	{
 		pMenu = nullptr;
-		gerent = nullptr;
 	}
 
 	Fase::~Fase() {
@@ -59,16 +59,27 @@ namespace Fases {
 
 	float Fase::checaZona() {
 
-		if (gerentC.getJogador2() == nullptr) {
-			int xJog1;
-			xJog1 = (int)Slime1.getCorpo().getPosition().x;
-			xJog1 = xJog1 + (int)Slime1.getCorpo().getSize().x / 2;
+		if (qnt_jogadores == 1) {
+			if (Slime1.getVidas() <= 0) {
+				int xJog1;
+				xJog1 = (int)Slime2.getCorpo().getPosition().x;
+				xJog1 = xJog1 + (int)Slime2.getCorpo().getSize().x / 2;
 
-			zona_atual = (xJog1 / tamanho_zona);
+				zona_atual = (xJog1 / tamanho_zona);
 
-			return (float)(zona_atual * tamanho_zona);
+				return (float)(zona_atual * tamanho_zona);
+			}
+			else if (Slime2.getVidas() <= 0 || gerentC.getJogador2() == nullptr) {
+				int xJog1;
+				xJog1 = (int)Slime1.getCorpo().getPosition().x;
+				xJog1 = xJog1 + (int)Slime1.getCorpo().getSize().x / 2;
+
+				zona_atual = (xJog1 / tamanho_zona);
+
+				return (float)(zona_atual * tamanho_zona);
+			}
 		}
-		else {
+		else if(qnt_jogadores==2) {
 			int xJog1, xJog2;
 			xJog1 = (int)Slime1.getCorpo().getPosition().x;
 			xJog1 = xJog1 + (int)Slime1.getCorpo().getSize().x / 2;
@@ -158,117 +169,128 @@ namespace Fases {
 		}
 	}
 
-	void Fase::TipoPlataforma(int tipo,float x){
+	void Fase::TipoPlataforma(int tipo, float x) {
 		if (num_fase == 1) {
-			if (tipo == 1) {//a em formato L invertido
+			if (tipo == 1) { // a em formato L invertido
 				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/pedra_tiles.png");
 				p->geraPlataforma(300, 200, x, 560);
-
 				listaEntidades.Incluir(p, &gerentC);
+
 				Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/tronco.png");
 				p2->geraPlataforma(100, 600, x + 10, 460);
 				listaEntidades.Incluir(p2, &gerentC);
+
 				localizacao_obs.push_back((int)x);
 				localizacao_obs.push_back((int)x + 100);
 			}
-			else if (tipo == 2) {
+			else if (tipo == 2) { // plataforma simples
 				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/planta.png");
 				p->geraPlataforma(150, 100, x, 610);
 				listaEntidades.Incluir(p, &gerentC);
+
 				localizacao_obs.push_back((int)x);
 			}
-			else if (tipo == 3) {
-				/*Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/pedra_tiles.png");
-				p->geraPlataforma(200, 300, x, 560);
-				listaEntidades.Incluir(p, &gerentC);
-				Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/tronco.png");
-				p2->geraPlataforma(100, 200, x + 200, 460);
-				listaEntidades.Incluir(p2, &gerentC);
-				localizacao_obs.push_back((int)x);
-				localizacao_obs.push_back((int)x + 100);
-				localizacao_obs.push_back((int)x + 200);*/
+			else if (tipo == 3) { // plataforma com folhas
 				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/tronco2.png");
 				p->geraPlataforma(200, 100, x, 560);
 				listaEntidades.Incluir(p, &gerentC);
+
 				Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/folhas_3x.png");
 				p2->geraPlataforma(100, 400, x - 50, 520);
 				listaEntidades.Incluir(p2, &gerentC);
+
 				localizacao_obs.push_back((int)x);
 			}
-			else if (tipo == 4) {
-				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/tronco2.png");
-				p->geraPlataforma(200, 100, x, 560);
-				listaEntidades.Incluir(p, &gerentC);
-				Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/folhas_3x.png");
-				p2->geraPlataforma(100, 400, x - 50, 520);
-				listaEntidades.Incluir(p2, &gerentC);
-				localizacao_obs.push_back((int)x);
-			}
-		}
-		else if (num_fase == 2) {
-			if (tipo == 1) {//feitaaa
-				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/parede41.png");
-				p->geraPlataforma(300, 200, x, 560);
-				listaEntidades.Incluir(p, &gerentC);
-				Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/pedra11.png");
-				p2->geraPlataforma(100, 100, x + 10, 460);//era 600
-				Obstaculos::Plataforma* p3 = new Obstaculos::Plataforma(3, "assets/pedra21.png");
-				p3->geraPlataforma(100, 100, x + 110, 460);
-				Obstaculos::Plataforma* p4 = new Obstaculos::Plataforma(3, "assets/pedra31.png");
-				p4->geraPlataforma(100, 100, x + 210, 460);
-				Obstaculos::Plataforma* p5 = new Obstaculos::Plataforma(3, "assets/pedra11.png");
-				p5->geraPlataforma(100, 100, x + 310, 460);
-				Obstaculos::Plataforma* p6 = new Obstaculos::Plataforma(3, "assets/pedra21.png");
-				p6->geraPlataforma(100, 100, x + 410, 460);
-				Obstaculos::Plataforma* p7 = new Obstaculos::Plataforma(3, "assets/pedra31.png");
-				p7->geraPlataforma(100, 100, x + 510, 460);
-				listaEntidades.Incluir(p2, &gerentC);
-				listaEntidades.Incluir(p3, &gerentC); 
-				listaEntidades.Incluir(p4, &gerentC);
-				listaEntidades.Incluir(p5, &gerentC);
-				listaEntidades.Incluir(p6, &gerentC);
-				listaEntidades.Incluir(p7, &gerentC);
-				localizacao_obs.push_back((int)x);
-				localizacao_obs.push_back((int)x + 100);
-			}
-			else if (tipo == 2) {//2
-				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/parede11.png");
-				p->geraPlataforma(150, 100, x, 610);
-				listaEntidades.Incluir(p, &gerentC);
-				localizacao_obs.push_back((int)x);
-			}
-			else if (tipo == 3) {//3
-				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/parede61.png");
+			else if (tipo == 4) { // plataforma dupla
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/Tiles.png");
 				p->geraPlataforma(200, 300, x, 560);
 				listaEntidades.Incluir(p, &gerentC);
-				Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/parede21.png");
-				p2->geraPlataforma(100, 200, x + 200, 460);
+				Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/Tiles.png");
+				p2->geraPlataforma(100, 200, x + 200, 455);
 				listaEntidades.Incluir(p2, &gerentC);
 				localizacao_obs.push_back((int)x);
 				localizacao_obs.push_back((int)x + 100);
 				localizacao_obs.push_back((int)x + 200);
 			}
-			else if (tipo == 4) {//4 em T
+		}
+		else if (num_fase == 2) {
+			if (tipo == 1) { // conjunto de plataformas empilhadas
 				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/parede41.png");
-				p->geraPlataforma(200, 100, x, 560);
+				p->geraPlataforma(300, 200, x, 560);
 				listaEntidades.Incluir(p, &gerentC);
+
 				Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/pedra11.png");
-				p2->geraPlataforma(100, 100, x - 50, 520);
+				p2->geraPlataforma(100, 100, x + 10, 460);
+
 				Obstaculos::Plataforma* p3 = new Obstaculos::Plataforma(3, "assets/pedra21.png");
-				p3->geraPlataforma(100, 100, x - 50+100, 520);
+				p3->geraPlataforma(100, 100, x + 110, 460);
+
 				Obstaculos::Plataforma* p4 = new Obstaculos::Plataforma(3, "assets/pedra31.png");
-				p4->geraPlataforma(100, 100, x - 50+200, 520);
+				p4->geraPlataforma(100, 100, x + 210, 460);
+
+				Obstaculos::Plataforma* p5 = new Obstaculos::Plataforma(3, "assets/pedra11.png");
+				p5->geraPlataforma(100, 100, x + 310, 460);
+
+				Obstaculos::Plataforma* p6 = new Obstaculos::Plataforma(3, "assets/pedra21.png");
+				p6->geraPlataforma(100, 100, x + 410, 460);
+
+				Obstaculos::Plataforma* p7 = new Obstaculos::Plataforma(3, "assets/pedra31.png");
+				p7->geraPlataforma(100, 100, x + 510, 460);
+
 				listaEntidades.Incluir(p2, &gerentC);
 				listaEntidades.Incluir(p3, &gerentC);
 				listaEntidades.Incluir(p4, &gerentC);
-				localizacao_obs.push_back((int)x);
+				listaEntidades.Incluir(p5, &gerentC);
+				listaEntidades.Incluir(p6, &gerentC);
+				listaEntidades.Incluir(p7, &gerentC);
 
+				localizacao_obs.push_back((int)x);
+				localizacao_obs.push_back((int)x + 100);
+			}
+			else if (tipo == 2) { // plataforma pequena
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/parede11.png");
+				p->geraPlataforma(150, 100, x, 610);
+				listaEntidades.Incluir(p, &gerentC);
+
+				localizacao_obs.push_back((int)x);
+			}
+			else if (tipo == 3) { // plataforma alta
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/parede61.png");
+				p->geraPlataforma(200, 300, x, 560);
+				listaEntidades.Incluir(p, &gerentC);
+
+				Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/parede21.png");
+				p2->geraPlataforma(100, 200, x + 200, 460);
+				listaEntidades.Incluir(p2, &gerentC);
+
+				localizacao_obs.push_back((int)x);
+				localizacao_obs.push_back((int)x + 100);
+				localizacao_obs.push_back((int)x + 200);
+			}
+			else if (tipo == 4) { // plataforma em T
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/parede41.png");
+				p->geraPlataforma(200, 100, x, 560);
+				listaEntidades.Incluir(p, &gerentC);
+
+				Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/pedra11.png");
+				p2->geraPlataforma(100, 100, x - 50, 520);
+
+				Obstaculos::Plataforma* p3 = new Obstaculos::Plataforma(3, "assets/pedra21.png");
+				p3->geraPlataforma(100, 100, x + 50, 520);
+
+				Obstaculos::Plataforma* p4 = new Obstaculos::Plataforma(3, "assets/pedra31.png");
+				p4->geraPlataforma(100, 100, x + 150, 520);
+
+				listaEntidades.Incluir(p2, &gerentC);
+				listaEntidades.Incluir(p3, &gerentC);
+				listaEntidades.Incluir(p4, &gerentC);
+
+				localizacao_obs.push_back((int)x);
 			}
 		}
 	}
 
 	void Fase::executar() {
-		qnt_jogadores = 1;
 		bool apareceu1 = false;
 		bool apareceu2 = false;
 		int cont1 = 0;
@@ -276,22 +298,24 @@ namespace Fases {
 		bool morreu = false;
 		bool morreu2 = false;
 		int pos_morto = -1;
+		if (qnt_jogadores > 0) {
+			if (gerentC.getJogador2() != nullptr)
+				qnt_jogadores = 2;
 
-		if (gerentC.getJogador2() != nullptr)
-			qnt_jogadores = 2;
+			pGGrafico->arrumaCamera(checaZona());
 
-			gerent->arrumaCamera(checaZona());
-
-			gerent->clear();
+			pGGrafico->clear();
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
 				Pause = true;
+
 				pMenu->restartTime();
 				while (Pause) {
 					pMenu->Pause();
+					pGGrafico->clear();
 				}
 
 			}
-			gerent->desenha();
+			pGGrafico->desenha();
 			listaEntidades.Percorrer(&gerentC);
 
 			pos_morto = listaEntidades.VerificMortos();
@@ -300,14 +324,13 @@ namespace Fases {
 				listaEntidades.matarEntidadePos(pos_morto, &gerentC);
 			}
 
-			
-			if (Slime1.getVidas() <= 0 && apareceu1 == false) {
+
+			if (Slime1.getVidas() <= 0) {
 				Slime1.setMorrendo(true);
 				if (Slime1.getCont() % 8 == 0) {
 					morreu = Slime1.animacaoMorte(cont1, 10);
 					cont1++;
 					if (morreu == true) {
-						cout << "Jogador 1 morreu!" << endl;
 						listaEntidades.MatarEntidade(&Slime1, &gerentC);
 						qnt_jogadores--;
 						apareceu1 = true;
@@ -317,22 +340,107 @@ namespace Fases {
 
 			if (gerentC.getJogador2() != nullptr && apareceu2 == false) {
 				if (Slime2.getVidas() <= 0) {
-					cout << "Jogador 2 morreu!" << endl;
 					listaEntidades.MatarEntidade(&Slime2, &gerentC);
 					qnt_jogadores--;
 					apareceu2 = true;
 				}
 			}
+		}
 
-			if (qnt_jogadores == 0) {
-				if (Slime1.getVidas() <= 0) {
-					cout << "Fim de jogo!" << endl;
-					gerent->window.close();
+		else if (qnt_jogadores == 0) {
+
+			if (Slime1.getVidas() <= 0) {
+
+				setaTextos(2);
+				if (gerentC.getJogador2() == nullptr) {
+					setaTextos(2);
+					Pause = true;
+					pGGrafico->clear();
+					while (Pause) {
+						std::cout << "voltamos aqui?" << endl;
+						desenhaTexto(pGGrafico);
+						pGGrafico->window.display();
+						pGGrafico->clear();
+						if (sf::Keyboard::isKeyPressed(sf::Keyboard::X)) {
+							Pause = false;
+						}
+					}
+					Pause = true;
+					qnt_jogadores = -1;
+					pGGrafico->clear();
+					textos.clear();
 				}
 			}
-			gerent->mostrar();
+		}
+		else if(qnt_jogadores==-1)
+		{
+			digitarNome();
+			pGGrafico->window.close();
+		}
+
+
+		pGGrafico->mostrar();
 			
-		
+	}
+	
+	void Fase::digitarNome() {
+		Clock t;
+		t.restart();
+		setaTextos(6);
+		Pause = true;
+		std::string input = "";
+		sf::Event event;
+		vector <Text> digitar;
+
+		Text textoInput;
+		textoInput.setFont(fonte);
+		textoInput.setCharacterSize(30);
+		textoInput.setFillColor(sf::Color::White);
+		textoInput.setPosition(((float)zona_atual * 1800.0f) + 200.0f, 300.0f);
+
+		desenhaTexto(pGGrafico);
+
+		while (Pause) {
+			
+			while (pGGrafico->window.pollEvent(event)) {
+				float tempo = t.getElapsedTime().asSeconds();
+
+				if (event.type == sf::Event::TextEntered) {
+
+					// Verifica se o caractere está entre A-Z ou a-z (ASCII)
+					if ((event.text.unicode >= 'A' && event.text.unicode <= 'Z') ||
+						(event.text.unicode >= 'a' && event.text.unicode <= 'z')) {
+
+						// Adiciona o caractere ao input
+						input += static_cast<char>(event.text.unicode);
+					}
+					else if (event.text.unicode == 8 && input.length() > 0) {
+						input.pop_back();
+					}
+
+					textoInput.setString(input);
+					t.restart();
+					pGGrafico->window.display();
+					// Se apertar Enter, finaliza o input
+				}
+				if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter) {
+
+					Pause = false;
+					break;
+
+				}
+
+				// Limpa a tela, desenha os textos e exibe
+				pGGrafico->clear();
+				desenhaTexto(pGGrafico);  // Mostra a mensagem inicial
+				pGGrafico->window.draw(textoInput); // Mostra o nome digitado
+				pGGrafico->window.display();
+				t.restart();
+
+			}
+		}
+		pMenu->salvaScore(input, Slime1.getPontos());
+
 	}
 
 	void Fase::salvaFase() {
@@ -358,4 +466,103 @@ namespace Fases {
 		std::cout << "Fase salva com sucesso!" << std::endl;
 
 	}
+
+	void Fase::setaTextos(int text) {
+		limpaTextos();
+		pGGrafico->clear();  // Limpa a tela antes de desenhar
+		textos.clear();   // Garante que apenas os textos atuais serão desenhados
+		nomes.clear();
+		if (text == 1) {
+			nomes.push_back("Próxima fase, aperte X para continuar...");
+			textos.resize(nomes.size()); // Garante que textos tenha o mesmo número de elementos que nomes
+
+			for (int i = 0; i < nomes.size(); i++) {
+				textos[i].setFont(fonte);
+				textos[i].setString(nomes[i]);
+				textos[i].setCharacterSize(30);
+				textos[i].setFillColor(sf::Color::White);
+				textos[i].setPosition(((float)zona_atual*1800.0f)+200.0f, 300 + i * 60);
+			}
+		}
+		else if (text == 2) {
+			nomes.push_back("Você morreu...");
+			nomes.push_back("Quantidade de pontos:");
+			nomes.push_back(std::to_string(Slime1.getPontos()));
+			nomes.push_back("aperte x para sair");
+
+			textos.resize(nomes.size()); // Garante que textos tenha o mesmo número de elementos que nomes
+
+			for (int i = 0; i < nomes.size(); i++) {
+				textos[i].setFont(fonte);
+				textos[i].setString(nomes[i]);
+				textos[i].setCharacterSize(30);
+				textos[i].setFillColor(sf::Color::White);
+				textos[i].setPosition(((float)zona_atual * 1800.0f) + 200.0f, 300 + i * 60);
+			}
+		}
+		else if (text == 3) {
+			nomes.push_back("Vocês morreram...");
+			nomes.push_back("Quantidade de pontos:");
+			nomes.push_back("Jogador1: " + std::to_string(Slime1.getPontos()));
+			nomes.push_back("Jogador2: " + std::to_string(Slime2.getPontos()));
+			nomes.push_back("aperte x para sair");
+
+			textos.resize(nomes.size()); // Garante que textos tenha o mesmo número de elementos que nomes
+
+			for (int i = 0; i < nomes.size(); i++) {
+				textos[i].setFont(fonte);
+				textos[i].setString(nomes[i]);
+				textos[i].setCharacterSize(30);
+				textos[i].setFillColor(sf::Color::White);
+				textos[i].setPosition(((float)zona_atual * 1800.0f) + 200.0f, 300 + i * 60);
+			}
+		}
+		else if (text == 4) {
+			nomes.push_back("Você ganhou o jogo");
+			nomes.push_back("Quantidade de pontos:");
+			nomes.push_back(std::to_string(Slime1.getPontos()));
+			nomes.push_back("aperte x para sair");
+
+			textos.resize(nomes.size()); // Garante que textos tenha o mesmo número de elementos que nomes
+
+			for (int i = 0; i < nomes.size(); i++) {
+				textos[i].setFont(fonte);
+				textos[i].setString(nomes[i]);
+				textos[i].setCharacterSize(30);
+				textos[i].setFillColor(sf::Color::White);
+				textos[i].setPosition(((float)zona_atual * 1800.0f) + 200.0f, 300 + i * 60);
+			}
+		}
+		else if (text == 5) {
+			nomes.push_back("Vocês ganharam o jogo");
+			nomes.push_back("Quantidade de pontos:");
+			nomes.push_back(std::to_string(Slime1.getPontos()));
+			nomes.push_back(std::to_string(Slime2.getPontos()));
+			nomes.push_back("aperte x para sair");
+
+			textos.resize(nomes.size()); // Garante que textos tenha o mesmo número de elementos que nomes
+
+			for (int i = 0; i < nomes.size(); i++) {
+				textos[i].setFont(fonte);
+				textos[i].setString(nomes[i]);
+				textos[i].setCharacterSize(30);
+				textos[i].setFillColor(sf::Color::White);
+				textos[i].setPosition(((float)zona_atual * 1800.0f) + 200.0f, 300 + i * 60);
+			}
+		}
+		else if (text == 6) {
+			nomes.push_back("Jogador 1, digite o seu nome:");
+
+			textos.resize(nomes.size()); // Garante que textos tenha o mesmo número de elementos que nomes
+
+			for (int i = 0; i < nomes.size(); i++) {
+				textos[i].setFont(fonte);
+				textos[i].setString(nomes[i]);
+				textos[i].setCharacterSize(30);
+				textos[i].setFillColor(sf::Color::White);
+				textos[i].setPosition(((float)zona_atual * 1800.0f) + 200.0f, 200);
+			}
+		}
+	}
+
 }

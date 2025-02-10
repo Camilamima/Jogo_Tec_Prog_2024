@@ -1,5 +1,4 @@
 #include "Gerenciador_Colisoes.h"
-#include "../Obstaculos/Acelerador.h"
 #include "../Personagens/Cachorro.h"
 #include "../Personagens/Chefao.h"
 #include <list>
@@ -141,13 +140,6 @@ namespace Gerenciadores {
 					Personagens::Cachorro* cachorro = static_cast<Personagens::Cachorro*>(inimigo);
 
 					cachorro->deveSeguir(jog1);
-					/*if (cachorro->deveSeguir(jog1)) {
-						cachorro->setSeguindo(1);
-						cachorro->seguir(aux2.getPosition().x + (aux2.getSize().x / 2));
-					}
-					else {
-						cachorro->setSeguindo(0);
-					}*/
 				}
 
 				if (veriColisao(inimigo, jog1) == 1) {
@@ -185,53 +177,47 @@ namespace Gerenciadores {
 		}
 
 		if (jog2 != nullptr) {
-
-			aux3 = jog2->getCorpo();
-
+			aux2 = jog2->getCorpo();
 			for (Personagens::Inimigo* inimigo : LIni) {
+
+				aux1 = inimigo->getCorpo();
 
 				if (!inimigo->verificaVida()) {
 					continue;
 				}
-				aux1 = inimigo->getCorpo();
 
 				if (inimigo->getMaldade() == 2) {
 
 					Personagens::Cachorro* cachorro = static_cast<Personagens::Cachorro*>(inimigo);
 
-					/*if (cachorro->deveSeguir(jog2)) {
-						cachorro->setSeguindo(1);
-						cachorro->seguir(aux3.getPosition().x + (aux3.getSize().x / 2));
-					}
-					else {
-						cachorro->setSeguindo(0);
-					}*/
+					cachorro->deveSeguir(jog2);
 				}
 
-
 				if (veriColisao(inimigo, jog2) == 1) {
-					jog2->setAtacando(1);
-					jog2->pular(300);
-					--(*inimigo);
-					cout << "vidas do ratinho: " << inimigo->getVidas() << endl;
+					jog1->atacarIni(inimigo);
 				}
 
 				else if (veriColisao(inimigo, jog2) == 2) {
 
-					if (!jog2->getAtacado()) {
-						--(*jog2);
-						jog2->pular(300);
-						jog2->setAtacado(1, 0);
-						cout << "vidas jog2: " << jog2->getVidas() << endl;
-					}
+					inimigo->ataca(jog2, 2);
 				}
 				else if (veriColisao(inimigo, jog2) == 3) {
-					if (!jog2->getAtacado()) {
-						--(*jog2);
-						jog2->pular(300);
-						jog2->setAtacado(1, 1);
-						cout << "vidas jog2: " << jog2->getVidas() << endl;
+
+					inimigo->ataca(jog2, 3);
+				}
+				else if (veriColisao(inimigo, jog2) == 5) {
+
+					float xini = aux1.getPosition().x + aux1.getSize().x / 2;
+
+					float xjog = aux2.getPosition().x + aux2.getSize().x / 2;
+
+					if (xini >= xjog) {
+						inimigo->ataca(jog2, 2);
 					}
+					else {
+						inimigo->ataca(jog2, 3);
+					}
+
 
 				}
 			}
@@ -327,10 +313,6 @@ namespace Gerenciadores {
 						obstaculo->obstacular(jog1);
 					}
 
-					if (obstaculo->getAcelera() == true) {
-						obstaculo->obstacular(jog1);
-					}
-
 				}
 
 				if (obstaculo->getImpede() == true) {
@@ -363,13 +345,6 @@ namespace Gerenciadores {
 							obstaculo->restaura(jog1);
 						}
 					}
-					if (obstaculo->getAcelera() == true) {
-						tempo = static_cast<Obstaculos::Acelerador*>(obstaculo)->getTimer();
-
-						if (tempo % 200 == 0 && !lentidao) {
-							obstaculo->restaura(jog1);
-						}
-					}
 				}
 
 			}
@@ -395,7 +370,6 @@ namespace Gerenciadores {
 		}
 
 		if (jog2 != nullptr) {
-
 			for (Obstaculos::Obstaculo* obstaculo : LObst) {
 
 				aux = obstaculo->getCorpo();
@@ -404,15 +378,13 @@ namespace Gerenciadores {
 
 					if (obstaculo->getAtrapalha() == true) {//se areia mov...
 						obstaculo->obstacular(jog2);
+						lentidao = 1;
 					}
 
 					if (obstaculo->getDanoso() == true) {//se espinho
 						obstaculo->obstacular(jog2);
 					}
 
-					if (obstaculo->getAcelera() == true) {
-						obstaculo->obstacular(jog2);
-					}
 				}
 
 				if (obstaculo->getImpede() == true) {
@@ -422,18 +394,15 @@ namespace Gerenciadores {
 						emCima = 1;
 					}
 
-					if (veriColisao(obstaculo, jog2) == 2 || veriColisao(jog2, obstaculo) == 2) {
-
+					if (veriColisao(obstaculo, jog2) == 2) {
 						jog2->setMoviD(0);
 						ladoD = 1;
 					}
-
-					if (veriColisao(obstaculo, jog2) == 3 || veriColisao(jog2, obstaculo) == 3) {
+					if (veriColisao(obstaculo, jog2) == 3) {
 
 						jog2->setMoviE(0);
 						ladoE = 1;
 					}
-
 					if (veriColisao(obstaculo, jog2) == 4) {
 						jog2->setVelocidadeY(0);
 						jog2->pular(-100);
@@ -444,16 +413,10 @@ namespace Gerenciadores {
 				if (veriColisao(obstaculo, jog2) == 0) { //se nao tem colisao...
 
 					if (obstaculo->getAtrapalha() == true) {
-						obstaculo->restaura(jog2);
-					}
-					if (obstaculo->getAcelera() == true) {
-						tempo = static_cast<Obstaculos::Acelerador*>(obstaculo)->getTimer();
-
-						if (tempo % 200 == 0) {
+						if (!lentidao) {
 							obstaculo->restaura(jog2);
 						}
 					}
-
 				}
 
 			}
@@ -462,6 +425,7 @@ namespace Gerenciadores {
 				jog2->setChao(800);
 				jog2->setNoChao(0);
 			}
+
 
 			if (!ladoD) {
 				jog2->setMoviD(1);
@@ -474,6 +438,7 @@ namespace Gerenciadores {
 			emCima = 0;
 			ladoD = 0;
 			ladoE = 0;
+			lentidao = 0;
 		}
 	}
 

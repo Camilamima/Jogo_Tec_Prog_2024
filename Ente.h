@@ -9,6 +9,7 @@ protected:
 	const char* png;
 public:
 	Ente(int x, const char* png);
+	Ente();
 	virtual ~Ente();
 	void setGerenciador(Gerenciadores::Gerenciado_Grafico* g);
 	void setId(int ide) { id = ide; }

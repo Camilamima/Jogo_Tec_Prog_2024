@@ -8,6 +8,11 @@ Ente::Ente(int x, const char* png):
 	sprite.loadFromFile(png);
 	pGGrafico = NULL;
 }
+Ente::Ente() {
+	id = 30;
+	png = "";
+	pGGrafico = NULL;
+}
 
 Ente::~Ente() {
 	pGGrafico = NULL;
