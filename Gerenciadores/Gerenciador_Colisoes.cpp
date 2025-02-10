@@ -580,9 +580,13 @@ namespace Gerenciadores {
 					continue;
 				}
 
+				if (obstaculo->getId() == 12) {//se eh plataforma do chefao
+					continue;
+				}
+
 				aux = obstaculo->getCorpo();
 
-
+				
 				if (veriColisao(obstaculo, projetil) == 1) {//se tocou no chao
 					projetil->setChao(aux.getPosition().y - (projetil->getCorpo().getSize().y));
 					emCima = 1;
