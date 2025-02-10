@@ -167,6 +167,7 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClCompile Include="Personagens\Rato.cpp" />
     <ClCompile Include="Personagens\Slime.cpp" />
     <ClCompile Include="Obstaculos\SlimeMau.cpp" />
+    <ClCompile Include="Texto.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Fases\Fase2.h" />
@@ -193,6 +194,7 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClInclude Include="Personagens\Rato.h" />
     <ClInclude Include="Personagens\Slime.h" />
     <ClInclude Include="Obstaculos\SlimeMau.h" />
+    <ClInclude Include="Texto.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\plataforma.png" />

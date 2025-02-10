@@ -25,6 +25,7 @@
     <ClCompile Include="Personagens\Slime.cpp" />
     <ClCompile Include="Obstaculos\SlimeMau.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Texto.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Fases\Fase2.h" />
@@ -51,6 +52,7 @@
     <ClInclude Include="Personagens\Slime.h" />
     <ClInclude Include="Obstaculos\SlimeMau.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="Texto.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\plataforma.png" />

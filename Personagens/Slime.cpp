@@ -1,8 +1,7 @@
 #include "Slime.h"
 #include <iostream>
-#include "Inimigo.h"
-#include <iostream>
 #include <stdexcept>
+#include "Inimigo.h"
 
 
 using namespace std;
@@ -11,6 +10,7 @@ namespace Personagens {
 	Slime::Slime(int id, const char* png) :
 		Personagem(id, png)
 	{
+		pontos = 0;
 		ladoAtacado = 0;
 		atacado = 0;
 		atacando = 0;
@@ -24,7 +24,7 @@ namespace Personagens {
 		impulso = -1;
 
 		//setCorpo(62, 100);
-		vidas = 25;
+		vidas = 1;
 		setCorpo(50, 100);
 		val = 0;
 		cont = 0;
@@ -68,7 +68,7 @@ namespace Personagens {
 
 		}
 			
-		vidas =	100;
+		vidas =	1;
 	}
 
 	Slime::~Slime() {
@@ -676,10 +676,14 @@ namespace Personagens {
 
 	}
 
-	void Slime::atacarIni(Personagem* ini) {
+	void Slime::atacarIni(Inimigo* ini) {
 		setAtacando(1);
 		pular(300);
 		--(*ini);
+		if (ini->getVidas() == 0) {
+			pontos += ini->getMaldade()*100;
+			cout << "pontos: " << pontos << endl;
+		}
 	}
 
 	json Slime::salvar() const {

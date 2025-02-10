@@ -24,9 +24,9 @@ namespace Personagens {
         void atacar(int d);
         void setSeguindo(bool i) { seguindo = i; }
         json salvar() const;
-        void setYeXini(float x,float y) {
-            xIni = x;
-            yIni = y;
+        void setYeXini(float x1,float y1) {
+            xIni = x1;
+            yIni = y1;
         }
 		void setLadoAtacado(bool lado) { ladoAtaque = lado; }
 		void setTempo(float t) { tempo = t; }

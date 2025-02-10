@@ -19,7 +19,7 @@ namespace Fases {
         num_fase = 1;
         cout << "cheguei1" << endl;
         setGerenciador(gC);
-        gerent->BackGFloresta(1);
+        pGGrafico->BackGFloresta(1);
         zona_atual = dados["zona"];
         qnt_jogadores = dados["jogadores"];
 
@@ -117,7 +117,7 @@ namespace Fases {
             listaEntidades.Incluir(&Slime2, &gerentC);
         }
 
-        listaEntidades.setGG(gerent);
+        listaEntidades.setGG(pGGrafico);
     }
 
 
@@ -125,7 +125,7 @@ namespace Fases {
     }
 
     void Fase1::inicializa() {
-        gerent->BackGFloresta(1);
+        pGGrafico->BackGFloresta(1);
         num_fase = 1;
         obsFacil = -1;
         geraPlataformaFase();
@@ -151,7 +151,7 @@ namespace Fases {
         listaEntidades.Incluir(&ladoE, &gerentC);
 
         /*==== setando o gerenciador grafico ====*/
-        listaEntidades.setGG(gerent);
+        listaEntidades.setGG(pGGrafico);
 
         /*==== gerando plataforma fixas ====*/
         ladoE.geraPlataforma(900, 40, -40, 0);
