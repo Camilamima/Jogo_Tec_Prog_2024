@@ -12,7 +12,6 @@ pJogador(nullptr)
 	danoso = false;
 	atrapalha = false;
 	impede = false;
-	acelera = true;
 }
 
 Obstaculo::~Obstaculo()

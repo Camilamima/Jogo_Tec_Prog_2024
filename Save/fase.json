@@ -2,27 +2,43 @@
     "Fase": 1,
     "entidades": [
         {
-            "altura": 300.0,
+            "altura": 200.0,
             "id": 3,
-            "largura": 200.0,
-            "png": "assets/pedra_tiles.png",
+            "largura": 100.0,
+            "png": "assets/tronco2.png",
             "x": 1300.0,
             "y": 560.0
         },
         {
             "altura": 100.0,
             "id": 3,
-            "largura": 600.0,
-            "png": "assets/tronco.png",
-            "x": 1310.0,
-            "y": 460.0
+            "largura": 400.0,
+            "png": "assets/folhas_3x.png",
+            "x": 1250.0,
+            "y": 520.0
+        },
+        {
+            "altura": 150.0,
+            "id": 3,
+            "largura": 100.0,
+            "png": "assets/planta.png",
+            "x": 2200.0,
+            "y": 610.0
+        },
+        {
+            "altura": 150.0,
+            "id": 3,
+            "largura": 100.0,
+            "png": "assets/planta.png",
+            "x": 4100.0,
+            "y": 610.0
         },
         {
             "altura": 300.0,
             "id": 3,
             "largura": 200.0,
             "png": "assets/pedra_tiles.png",
-            "x": 2700.0,
+            "x": 6000.0,
             "y": 560.0
         },
         {
@@ -30,31 +46,47 @@
             "id": 3,
             "largura": 600.0,
             "png": "assets/tronco.png",
-            "x": 2710.0,
+            "x": 6010.0,
             "y": 460.0
         },
         {
             "altura": 200.0,
             "id": 3,
-            "largura": 100.0,
-            "png": "assets/tronco2.png",
-            "x": 4400.0,
+            "largura": 300.0,
+            "png": "assets/Tiles.png",
+            "x": 7300.0,
             "y": 560.0
         },
         {
             "altura": 100.0,
             "id": 3,
-            "largura": 400.0,
-            "png": "assets/folhas_3x.png",
-            "x": 4350.0,
-            "y": 520.0
+            "largura": 200.0,
+            "png": "assets/Tiles.png",
+            "x": 7500.0,
+            "y": 455.0
+        },
+        {
+            "altura": 200.0,
+            "id": 3,
+            "largura": 300.0,
+            "png": "assets/Tiles.png",
+            "x": 9800.0,
+            "y": 560.0
+        },
+        {
+            "altura": 100.0,
+            "id": 3,
+            "largura": 200.0,
+            "png": "assets/Tiles.png",
+            "x": 10000.0,
+            "y": 455.0
         },
         {
             "altura": 200.0,
             "id": 3,
             "largura": 100.0,
             "png": "assets/tronco2.png",
-            "x": 6700.0,
+            "x": 12400.0,
             "y": 560.0
         },
         {
@@ -62,56 +94,24 @@
             "id": 3,
             "largura": 400.0,
             "png": "assets/folhas_3x.png",
-            "x": 6650.0,
+            "x": 12350.0,
             "y": 520.0
         },
         {
-            "altura": 200.0,
+            "altura": 300.0,
             "id": 3,
-            "largura": 100.0,
-            "png": "assets/tronco2.png",
-            "x": 8600.0,
+            "largura": 200.0,
+            "png": "assets/pedra_tiles.png",
+            "x": 12900.0,
             "y": 560.0
         },
         {
             "altura": 100.0,
             "id": 3,
-            "largura": 400.0,
-            "png": "assets/folhas_3x.png",
-            "x": 8550.0,
-            "y": 520.0
-        },
-        {
-            "altura": 150.0,
-            "id": 3,
-            "largura": 100.0,
-            "png": "assets/planta.png",
-            "x": 10300.0,
-            "y": 610.0
-        },
-        {
-            "altura": 200.0,
-            "id": 3,
-            "largura": 100.0,
-            "png": "assets/tronco2.png",
-            "x": 11000.0,
-            "y": 560.0
-        },
-        {
-            "altura": 100.0,
-            "id": 3,
-            "largura": 400.0,
-            "png": "assets/folhas_3x.png",
-            "x": 10950.0,
-            "y": 520.0
-        },
-        {
-            "altura": 150.0,
-            "id": 3,
-            "largura": 100.0,
-            "png": "assets/planta.png",
-            "x": 13400.0,
-            "y": 610.0
+            "largura": 600.0,
+            "png": "assets/tronco.png",
+            "x": 12910.0,
+            "y": 460.0
         },
         {
             "altura": 140.0,
@@ -122,20 +122,18 @@
             "y": 760.0
         },
         {
-            "altura": 140.0,
-            "id": 3,
+            "altura": 100.0,
+            "id": 11,
             "largura": 400.0,
-            "png": "assets/Tiles.png",
             "x": 400.0,
-            "y": 760.0
+            "y": 800.0
         },
         {
-            "altura": 140.0,
-            "id": 3,
+            "altura": 100.0,
+            "id": 11,
             "largura": 400.0,
-            "png": "assets/Tiles.png",
             "x": 800.0,
-            "y": 760.0
+            "y": 800.0
         },
         {
             "altura": 140.0,
@@ -146,11 +144,12 @@
             "y": 760.0
         },
         {
-            "altura": 100.0,
-            "id": 11,
+            "altura": 140.0,
+            "id": 3,
             "largura": 400.0,
+            "png": "assets/Tiles.png",
             "x": 1600.0,
-            "y": 800.0
+            "y": 760.0
         },
         {
             "altura": 140.0,
@@ -177,18 +176,20 @@
             "y": 760.0
         },
         {
-            "altura": 100.0,
-            "id": 11,
+            "altura": 140.0,
+            "id": 3,
             "largura": 400.0,
+            "png": "assets/Tiles.png",
             "x": 3200.0,
-            "y": 800.0
+            "y": 760.0
         },
         {
-            "altura": 100.0,
-            "id": 11,
+            "altura": 140.0,
+            "id": 3,
             "largura": 400.0,
+            "png": "assets/Tiles.png",
             "x": 3600.0,
-            "y": 800.0
+            "y": 760.0
         },
         {
             "altura": 140.0,
@@ -207,19 +208,19 @@
             "y": 760.0
         },
         {
-            "altura": 100.0,
-            "id": 11,
-            "largura": 400.0,
-            "x": 4800.0,
-            "y": 800.0
-        },
-        {
             "altura": 140.0,
             "id": 3,
             "largura": 400.0,
             "png": "assets/Tiles.png",
-            "x": 5200.0,
+            "x": 4800.0,
             "y": 760.0
+        },
+        {
+            "altura": 100.0,
+            "id": 11,
+            "largura": 400.0,
+            "x": 5200.0,
+            "y": 800.0
         },
         {
             "altura": 140.0,
@@ -238,20 +239,18 @@
             "y": 760.0
         },
         {
-            "altura": 140.0,
-            "id": 3,
+            "altura": 100.0,
+            "id": 11,
             "largura": 400.0,
-            "png": "assets/Tiles.png",
             "x": 6400.0,
-            "y": 760.0
+            "y": 800.0
         },
         {
-            "altura": 140.0,
-            "id": 3,
+            "altura": 100.0,
+            "id": 11,
             "largura": 400.0,
-            "png": "assets/Tiles.png",
             "x": 6800.0,
-            "y": 760.0
+            "y": 800.0
         },
         {
             "altura": 140.0,
@@ -294,12 +293,11 @@
             "y": 760.0
         },
         {
-            "altura": 140.0,
-            "id": 3,
+            "altura": 100.0,
+            "id": 11,
             "largura": 400.0,
-            "png": "assets/Tiles.png",
             "x": 9200.0,
-            "y": 760.0
+            "y": 800.0
         },
         {
             "altura": 140.0,
@@ -318,12 +316,11 @@
             "y": 760.0
         },
         {
-            "altura": 140.0,
-            "id": 3,
+            "altura": 100.0,
+            "id": 11,
             "largura": 400.0,
-            "png": "assets/Tiles.png",
             "x": 10400.0,
-            "y": 760.0
+            "y": 800.0
         },
         {
             "altura": 140.0,
@@ -372,12 +369,11 @@
             "y": 760.0
         },
         {
-            "altura": 140.0,
-            "id": 3,
+            "altura": 100.0,
+            "id": 11,
             "largura": 400.0,
-            "png": "assets/Tiles.png",
             "x": 13200.0,
-            "y": 760.0
+            "y": 800.0
         },
         {
             "altura": 140.0,
@@ -396,135 +392,142 @@
             "y": 760.0
         },
         {
-            "distancia_percorrida": 228,
+            "distancia_percorrida": 138,
             "id": 4,
             "noChao": true,
-            "velocidadeX": -150.0,
-            "velocidadeY": 14.729403495788574,
-            "vidas": 3,
-            "x": 3990.17578125,
-            "y": 670.1878662109375
-        },
-        {
-            "distancia_percorrida": 228,
-            "id": 4,
-            "noChao": true,
-            "velocidadeX": -150.0,
-            "velocidadeY": 14.729403495788574,
-            "vidas": 3,
-            "x": 6320.0390625,
-            "y": 670.1878662109375
-        },
-        {
-            "distancia_percorrida": 228,
-            "id": 4,
-            "noChao": true,
-            "velocidadeX": -150.0,
-            "velocidadeY": 14.729403495788574,
-            "vidas": 3,
-            "x": 6887.8662109375,
-            "y": 670.1878662109375
-        },
-        {
-            "distancia_percorrida": 228,
-            "id": 4,
-            "noChao": true,
-            "velocidadeX": -150.0,
-            "velocidadeY": 14.729403495788574,
-            "vidas": 3,
-            "x": 9190.17578125,
-            "y": 670.1878662109375
-        },
-        {
-            "atacando": false,
-            "chao": 760.0,
-            "cont": 564,
-            "id": 7,
-            "ladoAtaque": false,
-            "noChao": true,
-            "seguindo": false,
-            "turnos": 25.032451629638672,
-            "val": 0,
             "velocidadeX": 150.0,
-            "velocidadeY": 14.565743446350098,
-            "vidas": 5,
-            "x": 9900.0,
-            "xIni": 0.0,
-            "y": 655.4584350585938,
-            "yIni": 0.0
-        },
-        {
-            "distancia_percorrida": 228,
-            "id": 4,
-            "noChao": true,
-            "velocidadeX": -150.0,
-            "velocidadeY": 14.729403495788574,
-            "vidas": 3,
-            "x": 10488.0615234375,
-            "y": 670.1878662109375
-        },
-        {
-            "distancia_percorrida": 228,
-            "id": 4,
-            "noChao": true,
-            "velocidadeX": -150.0,
             "velocidadeY": 16.03868293762207,
             "vidas": 3,
-            "x": 11390.17578125,
+            "x": 872.8453369140625,
             "y": 793.9148559570313
         },
         {
             "atacando": false,
-            "chao": 760.0,
-            "cont": 564,
+            "chao": 520.0,
+            "cont": 1269,
             "id": 7,
             "ladoAtaque": false,
             "noChao": true,
             "seguindo": false,
-            "turnos": 24.982297897338867,
+            "turnos": 27.716632843017578,
             "val": 0,
             "velocidadeX": 150.0,
-            "velocidadeY": 14.565743446350098,
+            "velocidadeY": 11.456202507019043,
             "vidas": 5,
-            "x": 13000.0,
+            "x": 1400.0,
             "xIni": 0.0,
-            "y": 655.4584350585938,
+            "y": 406.6951599121094,
             "yIni": 0.0
         },
         {
             "atacando": false,
             "chao": 760.0,
-            "cont": 564,
+            "cont": 1269,
             "id": 7,
             "ladoAtaque": false,
             "noChao": true,
             "seguindo": false,
-            "turnos": 24.973127365112305,
+            "turnos": 27.712703704833984,
             "val": 0,
             "velocidadeX": 150.0,
             "velocidadeY": 14.565743446350098,
             "vidas": 5,
-            "x": 14200.0,
+            "x": 1800.0,
             "xIni": 0.0,
             "y": 655.4584350585938,
             "yIni": 0.0
         },
         {
+            "distancia_percorrida": 138,
+            "id": 4,
+            "noChao": true,
+            "velocidadeX": 150.0,
+            "velocidadeY": 14.729403495788574,
+            "vidas": 3,
+            "x": 2470.72265625,
+            "y": 670.1878662109375
+        },
+        {
+            "distancia_percorrida": 138,
+            "id": 4,
+            "noChao": true,
+            "velocidadeX": 150.0,
+            "velocidadeY": 14.565743446350098,
+            "vidas": 3,
+            "x": 5702.3095703125,
+            "y": 655.4584350585938
+        },
+        {
+            "atacando": false,
+            "chao": 560.0,
+            "cont": 1269,
+            "id": 7,
+            "ladoAtaque": false,
+            "noChao": true,
+            "seguindo": false,
+            "turnos": 27.682313919067383,
+            "val": 0,
+            "velocidadeX": 150.0,
+            "velocidadeY": 12.11084270477295,
+            "vidas": 5,
+            "x": 5900.0,
+            "xIni": 0.0,
+            "y": 454.15655517578125,
+            "yIni": 0.0
+        },
+        {
+            "distancia_percorrida": 138,
+            "id": 4,
+            "noChao": true,
+            "velocidadeX": 150.0,
+            "velocidadeY": 10.801562309265137,
+            "vidas": 3,
+            "x": 6172.8369140625,
+            "y": 361.8523254394531
+        },
+        {
+            "distancia_percorrida": 138,
+            "id": 4,
+            "noChao": true,
+            "velocidadeX": 150.0,
+            "velocidadeY": 10.801562309265137,
+            "vidas": 3,
+            "x": 13272.8369140625,
+            "y": 361.8523254394531
+        },
+        {
             "atacado": false,
-            "atacando": true,
+            "atacando": false,
             "chao": 800.0,
-            "cont": 564,
+            "cont": 1269,
             "id": 1,
-            "impulso": 300.0,
+            "impulso": 600.0,
             "ladoAtacado": false,
             "morrendo": false,
             "noChao": false,
             "val": 0,
             "velocidadeX": 500.0,
-            "velocidadeY": 3.8276422023773193,
+            "velocidadeY": -0.691376805305481,
             "vidas": 100,
-            "x": 3032.607177734375,
-            "y": 180.6891632080078
+            "x": -6.799983024597168,
+            "y": 359.3901062011719
+        },
+        {
+            "atacado": false,
+            "atacando": false,
+            "chao": 800.0,
+            "cont": 1269,
+            "id": 2,
+            "impulso": 600.0,
+            "ladoAtacado": false,
+            "morrendo": false,
+            "noChao": false,
+            "val": 1,
+            "velocidadeX": 500.0,
+            "velocidadeY": 7.818944931030273,
+            "vidas": 100,
+            "x": -6.799983024597168,
+            "y": 548.9619750976563
         },
         {
             "altura": 40.0,
@@ -543,6 +546,6 @@
             "y": 0.0
         }
     ],
-    "jogadores": 1,
-    "zona": 1
+    "jogadores": 2,
+    "zona": 0
 }

@@ -24,7 +24,6 @@ namespace Personagens {
 		impulso = -1;
 
 		//setCorpo(62, 100);
-		vidas = 1;
 		setCorpo(50, 100);
 		val = 0;
 		cont = 0;
@@ -68,7 +67,7 @@ namespace Personagens {
 
 		}
 			
-		vidas =	1;
+		vidas =	100;
 	}
 
 	Slime::~Slime() {
@@ -117,8 +116,11 @@ namespace Personagens {
 
 
 	void Slime::pular(float imp) {
+		std::cout << "Impulso: " << imp << std::endl;
 		impulso = imp;
-		velocidadeY = -impulso * atualizaDelta(relogio);
+		float delta;
+		delta = atualizaDelta(relogio);
+		velocidadeY = -impulso * delta;
 		noChao = 0;
 	}
 
@@ -201,6 +203,10 @@ namespace Personagens {
 				}
 
 				if (clicado == 0) {
+					if(!noChao){
+						cout << "Id" << id << "impulso" << impulso << "velocidadey" << velocidadeY << endl;
+					}
+
 					mover(0);
 					if (cont % 10 == 0) {
 						val++;
@@ -284,6 +290,9 @@ namespace Personagens {
 				}
 
 				if (clicado == 0) {
+					if (!noChao) {
+						cout << "Id" << id << "impulso" << impulso << "velocidadey" << velocidadeY << endl;
+					}
 					mover(0);
 					if (cont % 10 == 0) {
 						val++;

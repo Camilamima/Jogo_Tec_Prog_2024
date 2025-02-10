@@ -6,7 +6,6 @@
 #include "../Obstaculos/Plataforma.h"
 #include "../Obstaculos/Espinho.h"
 #include "../Obstaculos/SlimeMau.h"
-#include "../Obstaculos/Acelerador.h"
 #include "../Personagens/Rato.h"
 #include "../Gerenciadores/Gerenciador_Colisoes.h"
 #include "../Listas/ListaEntidades.h"

@@ -146,7 +146,6 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClCompile Include="Fases\Fase2.cpp" />
     <ClCompile Include="Fases\Fase1.cpp" />
     <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="Obstaculos\Acelerador.cpp" />
     <ClCompile Include="Personagens\Cachorro.cpp" />
     <ClCompile Include="Ente.cpp" />
     <ClCompile Include="Entidade.cpp" />
@@ -173,7 +172,6 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClInclude Include="Fases\Fase2.h" />
     <ClInclude Include="Fases\Fase1.h" />
     <ClInclude Include="Menu.h" />
-    <ClInclude Include="Obstaculos\Acelerador.h" />
     <ClInclude Include="Personagens\Cachorro.h" />
     <ClInclude Include="Ente.h" />
     <ClInclude Include="Entidade.h" />
