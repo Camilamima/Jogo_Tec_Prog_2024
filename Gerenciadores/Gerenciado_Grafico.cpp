@@ -22,6 +22,10 @@ namespace Gerenciadores {
 			Fundo.loadFromFile("assets/caverna1.jpg");
 			sprite.setTexture(Fundo);
 		}
+		if (fase == 3) {//menu tela inicial
+			Fundo.loadFromFile("assets/YokaiSlayer.png");
+			sprite.setTexture(Fundo);
+		}
 
 	}
 

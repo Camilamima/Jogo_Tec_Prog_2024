@@ -185,7 +185,7 @@ namespace Personagens {
             corpo.setTexture(&sprite);
             corpo.setTextureRect(IntRect(65+(200 * (val)), 75, 70, 55));
         }
-        else if (num == 2) {//vai p direita
+        else if (num == 2) {//vai p esquerda
             //sprite.loadFromFile("assets/espadachim/Run esquerda.png");
             try {
                 if (!sprite.loadFromFile("assets/espadachim/Run esquerda.png")) {  // Se o arquivo não for encontrado

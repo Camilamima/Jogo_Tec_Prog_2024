@@ -36,8 +36,6 @@ namespace Personagens {
 				if (!sprite.loadFromFile("assets/jog1/Jump.png")) {  // Se o arquivo não for encontrado
 					throw std::runtime_error("Erro ao carregar a textura: assets/jog1/Jump.png");
 				}
-
-				//std::cout << "Textura carregada com sucesso!" << std::endl;
 			}
 			catch (const std::exception& e) {
 				std::cerr << "Excecao capturada: " << e.what() << std::endl;
@@ -55,8 +53,6 @@ namespace Personagens {
 				if (!sprite.loadFromFile("assets/jog2/Jump.png")) {  // Se o arquivo não for encontrado
 					throw std::runtime_error("Erro ao carregar a textura: assets/jog2/Jump.png");
 				}
-
-				//std::cout << "Textura carregada com sucesso!" << std::endl;
 			}
 			catch (const std::exception& e) {
 				std::cerr << "Exceção capturada: " << e.what() << std::endl;

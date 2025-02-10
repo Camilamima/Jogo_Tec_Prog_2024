@@ -23,6 +23,7 @@ namespace Personagens {
 		setMaldade(3);
 		num_projetil = 0;
 		num_proj_salvamento = 0;
+		atirou = false;
 	}
 
 	Chefao::~Chefao() {
@@ -53,7 +54,7 @@ namespace Personagens {
 	/*===== executar =====*/
 	void Chefao::executar()
 	{
-		//cont++;
+		cont++;
 		if (!noChao) {
 			mover(0);
 		}
@@ -64,22 +65,22 @@ namespace Personagens {
 
 		if (ativo == true) {//se tem um jogador na zona
 
-			if (cont % 7 == 0) {
-				val++;
-				animacao(1,15);
-			}
-
 			if (verificaVida()) {
 				pGGrafico->desenha(corpo);
 				teletransportar();
 
 				if (turno == false && relogioProjetil.getElapsedTime().asSeconds() >= 1.5) {
-					//solta o projetil com o executar do primeiro projetil
-					if (!ListProj.empty()) {
-						std::set<Projetil*>::iterator it = ListProj.begin();//o primeiro da lista
+					if (!ListProj.empty() && atirou == false) {
+						std::set<Projetil*>::iterator it = ListProj.begin();
 						(*it)->setApareceu(true);
 						relogioProjetil.restart();
+						atirou = true;
 					}
+				}
+
+				if (cont % 4 == 0) {
+					val++;
+					animacao(1, 10);
 				}
 
 				apagaProjetil();
@@ -118,6 +119,7 @@ namespace Personagens {
 				(*it)->setApagado(true);
 				ListProj.erase(it);//apagar o primeiro... parecido com um pop_front?
 				num_projetil--;
+				atirou = false;
 			}
 		}
 	}

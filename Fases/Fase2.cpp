@@ -9,7 +9,6 @@ namespace Fases {
 		num_chefoes(-1),
 		num_projeteis(-1)
 	{
-		//pGGrafico->BackGFloresta(2);
 	}
 
 	Fase2::Fase2(const json& dados, Gerenciadores::Gerenciado_Grafico* gC) :
@@ -44,7 +43,7 @@ namespace Fases {
 			x = entidade["x"];
 			y = entidade["y"];
 
-			// Aqui você pode criar as entidades e configurá-las conforme necessário
+			// Aqui vocÃª pode criar as entidades e configurÃ¡-las conforme necessÃ¡rio
 			if (id == 1) {
 				// Crie e configure um objeto Rato
 				Slime1.setCoordenadas(x, y);
@@ -70,24 +69,27 @@ namespace Fases {
 				Slime2.setImpulso(entidade["impulso"]);
 
 			}
+
 			else if (id == 3) {
 				std::string png_str = entidade["png"];
 				const char* png = png_str.c_str();
-				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3);
-				listaEntidades.Incluir(p, &gerentC);
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, png);
+				p->setCoordenadas(x, y);
+				p->setCorpo(entidade["largura"], entidade["altura"]);
 				p->geraPlataforma(entidade["altura"], entidade["largura"], x, y);
-
+				listaEntidades.IncluirSalvamento(p, &gerentC);
 			}
-			else if (id == 12) {
-
-				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(12);
-				listaEntidades.Incluir(p, &gerentC);
-				p->geraPlataforma(entidade["altura"], entidade["largura"], x, y);
-
+			else if (id == 12) {//ARRUMAR!!!!!!!!!
+				cout << "criei plat chefao" << endl;
+				std::string png_str = entidade["png"];
+				const char* png = png_str.c_str();
+				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(12, png);
+				p->geraPlataforma(600, 224 + 20, x, y);
+				listaEntidades.IncluirSalvamento(p, &gerentC);
 			}
 			else if (id == 4) {
 				Personagens::Rato* r = new Personagens::Rato(4);
-				listaEntidades.Incluir(r, &gerentC);
+				listaEntidades.IncluirSalvamento(r, &gerentC);
 				r->setCoordenadas(x, y);
 				r->setCorpo(100, 100);
 				r->setDistancia(entidade["distancia_percorrida"]);
@@ -99,7 +101,7 @@ namespace Fases {
 				e->setCoordenadas(x, y);
 				e->setCorpo(100, 70);
 				e->setEspinhos(entidade["num_espinhos"]);
-				listaEntidades.Incluir(e, &gerentC);
+				listaEntidades.IncluirSalvamento(e, &gerentC);
 			}
 			else if (id == 6) {
 				Personagens::Chefao* c = new Personagens::Chefao(6);
@@ -124,7 +126,6 @@ namespace Fases {
 				Projetil* p = new Projetil(5);
 				p->setCoordenadas(x, y);
 				p->setVelocidade(entidade["velocidadeX"], entidade["velocidadeY"]);
-				//p->setAtivo(entidade["segue"]);
 				p->setNoChao(entidade["noChao"]);
 				p->setChao(entidade["chao"]);
 				p->setSeguindo(entidade["seguindo"]);
@@ -138,19 +139,16 @@ namespace Fases {
 
 				listaEntidades.IncluirSalvamento(p, &gerentC);
 			}
-			//adicionar aqui outros ids
 		}
 		listaEntidades.Incluir(&Slime1, &gerentC);
 		if (qnt_jogadores == 2) {
 			listaEntidades.Incluir(&Slime2, &gerentC);
 		}
 
-		listaEntidades.setGG(pGGrafico);
+		listaEntidades.setGG(gerent);
 	}
 
 	Fase2::~Fase2() {}
-
-	
 
 	void Fase2::inicializa() {
 
@@ -158,8 +156,8 @@ namespace Fases {
 		/* Tirado gera Plataforma e geraInimigos, qualquer coisda descomentar */
 		geraPlataformaFase();
 		geraChao();
-		geraChefao();
 		geraEspinho();
+		geraChefao();
 		geraInimigos();
 		geraProjeteis();
 
@@ -180,7 +178,7 @@ namespace Fases {
 		listaEntidades.Incluir(&ladoE, &gerentC);
 
 		/*==== setando o gerenciador grafico ====*/
-		listaEntidades.setGG(pGGrafico);
+		listaEntidades.setGG(gerent);
 
 		/*==== gerando plataforma fixas ====*/
 		ladoE.geraPlataforma(900, 40, 0, 0);
@@ -189,47 +187,40 @@ namespace Fases {
 	}
 
 	void Fase2::geraChao() {
-		/*int numeros[36] = {0};
-		for (int i = 0; i < 36; i++) {
-
-			Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/plataforma_chao.png");
-			p->geraPlataforma(100, 97.91, (float)i * 400, 760);//era 400
-			listaEntidades.Incluir(p, &gerentC);
-		}*/
-		Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/chao.png");
-		p->geraPlataforma(100, 14400, 0, 860);
-		listaEntidades.Incluir(p, &gerentC);
-
-		int numeros[36] = { 0 };
+		int numeros[36] = {0};
 		int alterna = 1;
 		for (int i = 0; i < 36; i++) {
+
 			if (alterna == 1) {
 				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/pedra11.png");
-				p->geraPlataforma(140, 400, (float)i * 400, 760);//era 400
+				p->geraPlataforma(100, 400, (float)i * 400, 760);//era 400
 				listaEntidades.Incluir(p, &gerentC);
 				alterna++;
 			}
-
 			else if (alterna == 2) {
 				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/pedra21.png");
-				p->geraPlataforma(140, 400, (float)i * 400, 760);//era 400
+				p->geraPlataforma(100, 400, (float)i * 400, 760);//era 400
 				listaEntidades.Incluir(p, &gerentC);
 				alterna++;
 			}
 			else {
 				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/pedra31.png");
-				p->geraPlataforma(140, 400, (float)i * 400, 760);//era 400
+				p->geraPlataforma(100, 400, (float)i * 400, 760);//era 400
 				listaEntidades.Incluir(p, &gerentC);
 				alterna = 1;
 			}
 		}
+		Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/chao.png");
+		p->geraPlataforma(100, 14400, 0, 860);
+		listaEntidades.Incluir(p, &gerentC);
 	}
 
 	void Fase2::geraInimigos() {
 		int numeros[144] = { 0 };
 		time_t tempo;
 		srand((unsigned)time(&tempo));
-		num_facil = (int)((rand() % 3) + 3);
+		num_facil = (int)((rand() % 3) + 5);
+		//num_dificil = (int)((rand() % 3) + 3);
 		int posicao = 0;
 
 		for (int k = num_facil; k > 0; k--) {
@@ -261,10 +252,10 @@ namespace Fases {
 
 		int teste = 0;
 
-		for (int i = 3; i < (tamanho_fase / tamanho_zona); i++) {//crio o vetor com posições aleatorias
-			teste = rand() % 477;
+		for (int i = 3; i < (tamanho_fase / tamanho_zona); i++) {//crio o vetor com posiÃ§Ãµes aleatorias
+			teste = rand() % 400;
 
-			posicoes.push_back(static_cast<float>(i * tamanho_zona + 1200.0f + teste));
+			posicoes.push_back(static_cast<float>(i * tamanho_zona + 1100 + teste));
 
 		}
 		
@@ -276,7 +267,6 @@ namespace Fases {
 
 			Personagens::Chefao* c = new Personagens::Chefao(6, "assets/chefao/Agis.png");
 			Obstaculos::Obstaculo* o = new Obstaculos::Plataforma(12, "assets/parede11.png");
-
 			
 			c->setCoordenadas((float)posicoes[pos], altura);
 			c->setPosInicialX((float)posicoes[pos]);
@@ -299,7 +289,7 @@ namespace Fases {
 	
 	void Fase2::geraProjeteis() {//ser criada DEPOIS do chefao
 
-		num_projeteis = 10 * (num_chefoes);
+		num_projeteis = 5 * (num_chefoes);
 
 		for (int i = 0; i <num_projeteis; i++) {
 			Projetil* p = new Projetil(5);

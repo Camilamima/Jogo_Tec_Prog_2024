@@ -17,6 +17,11 @@ Menu::Menu(int id,const char* png):
     seta.setTexture(&sprite);
     seta.setPosition(60.0f, 300.0f);
     timer.restart();
+	fundo = RectangleShape(Vector2f(1800, 900));
+    fundo.setSize(Vector2f(1800, 900));
+    menu1.loadFromFile("assets/Menu.png");
+	fundo.setTexture(&menu1);
+    fundo.setPosition(0, 0);
 }
 
 Menu::~Menu() {
@@ -164,6 +169,23 @@ void Menu::salvaScore(const string& nome, int pontos) {
     o << std::setw(4) << data << std::endl;
 }
 
+
+void Menu::setaPause() {
+ 
+    nomes.clear(); // Limpa o vetor nomes
+    textos.clear();
+    nomes.push_back("Salvar");
+    nomes.push_back("Sair do jogo");
+    nomes.push_back("Voltar ao jogo");
+    textos.resize(nomes.size());
+
+    for (int i = 0; i < nomes.size(); i++) {
+        textos[i].setFont(fonte);
+        textos[i].setString(nomes[i]);
+        textos[i].setCharacterSize(50);
+        textos[i].setFillColor(sf::Color::White);
+        textos[i].setPosition(100.0f, 300.0f + (float)i * 60.0f);
+
 void Menu::setaTextos(int text) {
     limpaTextos();
 
@@ -173,7 +195,7 @@ void Menu::setaTextos(int text) {
         nomes.push_back("LeaderBoard");
         nomes.push_back("Selecionar Fase");
 
-        textos.resize(nomes.size()); // Garante que textos tenha o mesmo número de elementos que nomes
+        textos.resize(nomes.size()); // Garante que textos tenha o mesmo nÃºmero de elementos que nomes
 
         for (int i = 0; i < nomes.size(); i++) {
             textos[i].setFont(fonte);
@@ -273,6 +295,10 @@ const vector<string> Menu::lerScore() {
 }
 
 void Menu::Pause() {
+    pause.loadFromFile("assets/Pause.png");
+    fundo.setTexture(&pause);
+    pGGrafico->desenha(fundo);
+
     int i = (int)nomes.size() - 1;
     int zona = (float)pfase->getZona();
 
@@ -327,19 +353,17 @@ void Menu::Pause() {
 
 
 void Menu::executar() {
-
-    desenhaTexto(pGGrafico);
-
-    if (menu != 7){
-        pGGrafico->desenha(seta);
+    pGGrafico->desenha(fundo);
+    for (int i = 0; i < textos.size(); i++) {
+        pGGrafico->window.draw(textos[i]);
     }
+    pGGrafico->desenha(seta);
     pGGrafico->window.display();
     pGGrafico->clear();
     comandos();
     if (continuar == 1) {
-        setaTextos(4);
+        setaPause();
 
     }
 
 }
-
