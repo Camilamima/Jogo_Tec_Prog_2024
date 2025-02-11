@@ -96,7 +96,7 @@ namespace Fases {
 			return (float)zona_atual * tamanho_zona;
 
 		}
-
+		return 0;
 
 	}
 
@@ -567,7 +567,7 @@ namespace Fases {
 				textos[i].setString(nomes[i]);
 				textos[i].setCharacterSize(30);
 				textos[i].setFillColor(sf::Color::White);
-				textos[i].setPosition(((float)zona_atual*1800.0f)+200.0f, 300 + i * 60);
+				textos[i].setPosition(((float)zona_atual*1800.0f)+200.0f, 300.0f + (float)i * 60.0f);
 			}
 		}
 		else if (text == 2) {
@@ -583,7 +583,7 @@ namespace Fases {
 				textos[i].setString(nomes[i]);
 				textos[i].setCharacterSize(30);
 				textos[i].setFillColor(sf::Color::White);
-				textos[i].setPosition(((float)zona_atual * 1800.0f) + 200.0f, 300 + i * 60);
+				textos[i].setPosition(((float)zona_atual * 1800.0f) + 200.0f, 300.0f + (float)i * 60.0f);
 			}
 		}
 		else if (text == 3) {
@@ -600,7 +600,7 @@ namespace Fases {
 				textos[i].setString(nomes[i]);
 				textos[i].setCharacterSize(30);
 				textos[i].setFillColor(sf::Color::White);
-				textos[i].setPosition(((float)zona_atual * 1800.0f) + 200.0f, 300 + i * 60);
+				textos[i].setPosition(((float)zona_atual * 1800.0f) + 200.0f, 300.0f + i * 60.0f);
 			}
 		}
 		else if (text == 4) {
@@ -616,7 +616,7 @@ namespace Fases {
 				textos[i].setString(nomes[i]);
 				textos[i].setCharacterSize(30);
 				textos[i].setFillColor(sf::Color::White);
-				textos[i].setPosition(((float)zona_atual * 1800.0f) + 200.0f, 300 + i * 60);
+				textos[i].setPosition(((float)zona_atual * 1800.0f) + 200.0f, 300.0f + (float)i * 60.0f);
 			}
 		}
 		else if (text == 5) {
@@ -633,7 +633,7 @@ namespace Fases {
 				textos[i].setString(nomes[i]);
 				textos[i].setCharacterSize(30);
 				textos[i].setFillColor(sf::Color::White);
-				textos[i].setPosition(((float)zona_atual * 1800.0f) + 200.0f, 300 + i * 60);
+				textos[i].setPosition(((float)zona_atual * 1800.0f) + 200.0f, 300.0f + (float)i * 60.0f);
 			}
 		}
 		else if (text == 6) {

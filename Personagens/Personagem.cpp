@@ -32,11 +32,11 @@ namespace Personagens {
 		velocidadeY = vY;
 	}
 
-	float Personagem::getVelocidadeX() {
+	const float Personagem::getVelocidadeX() const {
 		return velocidadeX;
 	}
 
-	float Personagem::getVelocidadeY() {
+	const float Personagem::getVelocidadeY() const{
 		return velocidadeY;
 	}
 	void Personagem::operator--() {

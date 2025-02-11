@@ -187,7 +187,7 @@ void Menu::setaTextos(int text) {
             textos[i].setString(nomes[i]);
             textos[i].setCharacterSize(50);
             textos[i].setFillColor(sf::Color::White);
-            textos[i].setPosition(100, 300 + i * 60);
+            textos[i].setPosition(100.0f, 300.0f +(float)i * 60.0f);
         }
     }
     else if (text == 2) {
@@ -285,7 +285,7 @@ void Menu::Pause() {
     pGGrafico->desenha(fundo);
 
     int i = (int)nomes.size() - 1;
-    int zona = (float)pfase->getZona();
+    int zona = (int)pfase->getZona();
 
     seta.setPosition(60.0f + (zona * 1800), 300.0f + ((float)selec * 60.0f));
 

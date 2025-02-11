@@ -29,6 +29,9 @@ namespace Listas {
 			listaEntidades->removerElemento(0);
 		}
 		delete listaEntidades;
+		delete chefoes;
+		delete plataforma_chefao;
+
 	}
 	
 	
@@ -37,8 +40,12 @@ namespace Listas {
 	void ListaEntidade::Percorrer(Gerenciadores::Gerenciador_Colisoes* gc) {
 		gc->executar();//executar do gerenciador de colisoes 
 
+
 		for (Lista<Entidade*>::iterator it = listaEntidades->begin(); it != listaEntidades->end(); it++)
 		{
+			if ((*it)->getId() == 3) {//se for uma plataforma
+				(*it)->executar();
+			}
 			if ((*it)->getId() == 5) {//se for um projetil
 				if (static_cast<Projetil*>(*it)->getApareceu() == true) {//se ele ja apareceu
 						(*it)->executar();//executa o projetil
@@ -79,7 +86,7 @@ namespace Listas {
 			int i = 0;
 			int tam;
 
-			tam = chefoes->size();
+			tam = (int)chefoes->size();
 			while (inseri != true && i<tam) {
 				Chefao* chefao = chefoes->operator[](i);
 
@@ -117,7 +124,7 @@ namespace Listas {
 			bool inseri = false;
 			int i = 0;
 			int tam;
-			tam = chefoes->size();
+			tam =(int) chefoes->size();
 			while (inseri != true && i < tam) {
 				Chefao* chefao = chefoes->operator[](i);
 

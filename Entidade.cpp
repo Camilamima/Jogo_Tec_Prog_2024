@@ -3,6 +3,9 @@
 Entidade::Entidade(int id,const char* png):
 	Ente(id,png)
 {
+	velocidadeY = 0;
+	chao = 0;
+	noChao = 0;
 	x = 60;
 	y = 60;
 }

@@ -105,7 +105,7 @@ void Projetil::moverSeguindo(float aux) {
     }
 }
 
-void Projetil::mover() {
+void Projetil::mover(float aux) {
 
     if (!noChao)//se nao ta no chao
     {

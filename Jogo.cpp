@@ -19,7 +19,14 @@ Jogo::Jogo():
 
 Jogo::~Jogo()
 {
-
+    if (fase1 != nullptr) {
+        delete fase1;
+        fase1 = nullptr;
+    }
+    if (fase2 != nullptr) {
+        delete fase2;
+        fase2 = nullptr;
+    }
 }
 
 void Jogo::setaTextos(int text) {
@@ -35,7 +42,7 @@ void Jogo::setaTextos(int text) {
             textos[i].setString(nomes[i]);
             textos[i].setCharacterSize(50);
             textos[i].setFillColor(sf::Color::White);
-            textos[i].setPosition(14600.0f, 300 + i * 60);
+            textos[i].setPosition(14600.0f, 300.0f + (float)i * 60.0f);
         }
     }
     else if (text == 2) {
@@ -48,7 +55,7 @@ void Jogo::setaTextos(int text) {
             textos[i].setString(nomes[i]);
             textos[i].setCharacterSize(50);
             textos[i].setFillColor(sf::Color::White);
-            textos[i].setPosition(100, 300 + i * 60);
+            textos[i].setPosition(100.0f, 300.0f + (float)i * 60.0f);
         }
     }
 

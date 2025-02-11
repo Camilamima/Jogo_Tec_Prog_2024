@@ -257,7 +257,7 @@ namespace Fases {
 		for (int i = 3; i < (tamanho_fase / tamanho_zona); i++) {//crio o vetor com posições aleatorias
 			teste = rand() % 400;
 
-			posicoes.push_back(static_cast<float>(i * tamanho_zona + 1100 + teste));
+			posicoes.push_back(static_cast<int>(i * tamanho_zona + 1100 + teste));
 
 		}
 		
@@ -270,7 +270,7 @@ namespace Fases {
 			Personagens::Chefao* c = new Personagens::Chefao(6, "assets/chefao/Agis.png");
 			Obstaculos::Obstaculo* o = new Obstaculos::Plataforma(12, "assets/parede11.png");
 			
-			c->setCoordenadas((float)posicoes[pos], altura);
+			c->setCoordenadas((float)posicoes[pos], (float)altura);
 			c->setPosInicialX((float)posicoes[pos]);
 			c->setCorpo(224, 240);
 			c->zonaChefao();

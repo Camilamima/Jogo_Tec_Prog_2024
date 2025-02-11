@@ -14,10 +14,11 @@ namespace Obstaculos {
 		Obstaculo(int id, const char* png);
 		~Obstaculo();
 		virtual void executar() = 0;
+		void mover(float aux=0);
 		float getAtrito() const {
 			return atrito;
 		}
-		bool  getImpede() const { return impede; }
+		bool getImpede() const { return impede; }
 		bool getAtrapalha() const { return atrapalha; }
 		bool getDanoso() const { return danoso; }
 		virtual void obstacular(Personagens::Slime* jogador,int i=-1) = 0;

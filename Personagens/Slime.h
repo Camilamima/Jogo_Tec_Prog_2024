@@ -17,6 +17,7 @@ namespace Personagens {
         bool atacando;
         bool ladoAtacado;
         float impulso;
+        bool atordoado;
         Clock turno;
 
     public:
@@ -25,6 +26,10 @@ namespace Personagens {
         void mover(float aux);
         void atacarIni(Inimigo* ini);
         void executar();
+        void setAtordoado(const bool at) {
+            atordoado = at;
+        }
+        
         void pular(float imp);
         void setPonto(int ponto) {
             pontos = ponto;

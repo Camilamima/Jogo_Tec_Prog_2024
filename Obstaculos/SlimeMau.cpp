@@ -19,6 +19,9 @@ namespace Obstaculos {
 
 	void SlimeMau::executar() {
 		pGGrafico->desenha(corpo);
+		if (!noChao) {
+			mover();
+		}
 	}
 
 	void SlimeMau::obstacular(Slime* jogador,int i) {

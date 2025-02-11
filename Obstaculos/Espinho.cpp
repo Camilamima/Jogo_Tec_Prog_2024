@@ -35,6 +35,9 @@ namespace Obstaculos {
 
 	void Espinho::executar() {
 		pGGrafico->desenha(corpo);
+		if (!noChao) {
+			mover();
+		}
 	}
 
 	void Espinho::obstacular(Slime* jogador,int i) {

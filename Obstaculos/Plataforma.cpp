@@ -21,6 +21,9 @@ namespace Obstaculos {
 	}
 	void Plataforma::executar() {
 		pGGrafico->desenha(corpo);
+		if (!noChao) {
+			mover();
+		}
 	}
 
 	json Plataforma::salvar() const {

@@ -1,10 +1,10 @@
 #include "Rato.h"
 #include <stdexcept>
 #include <iostream>
+#include "../Personagens/Slime.h"
 
 
 using namespace std;
-#define CAMIHO 300
 namespace Personagens {
 	Rato::Rato(int id, const char* png) :
 		Inimigo(id, png)
@@ -28,10 +28,48 @@ namespace Personagens {
 		}
 	}
 
+	const int Rato::setaCabecada(const int lado) {
+		if (lado == 2 && velocidadeX<=0 ) {
+			return 600;
+		}
+		else if (lado == 3 && velocidadeX >= 0) {
+			return 700;
+		}
+		else {
+			return 300;
+		}
+	
+	}
+	
+	void Rato::ataca(Slime* jog, int lado){
+		if (lado == 2) {
+			if (!jog->getAtacado()) {
+				jog->operator-=(nivel_maldade * 5);
+				if (setaCabecada(lado) > 300) {
+
+					jog->setAtordoado(1);
+				}
+				jog->pular(setaCabecada(lado));
+				jog->setAtacado(1, 0);
+			}
+		}
+		else if (lado == 3) {
+			if (!jog->getAtacado()) {
+				jog->operator-=(nivel_maldade * 5);
+				if (setaCabecada(lado) > 300) {
+
+					jog->setAtordoado(1);
+				}
+				jog->pular(setaCabecada(lado));
+				jog->setAtacado(1, 1);
+			}
+		}
+	}
+
 	void Rato::executar() {
 		cont++;
 		if (verificaVida()) {
-			if (distancia_percorrida >= CAMIHO) {
+			if (distancia_percorrida >= caminho) {
 
 				velocidadeX = -velocidadeX;
 				distancia_percorrida = 0;
@@ -107,4 +145,6 @@ namespace Personagens {
 		entidadeJson["distancia_percorrida"] = distancia_percorrida;
 		return entidadeJson;
 	};
+
+	int Rato::caminho = 300;
 }

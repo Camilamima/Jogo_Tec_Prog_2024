@@ -42,7 +42,7 @@ public:
 	void setApagado(bool x) { apagado = x; }
 	bool getApagado() { return apagado; }
 	void moverSeguindo(float aux);
-	void mover();
+	void mover(float aux=0);
 	float atualizaFPS();
 	void seguir(float x_alvo, float y_alvo);
 	void danifica(Personagens::Slime* jog);

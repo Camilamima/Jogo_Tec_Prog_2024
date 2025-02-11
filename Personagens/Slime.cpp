@@ -22,6 +22,7 @@ namespace Personagens {
 		dPress = 1;
 		relogio.restart();
 		impulso = -1;
+		atordoado = 0;
 
 		//setCorpo(62, 100);
 		setCorpo(50, 100);
@@ -63,7 +64,7 @@ namespace Personagens {
 
 		}
 			
-		vidas =	1;
+		vidas =	100;
 	}
 
 	Slime::~Slime() {
@@ -100,6 +101,7 @@ namespace Personagens {
 				velocidadeY = 0;
 				atacando = 0;
 				atacado = 0;
+				setVelocidadeX((float)VX);
 			}
 		}
 		else {
@@ -113,6 +115,7 @@ namespace Personagens {
 
 	void Slime::pular(float imp) {
 		impulso = imp;
+
 		float delta;
 		delta = atualizaDelta(relogio);
 		velocidadeY = -impulso * delta;
@@ -135,6 +138,11 @@ namespace Personagens {
 
 					if (!ladoAtacado) {
 						if (moviE == 1) {
+
+							if (atordoado) {
+
+								mover(atualizaDelta(relogio) * -700);
+							}
 							mover(atualizaDelta(relogio) * -300);
 						}
 						else {
@@ -145,6 +153,10 @@ namespace Personagens {
 					else if (ladoAtacado) {
 
 						if (moviD == 1) {
+							if (atordoado) {
+
+								mover(atualizaDelta(relogio) * 700);
+							}
 							mover(atualizaDelta(relogio) * +300);
 						}
 						else {
@@ -154,6 +166,7 @@ namespace Personagens {
 				}
 
 				else {
+					atordoado = 0;
 
 					if (Keyboard::isKeyPressed(Keyboard::D)) {
 						if (moviD == 1) {
@@ -674,7 +687,6 @@ namespace Personagens {
 				return false;
 			}
 		}
-
 	}
 
 	void Slime::atacarIni(Inimigo* ini) {
