@@ -1,7 +1,6 @@
 #pragma once
-#include "Ente.h"
-#define FONTES "assets/Fontes/PixelOperator8-Bold.ttf"
 #include <vector>
+#include "Texto.h"
 
 namespace Fases{
 	class Fase;
@@ -9,22 +8,18 @@ namespace Fases{
 
 using namespace std;
 
-class Menu : public Ente
+class Menu : public Ente, public Texto 
 {
 private:
-	Font fonte;
-	String nome;
-	Text texto;
-	Fases::Fase *pfase;
-	RectangleShape seta;
-	vector<String> nomes;
-	vector<Text> textos;
-	bool continuar;
-	Clock timer;
-	int selec;
-	int fase;
-	int menu;
-	sf::RectangleShape fundo;
+	String nome;//
+	Fases::Fase *pfase;//
+	RectangleShape seta;//
+	bool continuar;//
+	Clock timer;//
+	int selec;//
+	int fase;//
+	int menu;//
+	sf::RectangleShape fundo;//
 	sf::Texture menu1;
 	sf::Texture pause;
 
@@ -49,14 +44,12 @@ public:
 	void setMenu(int i) {
 		menu = i;
 	}
+	const vector<string> lerScore();
+	static void salvaScore(const string& nome, int pontos);
 	void Pause();
 	void setFase(Fases::Fase * f);
-	void setaTextos1();
-	void setaTextos2();
-	void setaTextos3();
-	void setaPause();
+	void setaTextos(int text);
 	void comandos();
 	void executar(); 
 
 };
-

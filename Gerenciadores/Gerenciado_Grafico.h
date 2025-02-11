@@ -25,7 +25,6 @@ namespace Gerenciadores {
 		void desenha();
 		void mostrar();
 		void fechar();
-		void BackGCaverna();
 	};
 }
 

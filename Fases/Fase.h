@@ -2,28 +2,29 @@
 #include <stdio.h>
 #include <vector>
 #include <set>
-#include "../Personagens/Slime.h"
+#include "../Personagens/Heroi.h"
 #include "../Obstaculos/Plataforma.h"
 #include "../Obstaculos/Espinho.h"
-#include "../Obstaculos/SlimeMau.h"
-#include "../Obstaculos/Acelerador.h"
-#include "../Personagens/Rato.h"
+#include "../Obstaculos/Rio.h"
+#include "../Personagens/Lobo.h"
 #include "../Gerenciadores/Gerenciador_Colisoes.h"
 #include "../Listas/ListaEntidades.h"
-#include "../Projetil.h"
-#include "../Personagens/Chefao.h"
-#include "../Personagens/Efeitos.h"
-#include "../Personagens/Cachorro.h"
+#include "../Entidades/Projetil.h"
+#include "../Personagens/Yokai.h"
+#include "../Personagens/Samurai.h"
 #include <nlohmann/json.hpp>
+#include "../Texto.h"
 using json = nlohmann::json;
 
 class Menu;
 
+
 namespace Fases {
-	class Fase {
+	class Fase:public Ente, public Texto{
 	protected:
 		int num_fase;
 		int qnt_jogadores;
+		int qnt_jogadores_ini;
 		const int tamanho_fase;
 		const int tamanho_zona;
 		int zona_atual;
@@ -32,11 +33,10 @@ namespace Fases {
 		Menu* pMenu;
 		vector <int> localizacao_obs;
 		Gerenciadores::Gerenciador_Colisoes gerentC;
-		Gerenciadores::Gerenciado_Grafico* gerent;
-		Personagens::Slime Slime1;
-		Personagens::Slime Slime2;
-		Obstaculos::Plataforma chao;
-		Obstaculos::Plataforma ladoE;
+		Entidades::Personagens::Heroi Heroi1;
+		Entidades::Personagens::Heroi Heroi2;
+		Entidades::Obstaculos::Plataforma chao;
+		Entidades::Obstaculos::Plataforma ladoE;
 		Listas::ListaEntidade listaEntidades;
 
 	public:
@@ -45,6 +45,10 @@ namespace Fases {
 		int getJogadores() const {
 			return qnt_jogadores;
 		}
+		int getZona()const {
+			return zona_atual;
+		}
+
 		void setPause(const bool i) {
 			Pause = i;
 		}
@@ -54,15 +58,17 @@ namespace Fases {
 		void setMenu(Menu* m) {
 			pMenu = m;
 		}
-		void setGerenciador(Gerenciadores::Gerenciado_Grafico* g) { gerent = g; }
 		virtual void inicializa() = 0;
 		void limpaVec();
 		const bool checaLocaliza(float x, int ver) const;
 		float checaZona();
-		void geraEspinho();
 		virtual void geraChao() = 0;
 		bool const checaFinal() const {
 			if (zona_atual >= 8) {
+				return 1;
+			}
+
+			else if(num_fase==2 && listaEntidades.chefeNulo()){
 				return 1;
 			}
 
@@ -73,5 +79,7 @@ namespace Fases {
 		void TipoPlataforma(int tipo, float x);
 		virtual void executar();
 		void salvaFase();
+		void setaTextos(int text);
+		void digitarNome();
 	};
 }

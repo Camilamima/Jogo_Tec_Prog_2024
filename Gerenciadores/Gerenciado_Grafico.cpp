@@ -4,7 +4,7 @@
 
 namespace Gerenciadores {
 	Gerenciado_Grafico::Gerenciado_Grafico() {
-		window.create(VideoMode(1800, 900), "trabaio", Style::Default); // Cria a janela com o tamanho e título passados
+		window.create(VideoMode(1800, 900), "Yokai Slayer", Style::Default); // Cria a janela com o tamanho e título passados
 		window.setFramerateLimit(60);
 		camera = View(sf::FloatRect(0, 0, 1800, 900));
 		window.setView(camera);
@@ -29,10 +29,6 @@ namespace Gerenciadores {
 
 	}
 
-	void Gerenciado_Grafico::BackGCaverna() {
-		Fundo.loadFromFile("assets/caverna.png");
-		sprite.setTexture(Fundo);
-	}
 
 	void Gerenciado_Grafico::arrumaCamera(float x) {
 		camera = View(sf::FloatRect(x, 0, 1800, 900));

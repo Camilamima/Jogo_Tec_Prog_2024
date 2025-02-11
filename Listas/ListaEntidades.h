@@ -1,7 +1,7 @@
 #pragma once
 #include "Lista.h"
-#include "../Entidade.h"
-#include "../Personagens/Chefao.h"
+#include "../Entidades/Entidade.h"
+#include "../Personagens/Yokai.h"
 #include "../Gerenciadores/Gerenciador_Colisoes.h"
 #include "../Obstaculos/Plataforma.h"
 #include <vector>
@@ -11,26 +11,37 @@ namespace Listas {
 
 	class ListaEntidade {
 	private:
-		Lista <Entidade*>* listaEntidades;
-		vector<Personagens::Chefao*> *chefoes;
-		//vector<Entidade*> *plataforma_chefao;
-		queue<Entidade*>* plataforma_chefao;
-		int pos_chefao;
-		bool zona_chefao;//zona onde está o chefao
-		int zona_chefao_num;
+		Lista <Entidades::Entidade*>* listaEntidades;
+		vector<Entidades::Personagens::Yokai*> *chefoes;
+		//vector<Entidades::Entidade*> *plataforma_Yokai;
+		queue<Entidades::Entidade*>* plataforma_Yokai;
+		int pos_Yokai;
+		bool zona_Yokai;//zona onde está o Yokai
+		int zona_Yokai_num;
 	public:
 		ListaEntidade();
 		~ListaEntidade();
+
+		const bool chefeNulo() const {
+			if (!chefoes) return true;
+
+			for (const auto& chefe : *chefoes) {
+				if (chefe != nullptr) {
+					return false; 
+				}
+			}
+			return true; 
+		}
 		void Percorrer(Gerenciadores::Gerenciador_Colisoes* gc);
-		void Incluir(Entidade* entidade, Gerenciadores::Gerenciador_Colisoes* gc);
-		void IncluirSalvamento(Entidade* entidade, Gerenciadores::Gerenciador_Colisoes* gc);
+		void Incluir(Entidades::Entidade* Entidade, Gerenciadores::Gerenciador_Colisoes* gc);
+		void IncluirSalvamento(Entidades::Entidade* Entidade, Gerenciadores::Gerenciador_Colisoes* gc);
 		void setGG(Gerenciadores::Gerenciado_Grafico *gg);
-		void Include(Entidade* entidade);
-		void MatarEntidade(Entidade* ent, Gerenciadores::Gerenciador_Colisoes* gc);
+		void Include(Entidades::Entidade* Entidade);
 		int VerificMortos();//retona a posicao do morto -> se -1 nao tem mortos!
+		void MatarEntidade(Entidades::Entidade* ent, Gerenciadores::Gerenciador_Colisoes* gc);
 		void matarEntidadePos(int pos, Gerenciadores::Gerenciador_Colisoes* gc);
-		void encontraZonaChefao(Personagens::Slime* jog);
-		vector<Entidade*> returnVec();
+		void encontraZonaYokai(Entidades::Personagens::Heroi* jog);
+		vector<Entidades::Entidade*> returnVec();
 	};
 
 }

@@ -6,14 +6,19 @@ Ente::Ente(int x, const char* png):
 {
 	this->png = png;
 	sprite.loadFromFile(png);
-	pGGrafico = NULL;
+}
+
+Ente::Ente() {
+	id = 30;
+	png = "";
 }
 
 Ente::~Ente() {
-	pGGrafico = NULL;
+
 }
 
 void Ente::setGerenciador(Gerenciadores::Gerenciado_Grafico* g) {
 	pGGrafico = g;
 }
 
+Gerenciadores::Gerenciado_Grafico* Ente:: pGGrafico = nullptr;
