@@ -587,6 +587,7 @@ namespace Entidades {
 
 		json Heroi::salvar() const {
 			json entidadeJson;
+			entidadeJson["pontos"] = pontos;
 			entidadeJson["id"] = id;
 			entidadeJson["x"] = corpo.getPosition().x;
 			entidadeJson["y"] = corpo.getPosition().y;

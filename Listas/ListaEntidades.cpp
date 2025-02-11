@@ -148,7 +148,7 @@ namespace Listas {
 
 		for (Lista<Entidades::Entidade*>::iterator it = listaEntidades->begin(); it != listaEntidades->end(); it++)
 		{
-			(*it)->setGerenciador(gg);
+			//(*it)->setGerenciador(gg);
 		}
 	}
 
@@ -167,7 +167,7 @@ namespace Listas {
 				}
 			}
 			if ((*it)->getId() == 5) {
-				if (static_cast<Entidades::Projetil*>(*it)->getNoChao() == true || static_cast<Entidades::Projetil*>(*it)->getApagado()==true) {
+				if (static_cast<Entidades::Projetil*>(*it)->getnoChao() == true || static_cast<Entidades::Projetil*>(*it)->getApagado()==true) {
 					temMortos = true;
 					return listaEntidades->posicao(*it);
 				}

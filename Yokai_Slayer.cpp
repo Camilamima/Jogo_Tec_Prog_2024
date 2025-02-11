@@ -80,11 +80,11 @@ void Yokai_Slayer::lerFase(){
 
         if (fase == 1) {
 
-            Floresta_Profunda = new Fases::Floresta_Profunda(dados, &gerent);
+            Floresta_Profunda = new Fases::Floresta_Profunda(dados);
             menu.setFase(Floresta_Profunda);
         }
         else if (fase == 2) {
-            Caverna_Obscura = new Fases::Caverna_Obscura(dados, &gerent);
+            Caverna_Obscura = new Fases::Caverna_Obscura(dados);
             gerent.BackGFloresta(2);
             menu.setFase(Caverna_Obscura);
         }
@@ -144,7 +144,7 @@ void Yokai_Slayer::executar() {
                     if (fase == 1) {
                         Floresta_Profunda = new Fases::Floresta_Profunda;
                         Floresta_Profunda->setJogadores(jogadores);
-                        Floresta_Profunda->setGerenciador(&gerent);
+                        //Floresta_Profunda->setGerenciador(&gerent);
                         gerent.BackGFloresta(1);
                         Floresta_Profunda->inicializa();
                         iniciarFase = true;
@@ -155,7 +155,7 @@ void Yokai_Slayer::executar() {
                     else if (fase == 2) {
                         Caverna_Obscura = new Fases::Caverna_Obscura;
                         Caverna_Obscura->setJogadores(jogadores);
-                        Caverna_Obscura->setGerenciador(&gerent);
+                        //Caverna_Obscura->setGerenciador(&gerent);
                         gerent.BackGFloresta(2);
                         Caverna_Obscura->inicializa();
                         menu.setFase(Caverna_Obscura);
@@ -215,7 +215,7 @@ void Yokai_Slayer::executar() {
                 if (Caverna_Obscuraini == 0) {
                     Caverna_Obscura = new Fases::Caverna_Obscura;
                     Caverna_Obscura->setJogadores(jogadores);
-                    Caverna_Obscura->setGerenciador(&gerent);
+                   // Caverna_Obscura->setGerenciador(&gerent);
                     Caverna_Obscura->inicializa();
                     Caverna_Obscura->setPontos(ponto1, ponto2);
                     gerent.BackGFloresta(2);

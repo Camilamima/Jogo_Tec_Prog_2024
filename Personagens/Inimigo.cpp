@@ -37,7 +37,7 @@ namespace Entidades {
 			nivel_maldade = maldade;
 		}
 
-		void Inimigo::ataca(Heroi* jog, int lado) {
+		void Inimigo::danificar(Heroi* jog, int lado) {
 			if (lado == 2) {
 				if (!jog->getAtacado()) {
 					jog->operator-=(nivel_maldade * 5);

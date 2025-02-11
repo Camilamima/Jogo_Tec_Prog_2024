@@ -124,39 +124,6 @@ namespace Fases {
 	}
 
 
-	void Fase::geraEspinho() {
-		int quantidade;
-		int numeros[144] = { 0 };
-		time_t tempo;
-		srand((unsigned)time(&tempo));
-		quantidade = (int)((rand() % 10) + 10);
-		int posicao = 0;
-		for (int k = quantidade; k > 0; k--) {
-			posicao = (rand() % 142) + 1;
-			while (numeros[posicao] != 0 || checaLocaliza((float)posicao * 100,1) ||
-				(posicao < 143 && (numeros[posicao + 1] == 1 || numeros[posicao - 1] == 1)) ||
-				(posicao < 142 && (numeros[posicao + 1] == 1 && numeros[posicao + 2] == 1)) ||
-				(posicao > 1 && (numeros[posicao - 1] == 1 && numeros[posicao - 2] == 1) ||
-				posicao%1800==0 )   
-				) {
-				posicao = (rand() % 142) + 1;
-			}
-			numeros[posicao] = 1;
-		}
-
-		//tamanho fase: 14400, 1400/144=100 cada espinho
-		for (int i = 0; i < 144; i++) {
-			if (numeros[i] != 0 && i > 3) {
-				Entidades::Obstaculos::Espinho* p = new Entidades::Obstaculos::Espinho(9);
-				p->setCoordenadas((float)i * 100, 700);
-				p->setCorpo(100, 70);
-				listaEntidades.Incluir(p, &gerentC);
-			}
-
-		}
-	}
-
-
 
 	void Fase::geraPlataformaFase(){
 		if (num_fase == 1) {
@@ -358,14 +325,11 @@ namespace Fases {
 
 
 			if (Heroi1.getVidas() <= 0) {
-				Heroi1.setMorrendo(true);
-				if (Heroi1.getCont() % 8 == 0) {
 					listaEntidades.MatarEntidade(&Heroi2, &gerentC);
 					qnt_jogadores--;
 					apareceu2 = true;
 				}
 			}
-		}
 
 		if (gerentC.getJogador2() != nullptr && apareceu2 == false) {
 			if (Heroi2.getVidas() <= 0) {
@@ -419,7 +383,47 @@ namespace Fases {
 
 			}
 		}
-		else if(qnt_jogadores==-1)
+
+		if (num_fase == 2 && checaFinal()) {
+			if (qnt_jogadores_ini == 1) {
+				setaTextos(4);
+				Pause = true;
+				pGGrafico->clear();
+				while (Pause) {
+					desenhaTexto(pGGrafico);
+					pGGrafico->window.display();
+					pGGrafico->clear();
+					if (sf::Keyboard::isKeyPressed(sf::Keyboard::X)) {
+						Pause = false;
+					}
+				}
+				Pause = true;
+				qnt_jogadores = -1;
+				pGGrafico->clear();
+				textos.clear();
+			}
+
+			else if (qnt_jogadores_ini == 2) {
+				setaTextos(5);
+				Pause = true;
+				pGGrafico->clear();
+				while (Pause) {
+					desenhaTexto(pGGrafico);
+					pGGrafico->window.display();
+					pGGrafico->clear();
+					if (sf::Keyboard::isKeyPressed(sf::Keyboard::X)) {
+						Pause = false;
+					}
+				}
+				Pause = true;
+				qnt_jogadores = -1;
+				pGGrafico->clear();
+				textos.clear();
+			
+			}
+		}
+
+		if(qnt_jogadores==-1)
 		{
 			digitarNome();
 			pGGrafico->window.close();

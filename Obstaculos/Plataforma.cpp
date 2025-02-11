@@ -22,7 +22,7 @@ namespace Entidades {
 		void Plataforma::executar() {
 			pGGrafico->desenha(corpo);
 			if (!noChao) {
-				mover();
+				mover(0);
 			}
 		}
 

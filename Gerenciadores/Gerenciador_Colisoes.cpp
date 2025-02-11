@@ -17,12 +17,6 @@ namespace Gerenciadores {
 	}
 
 
-	void Gerenciador_Colisoes::trocaFase() {
-		LObst.clear();
-		LIni.clear();
-		LProjetil.clear();
-	}
-
 	void Gerenciador_Colisoes::setJogadores(Entidades::Personagens::Heroi* j1, Entidades::Personagens::Heroi* j2) {
 		jog1 = j1;
 		jog2 = j2;
@@ -150,12 +144,12 @@ namespace Gerenciadores {
 
 				else if (veriColisao(inimigo, jog1) == 2) {
 
-					inimigo->ataca(jog1, 2);
+					inimigo->danificar(jog1, 2);
 					cout << "vidas jog1: " << jog1->getVidas() << endl;
 				}
 				else if (veriColisao(inimigo, jog1) == 3) {
 
-					inimigo->ataca(jog1, 3);
+					inimigo->danificar(jog1, 3);
 					cout << "vidas jog1: " << jog1->getVidas() << endl;
 
 				}
@@ -166,10 +160,10 @@ namespace Gerenciadores {
 						float xjog = aux2.getPosition().x + aux2.getSize().x / 2;
 
 						if (xini >= xjog) {
-							inimigo->ataca(jog1, 2);
+							inimigo->danificar(jog1, 2);
 						}
 						else {
-							inimigo->ataca(jog1, 3);
+							inimigo->danificar(jog1, 3);
 						}
 
 
@@ -200,11 +194,11 @@ namespace Gerenciadores {
 
 				else if (veriColisao(inimigo, jog2) == 2) {
 
-					inimigo->ataca(jog2, 2);
+					inimigo->danificar(jog2, 2);
 				}
 				else if (veriColisao(inimigo, jog2) == 3) {
 
-					inimigo->ataca(jog2, 3);
+					inimigo->danificar(jog2, 3);
 				}
 				else if (veriColisao(inimigo, jog2) == 5) {
 
@@ -213,10 +207,10 @@ namespace Gerenciadores {
 					float xjog = aux2.getPosition().x + aux2.getSize().x / 2;
 
 					if (xini >= xjog) {
-						inimigo->ataca(jog2, 2);
+						inimigo->danificar(jog2, 2);
 					}
 					else {
-						inimigo->ataca(jog2, 3);
+						inimigo->danificar(jog2, 3);
 					}
 
 
@@ -237,7 +231,7 @@ namespace Gerenciadores {
 
 				aux_proj = projetil->getCorpo();
 
-				if (projetil->getNoChao() == true) {
+				if (projetil->getnoChao() == true) {
 					continue;
 				}
 
@@ -267,7 +261,7 @@ namespace Gerenciadores {
 
 			for (Entidades::Projetil* projetil : LProjetil) {
 				aux_proj = projetil->getCorpo();
-				if (projetil->getNoChao() == true) {
+				if (projetil->getnoChao() == true) {
 					continue;
 				}
 				if (projetil->getApareceu() == true) {

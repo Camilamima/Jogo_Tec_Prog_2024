@@ -196,6 +196,7 @@ sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <Image Include="assets\arvore_tronco.png" />
     <Image Include="assets\caverna1.jpg" />
     <Image Include="assets\chao.png" />
+    <Image Include="assets\Yokai\Agis.png" />
     <Image Include="assets\dark_castle_tileset.png" />
     <Image Include="assets\espinho.png" />
     <Image Include="assets\espinho1.png" />

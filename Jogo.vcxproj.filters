@@ -97,6 +97,7 @@
     <Image Include="assets\tronco.png" />
     <Image Include="assets\tronco2.png" />
     <Image Include="assets\YokaiSlayer.png" />
+    <Image Include="assets\Yokai\Agis.png" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets\ARIAL.TTF" />

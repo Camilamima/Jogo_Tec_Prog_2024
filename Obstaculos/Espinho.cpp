@@ -35,7 +35,7 @@ namespace Entidades {
 		void Espinho::executar() {
 			pGGrafico->desenha(corpo);
 			if (!noChao) {
-				mover();
+				mover(0);
 			}
 		}
 

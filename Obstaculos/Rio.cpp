@@ -20,7 +20,7 @@ namespace Entidades {
 		void Rio::executar() {
 			pGGrafico->desenha(corpo);
 			if (!noChao) {
-				mover();
+				mover(0);
 			}
 		}
 

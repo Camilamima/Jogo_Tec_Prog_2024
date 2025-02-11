@@ -18,12 +18,12 @@ namespace Fases {
 			else {
 				return Heroi2.getPontos();
 			}
-		}
-		Floresta_Profunda(const json& dados, Gerenciadores::Gerenciado_Grafico* gC);
+		}//
+		Floresta_Profunda(const json& dados);
 		~Floresta_Profunda();
-		void inicializa();
-		void geraChao();
-		void geraInimigos();
+		void inicializa();//
+		void geraChao();//
+		void geraInimigos();//
 	};
 }
 

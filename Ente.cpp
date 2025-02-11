@@ -14,10 +14,11 @@ Ente::Ente() {
 }
 
 Ente::~Ente() {
-	pGGrafico = NULL;
+
 }
 
 void Ente::setGerenciador(Gerenciadores::Gerenciado_Grafico* g) {
 	pGGrafico = g;
 }
 
+Gerenciadores::Gerenciado_Grafico* Ente:: pGGrafico = nullptr;

@@ -21,7 +21,6 @@ namespace Gerenciadores {
 	public:
 		Gerenciador_Colisoes();
 		~Gerenciador_Colisoes();
-		void trocaFase();
 		void setJogadores(Entidades::Personagens::Heroi* j1, Entidades::Personagens::Heroi* j2);
 		Entidades::Personagens::Heroi* getJogador2() { return jog2; }
 		void includeEntidade(Entidades::Entidade* ent);

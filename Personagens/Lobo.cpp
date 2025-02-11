@@ -42,7 +42,7 @@ namespace Entidades {
 
 		}
 
-		void Lobo::ataca(Heroi* jog, int lado) {
+		void Lobo::danificar(Heroi* jog, int lado) {
 			if (lado == 2) {
 				if (!jog->getAtacado()) {
 					jog->operator-=(nivel_maldade * 5);

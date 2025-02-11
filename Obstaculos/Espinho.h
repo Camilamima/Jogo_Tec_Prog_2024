@@ -18,8 +18,8 @@ namespace Entidades{
 			void setEspinhos(int e) {
 				num_espinhos = e;
 			}
-			void obstacular(Personagens::Personagem* jogador,int i=-1);
-			virtual json salvar() const;
+			void obstacular(Entidades::Personagens::Personagem* jogador,int i=-1);
+			json salvar() const;
 		};
 	}
 }

@@ -11,14 +11,12 @@ namespace Fases {
     {
     }
 
-    Floresta_Profunda::Floresta_Profunda(const json& dados, Gerenciadores::Gerenciado_Grafico* gC) :
+    Floresta_Profunda::Floresta_Profunda(const json& dados) :
         Fase(),
         num_dificil(-1),
         obsFacil(-1)
     {
         num_fase = 1;
-        cout << "cheguei1" << endl;
-        setGerenciador(gC);
         pGGrafico->BackGFloresta(1);
         zona_atual = dados["zona"];
         qnt_jogadores = dados["jogadores"];
@@ -43,6 +41,7 @@ namespace Fases {
             // Aqui você pode criar as entidades e configurá-las conforme necessário
             if (id == 1) {
                 // Crie e configure um objeto Lobo
+                Heroi1.setPonto(entidade["pontos"]);
                 Heroi1.setCoordenadas(x, y);
                 Heroi1.setCorpo(100, 100);
                 Heroi1.setAtacado(entidade["atacado"], entidade["ladoAtacado"]);
@@ -55,6 +54,7 @@ namespace Fases {
 
             }
             else if (id == 2) {
+                Heroi2.setPonto(entidade["pontos"]);
                 Heroi2.setCoordenadas(x, y);
                 Heroi2.setCorpo(100, 100);
                 Heroi2.setAtacado(entidade["atacado"], entidade["ladoAtacado"]);

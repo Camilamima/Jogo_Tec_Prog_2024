@@ -11,16 +11,15 @@ using namespace std;
 class Menu : public Ente, public Texto 
 {
 private:
-	Font fonte;
-	String nome;
-	Fases::Fase *pfase;
-	RectangleShape seta;
-	bool continuar;
-	Clock timer;
-	int selec;
-	int fase;
-	int menu;
-	sf::RectangleShape fundo;
+	String nome;//
+	Fases::Fase *pfase;//
+	RectangleShape seta;//
+	bool continuar;//
+	Clock timer;//
+	int selec;//
+	int fase;//
+	int menu;//
+	sf::RectangleShape fundo;//
 	sf::Texture menu1;
 	sf::Texture pause;
 

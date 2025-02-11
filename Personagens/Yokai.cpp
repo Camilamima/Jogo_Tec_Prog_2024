@@ -9,7 +9,7 @@ namespace Entidades {
 
 		Yokai::Yokai(int id, const char* png) :
 			Inimigo(id, png),
-			ListProj()
+			SetProj()
 		{
 			iniZona = 0;
 			finalZona = 0;
@@ -70,8 +70,8 @@ namespace Entidades {
 					teletransportar();
 
 					if (turno == false && relogioProjetil.getElapsedTime().asSeconds() >= 1.5) {
-						if (!ListProj.empty() && atirou == false) {
-							std::set<Projetil*>::iterator it = ListProj.begin();
+						if (!SetProj.empty() && atirou == false) {
+							std::set<Projetil*>::iterator it = SetProj.begin();
 							(*it)->setApareceu(true);
 							relogioProjetil.restart();
 							atirou = true;
@@ -96,7 +96,7 @@ namespace Entidades {
 				proj->setCorpo(200, 113.42);
 				proj->setXY(pos_inicial, 200);
 				num_projetil++;
-				ListProj.insert(proj);
+				SetProj.insert(proj);
 			}
 
 		}
@@ -105,19 +105,19 @@ namespace Entidades {
 			if (proj != nullptr) {
 				proj->setCorpo(200, 113.42);
 				num_proj_salvamento++;
-				ListProj.insert(proj);
+				SetProj.insert(proj);
 			}
 		}
 
 		/*===== apaga um projetil =====*/
 		void Yokai::apagaProjetil() {//apaga se ele tocou no chao...
 
-			if (!ListProj.empty()) {//se a lista nao estiver vazia (se tiver projetil dentro dela
-				std::set<Projetil*>::iterator it = ListProj.begin();
-				if ((*it)->getNoChao() == true || (*it)->getCorpo().getPosition().x + (*it)->getCorpo().getSize().x <= iniZona) {//se o projetil tocou no chao
+			if (!SetProj.empty()) {//se a lista nao estiver vazia (se tiver projetil dentro dela
+				std::set<Projetil*>::iterator it = SetProj.begin();
+				if ((*it)->getnoChao() == true || (*it)->getCorpo().getPosition().x + (*it)->getCorpo().getSize().x <= iniZona) {//se o projetil tocou no chao
 					std::cout << "Apaguei um projetil" << std::endl;
 					(*it)->setApagado(true);
-					ListProj.erase(it);//apagar o primeiro... parecido com um pop_front?
+					SetProj.erase(it);//apagar o primeiro... parecido com um pop_front?
 					num_projetil--;
 					atirou = false;
 				}

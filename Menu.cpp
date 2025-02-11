@@ -191,8 +191,8 @@ void Menu::setaTextos(int text) {
         }
     }
     else if (text == 2) {
-        nomes.push_back("Floresta");
-        nomes.push_back("Caverna");
+        nomes.push_back("Floresta Profunda");
+        nomes.push_back("Caverna Obscura");
 
         textos.resize(nomes.size());
 

@@ -62,10 +62,13 @@ namespace Fases {
 		void limpaVec();
 		const bool checaLocaliza(float x, int ver) const;
 		float checaZona();
-		void geraEspinho();
 		virtual void geraChao() = 0;
 		bool const checaFinal() const {
 			if (zona_atual >= 8) {
+				return 1;
+			}
+
+			else if(num_fase==2 && listaEntidades.chefeNulo()){
 				return 1;
 			}
 

@@ -12,15 +12,14 @@ namespace Fases {
 		
 	}
 
-	Caverna_Obscura::Caverna_Obscura(const json& dados, Gerenciadores::Gerenciado_Grafico* gC) :
+	Caverna_Obscura::Caverna_Obscura(const json& dados) :
 		Fase(),
 		num_obs2(-1),
 		num_chefoes(-1),
 		num_projeteis(-1)
 	{
 		num_fase = 2;
-		cout << "cheguei1" << endl;
-		setGerenciador(gC);
+		//setGerenciador(gC);
 		zona_atual = dados["zona"];
 		qnt_jogadores = dados["jogadores"];
 
@@ -47,6 +46,7 @@ namespace Fases {
 			// Aqui você pode criar as entidades e configurá-las conforme necessário
 			if (id == 1) {
 				// Crie e configure um objeto Lobo
+				Heroi1.setPonto(entidade["pontos"]);
 				Heroi1.setCoordenadas(x, y);
 				Heroi1.setCorpo(100, 100);
 				Heroi1.setAtacado(entidade["atacado"], entidade["ladoAtacado"]);
@@ -59,6 +59,7 @@ namespace Fases {
 
 			}
 			else if (id == 2) {
+				Heroi2.setPonto(entidade["pontos"]);
 				Heroi2.setCoordenadas(x, y);
 				Heroi2.setCorpo(100, 100);
 				Heroi2.setAtacado(entidade["atacado"], entidade["ladoAtacado"]);
@@ -118,7 +119,7 @@ namespace Fases {
 				c->setTurno(entidade["turno"]);
 				c->setIniZona(entidade["iniZona"]);
 				c->setFinalZona(entidade["finalZona"]);
-				c->setNum_Projetil(entidade["num_Entidades::Projetil::"]);
+				c->setNum_Projetil(entidade["num_projetil"]);
 				listaEntidades.IncluirSalvamento(c, &gerentC);
 			}
 			else if (id == 5) {
@@ -146,6 +147,39 @@ namespace Fases {
 
 		listaEntidades.setGG(pGGrafico);
 	}
+
+	void Caverna_Obscura::geraEspinho() {
+		int quantidade;
+		int numeros[54] = { 0 };
+		time_t tempo;
+		srand((unsigned)time(&tempo));
+		quantidade = (int)((rand() % 3) + 3);
+		int posicao = 0;
+		for (int k = quantidade; k > 0; k--) {
+			posicao = (rand() % 52) + 1;
+			while (numeros[posicao] != 0 || checaLocaliza((float)posicao * 100, 1) ||
+				(posicao < 53 && (numeros[posicao + 1] == 1 || numeros[posicao - 1] == 1)) ||
+				(posicao < 52 && (numeros[posicao + 1] == 1 && numeros[posicao + 2] == 1)) ||
+				(posicao > 1 && (numeros[posicao - 1] == 1 && numeros[posicao - 2] == 1) ||
+					posicao % 1800 == 0)
+				) {
+				posicao = (rand() % 52) + 1;
+			}
+			numeros[posicao] = 1;
+		}
+
+		//tamanho fase: 14400, 1400/144=100 cada espinho
+		for (int i = 0; i < 54; i++) {
+			if (numeros[i] != 0 && i > 3) {
+				Entidades::Obstaculos::Espinho* p = new Entidades::Obstaculos::Espinho(9);
+				p->setCoordenadas((float)i * 100, 700);
+				p->setCorpo(100, 70);
+				listaEntidades.Incluir(p, &gerentC);
+			}
+
+		}
+	}
+
 
 	Caverna_Obscura::~Caverna_Obscura() {}
 
