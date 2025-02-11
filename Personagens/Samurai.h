@@ -2,10 +2,10 @@
 #include "Inimigo.h"
 #include <ctime>
 #include "Personagem.h"
-#include "Slime.h"
+#include "Heroi.h"
 
 namespace Personagens {
-    class Cachorro : public Inimigo
+    class Samurai : public Inimigo
     {
     private: 
         float xIni;
@@ -16,10 +16,10 @@ namespace Personagens {
         bool ladoAtaque;
         float tempo;
     public:
-        Cachorro(int id, const char* png = "assets/espadachim/Attack1.png");
-        ~Cachorro();
+        Samurai(int id, const char* png = "assets/espadachim/Attack1.png");
+        ~Samurai();
         void executar();
-        void deveSeguir(Slime* jog);
+        void deveSeguir(Heroi* jog);
         void seguir(float x);
         void atacar(int d);
         void setSeguindo(bool i) { seguindo = i; }

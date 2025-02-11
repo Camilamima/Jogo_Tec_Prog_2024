@@ -40,7 +40,7 @@ namespace Obstaculos {
 		}
 	}
 
-	void Espinho::obstacular(Slime* jogador,int i) {
+	void Espinho::obstacular(Personagem* jogador,int i) {
 
 
 		if (timer % 50 == 0) {

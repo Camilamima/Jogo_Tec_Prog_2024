@@ -3,7 +3,7 @@
 #include "../Obstaculos/Obstaculo.h"
 #include "../Obstaculos/Plataforma.h"
 #include "../Personagens/Inimigo.h"
-#include "../Personagens/Slime.h"
+#include "../Personagens/Heroi.h"
 #include "../Entidade.h"
 #include "../Projetil.h"
 
@@ -16,14 +16,14 @@ namespace Gerenciadores {
 		list<Obstaculos::Obstaculo*> LObst;
 		list<Personagens::Inimigo*> LIni;
 		list<Projetil*> LProjetil;
-		Personagens::Slime *jog1;
-		Personagens::Slime *jog2;
+		Personagens::Heroi *jog1;
+		Personagens::Heroi *jog2;
 	public:
 		Gerenciador_Colisoes();
 		~Gerenciador_Colisoes();
 		void trocaFase();
-		void setJogadores(Personagens::Slime* j1, Personagens::Slime* j2);
-		Personagens::Slime* getJogador2() { return jog2; }
+		void setJogadores(Personagens::Heroi* j1, Personagens::Heroi* j2);
+		Personagens::Heroi* getJogador2() { return jog2; }
 		void includeEntidade(Entidade* ent);
 		void removeEntidade(Entidade* ent);
 		int veriColisao(Entidade* ent,Entidade* sl);

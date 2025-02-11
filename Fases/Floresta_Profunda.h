@@ -2,25 +2,25 @@
 #include "Fase.h"
 
 namespace Fases {
-	class Fase1 : public Fase
+	class Floresta_Profunda : public Fase
 	{
 	private:
 		int num_dificil;
 		int obsFacil;
 
 	public:
-		Fase1();
+		Floresta_Profunda();
 		const int getPontos(const int i) {
 			if (i == 1) {
-				return Slime1.getPontos();
+				return Heroi1.getPontos();
 
 			}
 			else {
-				return Slime2.getPontos();
+				return Heroi2.getPontos();
 			}
 		}
-		Fase1(const json& dados, Gerenciadores::Gerenciado_Grafico* gC);
-		~Fase1();
+		Floresta_Profunda(const json& dados, Gerenciadores::Gerenciado_Grafico* gC);
+		~Floresta_Profunda();
 		void inicializa();
 		void geraChao();
 		void geraInimigos();

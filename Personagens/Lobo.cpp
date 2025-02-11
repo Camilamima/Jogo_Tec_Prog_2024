@@ -1,12 +1,12 @@
-#include "Rato.h"
+#include "Lobo.h"
 #include <stdexcept>
 #include <iostream>
-#include "../Personagens/Slime.h"
+#include "../Personagens/Heroi.h"
 
 
 using namespace std;
 namespace Personagens {
-	Rato::Rato(int id, const char* png) :
+	Lobo::Lobo(int id, const char* png) :
 		Inimigo(id, png)
 	{
 		vidas = 3;
@@ -17,9 +17,9 @@ namespace Personagens {
 		setMaldade(1);
 	}
 
-	Rato::~Rato() {  }
+	Lobo::~Lobo() {  }
 
-	void Rato::calculaDis() {
+	void Lobo::calculaDis() {
 		if (velocidadeX > 0) {
 			distancia_percorrida += velocidadeX * atualizaDelta(relogio);
 		}
@@ -28,12 +28,12 @@ namespace Personagens {
 		}
 	}
 
-	const int Rato::setaCabecada(const int lado) {
+	const int Lobo::setaCabecada(const int lado) {
 		if (lado == 2 && velocidadeX<=0 ) {
-			return 600;
+			return 500;
 		}
 		else if (lado == 3 && velocidadeX >= 0) {
-			return 700;
+			return 500;
 		}
 		else {
 			return 300;
@@ -41,7 +41,7 @@ namespace Personagens {
 	
 	}
 	
-	void Rato::ataca(Slime* jog, int lado){
+	void Lobo::ataca(Heroi* jog, int lado){
 		if (lado == 2) {
 			if (!jog->getAtacado()) {
 				jog->operator-=(nivel_maldade * 5);
@@ -66,7 +66,7 @@ namespace Personagens {
 		}
 	}
 
-	void Rato::executar() {
+	void Lobo::executar() {
 		cont++;
 		if (verificaVida()) {
 			if (distancia_percorrida >= caminho) {
@@ -97,7 +97,7 @@ namespace Personagens {
 		}
 
 	}
-	void Rato::animacao(int num, int limite) {
+	void Lobo::animacao(int num, int limite) {
 		if (val >= limite) {
 			val = 0;
 		}
@@ -132,7 +132,7 @@ namespace Personagens {
 		}
 	}
 
-	json Rato::salvar()const {
+	json Lobo::salvar()const {
 	
 		json entidadeJson;
 		entidadeJson["id"] = id;
@@ -146,5 +146,5 @@ namespace Personagens {
 		return entidadeJson;
 	};
 
-	int Rato::caminho = 300;
+	int Lobo::caminho = 300;
 }

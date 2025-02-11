@@ -1,5 +1,5 @@
 #include "Inimigo.h"
-#include "Slime.h"
+#include "Heroi.h"
 
 namespace Personagens {
 	Inimigo::Inimigo(int id, const char* png) :
@@ -37,7 +37,7 @@ namespace Personagens {
 		nivel_maldade = maldade;
 	}
 
-	void Inimigo::ataca(Slime* jog,int lado) {
+	void Inimigo::ataca(Heroi* jog,int lado) {
 		if (lado == 2) {
 			if (!jog->getAtacado()) {
 				jog->operator-=(nivel_maldade*5);

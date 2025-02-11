@@ -1,9 +1,9 @@
-#include "Fase2.h"
+#include "Caverna_Obscura.h"
 #include "../Menu.h"
 
 namespace Fases {
 
-	Fase2::Fase2() :
+	Caverna_Obscura::Caverna_Obscura() :
 		Fase(),
 		num_obs2(-1),
 		num_chefoes(-1),
@@ -12,7 +12,7 @@ namespace Fases {
 		
 	}
 
-	Fase2::Fase2(const json& dados, Gerenciadores::Gerenciado_Grafico* gC) :
+	Caverna_Obscura::Caverna_Obscura(const json& dados, Gerenciadores::Gerenciado_Grafico* gC) :
 		Fase(),
 		num_obs2(-1),
 		num_chefoes(-1),
@@ -26,11 +26,11 @@ namespace Fases {
 
 		if (qnt_jogadores == 1) {
 			std::cout << " Selecionado 1 jogador! " << std::endl;
-			gerentC.setJogadores(&Slime1, nullptr);
+			gerentC.setJogadores(&Heroi1, nullptr);
 		}
 		if (qnt_jogadores == 2) {
 			std::cout << " Selecionado 2 jogadores! " << std::endl;
-			gerentC.setJogadores(&Slime1, &Slime2);
+			gerentC.setJogadores(&Heroi1, &Heroi2);
 		}
 
 		int id;
@@ -46,28 +46,28 @@ namespace Fases {
 
 			// Aqui você pode criar as entidades e configurá-las conforme necessário
 			if (id == 1) {
-				// Crie e configure um objeto Rato
-				Slime1.setCoordenadas(x, y);
-				Slime1.setCorpo(100, 100);
-				Slime1.setAtacado(entidade["atacado"], entidade["ladoAtacado"]);
-				Slime1.setAtacando(entidade["atacando"]);
-				Slime1.setChao(entidade["chao"]);
-				Slime1.setVidas(entidade["vidas"]);
-				Slime1.setVelocidae(entidade["velocidadeX"], entidade["velocidadeY"]);
-				Slime1.setChao(entidade["chao"]);
-				Slime1.setImpulso(entidade["impulso"]);
+				// Crie e configure um objeto Lobo
+				Heroi1.setCoordenadas(x, y);
+				Heroi1.setCorpo(100, 100);
+				Heroi1.setAtacado(entidade["atacado"], entidade["ladoAtacado"]);
+				Heroi1.setAtacando(entidade["atacando"]);
+				Heroi1.setChao(entidade["chao"]);
+				Heroi1.setVidas(entidade["vidas"]);
+				Heroi1.setVelocidae(entidade["velocidadeX"], entidade["velocidadeY"]);
+				Heroi1.setChao(entidade["chao"]);
+				Heroi1.setImpulso(entidade["impulso"]);
 
 			}
 			else if (id == 2) {
-				Slime2.setCoordenadas(x, y);
-				Slime2.setCorpo(100, 100);
-				Slime2.setAtacado(entidade["atacado"], entidade["ladoAtacado"]);
-				Slime2.setAtacando(entidade["atacando"]);
-				Slime2.setChao(entidade["chao"]);
-				Slime2.setVidas(entidade["vidas"]);
-				Slime2.setVelocidae(entidade["velocidadeX"], entidade["velocidadeY"]);
-				Slime2.setChao(entidade["chao"]);
-				Slime2.setImpulso(entidade["impulso"]);
+				Heroi2.setCoordenadas(x, y);
+				Heroi2.setCorpo(100, 100);
+				Heroi2.setAtacado(entidade["atacado"], entidade["ladoAtacado"]);
+				Heroi2.setAtacando(entidade["atacando"]);
+				Heroi2.setChao(entidade["chao"]);
+				Heroi2.setVidas(entidade["vidas"]);
+				Heroi2.setVelocidae(entidade["velocidadeX"], entidade["velocidadeY"]);
+				Heroi2.setChao(entidade["chao"]);
+				Heroi2.setImpulso(entidade["impulso"]);
 
 			}
 
@@ -81,7 +81,7 @@ namespace Fases {
 				listaEntidades.IncluirSalvamento(p, &gerentC);
 			}
 			else if (id == 12) {//ARRUMAR!!!!!!!!!
-				cout << "criei plat chefao" << endl;
+				cout << "criei plat Yokai" << endl;
 				std::string png_str = entidade["png"];
 				const char* png = png_str.c_str();
 				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(12, png);
@@ -89,7 +89,7 @@ namespace Fases {
 				listaEntidades.IncluirSalvamento(p, &gerentC);
 			}
 			else if (id == 4) {
-				Personagens::Rato* r = new Personagens::Rato(4);
+				Personagens::Lobo* r = new Personagens::Lobo(4);
 				listaEntidades.IncluirSalvamento(r, &gerentC);
 				r->setCoordenadas(x, y);
 				r->setCorpo(100, 100);
@@ -105,7 +105,7 @@ namespace Fases {
 				listaEntidades.IncluirSalvamento(e, &gerentC);
 			}
 			else if (id == 6) {
-				Personagens::Chefao* c = new Personagens::Chefao(6);
+				Personagens::Yokai* c = new Personagens::Yokai(6);
 				c->setCoordenadas(x, y);
 				c->setCorpo(224, 240);
 				c->setMaldade(3);
@@ -118,8 +118,6 @@ namespace Fases {
 				c->setTurno(entidade["turno"]);
 				c->setIniZona(entidade["iniZona"]);
 				c->setFinalZona(entidade["finalZona"]);
-				c->setVal(entidade["val"]);
-				c->setCont(entidade["cont"]);
 				c->setNum_Projetil(entidade["num_projetil"]);
 				listaEntidades.IncluirSalvamento(c, &gerentC);
 			}
@@ -141,38 +139,40 @@ namespace Fases {
 				listaEntidades.IncluirSalvamento(p, &gerentC);
 			}
 		}
-		listaEntidades.Incluir(&Slime1, &gerentC);
+		listaEntidades.Incluir(&Heroi1, &gerentC);
 		if (qnt_jogadores == 2) {
-			listaEntidades.Incluir(&Slime2, &gerentC);
+			listaEntidades.Incluir(&Heroi2, &gerentC);
 		}
 
 		listaEntidades.setGG(pGGrafico);
 	}
 
-	Fase2::~Fase2() {}
+	Caverna_Obscura::~Caverna_Obscura() {}
 
-	void Fase2::inicializa() {
+	void Caverna_Obscura::inicializa() {
 
 		num_fase = 2;
 		/* Tirado gera Plataforma e geraInimigos, qualquer coisda descomentar */
 		geraPlataformaFase();
 		geraChao();
 		geraEspinho();
-		geraChefao();
+		geraYokai();
 		geraInimigos();
 		geraProjeteis();
 
 
 		if (qnt_jogadores == 1) {
 			cout << " Selecionado 1 jogador! " << endl;
-			gerentC.setJogadores(&Slime1, nullptr);
-			listaEntidades.Incluir(&Slime1, &gerentC);
+			gerentC.setJogadores(&Heroi1, nullptr);
+			listaEntidades.Incluir(&Heroi1, &gerentC);
+			Heroi1.setVidas(200);
 		}
 		if (qnt_jogadores == 2) {
 			cout << " Selecionado 2 jogadores! " << endl;
-			gerentC.setJogadores(&Slime1, &Slime2);
-			listaEntidades.Incluir(&Slime1, &gerentC);
-			listaEntidades.Incluir(&Slime2, &gerentC);
+			gerentC.setJogadores(&Heroi1, &Heroi2);
+			listaEntidades.Incluir(&Heroi1, &gerentC);
+			listaEntidades.Incluir(&Heroi2, &gerentC);
+			Heroi2.setVidas(200);
 		}
 
 		/*=== Colocando elementos constantes na lista ===*/
@@ -183,12 +183,12 @@ namespace Fases {
 		listaEntidades.setGG(pGGrafico);
 
 		/*==== gerando plataforma fixas ====*/
-		ladoE.geraPlataforma(900, 40, 0, 0);
+		ladoE.geraPlataforma(900, 40, -40, 0);
 		chao.geraPlataforma(40, (float)tamanho_fase, 0, 900);
 
 	}
 
-	void Fase2::geraChao() {
+	void Caverna_Obscura::geraChao() {
 		int numeros[36] = {0};
 		int alterna = 1;
 		for (int i = 0; i < 36; i++) {
@@ -217,7 +217,7 @@ namespace Fases {
 		listaEntidades.Incluir(p, &gerentC);
 	}
 
-	void Fase2::geraInimigos() {
+	void Caverna_Obscura::geraInimigos() {
 		int numeros[144] = { 0 };
 		time_t tempo;
 		srand((unsigned)time(&tempo));
@@ -237,7 +237,7 @@ namespace Fases {
 
 		for (int i = 0; i < 144; i++) {
 			if (numeros[i] == 1) {
-				Personagens::Rato* r = new Personagens::Rato(4);
+				Personagens::Lobo* r = new Personagens::Lobo(4);
 				r->setCoordenadas((float)i * 100, 0);
 				r->setCorpo(100, 100);
 				listaEntidades.Incluir(r, &gerentC);
@@ -246,7 +246,7 @@ namespace Fases {
 		}
 	}
 
-	void Fase2::geraChefao() {
+	void Caverna_Obscura::geraYokai() {
 		vector<int> posicoes;
 		time_t tempo;
 		srand((unsigned)time(&tempo));
@@ -267,13 +267,13 @@ namespace Fases {
 
 		for (int i = 0; i < num_chefoes && pos<=posicoes.size(); i++) {
 
-			Personagens::Chefao* c = new Personagens::Chefao(6, "assets/chefao/Agis.png");
+			Personagens::Yokai* c = new Personagens::Yokai(6, "assets/Yokai/Agis.png");
 			Obstaculos::Obstaculo* o = new Obstaculos::Plataforma(12, "assets/parede11.png");
 			
 			c->setCoordenadas((float)posicoes[pos], (float)altura);
 			c->setPosInicialX((float)posicoes[pos]);
 			c->setCorpo(224, 240);
-			c->zonaChefao();
+			c->zonaYokai();
 
 			o->setCoordenadas((float)(posicoes[pos] - 10), (float)(altura + 5 + c->getCorpo().getSize().y));
 			o->setCorpo((float)(c->getCorpo().getSize().x + 20), (float)(600));
@@ -289,7 +289,7 @@ namespace Fases {
 		}
 	}
 	
-	void Fase2::geraProjeteis() {//ser criada DEPOIS do chefao
+	void Caverna_Obscura::geraProjeteis() {//ser criada DEPOIS do Yokai
 
 		num_projeteis = 5 * (num_chefoes);
 

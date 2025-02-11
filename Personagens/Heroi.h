@@ -6,7 +6,7 @@
 
 namespace Personagens {
     class Inimigo;
-    class Slime : public Personagem {
+    class Heroi : public Personagem {
     private:
         int pontos;
         bool wPress;
@@ -21,8 +21,8 @@ namespace Personagens {
         Clock turno;
 
     public:
-        Slime(int id, const char* png = ""); // pngegg.png
-        ~Slime();
+        Heroi(int id, const char* png = ""); // pngegg.png
+        ~Heroi();
         void mover(float aux);
         void atacarIni(Inimigo* ini);
         void executar();
@@ -43,7 +43,6 @@ namespace Personagens {
         bool const getLadoAtacado() const { return ladoAtacado; }
         void processaEvento();//generalizado
         void animacao(int num, int limite);//eh virtual
-        bool animacaoMorte(int cont, int limite);
         const int getPontos() const {
             return pontos;
         }

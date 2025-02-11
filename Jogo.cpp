@@ -4,7 +4,6 @@
 #include <fstream>  
 using namespace sf;
 using namespace std;
-using namespace Fases;
 using json = nlohmann::json;
 
 Jogo::Jogo():
@@ -13,19 +12,19 @@ Jogo::Jogo():
 {
     menu.setGerenciador(&gerent);
     fase = 1;
-    fase1 = nullptr;
-    fase2 = nullptr;
+    Floresta_Profunda = nullptr;
+    Caverna_Obscura = nullptr;
 }
 
 Jogo::~Jogo()
 {
-    if (fase1 != nullptr) {
-        delete fase1;
-        fase1 = nullptr;
+    if (Floresta_Profunda != nullptr) {
+        delete Floresta_Profunda;
+        Floresta_Profunda = nullptr;
     }
-    if (fase2 != nullptr) {
-        delete fase2;
-        fase2 = nullptr;
+    if (Caverna_Obscura != nullptr) {
+        delete Caverna_Obscura;
+        Caverna_Obscura = nullptr;
     }
 }
 
@@ -80,13 +79,13 @@ void Jogo::lerFase(){
 
         if (fase == 1) {
 
-            fase1 = new Fase1(dados, &gerent);
-            menu.setFase(fase1);
+            Floresta_Profunda = new Fases::Floresta_Profunda(dados, &gerent);
+            menu.setFase(Floresta_Profunda);
         }
         else if (fase == 2) {
-            fase2 = new Fase2(dados, &gerent);
+            Caverna_Obscura = new Fases::Caverna_Obscura(dados, &gerent);
             gerent.BackGFloresta(2);
-            menu.setFase(fase2);
+            menu.setFase(Caverna_Obscura);
         }
 }
 
@@ -95,7 +94,7 @@ void Jogo::executar2() {
     int opc = -1;
     int qualMenu = -1;
     bool iniciarFase = false;
-    bool fase2ini = 0;
+    bool Caverna_Obscuraini = 0;
     int jogadores = 0;
     int ponto1 = 0;
     int ponto2 = 0;
@@ -116,9 +115,9 @@ void Jogo::executar2() {
             if (event.key.code == sf::Keyboard::F1) {
                 // Chama a função para salvar o jogo
                 if (fase == 1)
-                    fase1->salvaFase();
+                    Floresta_Profunda->salvaFase();
                 else if (fase == 2)
-                    fase2->salvaFase();
+                    Caverna_Obscura->salvaFase();
             }
         }
 
@@ -142,26 +141,26 @@ void Jogo::executar2() {
                     fase = menu.getFase();
 
                     if (fase == 1) {
-                        fase1 = new Fase1;
-                        fase1->setJogadores(jogadores);
-                        fase1->setGerenciador(&gerent);
+                        Floresta_Profunda = new Fases::Floresta_Profunda;
+                        Floresta_Profunda->setJogadores(jogadores);
+                        Floresta_Profunda->setGerenciador(&gerent);
                         gerent.BackGFloresta(1);
-                        fase1->inicializa();
+                        Floresta_Profunda->inicializa();
                         iniciarFase = true;
-                        menu.setFase(fase1);
+                        menu.setFase(Floresta_Profunda);
                         fase = 1;
                         gerent.clear();
                     }
                     else if (fase == 2) {
-                        fase2 = new Fase2;
-                        fase2->setJogadores(jogadores);
-                        fase2->setGerenciador(&gerent);
+                        Caverna_Obscura = new Fases::Caverna_Obscura;
+                        Caverna_Obscura->setJogadores(jogadores);
+                        Caverna_Obscura->setGerenciador(&gerent);
                         gerent.BackGFloresta(2);
-                        fase2->inicializa();
-                        menu.setFase(fase2);
+                        Caverna_Obscura->inicializa();
+                        menu.setFase(Caverna_Obscura);
                         iniciarFase = true;
                         gerent.clear();
-                        fase2ini = 1;
+                        Caverna_Obscuraini = 1;
                     }
                 }
                 else if (qualMenu == 1) {
@@ -170,7 +169,7 @@ void Jogo::executar2() {
                         iniciarFase = true;
                         gerent.clear();
                         if (fase == 2){
-                            fase2ini = 1;
+                            Caverna_Obscuraini = 1;
                         }
                     }
                 }
@@ -181,16 +180,16 @@ void Jogo::executar2() {
             if (fase == 1) {
 
 
-                if (fase1->checaFinal()) {
+                if (Floresta_Profunda->checaFinal()) {
 
                     fase = 2;
                     gerent.clear();
-                    fase2ini = 0;
-                    jogadores = fase1->getJogadores();
-                    ponto1 = fase1->getPontos(1);
-                    ponto2 = fase1->getPontos(2);
-                    delete fase1;
-                    fase1 = nullptr;
+                    Caverna_Obscuraini = 0;
+                    jogadores = Floresta_Profunda->getJogadores();
+                    ponto1 = Floresta_Profunda->getPontos(1);
+                    ponto2 = Floresta_Profunda->getPontos(2);
+                    delete Floresta_Profunda;
+                    Floresta_Profunda = nullptr;
                     Clock t;
                     t.restart();
                     int x = -1;
@@ -208,22 +207,22 @@ void Jogo::executar2() {
                 }
                 else{
 
-                    fase1->executar();
+                    Floresta_Profunda->executar();
                 }
             }
             else if (fase == 2) {
-                if (fase2ini == 0) {
-                    fase2 = new Fase2;
-                    fase2->setJogadores(jogadores);
-                    fase2->setGerenciador(&gerent);
-                    fase2->inicializa();
-                    fase2->setPontos(ponto1, ponto2);
+                if (Caverna_Obscuraini == 0) {
+                    Caverna_Obscura = new Fases::Caverna_Obscura;
+                    Caverna_Obscura->setJogadores(jogadores);
+                    Caverna_Obscura->setGerenciador(&gerent);
+                    Caverna_Obscura->inicializa();
+                    Caverna_Obscura->setPontos(ponto1, ponto2);
                     gerent.BackGFloresta(2);
-                    menu.setFase(fase2);
-                    fase2ini = 1;
+                    menu.setFase(Caverna_Obscura);
+                    Caverna_Obscuraini = 1;
 
                 }
-                fase2->executar();
+                Caverna_Obscura->executar();
  
             }
         }

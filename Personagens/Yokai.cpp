@@ -1,4 +1,4 @@
-#include "Chefao.h"
+#include "Yokai.h"
 #include <iostream>
 #include <set>
 #include <iostream>
@@ -7,7 +7,7 @@
 
 namespace Personagens {
 
-	Chefao::Chefao(int id, const char* png) :
+	Yokai::Yokai(int id, const char* png) :
 		Inimigo(id, png),
 		ListProj()
 	{
@@ -26,11 +26,11 @@ namespace Personagens {
 		atirou = false;
 	}
 
-	Chefao::~Chefao() {
+	Yokai::~Yokai() {
 	}
 
 	/*===== metodo que teletransporta =====*/
-	void Chefao::teletransportar() {
+	void Yokai::teletransportar() {
 
 		if (relogio1.getElapsedTime().asSeconds() >= 7.5 && !turno) {
 			
@@ -52,7 +52,7 @@ namespace Personagens {
 	}
 
 	/*===== executar =====*/
-	void Chefao::executar()
+	void Yokai::executar()
 	{
 		cont++;
 		if (!noChao) {
@@ -89,7 +89,7 @@ namespace Personagens {
 	}
 
 	/*===== cria um projetil =====*/
-	void Chefao::criaProjeteis(Projetil* proj) {//cria todos os projeteis
+	void Yokai::criaProjeteis(Projetil* proj) {//cria todos os projeteis
 
 		if (proj != nullptr) {
 			proj->setCoordenadas(pos_inicial, 200);
@@ -101,7 +101,7 @@ namespace Personagens {
 
 	}
 
-	void Chefao::criaProjeteisSalv(Projetil* proj) {
+	void Yokai::criaProjeteisSalv(Projetil* proj) {
 		if (proj != nullptr) {
 			proj->setCorpo(200, 113.42);
 			num_proj_salvamento++;
@@ -110,7 +110,7 @@ namespace Personagens {
 	}
 
 	/*===== apaga um projetil =====*/
-	void Chefao::apagaProjetil() {//apaga se ele tocou no chao...
+	void Yokai::apagaProjetil() {//apaga se ele tocou no chao...
 
 		if (!ListProj.empty()) {//se a lista nao estiver vazia (se tiver projetil dentro dela
 			std::set<Projetil*>::iterator it = ListProj.begin();
@@ -124,16 +124,16 @@ namespace Personagens {
 		}
 	}
 
-	/*===== animacao chefao =====*/
-	void Chefao::animacao(int num, int limite) {
+	/*===== animacao Yokai =====*/
+	void Yokai::animacao(int num, int limite) {
 		if (val >= limite) {
 			val = 0;
 		}
 
 		if (num == 1) {
 			try {
-				if (!sprite.loadFromFile("assets/chefao/Agis.png")) {  // Se o arquivo não for encontrado
-					throw std::runtime_error("Erro ao carregar a textura: assets/chefao/Agis.png");
+				if (!sprite.loadFromFile("assets/Yokai/Agis.png")) {  // Se o arquivo não for encontrado
+					throw std::runtime_error("Erro ao carregar a textura: assets/Yokai/Agis.png");
 				}
 			}
 			catch (const std::exception& e) {
@@ -144,32 +144,32 @@ namespace Personagens {
 		}
 	}
 
-	void Chefao::operator++() {
+	void Yokai::operator++() {
 		num_projetil++;
 	}
 
-	bool Chefao::zonaChefao(Slime* jog) {
-		int limiteSup_chefao = 0;
-		int limiteInf_chefao = 0;
+	bool Yokai::zonaYokai(Heroi* jog) {
+		int limiteSup_Yokai = 0;
+		int limiteInf_Yokai = 0;
 		bool fim = false;
 
 		int num_ant = 0;
 
-		//for pra descobrir a zona do chefao
+		//for pra descobrir a zona do Yokai
 		for (int i = 1; i <= 8 && fim != true; i++) {
 			if (corpo.getPosition().x >= num_ant && corpo.getPosition().x + corpo.getSize().x <= 1800 * i) {
-				limiteSup_chefao = 1800 * i;
+				limiteSup_Yokai = 1800 * i;
 				fim = true;
 			}
 			else {
-				limiteInf_chefao = 1800 * (i);
+				limiteInf_Yokai = 1800 * (i);
 			}
 		}
 
-		iniZona = limiteInf_chefao;
-		finalZona = limiteSup_chefao;
+		iniZona = limiteInf_Yokai;
+		finalZona = limiteSup_Yokai;
 
-		if (jog->getCorpo().getPosition().x >= limiteInf_chefao && jog->getCorpo().getPosition().x <= limiteSup_chefao) {
+		if (jog->getCorpo().getPosition().x >= limiteInf_Yokai && jog->getCorpo().getPosition().x <= limiteSup_Yokai) {
 			return true;
 		}
 		else
@@ -177,14 +177,14 @@ namespace Personagens {
 
 	}
 	
-	void Chefao::zonaChefao() {
+	void Yokai::zonaYokai() {
 		bool fim = false;
 
 		int num_ant = 0;
 
 		iniZona = 0;
 
-		//for pra descobrir a zona do chefao
+		//for pra descobrir a zona do Yokai
 		for (int i = 1; i <= 8 && fim != true; i++) {
 
 			if (corpo.getPosition().x >= iniZona && corpo.getPosition().x + corpo.getSize().x <= 1800 * i) {
@@ -197,9 +197,9 @@ namespace Personagens {
 		}
 		
 	}
-	const int Chefao::max_projetil = 5;
+	const int Yokai::max_projetil = 5;
 
-	json Chefao::salvar() const {
+	json Yokai::salvar() const {
 		json entidadeJson;
 		entidadeJson["id"] = id;
 		entidadeJson["x"] = corpo.getPosition().x;

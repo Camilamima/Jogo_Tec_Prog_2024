@@ -1,4 +1,4 @@
-#include "Cachorro.h"
+#include "Samurai.h"
 #include <cmath>
 #include <stdexcept>
 #include <iostream>
@@ -6,7 +6,7 @@
 using namespace std;
 
 namespace Personagens {
-    Cachorro::Cachorro(int id, const char* png) :
+    Samurai::Samurai(int id, const char* png) :
         Inimigo(id, png)
     {
         //sprite.loadFromFile();
@@ -29,11 +29,11 @@ namespace Personagens {
         setMaldade(2);
     }
 
-    Cachorro::~Cachorro() {
+    Samurai::~Samurai() {
 
     }
 
-    void Cachorro::deveSeguir(Personagens::Slime* jog) {
+    void Samurai::deveSeguir(Personagens::Heroi* jog) {
         RectangleShape aux = jog->getCorpo();
         float x, y, xJog, yJog;
         x = corpo.getPosition().x + (corpo.getSize().x / 2);
@@ -59,7 +59,7 @@ namespace Personagens {
 
     }
 
-    void Cachorro::seguir(float x) {
+    void Samurai::seguir(float x) {
         float xC = corpo.getPosition().x + (corpo.getSize().x / 2);
         if (seguindo && !atacando) {
             if (xC != x) {
@@ -119,7 +119,7 @@ namespace Personagens {
         }
     }
 
-    void Cachorro::atacar(int d) {
+    void Samurai::atacar(int d) {
 
 
         //esquerda
@@ -163,7 +163,7 @@ namespace Personagens {
         }
     }
     
-    void Cachorro::animacao(int num, int limite) {
+    void Samurai::animacao(int num, int limite) {
         if (val >= limite) {
             val = 0;
         }
@@ -200,7 +200,7 @@ namespace Personagens {
         }
     }
 
-    void Cachorro::executar() {
+    void Samurai::executar() {
 
         cont++;
 
@@ -232,7 +232,7 @@ namespace Personagens {
         }
     }
 
-    json Cachorro::salvar() const {
+    json Samurai::salvar() const {
         json entidadeJson;
         entidadeJson["id"] = id;
         entidadeJson["x"] = corpo.getPosition().x;

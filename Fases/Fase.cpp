@@ -14,8 +14,8 @@ namespace Fases {
 		Ente(),
 		Texto(),
 		num_fase(-1),
-		Slime1(1),
-		Slime2(2),
+		Heroi1(1),
+		Heroi2(2),
 		listaEntidades(),
 		gerentC(),
 		num_facil(-1),
@@ -61,19 +61,22 @@ namespace Fases {
 	float Fase::checaZona() {
 
 		if (qnt_jogadores == 1) {
-			if (Slime1.getVidas() <= 0) {
+
+			if (Heroi1.getVidas() <= 0) {
 				int xJog1;
-				xJog1 = (int)Slime2.getCorpo().getPosition().x;
-				xJog1 = xJog1 + (int)Slime2.getCorpo().getSize().x / 2;
+				xJog1 = (int)Heroi2.getCorpo().getPosition().x;
+				xJog1 = xJog1 + (int)Heroi2.getCorpo().getSize().x / 2;
 
 				zona_atual = (xJog1 / tamanho_zona);
 
 				return (float)(zona_atual * tamanho_zona);
 			}
-			else if (Slime2.getVidas() <= 0 || gerentC.getJogador2() == nullptr) {
+
+
+			else if (Heroi2.getVidas() <= 0 || gerentC.getJogador2() == nullptr) {
 				int xJog1;
-				xJog1 = (int)Slime1.getCorpo().getPosition().x;
-				xJog1 = xJog1 + (int)Slime1.getCorpo().getSize().x / 2;
+				xJog1 = (int)Heroi1.getCorpo().getPosition().x;
+				xJog1 = xJog1 + (int)Heroi1.getCorpo().getSize().x / 2;
 
 				zona_atual = (xJog1 / tamanho_zona);
 
@@ -81,20 +84,40 @@ namespace Fases {
 			}
 		}
 		else if(qnt_jogadores==2) {
-			int xJog1, xJog2;
-			xJog1 = (int)Slime1.getCorpo().getPosition().x;
-			xJog1 = xJog1 + (int)Slime1.getCorpo().getSize().x / 2;
-			xJog2 = (int)Slime2.getCorpo().getPosition().x;
-			xJog2 = xJog2 + (int)Slime1.getCorpo().getSize().x / 2;
+			if (Heroi1.getVidas() > 0 && Heroi2.getVidas() > 0) {
+				int xJog1, xJog2;
+				xJog1 = (int)Heroi1.getCorpo().getPosition().x;
+				xJog1 = xJog1 + (int)Heroi1.getCorpo().getSize().x / 2;
+				xJog2 = (int)Heroi2.getCorpo().getPosition().x;
+				xJog2 = xJog2 + (int)Heroi1.getCorpo().getSize().x / 2;
 
-			zona_atual = (xJog1 / tamanho_zona);
+				zona_atual = (xJog1 / tamanho_zona);
 
-			if (xJog2 / tamanho_zona < zona_atual) {
-				zona_atual = xJog2 / tamanho_zona;
+				if (xJog2 / tamanho_zona < zona_atual) {
+					zona_atual = xJog2 / tamanho_zona;
+				}
+
+				return (float)zona_atual * tamanho_zona;
 			}
+			else if (Heroi1.getVidas() > 0 && Heroi2.getVidas() <= 0) {
+				int xJog1;
+				xJog1 = (int)Heroi1.getCorpo().getPosition().x;
+				xJog1 = xJog1 + (int)Heroi1.getCorpo().getSize().x / 2;
 
-			return (float)zona_atual * tamanho_zona;
+				zona_atual = (xJog1 / tamanho_zona);
 
+				return (float)(zona_atual * tamanho_zona);
+			}
+			else if (Heroi1.getVidas() <= 0 && Heroi2.getVidas() > 0) {
+
+				int xJog1;
+				xJog1 = (int)Heroi2.getCorpo().getPosition().x;
+				xJog1 = xJog1 + (int)Heroi2.getCorpo().getSize().x / 2;
+
+				zona_atual = (xJog1 / tamanho_zona);
+
+				return (float)(zona_atual * tamanho_zona);
+			}
 		}
 		return 0;
 
@@ -334,13 +357,12 @@ namespace Fases {
 			}
 
 
-			if (Slime1.getVidas() <= 0) {
-				Slime1.setMorrendo(true);
-				if (Slime1.getCont() % 8 == 0) {
-					morreu = Slime1.animacaoMorte(cont1, 10);
+			if (Heroi1.getVidas() <= 0) {
+				Heroi1.setMorrendo(true);
+				if (Heroi1.getCont() % 8 == 0) {
 					cont1++;
 					if (morreu == true) {
-						listaEntidades.MatarEntidade(&Slime1, &gerentC);
+						listaEntidades.MatarEntidade(&Heroi1, &gerentC);
 						qnt_jogadores--;
 						apareceu1 = true;
 					}
@@ -348,8 +370,8 @@ namespace Fases {
 			}
 
 			if (gerentC.getJogador2() != nullptr && apareceu2 == false) {
-				if (Slime2.getVidas() <= 0) {
-					listaEntidades.MatarEntidade(&Slime2, &gerentC);
+				if (Heroi2.getVidas() <= 0) {
+					listaEntidades.MatarEntidade(&Heroi2, &gerentC);
 					qnt_jogadores--;
 					apareceu2 = true;
 				}
@@ -358,7 +380,7 @@ namespace Fases {
 
 		else if (qnt_jogadores == 0) {
 
-			if (Slime1.getVidas() <= 0) {
+			if (Heroi1.getVidas() <= 0) {
 
 				if (qnt_jogadores_ini ==1) {
 					setaTextos(2);
@@ -378,7 +400,7 @@ namespace Fases {
 					textos.clear();
 				}
 
-				else if (qnt_jogadores_ini ==2 && Slime2.getVidas()<=0) {
+				else if (qnt_jogadores_ini ==2 && Heroi2.getVidas()<=0) {
 
 					setaTextos(3);
 					Pause = true;
@@ -467,7 +489,7 @@ namespace Fases {
 
 			}
 		}
-		pMenu->salvaScore(input, Slime1.getPontos());
+		pMenu->salvaScore(input, Heroi1.getPontos());
 
 		if (qnt_jogadores_ini == 2) {
 			t.restart();
@@ -523,7 +545,7 @@ namespace Fases {
 
 				}
 			}
-			pMenu->salvaScore(input, Slime2.getPontos());
+			pMenu->salvaScore(input, Heroi2.getPontos());
 
 		}
 
@@ -573,7 +595,7 @@ namespace Fases {
 		else if (text == 2) {
 			nomes.push_back("Você morreu...");
 			nomes.push_back("Quantidade de pontos:");
-			nomes.push_back(std::to_string(Slime1.getPontos()));
+			nomes.push_back(std::to_string(Heroi1.getPontos()));
 			nomes.push_back("aperte x para sair");
 
 			textos.resize(nomes.size()); // Garante que textos tenha o mesmo número de elementos que nomes
@@ -589,8 +611,8 @@ namespace Fases {
 		else if (text == 3) {
 			nomes.push_back("Vocês morreram...");
 			nomes.push_back("Quantidade de pontos:");
-			nomes.push_back("Jogador1: " + std::to_string(Slime1.getPontos()));
-			nomes.push_back("Jogador2: " + std::to_string(Slime2.getPontos()));
+			nomes.push_back("Jogador1: " + std::to_string(Heroi1.getPontos()));
+			nomes.push_back("Jogador2: " + std::to_string(Heroi2.getPontos()));
 			nomes.push_back("aperte x para sair");
 
 			textos.resize(nomes.size()); // Garante que textos tenha o mesmo número de elementos que nomes
@@ -606,7 +628,7 @@ namespace Fases {
 		else if (text == 4) {
 			nomes.push_back("Você ganhou o jogo");
 			nomes.push_back("Quantidade de pontos:");
-			nomes.push_back(std::to_string(Slime1.getPontos()));
+			nomes.push_back(std::to_string(Heroi1.getPontos()));
 			nomes.push_back("aperte x para sair");
 
 			textos.resize(nomes.size()); // Garante que textos tenha o mesmo número de elementos que nomes
@@ -622,8 +644,8 @@ namespace Fases {
 		else if (text == 5) {
 			nomes.push_back("Vocês ganharam o jogo");
 			nomes.push_back("Quantidade de pontos:");
-			nomes.push_back(std::to_string(Slime1.getPontos()));
-			nomes.push_back(std::to_string(Slime2.getPontos()));
+			nomes.push_back(std::to_string(Heroi1.getPontos()));
+			nomes.push_back(std::to_string(Heroi2.getPontos()));
 			nomes.push_back("aperte x para sair");
 
 			textos.resize(nomes.size()); // Garante que textos tenha o mesmo número de elementos que nomes

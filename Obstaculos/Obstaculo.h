@@ -1,6 +1,6 @@
 #pragma once
 #include "../Entidade.h"
-#include "../Personagens/Slime.h"
+#include "../Personagens/Heroi.h"
 
 namespace Obstaculos {
 	class Obstaculo : public Entidade
@@ -21,8 +21,8 @@ namespace Obstaculos {
 		bool getImpede() const { return impede; }
 		bool getAtrapalha() const { return atrapalha; }
 		bool getDanoso() const { return danoso; }
-		virtual void obstacular(Personagens::Slime* jogador,int i=-1) = 0;
-		void restaura(Personagens::Slime* jogador);
+		virtual void obstacular(Personagens::Personagem* jogador,int i=-1) = 0;
+		void restaura(Personagens::Heroi* jogador);
 		virtual json salvar() const = 0;
 	};
 }

@@ -2,17 +2,17 @@
 #include <stdio.h>
 #include <vector>
 #include <set>
-#include "../Personagens/Slime.h"
+#include "../Personagens/Heroi.h"
 #include "../Obstaculos/Plataforma.h"
 #include "../Obstaculos/Espinho.h"
-#include "../Obstaculos/SlimeMau.h"
-#include "../Personagens/Rato.h"
+#include "../Obstaculos/Rio.h"
+#include "../Personagens/Lobo.h"
 #include "../Gerenciadores/Gerenciador_Colisoes.h"
 #include "../Listas/ListaEntidades.h"
 #include "../Projetil.h"
-#include "../Personagens/Chefao.h"
+#include "../Personagens/Yokai.h"
 #include "../Personagens/Efeitos.h"
-#include "../Personagens/Cachorro.h"
+#include "../Personagens/Samurai.h"
 #include <nlohmann/json.hpp>
 #include "../Texto.h"
 using json = nlohmann::json;
@@ -33,8 +33,8 @@ namespace Fases {
 		Menu* pMenu;
 		vector <int> localizacao_obs;
 		Gerenciadores::Gerenciador_Colisoes gerentC;
-		Personagens::Slime Slime1;
-		Personagens::Slime Slime2;
+		Personagens::Heroi Heroi1;
+		Personagens::Heroi Heroi2;
 		Obstaculos::Plataforma chao;
 		Obstaculos::Plataforma ladoE;
 		Listas::ListaEntidade listaEntidades;

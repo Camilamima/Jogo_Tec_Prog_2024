@@ -3,7 +3,7 @@
 
 
 namespace Personagens {
-	class Slime;
+	class Heroi;
 	class Inimigo : public Personagem
 	{
 	protected:
@@ -14,7 +14,7 @@ namespace Personagens {
 		virtual void executar() = 0;
 		void mover(float aux);
 		void setMaldade(int maldade);
-		virtual void ataca(Slime* jog,int lado);
+		virtual void ataca(Heroi* jog,int lado);
 		int getMaldade() const{ return nivel_maldade; }
 		virtual void animacao(int num, int limite) = 0;
 		virtual json salvar() const = 0;

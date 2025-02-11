@@ -51,7 +51,7 @@ void Projetil:: setVelocidade(float x, float y) {
     velocidadeY = y;
 }
 
-bool Projetil::segueQuem(Personagens::Slime* jog) {//no gerenciador de colisoes
+bool Projetil::segueQuem(Personagens::Heroi* jog) {//no gerenciador de colisoes
 
     RectangleShape aux = jog->getCorpo();
 
@@ -200,7 +200,7 @@ void Projetil::seguir(float x_alvo, float y_alvo) {
 
     }
 }
-    void Projetil::danifica(Personagens::Slime* jog) {
+    void Projetil::danifica(Personagens::Heroi* jog) {
         if (relogioVida.getElapsedTime().asSeconds() >= 1.5) {
             jog->animacao(4, 1);
             jog->operator-=(10);

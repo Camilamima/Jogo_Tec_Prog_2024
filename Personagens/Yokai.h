@@ -6,7 +6,7 @@
 #include <set>
 
 namespace Personagens {
-	class Chefao : public Inimigo
+	class Yokai : public Inimigo
 	{
 	private:
 		//Listas::Lista<Projetil*>* ListProj;//transformar em um set
@@ -25,8 +25,8 @@ namespace Personagens {
 		float pos_inicial;
 		
 	public:
-		Chefao(int id, const char* png = "");
-		~Chefao();
+		Yokai(int id, const char* png = "");
+		~Yokai();
 		void executar();
 		void teletransportar();
 		void criaProjeteis(Projetil* proj);
@@ -38,8 +38,8 @@ namespace Personagens {
 		void setNum_Projetil(int a) { num_projetil = a; }
 		int getNum_Proj_Salv() { return num_proj_salvamento; }
 		void operator++();
-		bool zonaChefao(Slime* jog);
-		void zonaChefao();
+		bool zonaYokai(Heroi* jog);
+		void zonaYokai();
 		void setAtivo(bool x) { ativo = x; }
 		bool getAtivo() { return ativo; }
 		void setPosInicialX(float x) { pos_inicial = x; }
@@ -48,8 +48,6 @@ namespace Personagens {
 		void setFinalZona(int fim) { finalZona = fim; }
 		int getIniZona() { return iniZona; }
 		void setIniZona(int inicio) { iniZona = inicio; }
-		void setCont(int a) { cont = a; }
-		void setVal(int a) { val = a; }
 		json salvar()const;
 		void animacao(int num, int limite);
 	};

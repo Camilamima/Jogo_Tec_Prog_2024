@@ -1,6 +1,6 @@
 #pragma once
 #include "Entidade.h"
-#include "Personagens/Slime.h"
+#include "Personagens/Heroi.h"
 
 class Projetil : public Entidade {
 private:
@@ -35,7 +35,7 @@ public:
 	bool getSeguindo() const { return seguindo; }
 	bool getApareceu() const { return apareceu; }
 	void setApareceu(bool x) { apareceu = x; }
-	bool segueQuem(Personagens::Slime* jog);
+	bool segueQuem(Personagens::Heroi* jog);
 	void setVelocidade(float x, float y);
 	float getVelocidadeX() const { return velocidadeX; }
 	float getVelocidadeY() const { return velocidadeY; }
@@ -45,7 +45,7 @@ public:
 	void mover(float aux=0);
 	float atualizaFPS();
 	void seguir(float x_alvo, float y_alvo);
-	void danifica(Personagens::Slime* jog);
+	void danifica(Personagens::Heroi* jog);
 	void animacao(int limite);
 	void setChao(float x) { chao = x; }
 	void setXY(float x1, float y1) { posX = x1; posY = y1; }

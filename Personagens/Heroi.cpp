@@ -1,4 +1,4 @@
-#include "Slime.h"
+#include "Heroi.h"
 #include <iostream>
 #include <stdexcept>
 #include "Inimigo.h"
@@ -7,7 +7,7 @@
 using namespace std;
 
 namespace Personagens {
-	Slime::Slime(int id, const char* png) :
+	Heroi::Heroi(int id, const char* png) :
 		Personagem(id, png)
 	{
 		pontos = 0;
@@ -64,13 +64,13 @@ namespace Personagens {
 
 		}
 			
-		vidas =	100;
+		vidas =	1;
 	}
 
-	Slime::~Slime() {
+	Heroi::~Heroi() {
 	}
 
-	void Slime::mover(float aux) {
+	void Heroi::mover(float aux) {
 
 
 		if (!noChao)
@@ -113,7 +113,7 @@ namespace Personagens {
 
 
 
-	void Slime::pular(float imp) {
+	void Heroi::pular(float imp) {
 		impulso = imp;
 
 		float delta;
@@ -124,7 +124,7 @@ namespace Personagens {
 
 
 
-	void Slime::processaEvento() {
+	void Heroi::processaEvento() {
 		if (getId() == 1) {
 			if (!morrendo) {
 				bool clicado;
@@ -316,7 +316,7 @@ namespace Personagens {
 
 
 
-	void Slime::executar() {
+	void Heroi::executar() {
 
 		cont++;
 
@@ -337,7 +337,7 @@ namespace Personagens {
 
 
 
-	void Slime::animacao(int num, int limite) {
+	void Heroi::animacao(int num, int limite) {
 		if (val >= limite) {
 			val = 0;
 		}
@@ -574,122 +574,9 @@ namespace Personagens {
 		}
 	}
 
-	bool Slime::animacaoMorte(int cont, int limite) {
-		bool fim = 0;
-
-		if (cont >= limite) {
-			return true;
-		}
-
-		if (getId() == 1) {//se for o jogador 1
-			if (cont == 0) {
-				setSoCorpo(62, 100);
-				sprite.loadFromFile("assets/jogador1/morte.png");
-				corpo.setTexture(&sprite);
-				corpo.setTextureRect(IntRect(0, 0, 62, 100));
-				return true;
-			}
-			else if (cont == 1) {
-				setSoCorpo(96, 100);
-				sprite.loadFromFile("assets/jogador1/morte.png");
-				corpo.setTexture(&sprite);
-				corpo.setTextureRect(IntRect(125, 0, 96, 100));
-				return true;
-			}
-			else if (cont == 2) {
-				setSoCorpo(105, 100);
-				sprite.loadFromFile("assets/jogador1/morte.png");
-				corpo.setTexture(&sprite);
-				corpo.setTextureRect(IntRect(293, 0, 105, 100));
-				return true;
-			}
-			else if (cont == 3) {
-				setSoCorpo(105, 100);
-				sprite.loadFromFile("assets/jogador1/morte.png");
-				corpo.setTexture(&sprite);
-				corpo.setTextureRect(IntRect(461, 0, 105, 100));
-				return true;
-			}
-			else {
-				setSoCorpo(108, 100);
-				sprite.loadFromFile("assets/jogador1/morte.png");
-				corpo.setTexture(&sprite);
-				corpo.setTextureRect(IntRect(626, 0, 108, 100));
-				return false;
-			}
-		}
-
-		else if (getId() == 2) {//se for o jogador 2
-			if (cont == 0) {
-				setSoCorpo(62, 100);
-				sprite.loadFromFile("assets/jogador2/morte.png");
-				corpo.setTexture(&sprite);
-				corpo.setTextureRect(IntRect(0, 0, 62, 100));
-			}
-			else if (cont == 1) {
-				setSoCorpo(96, 100);
-				sprite.loadFromFile("assets/jogador2/morte.png");
-				corpo.setTexture(&sprite);
-				corpo.setTextureRect(IntRect(125, 0, 96, 100));
-			}
-			else if (cont == 2) {
-				setSoCorpo(105, 100);
-				sprite.loadFromFile("assets/jogador2/morte.png");
-				corpo.setTexture(&sprite);
-				corpo.setTextureRect(IntRect(293, 0, 105, 100));
-			}
-			else if (cont == 3) {
-				setSoCorpo(105, 100);
-				sprite.loadFromFile("assets/jogador2/morte.png");
-				corpo.setTexture(&sprite);
-				corpo.setTextureRect(IntRect(461, 0, 105, 100));
-			}
-			else {
-				setSoCorpo(108, 100);
-				sprite.loadFromFile("assets/jogador2/morte.png");
-				corpo.setTexture(&sprite);
-				corpo.setTextureRect(IntRect(626, 0, 108, 100));
-				return false;
-			}
-		}
 
 
-		else if (getId() == 2) {//se for o jogador 2
-			if (cont == 0) {
-				setSoCorpo(62, 100);
-				sprite.loadFromFile("assets/jogador2/morte.png");
-				corpo.setTexture(&sprite);
-				corpo.setTextureRect(IntRect(0, 0, 62, 100));
-			}
-			else if (cont == 1) {
-				setSoCorpo(96, 100);
-				sprite.loadFromFile("assets/jogador2/morte.png");
-				corpo.setTexture(&sprite);
-				corpo.setTextureRect(IntRect(125, 0, 96, 100));
-			}
-			else if (cont == 2) {
-				setSoCorpo(105, 100);
-				sprite.loadFromFile("assets/jogador2/morte.png");
-				corpo.setTexture(&sprite);
-				corpo.setTextureRect(IntRect(293, 0, 105, 100));
-			}
-			else if (cont == 3) {
-				setSoCorpo(105, 100);
-				sprite.loadFromFile("assets/jogador2/morte.png");
-				corpo.setTexture(&sprite);
-				corpo.setTextureRect(IntRect(461, 0, 105, 100));
-			}
-			else {
-				setSoCorpo(108, 100);
-				sprite.loadFromFile("assets/jogador2/morte.png");
-				corpo.setTexture(&sprite);
-				corpo.setTextureRect(IntRect(626, 0, 108, 100));
-				return false;
-			}
-		}
-	}
-
-	void Slime::atacarIni(Inimigo* ini) {
+	void Heroi::atacarIni(Inimigo* ini) {
 		setAtacando(1);
 		pular(300);
 		--(*ini);
@@ -698,7 +585,7 @@ namespace Personagens {
 		}
 	}
 
-	json Slime::salvar() const {
+	json Heroi::salvar() const {
 		json entidadeJson;
 		entidadeJson["id"] = id;
 		entidadeJson["x"] = corpo.getPosition().x;

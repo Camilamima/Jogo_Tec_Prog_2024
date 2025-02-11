@@ -6,7 +6,7 @@ namespace Personagens {
 	Efeito::Efeito(int id, const char* png):
 		Entidade(id, png)
 	{
-		setCoordenadas(6960, 450);//coord inicial do chefao
+		setCoordenadas(6960, 450);//coord inicial do Yokai
 		setCorpo(250, 250);
 		setSoCorpo(250, 250);
 		limite = 16;

@@ -17,7 +17,7 @@ namespace Obstaculos {
 		void setEspinhos(int e) {
 			num_espinhos = e;
 		}
-		void obstacular(Personagens::Slime* jogador,int i=-1);
+		void obstacular(Personagens::Personagem* jogador,int i=-1);
 		virtual json salvar() const;
 	};
 }

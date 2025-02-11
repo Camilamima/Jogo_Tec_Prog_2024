@@ -1,6 +1,6 @@
 #include "Gerenciador_Colisoes.h"
-#include "../Personagens/Cachorro.h"
-#include "../Personagens/Chefao.h"
+#include "../Personagens/Samurai.h"
+#include "../Personagens/Yokai.h"
 #include <list>
 #include <iostream>
 
@@ -23,7 +23,7 @@ namespace Gerenciadores {
 		LProjetil.clear();
 	}
 
-	void Gerenciador_Colisoes::setJogadores(Personagens::Slime* j1, Personagens::Slime* j2) {
+	void Gerenciador_Colisoes::setJogadores(Personagens::Heroi* j1, Personagens::Heroi* j2) {
 		jog1 = j1;
 		jog2 = j2;
 	}
@@ -45,10 +45,10 @@ namespace Gerenciadores {
 		}
 
 		else if (ent->getId() == 1) {//jogador 1
-			jog1 = static_cast<Personagens::Slime*>(ent);
+			jog1 = static_cast<Personagens::Heroi*>(ent);
 		}
 		else if (ent->getId() == 2) {//jogador 2
-			jog2 = static_cast<Personagens::Slime*>(ent);
+			jog2 = static_cast<Personagens::Heroi*>(ent);
 		}
 		else if (ent->getId() == 5) {//projetil
 			LProjetil.push_back(static_cast<Projetil*>(ent));
@@ -107,7 +107,7 @@ namespace Gerenciadores {
 		}
 
 		if ((x >= outro.getPosition().x && x <= (outro.getPosition().x + outro.getSize().x)) ||
-			(x2 >= outro.getPosition().x && x2 <= (outro.getPosition().x + outro.getSize().x)))//especifico p slime mau e espinho
+			(x2 >= outro.getPosition().x && x2 <= (outro.getPosition().x + outro.getSize().x)))//especifico p Heroi mau e espinho
 		{
 			if ((y >= outro.getPosition().y && y <= (outro.getPosition().y + outro.getSize().y)) ||
 				(y2 >= outro.getPosition().y && y2 <= (outro.getPosition().y + outro.getSize().y))) {
@@ -138,9 +138,9 @@ namespace Gerenciadores {
 
 				if (inimigo->getMaldade() == 2) {
 
-					Personagens::Cachorro* cachorro = static_cast<Personagens::Cachorro*>(inimigo);
+					Personagens::Samurai* Samurai = static_cast<Personagens::Samurai*>(inimigo);
 
-					cachorro->deveSeguir(jog1);
+					Samurai->deveSeguir(jog1);
 				}
 
 				if (veriColisao(inimigo, jog1) == 1) {
@@ -189,9 +189,9 @@ namespace Gerenciadores {
 
 				if (inimigo->getMaldade() == 2) {
 
-					Personagens::Cachorro* cachorro = static_cast<Personagens::Cachorro*>(inimigo);
+					Personagens::Samurai* Samurai = static_cast<Personagens::Samurai*>(inimigo);
 
-					cachorro->deveSeguir(jog2);
+					Samurai->deveSeguir(jog2);
 				}
 
 				if (veriColisao(inimigo, jog2) == 1) {
@@ -327,11 +327,11 @@ namespace Gerenciadores {
 						ladoD = 1;
 					}
 					if (veriColisao(obstaculo, jog1) == 3) {
-						obstaculo->obstacular(jog1, 2);
+						obstaculo->obstacular(jog1, 3);
 						ladoE = 1;
 					}
 					if (veriColisao(obstaculo, jog1) == 4) {
-						obstaculo->obstacular(jog1, 2);
+						obstaculo->obstacular(jog1, 4);
 						break;
 					}
 				}
@@ -388,22 +388,20 @@ namespace Gerenciadores {
 				if (obstaculo->getImpede() == true) {
 
 					if (veriColisao(obstaculo, jog2) == 1) {
-						jog2->setChao(aux.getPosition().y - 100);
+						obstaculo->obstacular(jog2, 1);
 						emCima = 1;
 					}
 
 					if (veriColisao(obstaculo, jog2) == 2) {
-						jog2->setMoviD(0);
+						obstaculo->obstacular(jog2, 2);
 						ladoD = 1;
 					}
 					if (veriColisao(obstaculo, jog2) == 3) {
-
-						jog2->setMoviE(0);
+						obstaculo->obstacular(jog2, 3);
 						ladoE = 1;
 					}
 					if (veriColisao(obstaculo, jog2) == 4) {
-						jog2->setVelocidadeY(0);
-						jog2->pular(-100);
+						obstaculo->obstacular(jog2, 4);
 						break;
 					}
 				}
@@ -442,7 +440,7 @@ namespace Gerenciadores {
 
 
 	void Gerenciador_Colisoes::removeEntidade(Entidade* ent) {
-		if (ent->getId() == 4) {//se for inimigo ou chefao
+		if (ent->getId() == 4) {//se for inimigo ou Yokai
 			LIni.remove(static_cast<Personagens::Inimigo*>(ent));
 		}
 		if (ent->getId() == 6) {

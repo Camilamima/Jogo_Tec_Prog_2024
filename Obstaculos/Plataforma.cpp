@@ -39,7 +39,7 @@ namespace Obstaculos {
 		return entidadeJson;
 	}
 
-	void Plataforma::obstacular(Slime* jogador,int i) {
+	void Plataforma::obstacular(Personagem* jogador,int i) {
 		if (i == 1) {
 			jogador->setChao(corpo.getPosition().y - 100);
 		}
@@ -53,7 +53,10 @@ namespace Obstaculos {
 		}
 		if (i == 4) {
 			jogador->setVelocidadeY(0);
-			jogador->pular(-100);
+			if (jogador->getId() == 1 || jogador->getId() == 2) {
+				Heroi* Heroi = static_cast<Personagens::Heroi*>(jogador);
+				Heroi->pular(-100);
+			}
 		}
 	}
 }

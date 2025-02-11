@@ -1,9 +1,9 @@
-#include "SlimeMau.h"
+#include "Rio.h"
 #include <iostream>
 
 using namespace Personagens;
 namespace Obstaculos {
-	SlimeMau::SlimeMau(int id, const char* png) :
+	Rio::Rio(int id, const char* png) :
 		Obstaculo(id, png)
 	{
 		setCoordenadas(1200, 800);
@@ -13,24 +13,24 @@ namespace Obstaculos {
 		atrasador = VX * atrito;
 	}
 
-	SlimeMau::~SlimeMau() {
+	Rio::~Rio() {
 	}
 	
 
-	void SlimeMau::executar() {
+	void Rio::executar() {
 		pGGrafico->desenha(corpo);
 		if (!noChao) {
 			mover();
 		}
 	}
 
-	void SlimeMau::obstacular(Slime* jogador,int i) {
+	void Rio::obstacular(Personagem* jogador,int i) {
 
 		float velY = jogador->getVelocidadeY();
 		jogador->setVelocidae(atrasador, (float)0.97 * (float) velY);
 	}
 
-	json SlimeMau::salvar() const {
+	json Rio::salvar() const {
 		json entidadeJson;
 
 		entidadeJson["id"] = id;

@@ -30,7 +30,7 @@ void Obstaculo:: mover(float aux) {
 	}
 }
 
-void Obstaculo::restaura(Slime* jogador) {
+void Obstaculo::restaura(Heroi* jogador) {
 	float velY = jogador->getVelocidadeY();
 
 

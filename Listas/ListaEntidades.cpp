@@ -1,6 +1,6 @@
 #include "ListaEntidades.h"
-#include "../Personagens/Slime.h"
-#include "../Personagens/Chefao.h"
+#include "../Personagens/Heroi.h"
+#include "../Personagens/Yokai.h"
 
 using namespace Personagens;
 namespace Listas {
@@ -10,12 +10,12 @@ namespace Listas {
 	/*===== construtora =====*/
 	ListaEntidade::ListaEntidade() :
 		listaEntidades(new Lista<Entidade*>()),
-		chefoes(new std::vector<Chefao*>()),
-		plataforma_chefao(new std::queue<Entidade*>())
+		chefoes(new std::vector<Yokai*>()),
+		plataforma_Yokai(new std::queue<Entidade*>())
 	{
-		pos_chefao = 0;
-		zona_chefao = false;
-		zona_chefao_num = 0;
+		pos_Yokai = 0;
+		zona_Yokai = false;
+		zona_Yokai_num = 0;
 	}
 
 	/*===== destrutora =====*/
@@ -30,7 +30,7 @@ namespace Listas {
 		}
 		delete listaEntidades;
 		delete chefoes;
-		delete plataforma_chefao;
+		delete plataforma_Yokai;
 
 	}
 	
@@ -51,36 +51,36 @@ namespace Listas {
 						(*it)->executar();//executa o projetil
 				}
 			}
-			else if ((*it)->getId() == 6) {//se for um chefao
-				if (static_cast<Personagens::Chefao*>(*it)->getAtivo() == true) {
+			else if ((*it)->getId() == 6) {//se for um Yokai
+				if (static_cast<Personagens::Yokai*>(*it)->getAtivo() == true) {
 					(*it)->executar();
 				}
 			}
 			else if ((*it)->getId() == 12) {
 				(*it)->executar();
 			}
-			else {//se nao for projetil nem chefao nem plat chefao
+			else {//se nao for projetil nem Yokai nem plat Yokai
 				(*it)->executar();
 
 				if ((*it)->getId() == 1) {//se for um jogador
-					encontraZonaChefao(static_cast<Slime*>(*it));//verifico qual zona ele tá
+					encontraZonaYokai(static_cast<Heroi*>(*it));//verifico qual zona ele tá
 				}
 			}
 		}
 	}
 
-	/*===== inclui uma entidade na lista e verifica se eh chefao ou projetil =====*/
+	/*===== inclui uma entidade na lista e verifica se eh Yokai ou projetil =====*/
 	void ListaEntidade::Incluir(Entidade* entidade, Gerenciadores::Gerenciador_Colisoes* gc) {
 
 		listaEntidades->adicionarElemento(entidade);//adiciono na lista
 		gc->includeEntidade(entidade);//incluo no gerenciador de colisoes
 
-		if (entidade->getId() == 6) {//se for chefao adiciono-o no vector
-			chefoes->push_back(static_cast<Chefao*>(entidade));//coloco o chefao no vetor de chefao
+		if (entidade->getId() == 6) {//se for Yokai adiciono-o no vector
+			chefoes->push_back(static_cast<Yokai*>(entidade));//coloco o Yokai no vetor de Yokai
 			
 		}
 
-		if(entidade->getId() == 5){//se for projetil, insiro no chefao que tiver espaço livre
+		if(entidade->getId() == 5){//se for projetil, insiro no Yokai que tiver espaço livre
 
 			bool inseri = false;
 			int i = 0;
@@ -88,10 +88,10 @@ namespace Listas {
 
 			tam = (int)chefoes->size();
 			while (inseri != true && i<tam) {
-				Chefao* chefao = chefoes->operator[](i);
+				Yokai* Yokai = chefoes->operator[](i);
 
-				if (chefao->getNum_Projetil() < chefao->getMaxProjetil()) {
-					chefao->criaProjeteis(static_cast<Projetil*>(entidade));
+				if (Yokai->getNum_Projetil() < Yokai->getMaxProjetil()) {
+					Yokai->criaProjeteis(static_cast<Projetil*>(entidade));
 					inseri = true;
 				}
 				else {
@@ -100,8 +100,8 @@ namespace Listas {
 			}
 		}
 
-		if (entidade->getId() == 12) {//se for plataforma do chefao
-			plataforma_chefao->push(entidade);
+		if (entidade->getId() == 12) {//se for plataforma do Yokai
+			plataforma_Yokai->push(entidade);
 		}
 	}
 
@@ -115,21 +115,21 @@ namespace Listas {
 		listaEntidades->adicionarElemento(entidade);//adiciono na lista
 		gc->includeEntidade(entidade);//incluo no gerenciador de colisoes
 
-		if (entidade->getId() == 6) {//se for chefao adiciono-o no vector
-			chefoes->push_back(static_cast<Chefao*>(entidade));//coloco o chefao no vetor de chefao
+		if (entidade->getId() == 6) {//se for Yokai adiciono-o no vector
+			chefoes->push_back(static_cast<Yokai*>(entidade));//coloco o Yokai no vetor de Yokai
 
 		}
-		if (entidade->getId() == 5) {//se for projetil, insiro no chefao que tiver espaço livre
+		if (entidade->getId() == 5) {//se for projetil, insiro no Yokai que tiver espaço livre
 
 			bool inseri = false;
 			int i = 0;
 			int tam;
 			tam =(int) chefoes->size();
 			while (inseri != true && i < tam) {
-				Chefao* chefao = chefoes->operator[](i);
+				Yokai* Yokai = chefoes->operator[](i);
 
-				if (chefao->getNum_Proj_Salv() < chefao->getNum_Projetil()) {
-					chefao->criaProjeteisSalv((static_cast<Projetil*>(entidade)));
+				if (Yokai->getNum_Proj_Salv() < Yokai->getNum_Projetil()) {
+					Yokai->criaProjeteisSalv((static_cast<Projetil*>(entidade)));
 					inseri = true;
 				}
 				else {
@@ -137,9 +137,9 @@ namespace Listas {
 				}
 			}
 		}
-		if (entidade->getId() == 12) {//se for plataforma do chefao
-			plataforma_chefao->push(entidade);
-			cout << "Inseri plataforma chefao" << endl;
+		if (entidade->getId() == 12) {//se for plataforma do Yokai
+			plataforma_Yokai->push(entidade);
+			cout << "Inseri plataforma Yokai" << endl;
 		}
 
 	}
@@ -193,11 +193,11 @@ namespace Listas {
 		if (ent->getId() == 7 || ent->getId() == 4) {
 			MatarEntidade(ent, gc);
 		}
-		if (ent->getId() == 6) {//se for chefao PRECISO remover a plataforma dele
+		if (ent->getId() == 6) {//se for Yokai PRECISO remover a plataforma dele
 			MatarEntidade(ent, gc);
-			gc->removeEntidade(plataforma_chefao->front());
-			listaEntidades->removerElemento(plataforma_chefao->front());
-			plataforma_chefao->pop();
+			gc->removeEntidade(plataforma_Yokai->front());
+			listaEntidades->removerElemento(plataforma_Yokai->front());
+			plataforma_Yokai->pop();
 		}
 
 		if (ent->getId() == 5) {//projetil
@@ -206,12 +206,12 @@ namespace Listas {
 	}
 
 
-	/*===== seta se um jogador está na zona de um determinado chefao... =====*/
-	void ListaEntidade::encontraZonaChefao(Slime* jog) {
+	/*===== seta se um jogador está na zona de um determinado Yokai... =====*/
+	void ListaEntidade::encontraZonaYokai(Heroi* jog) {
 		bool achou = false;
 
 		for (int i = 0; i < chefoes->size() && achou != true; i++) {
-			achou = chefoes->operator[](i)->zonaChefao(jog);
+			achou = chefoes->operator[](i)->zonaYokai(jog);
 			chefoes->operator[](i)->setAtivo(achou);
 		}
 	}

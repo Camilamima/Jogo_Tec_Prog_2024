@@ -19,4 +19,4 @@ void Texto::limpaTextos() {
 	textos.clear();
 }
 
-const char* Texto::FONTES = "assets/Fontes/PixelOperator8-Bold.ttf";
+const char* Texto::FONTES = "assets/Fontes/Pixeloperator8-Bold.ttf";
