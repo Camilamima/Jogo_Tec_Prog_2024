@@ -11,7 +11,9 @@ namespace Gerenciadores {
 	}
 
 	Gerenciador_Colisoes::~Gerenciador_Colisoes() {
-
+		LObst.clear();
+		LIni.clear();
+		LProjetil.clear();
 	}
 
 
