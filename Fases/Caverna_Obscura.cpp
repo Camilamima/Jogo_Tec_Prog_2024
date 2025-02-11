@@ -74,7 +74,7 @@ namespace Fases {
 			else if (id == 3) {
 				std::string png_str = entidade["png"];
 				const char* png = png_str.c_str();
-				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, png);
+				Entidades::Obstaculos::Plataforma* p = new Entidades::Obstaculos::Plataforma(3, png);
 				p->setCoordenadas(x, y);
 				p->setCorpo(entidade["largura"], entidade["altura"]);
 				p->geraPlataforma(entidade["altura"], entidade["largura"], x, y);
@@ -84,12 +84,12 @@ namespace Fases {
 				cout << "criei plat Yokai" << endl;
 				std::string png_str = entidade["png"];
 				const char* png = png_str.c_str();
-				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(12, png);
+				Entidades::Obstaculos::Plataforma* p = new Entidades::Obstaculos::Plataforma(12, png);
 				p->geraPlataforma(600, 224 + 20, x, y);
 				listaEntidades.IncluirSalvamento(p, &gerentC);
 			}
 			else if (id == 4) {
-				Personagens::Lobo* r = new Personagens::Lobo(4);
+				Entidades::Personagens::Lobo* r = new Entidades::Personagens::Lobo(4);
 				listaEntidades.IncluirSalvamento(r, &gerentC);
 				r->setCoordenadas(x, y);
 				r->setCorpo(100, 100);
@@ -98,14 +98,14 @@ namespace Fases {
 				r->setNoChao(entidade["noChao"]);
 			}
 			else if (id == 9) {
-				Obstaculos::Espinho* e = new Obstaculos::Espinho(9);
+				Entidades::Obstaculos::Espinho* e = new Entidades::Obstaculos::Espinho(9);
 				e->setCoordenadas(x, y);
 				e->setCorpo(100, 70);
 				e->setEspinhos(entidade["num_espinhos"]);
 				listaEntidades.IncluirSalvamento(e, &gerentC);
 			}
 			else if (id == 6) {
-				Personagens::Yokai* c = new Personagens::Yokai(6);
+				Entidades::Personagens::Yokai* c = new Entidades::Personagens::Yokai(6);
 				c->setCoordenadas(x, y);
 				c->setCorpo(224, 240);
 				c->setMaldade(3);
@@ -118,11 +118,11 @@ namespace Fases {
 				c->setTurno(entidade["turno"]);
 				c->setIniZona(entidade["iniZona"]);
 				c->setFinalZona(entidade["finalZona"]);
-				c->setNum_Projetil(entidade["num_projetil"]);
+				c->setNum_Projetil(entidade["num_Entidades::Projetil::"]);
 				listaEntidades.IncluirSalvamento(c, &gerentC);
 			}
 			else if (id == 5) {
-				Projetil* p = new Projetil(5);
+				Entidades::Projetil* p = new Entidades::Projetil(5);
 				p->setCoordenadas(x, y);
 				p->setVelocidade(entidade["velocidadeX"], entidade["velocidadeY"]);
 				p->setNoChao(entidade["noChao"]);
@@ -194,25 +194,25 @@ namespace Fases {
 		for (int i = 0; i < 36; i++) {
 
 			if (alterna == 1) {
-				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/pedra11.png");
+				Entidades::Obstaculos::Plataforma* p = new Entidades::Obstaculos::Plataforma(3, "assets/pedra11.png");
 				p->geraPlataforma(100, 400, (float)i * 400, 760);//era 400
 				listaEntidades.Incluir(p, &gerentC);
 				alterna++;
 			}
 			else if (alterna == 2) {
-				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/pedra21.png");
+				Entidades::Obstaculos::Plataforma* p = new Entidades::Obstaculos::Plataforma(3, "assets/pedra21.png");
 				p->geraPlataforma(100, 400, (float)i * 400, 760);//era 400
 				listaEntidades.Incluir(p, &gerentC);
 				alterna++;
 			}
 			else {
-				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/pedra31.png");
+				Entidades::Obstaculos::Plataforma* p = new Entidades::Obstaculos::Plataforma(3, "assets/pedra31.png");
 				p->geraPlataforma(100, 400, (float)i * 400, 760);//era 400
 				listaEntidades.Incluir(p, &gerentC);
 				alterna = 1;
 			}
 		}
-		Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/chao.png");
+		Entidades::Obstaculos::Plataforma* p = new Entidades::Obstaculos::Plataforma(3, "assets/chao.png");
 		p->geraPlataforma(100, 14400, 0, 860);
 		listaEntidades.Incluir(p, &gerentC);
 	}
@@ -237,7 +237,7 @@ namespace Fases {
 
 		for (int i = 0; i < 144; i++) {
 			if (numeros[i] == 1) {
-				Personagens::Lobo* r = new Personagens::Lobo(4);
+				Entidades::Personagens::Lobo* r = new Entidades::Personagens::Lobo(4);
 				r->setCoordenadas((float)i * 100, 0);
 				r->setCorpo(100, 100);
 				listaEntidades.Incluir(r, &gerentC);
@@ -267,8 +267,8 @@ namespace Fases {
 
 		for (int i = 0; i < num_chefoes && pos<=posicoes.size(); i++) {
 
-			Personagens::Yokai* c = new Personagens::Yokai(6, "assets/Yokai/Agis.png");
-			Obstaculos::Obstaculo* o = new Obstaculos::Plataforma(12, "assets/parede11.png");
+			Entidades::Personagens::Yokai* c = new Entidades::Personagens::Yokai(6, "assets/Yokai/Agis.png");
+			Entidades::Obstaculos::Obstaculo* o = new Entidades::Obstaculos::Plataforma(12, "assets/parede11.png");
 			
 			c->setCoordenadas((float)posicoes[pos], (float)altura);
 			c->setPosInicialX((float)posicoes[pos]);
@@ -294,7 +294,7 @@ namespace Fases {
 		num_projeteis = 5 * (num_chefoes);
 
 		for (int i = 0; i <num_projeteis; i++) {
-			Projetil* p = new Projetil(5);
+			Entidades::Projetil* p = new Entidades::Projetil(5);
 			listaEntidades.Incluir(p, &gerentC);
 		}
 	}

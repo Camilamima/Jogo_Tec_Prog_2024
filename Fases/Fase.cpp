@@ -147,7 +147,7 @@ namespace Fases {
 		//tamanho fase: 14400, 1400/144=100 cada espinho
 		for (int i = 0; i < 144; i++) {
 			if (numeros[i] != 0 && i > 3) {
-				Obstaculos::Espinho* p = new Obstaculos::Espinho(9);
+				Entidades::Obstaculos::Espinho* p = new Entidades::Obstaculos::Espinho(9);
 				p->setCoordenadas((float)i * 100, 700);
 				p->setCorpo(100, 70);
 				listaEntidades.Incluir(p, &gerentC);
@@ -196,11 +196,11 @@ namespace Fases {
 	void Fase::TipoPlataforma(int tipo, float x) {
 		if (num_fase == 1) {
 			if (tipo == 1) { // a em formato L invertido
-				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/pedra_tiles.png");
+				Entidades::Obstaculos::Plataforma* p = new Entidades::Obstaculos::Plataforma(3, "assets/pedra_tiles.png");
 				p->geraPlataforma(300, 200, x, 560);
 				listaEntidades.Incluir(p, &gerentC);
 
-				Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/tronco.png");
+				Entidades::Obstaculos::Plataforma* p2 = new Entidades::Obstaculos::Plataforma(3, "assets/tronco.png");
 				p2->geraPlataforma(100, 600, x + 10, 460);
 				listaEntidades.Incluir(p2, &gerentC);
 
@@ -208,28 +208,28 @@ namespace Fases {
 				localizacao_obs.push_back((int)x + 100);
 			}
 			else if (tipo == 2) { // plataforma simples
-				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/planta.png");
+				Entidades::Obstaculos::Plataforma* p = new Entidades::Obstaculos::Plataforma(3, "assets/planta.png");
 				p->geraPlataforma(150, 100, x, 610);
 				listaEntidades.Incluir(p, &gerentC);
 
 				localizacao_obs.push_back((int)x);
 			}
 			else if (tipo == 3) { // plataforma com folhas
-				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/tronco2.png");
+				Entidades::Obstaculos::Plataforma* p = new Entidades::Obstaculos::Plataforma(3, "assets/tronco2.png");
 				p->geraPlataforma(200, 100, x, 560);
 				listaEntidades.Incluir(p, &gerentC);
 
-				Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/folhas_3x.png");
+				Entidades::Obstaculos::Plataforma* p2 = new Entidades::Obstaculos::Plataforma(3, "assets/folhas_3x.png");
 				p2->geraPlataforma(100, 400, x - 50, 520);
 				listaEntidades.Incluir(p2, &gerentC);
 
 				localizacao_obs.push_back((int)x);
 			}
 			else if (tipo == 4) { // plataforma dupla
-				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/Tiles.png");
+				Entidades::Obstaculos::Plataforma* p = new Entidades::Obstaculos::Plataforma(3, "assets/Tiles.png");
 				p->geraPlataforma(200, 300, x, 560);
 				listaEntidades.Incluir(p, &gerentC);
-				Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/Tiles.png");
+				Entidades::Obstaculos::Plataforma* p2 = new Entidades::Obstaculos::Plataforma(3, "assets/Tiles.png");
 				p2->geraPlataforma(100, 200, x + 200, 455);
 				listaEntidades.Incluir(p2, &gerentC);
 				localizacao_obs.push_back((int)x);
@@ -239,26 +239,26 @@ namespace Fases {
 		}
 		else if (num_fase == 2) {
 			if (tipo == 1) { // conjunto de plataformas empilhadas
-				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/parede41.png");
+				Entidades::Obstaculos::Plataforma* p = new Entidades::Obstaculos::Plataforma(3, "assets/parede41.png");
 				p->geraPlataforma(300, 200, x, 560);
 				listaEntidades.Incluir(p, &gerentC);
 
-				Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/pedra11.png");
+				Entidades::Obstaculos::Plataforma* p2 = new Entidades::Obstaculos::Plataforma(3, "assets/pedra11.png");
 				p2->geraPlataforma(100, 100, x + 10, 460);
 
-				Obstaculos::Plataforma* p3 = new Obstaculos::Plataforma(3, "assets/pedra21.png");
+				Entidades::Obstaculos::Plataforma* p3 = new Entidades::Obstaculos::Plataforma(3, "assets/pedra21.png");
 				p3->geraPlataforma(100, 100, x + 110, 460);
 
-				Obstaculos::Plataforma* p4 = new Obstaculos::Plataforma(3, "assets/pedra31.png");
+				Entidades::Obstaculos::Plataforma* p4 = new Entidades::Obstaculos::Plataforma(3, "assets/pedra31.png");
 				p4->geraPlataforma(100, 100, x + 210, 460);
 
-				Obstaculos::Plataforma* p5 = new Obstaculos::Plataforma(3, "assets/pedra11.png");
+				Entidades::Obstaculos::Plataforma* p5 = new Entidades::Obstaculos::Plataforma(3, "assets/pedra11.png");
 				p5->geraPlataforma(100, 100, x + 310, 460);
 
-				Obstaculos::Plataforma* p6 = new Obstaculos::Plataforma(3, "assets/pedra21.png");
+				Entidades::Obstaculos::Plataforma* p6 = new Entidades::Obstaculos::Plataforma(3, "assets/pedra21.png");
 				p6->geraPlataforma(100, 100, x + 410, 460);
 
-				Obstaculos::Plataforma* p7 = new Obstaculos::Plataforma(3, "assets/pedra31.png");
+				Entidades::Obstaculos::Plataforma* p7 = new Entidades::Obstaculos::Plataforma(3, "assets/pedra31.png");
 				p7->geraPlataforma(100, 100, x + 510, 460);
 
 				listaEntidades.Incluir(p2, &gerentC);
@@ -272,18 +272,18 @@ namespace Fases {
 				localizacao_obs.push_back((int)x + 100);
 			}
 			else if (tipo == 2) { // plataforma pequena
-				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/parede11.png");
+				Entidades::Obstaculos::Plataforma* p = new Entidades::Obstaculos::Plataforma(3, "assets/parede11.png");
 				p->geraPlataforma(150, 100, x, 610);
 				listaEntidades.Incluir(p, &gerentC);
 
 				localizacao_obs.push_back((int)x);
 			}
 			else if (tipo == 3) { // plataforma alta
-				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/parede61.png");
+				Entidades::Obstaculos::Plataforma* p = new Entidades::Obstaculos::Plataforma(3, "assets/parede61.png");
 				p->geraPlataforma(200, 300, x, 560);
 				listaEntidades.Incluir(p, &gerentC);
 
-				Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/parede21.png");
+				Entidades::Obstaculos::Plataforma* p2 = new Entidades::Obstaculos::Plataforma(3, "assets/parede21.png");
 				p2->geraPlataforma(100, 200, x + 200, 460);
 				listaEntidades.Incluir(p2, &gerentC);
 
@@ -292,17 +292,17 @@ namespace Fases {
 				localizacao_obs.push_back((int)x + 200);
 			}
 			else if (tipo == 4) { // plataforma em T
-				Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3, "assets/parede41.png");
+				Entidades::Obstaculos::Plataforma* p = new Entidades::Obstaculos::Plataforma(3, "assets/parede41.png");
 				p->geraPlataforma(200, 100, x, 560);
 				listaEntidades.Incluir(p, &gerentC);
 
-				Obstaculos::Plataforma* p2 = new Obstaculos::Plataforma(3, "assets/pedra11.png");
+				Entidades::Obstaculos::Plataforma* p2 = new Entidades::Obstaculos::Plataforma(3, "assets/pedra11.png");
 				p2->geraPlataforma(100, 100, x - 50, 520);
 
-				Obstaculos::Plataforma* p3 = new Obstaculos::Plataforma(3, "assets/pedra21.png");
+				Entidades::Obstaculos::Plataforma* p3 = new Entidades::Obstaculos::Plataforma(3, "assets/pedra21.png");
 				p3->geraPlataforma(100, 100, x + 50, 520);
 
-				Obstaculos::Plataforma* p4 = new Obstaculos::Plataforma(3, "assets/pedra31.png");
+				Entidades::Obstaculos::Plataforma* p4 = new Entidades::Obstaculos::Plataforma(3, "assets/pedra31.png");
 				p4->geraPlataforma(100, 100, x + 150, 520);
 
 				listaEntidades.Incluir(p2, &gerentC);
@@ -360,21 +360,18 @@ namespace Fases {
 			if (Heroi1.getVidas() <= 0) {
 				Heroi1.setMorrendo(true);
 				if (Heroi1.getCont() % 8 == 0) {
-					cont1++;
-					if (morreu == true) {
-						listaEntidades.MatarEntidade(&Heroi1, &gerentC);
-						qnt_jogadores--;
-						apareceu1 = true;
-					}
-				}
-			}
-
-			if (gerentC.getJogador2() != nullptr && apareceu2 == false) {
-				if (Heroi2.getVidas() <= 0) {
 					listaEntidades.MatarEntidade(&Heroi2, &gerentC);
 					qnt_jogadores--;
 					apareceu2 = true;
 				}
+			}
+		}
+
+		if (gerentC.getJogador2() != nullptr && apareceu2 == false) {
+			if (Heroi2.getVidas() <= 0) {
+				listaEntidades.MatarEntidade(&Heroi2, &gerentC);
+				qnt_jogadores--;
+				apareceu2 = true;
 			}
 		}
 
@@ -552,7 +549,7 @@ namespace Fases {
 	}
 
 	void Fase::salvaFase() {
-		vector<Entidade*> vec = listaEntidades.returnVec();
+		vector<Entidades::Entidade*> vec = listaEntidades.returnVec();
 
 		json jsonData;//Json pra juntar tudo
 		int i;

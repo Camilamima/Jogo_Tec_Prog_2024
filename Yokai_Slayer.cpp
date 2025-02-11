@@ -10,7 +10,8 @@ Yokai_Slayer::Yokai_Slayer():
     Texto(),
     menu(-1)
 {
-    menu.setGerenciador(&gerent);
+    Ente::setGerenciador(&gerent);
+    //menu.setGerenciador(&gerent);
     fase = 1;
     Floresta_Profunda = nullptr;
     Caverna_Obscura = nullptr;
@@ -89,7 +90,7 @@ void Yokai_Slayer::lerFase(){
         }
 }
 
-void Yokai_Slayer::executar2() {
+void Yokai_Slayer::executar() {
     int iniciou = 0;
     int opc = -1;
     int qualMenu = -1;
@@ -230,4 +231,5 @@ void Yokai_Slayer::executar2() {
     }
 
 }
+
 

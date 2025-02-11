@@ -6,12 +6,11 @@ Ente::Ente(int x, const char* png):
 {
 	this->png = png;
 	sprite.loadFromFile(png);
-	pGGrafico = NULL;
 }
+
 Ente::Ente() {
 	id = 30;
 	png = "";
-	pGGrafico = NULL;
 }
 
 Ente::~Ente() {

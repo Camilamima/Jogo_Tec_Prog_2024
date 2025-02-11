@@ -1,6 +1,6 @@
 #pragma once
 #include "Lista.h"
-#include "../Entidade.h"
+#include "../Entidades/Entidade.h"
 #include "../Personagens/Yokai.h"
 #include "../Gerenciadores/Gerenciador_Colisoes.h"
 #include "../Obstaculos/Plataforma.h"
@@ -11,10 +11,10 @@ namespace Listas {
 
 	class ListaEntidade {
 	private:
-		Lista <Entidade*>* listaEntidades;
-		vector<Personagens::Yokai*> *chefoes;
-		//vector<Entidade*> *plataforma_Yokai;
-		queue<Entidade*>* plataforma_Yokai;
+		Lista <Entidades::Entidade*>* listaEntidades;
+		vector<Entidades::Personagens::Yokai*> *chefoes;
+		//vector<Entidades::Entidade*> *plataforma_Yokai;
+		queue<Entidades::Entidade*>* plataforma_Yokai;
 		int pos_Yokai;
 		bool zona_Yokai;//zona onde está o Yokai
 		int zona_Yokai_num;
@@ -33,15 +33,15 @@ namespace Listas {
 			return true; 
 		}
 		void Percorrer(Gerenciadores::Gerenciador_Colisoes* gc);
-		void Incluir(Entidade* entidade, Gerenciadores::Gerenciador_Colisoes* gc);
-		void IncluirSalvamento(Entidade* entidade, Gerenciadores::Gerenciador_Colisoes* gc);
+		void Incluir(Entidades::Entidade* Entidade, Gerenciadores::Gerenciador_Colisoes* gc);
+		void IncluirSalvamento(Entidades::Entidade* Entidade, Gerenciadores::Gerenciador_Colisoes* gc);
 		void setGG(Gerenciadores::Gerenciado_Grafico *gg);
-		void Include(Entidade* entidade);
-		void MatarEntidade(Entidade* ent, Gerenciadores::Gerenciador_Colisoes* gc);
+		void Include(Entidades::Entidade* Entidade);
 		int VerificMortos();//retona a posicao do morto -> se -1 nao tem mortos!
+		void MatarEntidade(Entidades::Entidade* ent, Gerenciadores::Gerenciador_Colisoes* gc);
 		void matarEntidadePos(int pos, Gerenciadores::Gerenciador_Colisoes* gc);
-		void encontraZonaYokai(Personagens::Heroi* jog);
-		vector<Entidade*> returnVec();
+		void encontraZonaYokai(Entidades::Personagens::Heroi* jog);
+		vector<Entidades::Entidade*> returnVec();
 	};
 
 }

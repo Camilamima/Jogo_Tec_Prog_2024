@@ -1,9 +1,9 @@
 #include<stdio.h>
-#include "Jogo.h"
+#include "Yokai_Slayer.h"
 int main() {
-	Jogo a;
+	Yokai_Slayer a;
 
-	a.executar2();
+	a.executar();
 
 	return 0;
 }

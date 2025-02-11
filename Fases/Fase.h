@@ -9,15 +9,15 @@
 #include "../Personagens/Lobo.h"
 #include "../Gerenciadores/Gerenciador_Colisoes.h"
 #include "../Listas/ListaEntidades.h"
-#include "../Projetil.h"
+#include "../Entidades/Projetil.h"
 #include "../Personagens/Yokai.h"
-#include "../Personagens/Efeitos.h"
 #include "../Personagens/Samurai.h"
 #include <nlohmann/json.hpp>
 #include "../Texto.h"
 using json = nlohmann::json;
 
 class Menu;
+
 
 namespace Fases {
 	class Fase:public Ente, public Texto{
@@ -33,10 +33,10 @@ namespace Fases {
 		Menu* pMenu;
 		vector <int> localizacao_obs;
 		Gerenciadores::Gerenciador_Colisoes gerentC;
-		Personagens::Heroi Heroi1;
-		Personagens::Heroi Heroi2;
-		Obstaculos::Plataforma chao;
-		Obstaculos::Plataforma ladoE;
+		Entidades::Personagens::Heroi Heroi1;
+		Entidades::Personagens::Heroi Heroi2;
+		Entidades::Obstaculos::Plataforma chao;
+		Entidades::Obstaculos::Plataforma ladoE;
 		Listas::ListaEntidade listaEntidades;
 
 	public:

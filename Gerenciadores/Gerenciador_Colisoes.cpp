@@ -23,40 +23,40 @@ namespace Gerenciadores {
 		LProjetil.clear();
 	}
 
-	void Gerenciador_Colisoes::setJogadores(Personagens::Heroi* j1, Personagens::Heroi* j2) {
+	void Gerenciador_Colisoes::setJogadores(Entidades::Personagens::Heroi* j1, Entidades::Personagens::Heroi* j2) {
 		jog1 = j1;
 		jog2 = j2;
 	}
 
-	void Gerenciador_Colisoes::includeEntidade(Entidade* ent) {
+	void Gerenciador_Colisoes::includeEntidade(Entidades::Entidade* ent) {
 
 		if (ent->getId() == 3 || ent->getId() == 9 || ent->getId() == 8 || ent->getId() == 11) {//obstaculo
-			LObst.push_back(static_cast<Obstaculos::Obstaculo*>(ent));
+			LObst.push_back(static_cast<Entidades::Obstaculos::Obstaculo*>(ent));
 
 
 		}
 
 		if (ent->getId() == 12) {
-			LObst.push_back(static_cast<Obstaculos::Obstaculo*>(ent));
+			LObst.push_back(static_cast<Entidades::Obstaculos::Obstaculo*>(ent));
 		}
 
 		else if (ent->getId() == 4 || ent->getId() == 6 || ent->getId() == 7) {//inimigo
-			LIni.push_back(static_cast<Personagens::Inimigo*>(ent));
+			LIni.push_back(static_cast<Entidades::Personagens::Inimigo*>(ent));
 		}
 
 		else if (ent->getId() == 1) {//jogador 1
-			jog1 = static_cast<Personagens::Heroi*>(ent);
+			jog1 = static_cast<Entidades::Personagens::Heroi*>(ent);
 		}
 		else if (ent->getId() == 2) {//jogador 2
-			jog2 = static_cast<Personagens::Heroi*>(ent);
+			jog2 = static_cast<Entidades::Personagens::Heroi*>(ent);
 		}
 		else if (ent->getId() == 5) {//projetil
-			LProjetil.push_back(static_cast<Projetil*>(ent));
+			LProjetil.push_back(static_cast<Entidades::Projetil*>(ent));
 		}
 		
 	}
 
-	int Gerenciador_Colisoes::veriColisao(Entidade* ent, Entidade* sl) {
+	int Gerenciador_Colisoes::veriColisao(Entidades::Entidade* ent, Entidades::Entidade* sl) {
 
 		RectangleShape jogador;
 		RectangleShape outro;
@@ -128,7 +128,7 @@ namespace Gerenciadores {
 
 		if (jog1 != nullptr) {
 			aux2 = jog1->getCorpo();
-			for (Personagens::Inimigo* inimigo : LIni) {
+			for (Entidades::Personagens::Inimigo* inimigo : LIni) {
 
 				aux1 = inimigo->getCorpo();
 
@@ -138,7 +138,7 @@ namespace Gerenciadores {
 
 				if (inimigo->getMaldade() == 2) {
 
-					Personagens::Samurai* Samurai = static_cast<Personagens::Samurai*>(inimigo);
+					Entidades::Personagens::Samurai* Samurai = static_cast<Entidades::Personagens::Samurai*>(inimigo);
 
 					Samurai->deveSeguir(jog1);
 				}
@@ -179,7 +179,7 @@ namespace Gerenciadores {
 
 		if (jog2 != nullptr) {
 			aux2 = jog2->getCorpo();
-			for (Personagens::Inimigo* inimigo : LIni) {
+			for (Entidades::Personagens::Inimigo* inimigo : LIni) {
 
 				aux1 = inimigo->getCorpo();
 
@@ -189,7 +189,7 @@ namespace Gerenciadores {
 
 				if (inimigo->getMaldade() == 2) {
 
-					Personagens::Samurai* Samurai = static_cast<Personagens::Samurai*>(inimigo);
+					Entidades::Personagens::Samurai* Samurai = static_cast<Entidades::Personagens::Samurai*>(inimigo);
 
 					Samurai->deveSeguir(jog2);
 				}
@@ -233,7 +233,7 @@ namespace Gerenciadores {
 
 			aux_jog1 = jog1->getCorpo();
 
-			for (Projetil* projetil : LProjetil) {
+			for (Entidades::Projetil* projetil : LProjetil) {
 
 				aux_proj = projetil->getCorpo();
 
@@ -265,7 +265,7 @@ namespace Gerenciadores {
 
 			aux_jog2 = jog2->getCorpo();
 
-			for (Projetil* projetil : LProjetil) {
+			for (Entidades::Projetil* projetil : LProjetil) {
 				aux_proj = projetil->getCorpo();
 				if (projetil->getNoChao() == true) {
 					continue;
@@ -298,7 +298,7 @@ namespace Gerenciadores {
 		bool lentidao = 0;
 
 		if (jog1 != nullptr) {
-			for (Obstaculos::Obstaculo* obstaculo : LObst) {
+			for (Entidades::Obstaculos::Obstaculo* obstaculo : LObst) {
 
 				aux = obstaculo->getCorpo();
 
@@ -368,7 +368,7 @@ namespace Gerenciadores {
 		}
 
 		if (jog2 != nullptr) {
-			for (Obstaculos::Obstaculo* obstaculo : LObst) {
+			for (Entidades::Obstaculos::Obstaculo* obstaculo : LObst) {
 
 				aux = obstaculo->getCorpo();
 
@@ -439,12 +439,12 @@ namespace Gerenciadores {
 	}
 
 
-	void Gerenciador_Colisoes::removeEntidade(Entidade* ent) {
+	void Gerenciador_Colisoes::removeEntidade(Entidades::Entidade* ent) {
 		if (ent->getId() == 4) {//se for inimigo ou Yokai
-			LIni.remove(static_cast<Personagens::Inimigo*>(ent));
+			LIni.remove(static_cast<Entidades::Personagens::Inimigo*>(ent));
 		}
 		if (ent->getId() == 6) {
-			LIni.remove(static_cast<Personagens::Inimigo*>(ent));
+			LIni.remove(static_cast<Entidades::Personagens::Inimigo*>(ent));
 		}
 		else if (ent->getId() == 1) {//se for jogador 1
 			setJogadores(nullptr, jog2);
@@ -453,7 +453,7 @@ namespace Gerenciadores {
 			setJogadores(jog1, nullptr);
 		}
 		else if (ent->getId() == 12) {
-			LObst.remove(static_cast<Obstaculos::Plataforma*>(ent));
+			LObst.remove(static_cast<Entidades::Obstaculos::Plataforma*>(ent));
 		}
 	}
 
@@ -464,14 +464,14 @@ namespace Gerenciadores {
 		bool ladoD = 0;
 		bool ladoE = 0;
 
-		for (Personagens::Inimigo* inimigo : LIni) {
+		for (Entidades::Personagens::Inimigo* inimigo : LIni) {
 
 			if (!inimigo->verificaVida()) {
 				continue;
 			}
 			aux2 = inimigo->getCorpo();
 
-			for (Obstaculos::Obstaculo* obstaculo : LObst) {
+			for (Entidades::Obstaculos::Obstaculo* obstaculo : LObst) {
 
 				if (!obstaculo->getImpede()) {
 					continue;
@@ -528,14 +528,14 @@ namespace Gerenciadores {
 		bool ladoD = 0;
 		bool ladoE = 0;
 			
-		for (Projetil* projetil : LProjetil) {
+		for (Entidades::Projetil* projetil : LProjetil) {
 
 			if (projetil->getApareceu()==false) {
 				continue;
 			}
 			aux2 = projetil->getCorpo();
 
-			for (Obstaculos::Obstaculo* obstaculo : LObst) {
+			for (Entidades::Obstaculos::Obstaculo* obstaculo : LObst) {
 
 				if (obstaculo->getImpede() == false) {//se nao eh plataforma
 					continue;

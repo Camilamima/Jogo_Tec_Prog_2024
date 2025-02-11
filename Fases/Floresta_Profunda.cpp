@@ -69,12 +69,12 @@ namespace Fases {
             else if (id == 3) {
                 std::string png_str = entidade["png"];
                 const char* png = png_str.c_str();
-                Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3,png);
+                Entidades::Obstaculos::Plataforma* p = new Entidades::Obstaculos::Plataforma(3,png);
                 listaEntidades.Incluir(p, &gerentC);
                 p->geraPlataforma(entidade["altura"], entidade["largura"], x, y);
             }
             else if (id == 4) {
-                Personagens::Lobo* r = new Personagens::Lobo(4);
+                Entidades::Personagens::Lobo* r = new Entidades::Personagens::Lobo(4);
                 listaEntidades.Incluir(r, &gerentC);
                 r->setCoordenadas(x, y);
                 r->setCorpo(100, 100);
@@ -83,7 +83,7 @@ namespace Fases {
                 r->setNoChao(entidade["noChao"]);
             }
             else if (id == 7) {
-                Personagens::Samurai* c = new Personagens::Samurai(7);
+                Entidades::Personagens::Samurai* c = new Entidades::Personagens::Samurai(7);
                 listaEntidades.Incluir(c, &gerentC);
                 c->setCoordenadas(x, y);
                 c->setCorpo(100, 100);
@@ -97,13 +97,13 @@ namespace Fases {
                 c->setYeXini(entidade["xIni"], entidade["yIni"]);
             }
             else if (id == 11) {
-                Obstaculos::Rio* M = new Obstaculos::Rio(11);
+                Entidades::Obstaculos::Rio* M = new Entidades::Obstaculos::Rio(11);
                 M->setCoordenadas(x, y);
                 M->setCorpo(entidade["largura"], entidade["altura"]);
                 listaEntidades.Incluir(M, &gerentC);
             }
 			else if (id == 9) {
-				Obstaculos::Espinho* e = new Obstaculos::Espinho(9);
+				Entidades::Obstaculos::Espinho* e = new Entidades::Obstaculos::Espinho(9);
 				e->setCoordenadas(x, y);
                 e->setCorpo(100, 70);
 				e->setEspinhos(entidade["num_espinhos"]);
@@ -177,12 +177,12 @@ namespace Fases {
         //tamanho fase: 14400, 8 segmentos, 7200/36=400 cada bloco
         for (int i = 0; i < 36; i++) {
             if (i == 0 || numeros[i] == 0) {
-                Obstaculos::Plataforma* p = new Obstaculos::Plataforma(3,"assets/Tiles.png");
+                Entidades::Obstaculos::Plataforma* p = new Entidades::Obstaculos::Plataforma(3,"assets/Tiles.png");
                 p->geraPlataforma(140, 400, (float)i * 400, 760);
                 listaEntidades.Incluir(p, &gerentC);
             }
             else {
-                Obstaculos::Rio* M = new Obstaculos::Rio(11);
+                Entidades::Obstaculos::Rio* M = new Entidades::Obstaculos::Rio(11);
                 M->setCoordenadas((float)i * 400, 800);
                 M->setCorpo(400, 100);
                 listaEntidades.Incluir(M, &gerentC);
@@ -219,13 +219,13 @@ namespace Fases {
 
         for (int i = 0; i < 144; i++) {
             if (numeros[i] == 1) {
-                Personagens::Lobo* r = new Personagens::Lobo(4);
+                Entidades::Personagens::Lobo* r = new Entidades::Personagens::Lobo(4);
                 r->setCoordenadas((float)i * 100, 0);
                 r->setCorpo(100, 100);
                 listaEntidades.Incluir(r, &gerentC);
             }
             if (numeros[i] == 2) {
-                Personagens::Samurai* c = new Personagens::Samurai(7);
+                Entidades::Personagens::Samurai* c = new Entidades::Personagens::Samurai(7);
                 c->setCoordenadas((float)i * 100, 0);
                 c->setCorpo(100, 100);
                 listaEntidades.Incluir(c, &gerentC);

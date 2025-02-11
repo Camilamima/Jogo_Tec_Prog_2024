@@ -7,7 +7,6 @@
 class Yokai_Slayer: public Texto
 {
 private:
-	//Fases::Floresta_Profunda Floresta_Profunda;
 	Menu menu;
 	Fases::Floresta_Profunda *Floresta_Profunda;
 	Fases::Caverna_Obscura *Caverna_Obscura;
@@ -19,6 +18,9 @@ public:
 	~Yokai_Slayer();
 	void setaTextos(int text);
 	void lerFase();
-	void executar2();
+	void executar();
 };
+
+
+
 

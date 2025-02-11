@@ -1,44 +1,45 @@
 #include "Rio.h"
 #include <iostream>
 
-using namespace Personagens;
-namespace Obstaculos {
-	Rio::Rio(int id, const char* png) :
-		Obstaculo(id, png)
-	{
-		setCoordenadas(1200, 800);
-		setCorpo(100.0, 100.00);
-		atrapalha = true;
-		atrito = 0.5f;
-		atrasador = VX * atrito;
-	}
-
-	Rio::~Rio() {
-	}
-	
-
-	void Rio::executar() {
-		pGGrafico->desenha(corpo);
-		if (!noChao) {
-			mover();
+namespace Entidades {
+	namespace Obstaculos {
+		Rio::Rio(int id, const char* png) :
+			Obstaculo(id, png)
+		{
+			setCoordenadas(1200, 800);
+			setCorpo(100.0, 100.00);
+			atrapalha = true;
+			atrito = 0.5f;
+			atrasador = VX * atrito;
 		}
-	}
 
-	void Rio::obstacular(Personagem* jogador,int i) {
+		Rio::~Rio() {
+		}
 
-		float velY = jogador->getVelocidadeY();
-		jogador->setVelocidae(atrasador, (float)0.97 * (float) velY);
-	}
 
-	json Rio::salvar() const {
-		json entidadeJson;
+		void Rio::executar() {
+			pGGrafico->desenha(corpo);
+			if (!noChao) {
+				mover();
+			}
+		}
 
-		entidadeJson["id"] = id;
-		entidadeJson["x"] = corpo.getPosition().x;
-		entidadeJson["y"] = corpo.getPosition().y;
-		entidadeJson["altura"] = corpo.getSize().y;
-		entidadeJson["largura"] = corpo.getSize().x;
+		void Rio::obstacular(Entidades::Personagens::Personagem* jogador, int i) {
 
-		return entidadeJson;
+			float velY = jogador->getVelocidadeY();
+			jogador->setVelocidae(atrasador, (float)0.97 * (float)velY);
+		}
+
+		json Rio::salvar() const {
+			json entidadeJson;
+
+			entidadeJson["id"] = id;
+			entidadeJson["x"] = corpo.getPosition().x;
+			entidadeJson["y"] = corpo.getPosition().y;
+			entidadeJson["altura"] = corpo.getSize().y;
+			entidadeJson["largura"] = corpo.getSize().x;
+
+			return entidadeJson;
+		}
 	}
 }
