@@ -1,4 +1,4 @@
-#include "Jogo.h"
+#include "Yokai_Slayer.h"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <fstream>  
@@ -6,7 +6,7 @@ using namespace sf;
 using namespace std;
 using json = nlohmann::json;
 
-Jogo::Jogo():
+Yokai_Slayer::Yokai_Slayer():
     Texto(),
     menu(-1)
 {
@@ -16,7 +16,7 @@ Jogo::Jogo():
     Caverna_Obscura = nullptr;
 }
 
-Jogo::~Jogo()
+Yokai_Slayer::~Yokai_Slayer()
 {
     if (Floresta_Profunda != nullptr) {
         delete Floresta_Profunda;
@@ -28,7 +28,7 @@ Jogo::~Jogo()
     }
 }
 
-void Jogo::setaTextos(int text) {
+void Yokai_Slayer::setaTextos(int text) {
     limpaTextos();
     if (text == 1) {
         nomes.push_back("Saindo da Floresta Profunda");
@@ -45,7 +45,7 @@ void Jogo::setaTextos(int text) {
         }
     }
     else if (text == 2) {
-        nomes.push_back("Fim de jogo");
+        nomes.push_back("Fim de Yokai_Slayer");
 
         textos.resize(nomes.size()); // Garante que textos tenha o mesmo número de elementos que nomes
 
@@ -60,7 +60,7 @@ void Jogo::setaTextos(int text) {
 
 }
 
-void Jogo::lerFase(){
+void Yokai_Slayer::lerFase(){
         std::string nomeArquivo = "Save/fase.json";  // Caminho fixo
         std::ifstream arquivo(nomeArquivo);
 
@@ -89,7 +89,7 @@ void Jogo::lerFase(){
         }
 }
 
-void Jogo::executar2() {
+void Yokai_Slayer::executar2() {
     int iniciou = 0;
     int opc = -1;
     int qualMenu = -1;
@@ -113,7 +113,7 @@ void Jogo::executar2() {
                 }
             }
             if (event.key.code == sf::Keyboard::F1) {
-                // Chama a função para salvar o jogo
+                // Chama a função para salvar o Yokai_Slayer
                 if (fase == 1)
                     Floresta_Profunda->salvaFase();
                 else if (fase == 2)

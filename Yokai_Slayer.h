@@ -4,7 +4,7 @@
 #include "Fases/Caverna_Obscura.h"
 #include "Menu.h"
 
-class Jogo: public Texto
+class Yokai_Slayer: public Texto
 {
 private:
 	//Fases::Floresta_Profunda Floresta_Profunda;
@@ -15,8 +15,8 @@ private:
 	int fase;
 
 public:
-	Jogo();
-	~Jogo();
+	Yokai_Slayer();
+	~Yokai_Slayer();
 	void setaTextos(int text);
 	void lerFase();
 	void executar2();
