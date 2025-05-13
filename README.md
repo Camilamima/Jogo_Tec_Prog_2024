@@ -46,8 +46,9 @@ O objetivo é vencer todos os desafios e se tornar o verdadeiro **caçador de yo
 
 ## 🖼️ Imagens do Jogo
 
-> *(Adicione aqui prints do jogo em execução)*
+> ![image](https://github.com/user-attachments/assets/b01784c5-1013-46d3-b599-32d2c0de0ca3)
+> ![image](https://github.com/user-attachments/assets/67b90f88-4fc9-4ea3-93ce-d9ef21ecc6ef)
+> ![image](https://github.com/user-attachments/assets/8dd77e58-c669-4c59-afa8-99c6957cdc2f)
+> ![image](https://github.com/user-attachments/assets/e2300412-7740-4232-987a-59f2d37e4a17)
 
-```markdown
-![Screenshot da Floresta](imagens/floresta.png)
-![Screenshot da Caverna](imagens/caverna.png)
+
