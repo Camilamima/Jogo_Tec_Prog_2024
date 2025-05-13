@@ -51,4 +51,13 @@ O objetivo é vencer todos os desafios e se tornar o verdadeiro **caçador de yo
 > ![image](https://github.com/user-attachments/assets/8dd77e58-c669-4c59-afa8-99c6957cdc2f)
 > ![image](https://github.com/user-attachments/assets/e2300412-7740-4232-987a-59f2d37e4a17)
 
+## 👩‍💻 Desenvolvedoras
+- Camila Miranda Marani - @Camilamima
+- Giulia de Souza Leite - @giulia-souza
+
+## 🗾 Agradecimentos
+Agradecemos ao professor Dr. Jean M. Simão, aos monitores da disciplina e ao grupo PET-ECO (UTFPR) pelo suporte técnico, materiais e oficinas.
+> Os sprites e recursos visuais foram retirados de fontes gratuitas e devidamente creditadas no relatório técnico do projeto.
+
+© 2025 Yokai Slayer – UTFPR
 
